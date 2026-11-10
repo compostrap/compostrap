@@ -56,6 +56,8 @@
 	</div>
 </header>
 
+
+
 <main class="container">
 	<h1 class="h3 mb-1 mt-3">Cart and form states</h1>
 	<p class="text-body-secondary mb-4">What the shop shows when something is empty, wrong, loading or unavailable.</p>
@@ -197,8 +199,12 @@
 		</div>
 
 	</div>
+</main>
 
-<!-- overlays -->
+<footer class="shop-footer">
+	<div class="container">&copy; 2026 Compostrap Shop</div>
+</footer>
+
 <script>
 	// the demo loads for two seconds, as a request of Naja would
 	document.getElementById('shop-loading-start').addEventListener('click', () => {
@@ -207,13 +213,6 @@
 		setTimeout(() => card.removeAttribute('aria-busy'), 2000);
 	});
 </script>
-</main>
-
-<footer class="shop-footer">
-	<div class="container">&copy; 2026 Compostrap Shop</div>
-</footer>
-
-
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script type="module">

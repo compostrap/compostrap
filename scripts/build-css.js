@@ -22,6 +22,7 @@ const entries = [
 	'empty',
 	'auth',
 	'shop',
+	'blog',
 	'sidebar',
 	'sidebar-menu',
 	'dashboard',

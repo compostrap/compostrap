@@ -37,9 +37,23 @@
 			<span>Compostrap</span>
 		</a>
 
-		<button type="button" class="navbar-icon" aria-label="Toggle theme" data-tooltip="left" data-theme-switcher data-theme-light-icon="bi bi-sun" data-theme-dark-icon="bi bi-moon">
-			<i data-theme-switcher-icon class="bi bi-moon" aria-hidden="true"></i>
-		</button>
+		<div class="auth-actions">
+			<!-- language: an icon with the code of the current language, the languages in the dropdown, the current one checked -->
+			<div class="dropdown">
+				<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">
+					<i class="bi bi-translate" aria-hidden="true"></i><span class="navbar-icon-text">EN</span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+					<li><h6 class="dropdown-header">Language</h6></li>
+					<li><a class="dropdown-item d-flex align-items-center gap-3" href="#" lang="cs"><span class="me-auto">Čeština</span><span class="small text-body-secondary">CS</span><i class="bi bi-check-lg invisible" aria-hidden="true"></i></a></li>
+					<li><a class="dropdown-item active d-flex align-items-center gap-3" href="#" lang="en" aria-current="true"><span class="me-auto">English</span><span class="small text-body-secondary">EN</span><i class="bi bi-check-lg" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+
+			<button type="button" class="navbar-icon" aria-label="Toggle theme" data-tooltip="left" data-theme-switcher data-theme-light-icon="bi bi-sun" data-theme-dark-icon="bi bi-moon">
+				<i data-theme-switcher-icon class="bi bi-moon" aria-hidden="true"></i>
+			</button>
+		</div>
 	</div>
 
 	<!-- the password recovery of drago (project-auth) in its three steps: the e-mail, the code from the e-mail, the new
@@ -50,12 +64,6 @@
 		</aside>
 
 		<main class="auth-body">
-			<div class="auth-toolbar">
-				<a href="#" lang="cs">Čeština</a>
-				<span class="text-body-tertiary" aria-hidden="true">&middot;</span>
-				<a href="#" lang="en" class="active" aria-current="true">English</a>
-			</div>
-
 			<header class="auth-header">
 				<h1 class="auth-title">Password recovery</h1>
 				<p class="auth-subtitle">Follow the steps to restore access to your account.</p>
@@ -126,7 +134,10 @@
 			</div>
 		</main>
 	</div>
-<!-- overlays -->
+
+	<footer class="auth-footer">&copy; 2026 Compostrap</footer>
+</div>
+
 <script>
 	// the steps of the demo: a button shows the step it names, as the redrawn snippet does in drago
 	document.addEventListener('click', (event) => {
@@ -142,11 +153,6 @@
 		document.querySelector(`[data-recovery-step="${step}"] input`)?.focus();
 	});
 </script>
-
-	<footer class="auth-footer">&copy; 2026 Compostrap</footer>
-</div>
-
-
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script type="module">

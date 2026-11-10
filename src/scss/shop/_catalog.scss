@@ -140,6 +140,23 @@
 	color: var(--bs-secondary-color);
 }
 
+// two narrow tiles in a row (a phone): the long text of parameters is cut after a few lines, or one row of tiles
+// would be higher than the screen; a rating without a value (.shop-product-rating-empty) drops its empty stars
+// there, so its text stays on one line and the titles of the row in line
+@include bs.media-breakpoint-down(md) {
+	.shop-product-text {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: var(--shop-product-text-lines, 4);
+		line-clamp: var(--shop-product-text-lines, 4);
+	}
+
+	.shop-product-rating-empty > .rating-static {
+		display: none;
+	}
+}
+
 .shop-product-footer {
 	padding-top: 1rem;
 	margin-top: auto;
@@ -189,6 +206,12 @@
 	display: flex;
 	align-items: center;
 	gap: .375rem;
+}
+
+// the last pieces: orange between the green of "in stock" and the red of "out of stock" (the yellow text of a
+// warning read as olive); mixed with the color of the text, so it is darker on a light surface and lighter on a dark one
+.shop-stock-low {
+	color: color-mix(in srgb, var(--bs-orange) 70%, var(--bs-body-color));
 }
 
 // a choice of a variant (memory, color, …) as pills; the chosen one is tinted

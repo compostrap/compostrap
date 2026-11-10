@@ -1,0 +1,130 @@
+//
+// shop: the welcome of the storefront, a low band right under the header in the whole width of the window, with a
+// label, a title in two tones, a short text and a row of white icons of products
+//
+// <header class="shop-header">…</header>
+// <section class="shop-hero">
+//   <div class="container">
+//     <div class="shop-hero-copy">
+//       <p class="shop-hero-eyebrow">Compostrap Shop</p>
+//       <p class="shop-hero-title">Your shopping, <em>simply.</em></p>
+//       <p class="shop-hero-text">Text</p>
+//     </div>
+//     <div class="shop-hero-art" aria-hidden="true">
+//       <span class="shop-hero-icon"><i class="bi bi-headphones"></i></span>
+//       <span class="shop-hero-icon"><i class="bi bi-laptop"></i></span>
+//     </div>
+//   </div>
+// </section>
+// <main class="container">…</main>
+//
+// The band is tinted with the primary color and joins the header without a gap; its content keeps the width of the
+// page. The pictures are left out on a phone.
+//
+
+@use '../bootstrap' as bs;
+
+.shop-hero {
+	--shop-hero-bg: color-mix(in srgb, var(--bs-primary) 8%, var(--shop-surface-bg));
+	--shop-hero-icon-size: 3rem;
+
+	padding: 1rem 0;
+	margin-bottom: 1.5rem;
+	// the tint grows towards the pictures
+	background: linear-gradient(100deg, var(--shop-hero-bg) 45%, color-mix(in srgb, var(--bs-primary) 16%, var(--shop-surface-bg)));
+
+	> .container {
+		display: flex;
+		gap: 1.5rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+// the band joins the header: the header drops its gap, the band has it under itself
+.shop-header:has(+ .shop-hero) {
+	margin-bottom: 0;
+}
+
+.shop-hero-copy {
+	min-width: 0;
+}
+
+// a short line and a label in capitals over the title
+.shop-hero-eyebrow {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+	margin-bottom: .25rem;
+	font-size: .75rem;
+	font-weight: 700;
+	color: var(--bs-primary);
+	text-transform: uppercase;
+	letter-spacing: .12em;
+
+	&::before {
+		width: 1.5rem;
+		height: 1px;
+		content: '';
+		background-color: currentcolor;
+	}
+}
+
+// the title: its <em> is the second tone, lighter and in the primary color
+.shop-hero-title {
+	margin-bottom: .125rem;
+	font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem);
+	font-weight: 500;
+	line-height: 1.2;
+	// a blue of its own, deeper than the primary color of the label and of the second tone (a dark title was too loud
+	// on the tint): the primary color mixed with the color of headings, so it is a light blue in the dark theme
+	color: color-mix(in srgb, var(--bs-primary) 55%, var(--bs-emphasis-color));
+	letter-spacing: -.02em;
+
+	em {
+		font-style: normal;
+		font-weight: 400;
+		color: var(--bs-primary);
+	}
+}
+
+.shop-hero-text {
+	margin-bottom: 0;
+	color: var(--bs-secondary-color);
+}
+
+// the pictures: a row of white icons of products, each on a round chip in the primary color; the chips grow stronger
+// towards the edge like the tint of the band (the first one is the weakest)
+.shop-hero-art {
+	display: flex;
+	flex: none;
+	gap: .625rem;
+	align-items: center;
+}
+
+.shop-hero-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--shop-hero-icon-size);
+	height: var(--shop-hero-icon-size);
+	font-size: calc(var(--shop-hero-icon-size) * .45);
+	color: #fff;
+	background-color: color-mix(in srgb, var(--bs-primary) var(--shop-hero-icon-tone, 100%), var(--shop-surface-bg));
+	border-radius: 50%;
+
+	&:nth-last-child(2) { --shop-hero-icon-tone: 82%; }
+	&:nth-last-child(3) { --shop-hero-icon-tone: 64%; }
+	&:nth-last-child(4) { --shop-hero-icon-tone: 46%; }
+	&:nth-last-child(n + 5) { --shop-hero-icon-tone: 30%; }
+}
+
+@include bs.media-breakpoint-down(md) {
+	.shop-hero {
+		margin-bottom: 1rem;
+	}
+
+	.shop-hero-art {
+		display: none;
+	}
+}

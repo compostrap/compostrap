@@ -324,6 +324,32 @@
 								<li>
 									<a class="list-link link-arrow">
 										<div class="clearfix">
+											<div class="float-start"><span class="list-icon"><i class="bi bi-journal-text bell"></i></span>Blog</div>
+											<div class="float-end"></div>
+										</div>
+									</a>
+									<ul class="list-unstyled list-hidden">
+										<li>
+											<a href="blog-articles.html" class="list-link">
+												<div class="clearfix">
+													<div class="float-start">Articles</div>
+													<div class="float-end"></div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="blog-article.html" class="list-link">
+												<div class="clearfix">
+													<div class="float-start">Article</div>
+													<div class="float-end"></div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a class="list-link link-arrow">
+										<div class="clearfix">
 											<div class="float-start"><span class="list-icon"><i class="bi bi-exclamation-octagon bell"></i></span>Errors</div>
 											<div class="float-end"></div>
 										</div>
@@ -611,13 +637,6 @@
 					Administrator role has full access granted by default. These settings have no effect.
 				</div>
 			</div>
-<!-- overlays -->
-<script>
-	// the label of a switch follows its state, as the toggle of drago redraws it
-	document.querySelectorAll('.setting-row .form-check-input:not(:disabled)').forEach((input) => input.addEventListener('change', () => {
-		input.nextElementSibling.textContent = input.checked ? 'Allowed' : 'Denied';
-	}));
-</script>
 
 			</main>
 
@@ -631,7 +650,12 @@
 	</div>
 </div>
 
-
+<script>
+	// the label of a switch follows its state, as the toggle of drago redraws it
+	document.querySelectorAll('.setting-row .form-check-input:not(:disabled)').forEach((input) => input.addEventListener('change', () => {
+		input.nextElementSibling.textContent = input.checked ? 'Allowed' : 'Denied';
+	}));
+</script>
 
 <!-- the layout of the demo: variants of the navbar and of the brand, tried live and remembered (demo only) -->
 <button type="button" class="btn btn-primary btn-sm demo-customize" data-bs-toggle="offcanvas" data-bs-target="#demo-layout" aria-controls="demo-layout">

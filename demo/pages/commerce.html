@@ -240,8 +240,9 @@
 								<input type="text" class="form-control" id="demo-product-slug" value="ultrabook-air-13">
 							</div>
 							<div class="col-12">
-								<label for="demo-product-description" class="form-label fw-semibold">Description</label>
-								<textarea class="form-control" id="demo-product-description" style="height: calc(100dvh - 20.5rem); min-height: 14rem">A light 13-inch notebook in an aluminium body: 1.2 kg, a 2560 × 1600 display, up to 18 hours on battery and a silent fanless design.</textarea>
+								<label for="demo-product-description" class="form-label fw-semibold">Description (Texy)</label>
+								<!-- the toolbar of drago-ex/texy-toolbar (demo/texy-toolbar.js builds it here) -->
+								<textarea class="form-control" id="demo-product-description" data-texy-toolbar style="height: calc(100dvh - 23.25rem); min-height: 14rem">A light 13-inch notebook in an aluminium body: 1.2 kg, a 2560 × 1600 display, up to 18 hours on battery and a silent fanless design.</textarea>
 							</div>
 						</div>
 					</div>
@@ -503,3 +504,5 @@
 		</div>
 	</div>
 </div>
+
+<script type="module" src="demo/texy-toolbar.js"></script>

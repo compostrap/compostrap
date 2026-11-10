@@ -324,6 +324,32 @@
 								<li>
 									<a class="list-link link-arrow">
 										<div class="clearfix">
+											<div class="float-start"><span class="list-icon"><i class="bi bi-journal-text bell"></i></span>Blog</div>
+											<div class="float-end"></div>
+										</div>
+									</a>
+									<ul class="list-unstyled list-hidden">
+										<li>
+											<a href="blog-articles.html" class="list-link">
+												<div class="clearfix">
+													<div class="float-start">Articles</div>
+													<div class="float-end"></div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="blog-article.html" class="list-link">
+												<div class="clearfix">
+													<div class="float-start">Article</div>
+													<div class="float-end"></div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a class="list-link link-arrow">
+										<div class="clearfix">
 											<div class="float-start"><span class="list-icon"><i class="bi bi-exclamation-octagon bell"></i></span>Errors</div>
 											<div class="float-end"></div>
 										</div>
@@ -681,20 +707,6 @@
 					</div>
 				</div>
 			</div>
-<!-- overlays -->
-<script>
-	// the demo cart recounts its prices on a change of a quantity (drago would send it by AJAX)
-	const money = (value) => `${value.toLocaleString('en-US')}`;
-	document.getElementById('demo-cart').addEventListener('change', () => {
-		let total = 0;
-		document.querySelectorAll('#demo-cart tbody tr').forEach((row) => {
-			const sum = Number(row.dataset.price) * Number(row.querySelector('input').value);
-			row.querySelector('[data-total]').textContent = money(sum);
-			total += sum;
-		});
-		document.getElementById('demo-cart-total').textContent = money(total);
-	});
-</script>
 
 			</main>
 
@@ -708,7 +720,19 @@
 	</div>
 </div>
 
-
+<script>
+	// the demo cart recounts its prices on a change of a quantity (drago would send it by AJAX)
+	const money = (value) => `${value.toLocaleString('en-US')}`;
+	document.getElementById('demo-cart').addEventListener('change', () => {
+		let total = 0;
+		document.querySelectorAll('#demo-cart tbody tr').forEach((row) => {
+			const sum = Number(row.dataset.price) * Number(row.querySelector('input').value);
+			row.querySelector('[data-total]').textContent = money(sum);
+			total += sum;
+		});
+		document.getElementById('demo-cart-total').textContent = money(total);
+	});
+</script>
 
 <!-- the layout of the demo: variants of the navbar and of the brand, tried live and remembered (demo only) -->
 <button type="button" class="btn btn-primary btn-sm demo-customize" data-bs-toggle="offcanvas" data-bs-target="#demo-layout" aria-controls="demo-layout">

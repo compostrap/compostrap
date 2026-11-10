@@ -1,0 +1,120 @@
+//
+// blog: the page, the header with the links of the website and the footer
+//
+
+@use '../bootstrap' as bs;
+
+:root,
+[data-bs-theme] {
+	--blog-page-bg: var(--bs-body-bg);
+	--blog-tint-bg: var(--bs-tertiary-bg);
+	--blog-tint-hover-bg: var(--bs-secondary-bg);
+}
+
+// the footer stays at the bottom of a short page
+.blog-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--blog-page-bg);
+
+	> main {
+		flex: 1 0 auto;
+		width: 100%;
+		padding-block: 2rem 3rem;
+	}
+}
+
+// the header is a tinted bar over the page (as the footer), it stays at the top while the page scrolls; inside is a
+// navbar of Bootstrap, so the links fold into a menu on a phone
+// <header class="blog-header"><nav class="navbar navbar-expand-lg"><div class="container">
+//   <a class="blog-brand" href="/">Logo <span>Name</span></a>
+//   <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#blog-menu">…</button>
+//   <div class="collapse navbar-collapse" id="blog-menu">
+//     <ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link active" href="/blog">Blog</a></li></ul>
+//     <div class="blog-header-actions">theme switch, sign in</div>
+//   </div>
+// </div></nav></header>
+.blog-header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background-color: var(--blog-tint-bg);
+
+	.navbar {
+		min-height: 4rem;
+	}
+
+	.navbar-toggler {
+		border: 0;
+	}
+
+	.nav-link.active {
+		font-weight: 600;
+		color: var(--bs-emphasis-color);
+	}
+}
+
+.blog-brand {
+	display: inline-flex;
+	gap: .625rem;
+	align-items: center;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+	text-decoration: none;
+}
+
+.blog-header-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+	margin-left: .5rem;
+}
+
+// the footer: the brand with a short text and columns of links
+// <footer class="blog-footer"><div class="container"><div class="row g-4">
+//   <div class="col-lg-4">brand, text</div>
+//   <div class="col-6 col-md-4 col-lg-2"><h2 class="blog-footer-title">Links</h2><ul class="blog-footer-links"><li><a href="...">Blog</a></li></ul></div>
+// </div></div></footer>
+.blog-footer {
+	padding: 3rem 0;
+	margin-top: auto;
+	color: var(--bs-secondary-color);
+	background-color: var(--blog-tint-bg);
+}
+
+.blog-footer-title {
+	margin-bottom: .75rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--bs-secondary-color);
+}
+
+.blog-footer-links {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	li + li {
+		margin-top: .5rem;
+	}
+
+	a {
+		color: var(--bs-body-color);
+		text-decoration: none;
+
+		&:hover {
+			color: var(--bs-emphasis-color);
+			text-decoration: underline;
+		}
+	}
+}
+
+@include bs.media-breakpoint-down(lg) {
+	// the folded menu: the actions under the links
+	.blog-header-actions {
+		padding-block: .5rem;
+		margin-left: 0;
+	}
+}

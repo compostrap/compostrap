@@ -1,0 +1,111 @@
+//
+// blog: an article: a narrow column with the title, the perex, the author, the picture and the text
+//
+// <article class="blog-article">
+//   <a class="blog-back" href="...">← Blog</a>
+//   <h1 class="blog-article-title">Title</h1>
+//   <p class="blog-article-lead">Perex</p>
+//   <div class="blog-meta blog-article-meta"><span class="blog-author">…</span><time>…</time><a href="...">News</a></div>
+//   <div class="blog-article-image"><img src="..." alt=""></div>
+//   <div class="blog-content">text</div>
+// </article>
+//
+
+.blog-article {
+	max-width: var(--blog-article-width, 48rem);
+	margin-inline: auto;
+}
+
+.blog-back {
+	display: inline-block;
+	margin-bottom: 1.5rem;
+	color: var(--bs-secondary-color);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--bs-emphasis-color);
+	}
+}
+
+.blog-article-title {
+	margin-bottom: 1rem;
+	font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -.02em;
+}
+
+.blog-article-lead {
+	margin-bottom: 1rem;
+	font-size: 1.25rem;
+	color: var(--bs-secondary-color);
+}
+
+.blog-article-meta {
+	margin-bottom: 1.5rem;
+}
+
+// the cover of an article: a wide cut over the whole column
+.blog-article-image {
+	aspect-ratio: 21 / 9;
+	margin-bottom: 1.5rem;
+	overflow: hidden;
+	border-radius: var(--bs-border-radius-lg);
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+}
+
+// the text of an article or a page (written in Texy, Markdown…): larger, with more room between lines; pictures
+// as the cover, a wide cut over the whole column
+.blog-content {
+	font-size: 1.125rem;
+	line-height: 1.7;
+
+	h2,
+	h3 {
+		margin-top: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	h2 {
+		font-size: 1.5rem;
+	}
+
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 21 / 9;
+		object-fit: cover;
+		object-position: top;
+		border-radius: var(--bs-border-radius-lg);
+	}
+
+	// a quote: a line of the primary color on its left (drawn as a shadow, not a border)
+	blockquote {
+		padding: .25rem 0 .25rem 1.25rem;
+		margin: 1.5rem 0;
+		color: var(--bs-secondary-color);
+		box-shadow: inset 3px 0 0 var(--bs-primary);
+	}
+
+	pre {
+		padding: 1rem 1.25rem;
+		font-size: .875rem;
+		line-height: 1.6;
+		background-color: var(--blog-tint-bg);
+		border-radius: var(--bs-border-radius-lg);
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+}

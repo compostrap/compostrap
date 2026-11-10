@@ -7,13 +7,14 @@
 //   <footer class="shop-footer"><div class="container">…</div></footer>
 // </body>
 //
-// The parts: `.shop-stepper` (steps of the order, in `.shop-checkout-head` with the title of the page), `.shop-option` (a card choice of a carrier or payment next to a
+// The parts: `.shop-hero` (the welcome band under the header), `.shop-stepper` (steps of the order, in `.shop-checkout-head` with the title of the page), `.shop-option` (a card choice of a carrier or payment next to a
 // `.btn-check`), `.shop-product` (a product tile), `.shop-filters` (the filters of the list), `.shop-variant-pill` (a variant choice), `.shop-detail-gallery`, `.shop-review` (the reviews of a product),
 // `.shop-cart-item` (a row of the cart), `.shop-summary` (the sticky price summary), `.shop-info` (the facts of an order to read), `.shop-bar` (the total and the button at the bottom of a phone), `.shop-minicart`.
 //
 
 @use 'page';
 @use 'stepper';
+@use 'hero';
 @use 'catalog';
 @use 'filters';
 @use 'reviews';

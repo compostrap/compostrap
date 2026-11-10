@@ -54,6 +54,7 @@ The package has three layers:
 | `empty` | component | empty states in boxes and error pages (404, 403, 500, maintenance) with illustrations | – |
 | `auth` | component | pages outside the administration (sign in, sign up, recovery): a box in the middle of the page | – |
 | `shop` | component | the storefront of an e-shop: header with the mini cart, product tiles and detail, cart, steps of the order, choice of the delivery, price summary | `number-input` (amount) |
+| `blog` | component | a website with a blog: header with the links, list of articles with categories, an article with its text, comments | `avatar` of the theme |
 
 The components and the layout work with plain Bootstrap too; the ones with colors (`theme-*` classes) take them from the theme.
 
@@ -102,7 +103,7 @@ The styles can also be imported as SCSS:
 @import 'compostrap/src/scss/sidebar-menu';
 ```
 
-When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `auth`, `shop`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
+When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
 
 ## Themes
 
@@ -675,11 +676,10 @@ The module `auth` lays out a page outside the administration: the brand and the 
 ```html
 <body class="auth-page">
 	<div class="auth">
-		<div class="auth-top"><a class="auth-brand" href="/">Logo Name</a> (theme switch)</div>
+		<div class="auth-top"><a class="auth-brand" href="/">Logo Name</a> <div class="auth-actions">(language dropdown, theme switch)</div></div>
 		<div class="auth-card auth-card-split">
 			<aside class="auth-visual" aria-hidden="true"><i class="bi bi-shield-lock"></i></aside>
 			<main class="auth-body">
-				<div class="auth-toolbar"><a href="..." lang="cs">Čeština</a> <a href="..." lang="en" class="active">English</a></div>
 				<header class="auth-header">
 					<h1 class="auth-title">Sign in to your account</h1>
 					<p class="auth-subtitle">Enter your email and password to continue.</p>
@@ -716,7 +716,26 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 </body>
 ```
 
-**Product list.** Over the list, a box `.shop-toolbar` holds the chosen filters (`.shop-filter-chips`) and under them `nav.shop-sort` with the links of the order; in the box the tabs have no frames and the current one has a line under it, on the bottom edge of the box (the page needs no visible heading then, its `h1` can be `visually-hidden`). `nav.shop-sort` holds the links of the order (recommended, bestsellers, cheapest…) as `nav nav-tabs` in one row that scrolls on a phone. A tile is an `article.shop-product` with an image (`.shop-product-image`, a `badge` of the discount in `.shop-product-badge`) and a body: `.shop-product-rating` (a `rating-static rating-sm`, the value and a link with the count of reviews; without a rating empty stars with `--rating-value: 0` and a quiet text), `.shop-product-title`, `.shop-product-text` and `.shop-product-footer` with a row `.shop-product-buy` (a tinted strip with the prices in `.shop-product-prices`: `.shop-price` with the original one in `.shop-price-old` under it or a word such as "from" over it; a small button on the right) and the availability in the middle under it (`.shop-stock`, a text with a color class such as `text-success`). Tiles go into a Bootstrap grid (`col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3` next to the filters, `col-xl-3` without them).
+**Welcome band.** A low band right under the header, in the whole width of the window and tinted with the primary color (the header drops its gap, the band has it under itself): a title in two tones (`.shop-hero-title`, its `<em>` is the second one), a short text and a row of white icons of products on round chips that grow stronger towards the edge; a label over the title (`.shop-hero-eyebrow`) is optional. The icons are left out below 768px. The size of a chip is `--shop-hero-icon-size`.
+
+```html
+<header class="shop-header">…</header>
+<section class="shop-hero">
+	<div class="container">
+		<div class="shop-hero-copy">
+			<p class="shop-hero-title">Your shopping, <em>simply.</em></p>
+			<p class="shop-hero-text">Browse the offer, put products into the cart and finish the order in a few easy steps.</p>
+		</div>
+		<div class="shop-hero-art" aria-hidden="true">
+			<span class="shop-hero-icon"><i class="bi bi-headphones"></i></span>
+			<span class="shop-hero-icon"><i class="bi bi-laptop"></i></span>
+		</div>
+	</div>
+</section>
+<main class="container">…</main>
+```
+
+**Product list.** Over the list, a box `.shop-toolbar` holds the chosen filters (`.shop-filter-chips`) and under them `nav.shop-sort` with the links of the order; in the box the tabs have no frames and the current one has a line under it, on the bottom edge of the box (the page needs no visible heading then, its `h1` can be `visually-hidden`). `nav.shop-sort` holds the links of the order (recommended, bestsellers, cheapest…) as `nav nav-tabs` in one row that scrolls on a phone. A tile is an `article.shop-product` with an image (`.shop-product-image`, a `badge` of the discount in `.shop-product-badge`) and a body: `.shop-product-rating` (a `rating-static rating-sm`, the value and a link with the count of reviews; without a rating the row gets `.shop-product-rating-empty`, empty stars with `--rating-value: 0` and a quiet text; two tiles in a row on a phone show only the text), `.shop-product-title`, `.shop-product-text` (cut after four lines below 768px, `--shop-product-text-lines`) and `.shop-product-footer` with a row `.shop-product-buy` (a tinted strip with the prices in `.shop-product-prices`: `.shop-price` with the original one in `.shop-price-old` under it or a word such as "from" over it; a small button on the right) and the availability in the middle under it (`.shop-stock`, a text with a color class: `text-success` in stock, `shop-stock-low` for the last pieces in orange, `text-danger` out of stock). Tiles go into a Bootstrap grid (`col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3` next to the filters, `col-xl-3` without them).
 
 **Filters.** `.shop-catalog` puts the filters into a column next to the list (`--shop-filters-width`, from lg up); below lg they are a panel: the wrapper is the responsive offcanvas of Bootstrap (`offcanvas-lg offcanvas-start`), opened by a button with `data-bs-toggle="offcanvas"`. Inside, `form.shop-filters` holds groups `fieldset.shop-filter` with a `legend.shop-filter-title` and plain `form-check` choices (the count of products in `.shop-filter-count`); `.shop-filter-range` is a row of two fields (price from – to). The chosen filters are shown over the list in `.shop-filter-chips` as links `.shop-filter-chip`, a click removes one.
 
@@ -763,6 +782,55 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 
 **Confirmation of an order.** `.shop-confirm` (with `theme-success`) is the banner after the order is placed, in the tint of a subtle success badge: `.shop-confirm-icon` (a check in a green circle) on the left, next to it `.shop-confirm-title` in the green of the text and a text with the number of the order. Under it go the ordered items (`.shop-cart-item` rows without the amount control), the delivery and the `.shop-summary`; all steps of the stepper are `is-done`.
 
+### Blog
+
+The module `blog` styles a website with a blog, outside the administration: a header with the links of the website, the list of articles with its categories, an article with its text and the comments under it. The page is white, the header and the footer are tinted bars and the boxes (cards of articles, comments, the comment form) are tinted instead of framed (`--blog-page-bg`, `--blog-tint-bg`, `--blog-tint-hover-bg`). The header holds a navbar of Bootstrap, so the links fold into a menu on a phone.
+
+```html
+<body class="blog-page">
+	<header class="blog-header">
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<a class="blog-brand" href="/">Logo <span>Name</span></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blog-menu" aria-controls="blog-menu" aria-expanded="false" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+				<div class="collapse navbar-collapse" id="blog-menu">
+					<ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link active" href="/blog">Blog</a></li></ul>
+					<div class="blog-header-actions"><a class="btn btn-primary btn-sm" href="/sign-in">Sign in</a></div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main class="container">…</main>
+	<footer class="blog-footer">
+		<div class="container">
+			<div class="row g-4">
+				<div class="col-lg-4">…</div>
+				<div class="col-6 col-md-4 col-lg-2"><h2 class="blog-footer-title">Links</h2><ul class="blog-footer-links"><li><a href="/blog">Blog</a></li></ul></div>
+			</div>
+		</div>
+	</footer>
+</body>
+```
+
+**List of articles.** The heading of a page is `.blog-title` (`.blog-heading` puts a link on its right). The categories are `nav.blog-pills` of links `.blog-pill`, the chosen one with `active`. The newest article is `article.blog-featured` over the whole row (a picture in `.blog-featured-image` next to `.blog-featured-body`), the others are `article.blog-card` in a Bootstrap grid (`row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4`). The title `.blog-card-title` holds the link of the whole block (`stretched-link`); other links in the block get `.blog-over`. `.blog-meta` is a line of date, category and comments parted by dots, `.blog-author` an `avatar` of the theme with the name (`.blog-author-name`).
+
+```html
+<article class="blog-card">
+	<div class="blog-card-image"><img src="…" alt="" loading="lazy"></div>
+	<div class="blog-meta"><time datetime="2026-11-05">5 days ago</time><a class="blog-over" href="/blog/latte">Latte</a></div>
+	<h2 class="blog-card-title"><a class="stretched-link" href="/blog/article">Title</a></h2>
+	<p class="blog-card-text">Perex, cut after three lines.</p>
+	<div class="blog-card-footer">
+		<div class="blog-author"><span class="avatar avatar-sm theme-success">PK</span><span>Petra Králová</span></div>
+		<a class="blog-over" href="/blog/article#comments">Comments: 5</a>
+	</div>
+</article>
+```
+
+**Article.** `article.blog-article` is a narrow column (`--blog-article-width`, 48rem): a link back (`.blog-back`), `.blog-article-title`, the perex `.blog-article-lead`, `.blog-meta.blog-article-meta` with the author, the date and the category, the cover `.blog-article-image` (a 21 : 9 cut) and the text in `.blog-content`: larger text with more room between lines, headings, lists, pictures as wide cuts, a quote with a line of the primary color and code blocks on the tint.
+
+**Comments.** `section.blog-comments` with `.blog-comments-title`; a comment is `article.blog-comment` with `.blog-comment-head` (avatar, `.blog-comment-author`, the link of its number, the time), `.blog-comment-content` and `.blog-meta.blog-comment-foot` (Reply and, in a comment that answers another one, the link to it as "In reply to"); the text of a comment holds only the message. A comment opened by its link (`#comment-2`) is stronger and stays under the sticky header. The form of a new comment stands in `.blog-comment-form` (`.blog-comment-form-title`).
+
 ## Demo
 
 ```bash
@@ -778,6 +846,7 @@ The demo is an overview of the components, one page each, with a menu by kind:
 - **Modules**: `datagrid.html`, `gallery.html` and `commerce.html` (an e-shop administration with products, variants and photos).
 - **Compostrap** also has `states.html` (empty states with an illustration and with an icon, a box that loads) and `inputs.html` (number inputs and a cart that recounts, datepickers, ratings).
 - **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`, the eye in the password inputs of module `password-toggle`; recovery goes through its three steps), and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
+- **Blog** (module `blog`, a website without the sidebar): `blog-articles.html` (categories, the newest article, cards) and `blog-article.html` (an article with its text, comments and the comment form).
 - **Shop** (module `shop`, a storefront without the sidebar): `shop-products.html`, `shop-product.html`, `shop-cart.html`, `shop-delivery.html`, `shop-customer.html`, `shop-summary.html`, `shop-confirmation.html` and `shop-states.html` (an empty cart, a product out of stock, a valid and an invalid discount code, a form with errors, a cart that recounts), the whole way from the list of products to the confirmation of an order.
 
 ## Built on

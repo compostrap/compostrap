@@ -1,0 +1,246 @@
+//
+// blog: the list of articles: the heading, the categories, the newest article over the whole row and the cards
+//
+
+@use '../bootstrap' as bs;
+
+// the heading of a page of the website
+// <h1 class="blog-title">Blog</h1>
+.blog-title {
+	margin-bottom: 1.5rem;
+	font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -.02em;
+}
+
+// the heading with a link on its right (the latest articles of a home page with "All articles")
+// <div class="blog-heading"><h1 class="blog-title">Latest articles</h1><a href="...">All articles →</a></div>
+.blog-heading {
+	display: flex;
+	gap: 1rem;
+	align-items: baseline;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+
+	> .blog-title {
+		margin-bottom: 0;
+	}
+
+	> a {
+		color: var(--bs-secondary-color);
+		white-space: nowrap;
+	}
+}
+
+// the categories: pills in a row, the chosen one in the primary color, the others tinted
+// <nav class="blog-pills" aria-label="Categories"><a class="blog-pill active" href="..." aria-current="page">All</a><a class="blog-pill" href="...">News</a></nav>
+.blog-pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	margin-bottom: 2.5rem;
+}
+
+.blog-pill {
+	padding: .375rem .875rem;
+	color: var(--bs-body-color);
+	text-decoration: none;
+	background-color: var(--blog-tint-bg);
+	border-radius: var(--bs-border-radius-pill);
+
+	&:hover,
+	&:focus-visible {
+		color: var(--bs-body-color);
+		background-color: var(--blog-tint-hover-bg);
+	}
+
+	&.active {
+		font-weight: 500;
+		color: #fff;
+		background-color: var(--bs-primary);
+	}
+}
+
+// date, category and comments in one line, parted by dots; its links are gray
+// <div class="blog-meta"><time datetime="...">2 days ago</time><a href="...">News</a><a href="...">Comments: 3</a></div>
+.blog-meta {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: .5rem;
+	align-items: center;
+	color: var(--bs-secondary-color);
+
+	> * + *::before {
+		display: inline-block;
+		margin-right: .5rem;
+		text-decoration: none;
+		content: '\00b7';
+	}
+
+	a {
+		color: inherit;
+	}
+}
+
+// the author: an avatar (of the theme) with the name, a date or other text under it
+// <div class="blog-author"><span class="avatar theme-primary">JN</span><div><div class="blog-author-name">Jan Novák</div><time>2 days ago</time></div></div>
+.blog-author {
+	display: flex;
+	gap: .625rem;
+	align-items: center;
+	color: var(--bs-secondary-color);
+}
+
+.blog-author-name {
+	font-weight: 600;
+	color: var(--bs-body-color);
+}
+
+// the title of an article in the list is the link of the whole block (stretched-link of Bootstrap); other links in
+// the block get .blog-over to stay clickable above it. A hovered block underlines its title
+.blog-card-title a {
+	color: var(--bs-emphasis-color);
+	text-decoration: none;
+}
+
+.blog-featured:hover .blog-card-title a,
+.blog-card:hover .blog-card-title a {
+	text-decoration: underline;
+	text-underline-offset: .15em;
+}
+
+.blog-over {
+	position: relative;
+	z-index: 2;
+}
+
+// the newest article over the whole row: a large picture next to the title, the perex and the author; no background
+// <article class="blog-featured">
+//   <div class="blog-featured-image"><img src="..." alt=""></div>
+//   <div class="blog-featured-body">
+//     <div class="blog-meta">…</div>
+//     <h2 class="blog-card-title"><a class="stretched-link" href="...">Title</a></h2>
+//     <p class="blog-card-text">Perex</p>
+//     <div class="blog-author">…</div>
+//   </div>
+// </article>
+.blog-featured {
+	position: relative;
+	display: grid;
+	grid-template-columns: 7fr 5fr;
+	gap: 2.5rem;
+	align-items: center;
+	margin-bottom: 2.5rem;
+
+	.blog-meta {
+		margin-bottom: .5rem;
+	}
+
+	.blog-card-title {
+		margin-bottom: .75rem;
+		font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: -.02em;
+	}
+
+	.blog-card-text {
+		margin-bottom: 1.5rem;
+		font-size: 1.125rem;
+		color: var(--bs-secondary-color);
+	}
+}
+
+.blog-featured-image {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	border-radius: var(--bs-border-radius-xl);
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+}
+
+// an article of the list: a tinted card instead of a border, the whole card is a link; the footer with the author
+// stays at its bottom, so the cards of a row are in line
+// <article class="blog-card">
+//   <div class="blog-card-image"><img src="..." alt="" loading="lazy"></div>
+//   <div class="blog-meta">…</div>
+//   <h2 class="blog-card-title"><a class="stretched-link" href="...">Title</a></h2>
+//   <p class="blog-card-text">Perex</p>
+//   <div class="blog-card-footer"><div class="blog-author">…</div><a class="blog-over" href="...">Comments: 3</a></div>
+// </article>
+.blog-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: var(--blog-tint-bg);
+	border-radius: var(--bs-border-radius-xl);
+
+	&:hover {
+		background-color: var(--blog-tint-hover-bg);
+	}
+
+	.blog-meta {
+		margin-bottom: .5rem;
+	}
+
+	.blog-card-title {
+		margin-bottom: .5rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	// the perex of a card is cut after three lines
+	.blog-card-text {
+		display: -webkit-box;
+		margin-bottom: 0;
+		overflow: hidden;
+		color: var(--bs-secondary-color);
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+	}
+}
+
+.blog-card-image {
+	aspect-ratio: 2 / 1;
+	margin-bottom: 1rem;
+	overflow: hidden;
+	border-radius: var(--bs-border-radius-lg);
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+	}
+}
+
+.blog-card-footer {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 1rem;
+	margin-top: auto;
+	color: var(--bs-secondary-color);
+
+	a {
+		color: inherit;
+	}
+}
+
+@include bs.media-breakpoint-down(lg) {
+	.blog-featured {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+}

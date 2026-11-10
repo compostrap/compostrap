@@ -1,0 +1,18 @@
+//
+// blog: a website with a blog outside the administration: the list of articles, an article and its comments
+//
+// <body class="blog-page">
+//   <header class="blog-header"><nav class="navbar navbar-expand-lg"><div class="container">brand, links, theme switch, sign in</div></nav></header>
+//   <main class="container">…</main>
+//   <footer class="blog-footer"><div class="container">…</div></footer>
+// </body>
+//
+// The parts: `.blog-title` (the heading of a page), `.blog-pills` (the categories), `.blog-featured` (the newest article over the whole row),
+// `.blog-card` (an article of the list), `.blog-meta` (date, category, comments parted by dots), `.blog-author`, `.blog-article` (an article
+// with its text in `.blog-content`), `.blog-comment` and `.blog-comment-form`.
+//
+
+@use 'page';
+@use 'list';
+@use 'article';
+@use 'comments';

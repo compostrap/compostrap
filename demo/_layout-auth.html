@@ -37,9 +37,23 @@
 			<span>Compostrap</span>
 		</a>
 
-		<button type="button" class="navbar-icon" aria-label="Toggle theme" data-tooltip="left" data-theme-switcher data-theme-light-icon="bi bi-sun" data-theme-dark-icon="bi bi-moon">
-			<i data-theme-switcher-icon class="bi bi-moon" aria-hidden="true"></i>
-		</button>
+		<div class="auth-actions">
+			<!-- language: an icon with the code of the current language, the languages in the dropdown, the current one checked -->
+			<div class="dropdown">
+				<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">
+					<i class="bi bi-translate" aria-hidden="true"></i><span class="navbar-icon-text">EN</span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+					<li><h6 class="dropdown-header">Language</h6></li>
+					<li><a class="dropdown-item d-flex align-items-center gap-3" href="#" lang="cs"><span class="me-auto">Čeština</span><span class="small text-body-secondary">CS</span><i class="bi bi-check-lg invisible" aria-hidden="true"></i></a></li>
+					<li><a class="dropdown-item active d-flex align-items-center gap-3" href="#" lang="en" aria-current="true"><span class="me-auto">English</span><span class="small text-body-secondary">EN</span><i class="bi bi-check-lg" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+
+			<button type="button" class="navbar-icon" aria-label="Toggle theme" data-tooltip="left" data-theme-switcher data-theme-light-icon="bi bi-sun" data-theme-dark-icon="bi bi-moon">
+				<i data-theme-switcher-icon class="bi bi-moon" aria-hidden="true"></i>
+			</button>
+		</div>
 	</div>
 
 {{content}}

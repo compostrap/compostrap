@@ -324,6 +324,32 @@
 								<li>
 									<a class="list-link link-arrow">
 										<div class="clearfix">
+											<div class="float-start"><span class="list-icon"><i class="bi bi-journal-text bell"></i></span>Blog</div>
+											<div class="float-end"></div>
+										</div>
+									</a>
+									<ul class="list-unstyled list-hidden">
+										<li>
+											<a href="blog-articles.html" class="list-link">
+												<div class="clearfix">
+													<div class="float-start">Articles</div>
+													<div class="float-end"></div>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="blog-article.html" class="list-link">
+												<div class="clearfix">
+													<div class="float-start">Article</div>
+													<div class="float-end"></div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a class="list-link link-arrow">
+										<div class="clearfix">
 											<div class="float-start"><span class="list-icon"><i class="bi bi-exclamation-octagon bell"></i></span>Errors</div>
 											<div class="float-end"></div>
 										</div>
@@ -567,15 +593,6 @@
 				<div class="list-row"><span class="stat-icon theme-success"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><span class="list-row-text">How to write a good article<small>Blog · 2. 11. 2026</small></span></div>
 				<div class="list-row"><span class="stat-icon theme-warning"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><span class="list-row-text">Spring sale of notebooks<small>Shop · 28. 10. 2026</small></span></div>
 			</div>
-<!-- overlays -->
-<script>
-	// the demo loads for two seconds, as an AJAX request of drago would (Naja sets and removes aria-busy)
-	document.getElementById('demo-busy-toggle').addEventListener('click', () => {
-		const box = document.getElementById('demo-busy');
-		box.setAttribute('aria-busy', 'true');
-		setTimeout(() => box.removeAttribute('aria-busy'), 2000);
-	});
-</script>
 
 			</main>
 
@@ -589,7 +606,14 @@
 	</div>
 </div>
 
-
+<script>
+	// the demo loads for two seconds, as an AJAX request of drago would (Naja sets and removes aria-busy)
+	document.getElementById('demo-busy-toggle').addEventListener('click', () => {
+		const box = document.getElementById('demo-busy');
+		box.setAttribute('aria-busy', 'true');
+		setTimeout(() => box.removeAttribute('aria-busy'), 2000);
+	});
+</script>
 
 <!-- the layout of the demo: variants of the navbar and of the brand, tried live and remembered (demo only) -->
 <button type="button" class="btn btn-primary btn-sm demo-customize" data-bs-toggle="offcanvas" data-bs-target="#demo-layout" aria-controls="demo-layout">

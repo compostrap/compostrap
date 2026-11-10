@@ -46,6 +46,11 @@ const menu = [
 			{ file: 'shop-confirmation.html', title: 'Order confirmation', layout: 'shop' },
 			{ file: 'shop-states.html', title: 'Cart and form states', layout: 'shop' },
 		] },
+		// a website with a blog (module blog): its own shell with a navbar of links and a footer
+		{ title: 'Blog', icon: 'bi-journal-text', items: [
+			{ file: 'blog-articles.html', title: 'Articles', layout: 'blog' },
+			{ file: 'blog-article.html', title: 'Article', layout: 'blog' },
+		] },
 		{ title: 'Errors', icon: 'bi-exclamation-octagon', items: [
 			{ file: 'error-404.html', title: 'Not found (404)', layout: 'error' },
 			{ file: 'error-403.html', title: 'Access denied (403)', layout: 'error' },
@@ -121,8 +126,12 @@ for (const page of pages) {
 		console.warn(`missing ${source}`);
 		continue;
 	}
-	const [content, overlays = ''] = readFileSync(source, 'utf8').split('<!-- overlays -->\n');
+	const [body, overlays = ''] = readFileSync(source, 'utf8').split(/<!-- overlays -->\r?\n/);
+	// a line `<!-- content -->` ends the part of a page that stands over its content, in the whole width of the
+	// window ({{hero}} of the layout)
+	const [hero, content] = /<!-- content -->\r?\n/.test(body) ? body.split(/<!-- content -->\r?\n/) : ['', body];
 	const html = layoutOf(page.layout)
+		.replace('{{hero}}', hero.trimEnd())
 		.replace('{{title}}', page.title)
 		.replace('{{menu}}', indent(menuHtml(page.file), 5))
 		.replace('{{breadcrumb}}', indent(breadcrumbHtml(page), 6))

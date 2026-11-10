@@ -1,0 +1,91 @@
+//
+// blog: the comments under an article and the form of a new one
+//
+// <section class="blog-comments" id="comments">
+//   <h2 class="blog-comments-title">Comments <span>(2)</span></h2>
+//   <article class="blog-comment" id="comment-1">
+//     <div class="blog-comment-head"><span class="avatar avatar-sm theme-info">PK</span>
+//       <span class="blog-comment-author">Petra Králová</span> <a href="#comment-1">#1</a> <time>…</time></div>
+//     <div class="blog-comment-content">text</div>
+//     <div class="blog-meta blog-comment-foot"><a href="#comment-form">Reply</a><span>In reply to: <a href="#comment-1">#1 Petra Králová</a></span></div>
+//   </article>
+//   <div class="blog-comment-form" id="comment-form">form</div>
+// </section>
+//
+
+.blog-comments {
+	padding-top: 1.5rem;
+	margin-top: 3rem;
+}
+
+.blog-comments-title {
+	margin-bottom: 1.5rem;
+	font-size: 1.5rem;
+
+	span {
+		font-weight: 400;
+		color: var(--bs-secondary-color);
+	}
+}
+
+// a comment: a tinted box; the one opened by its link (#comment-2) is stronger and is not hidden under the header
+.blog-comment,
+.blog-comment-form {
+	padding: 1.5rem;
+	background-color: var(--blog-tint-bg);
+	border-radius: var(--bs-border-radius-xl);
+	scroll-margin-top: 6rem;
+}
+
+.blog-comment {
+	& + & {
+		margin-top: 1rem;
+	}
+
+	&:target {
+		background-color: var(--blog-tint-hover-bg);
+	}
+}
+
+.blog-comment-head {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+	margin-bottom: .625rem;
+	color: var(--bs-secondary-color);
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+.blog-comment-author {
+	font-weight: 600;
+	color: var(--bs-body-color);
+}
+
+// the paragraphs and lists of a comment without the bottom margin of the last one, so the box stays even
+.blog-comment-content > :last-child {
+	margin-bottom: 0;
+}
+
+.blog-comment-foot {
+	margin-top: .625rem;
+}
+
+.blog-comment-form {
+	margin-top: 2.5rem;
+
+	// a field on the tint is in the color of the page, so it is seen
+	.form-control {
+		background-color: var(--blog-page-bg);
+	}
+}
+
+.blog-comment-form-title {
+	margin-bottom: 1rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
