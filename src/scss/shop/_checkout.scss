@@ -27,7 +27,7 @@
 .shop-cart-photo {
 	width: 4rem;
 	height: 4rem;
-	object-fit: cover;
+	object-fit: contain;
 	border-radius: var(--bs-border-radius);
 }
 
@@ -48,7 +48,7 @@
 
 // the choice of a carrier or payment: a card next to a hidden radio (.btn-check); the chosen one is tinted
 // <input type="radio" class="btn-check" name="carrier" id="c1" checked>
-// <label class="shop-option" for="c1"><span class="shop-option-main"><i class="shop-option-icon bi bi-truck"></i><span>Name</span></span><span class="shop-option-price">€ 4</span></label>
+// <label class="shop-option" for="c1"><span class="shop-option-main"><i class="shop-option-icon bi bi-truck"></i><span>Name</span></span><span class="shop-option-price">$4</span></label>
 .shop-option {
 	display: flex;
 	align-items: center;
@@ -120,7 +120,7 @@
 // the summary of prices next to the steps, in view while the page scrolls (large screens)
 // <div class="shop-summary"><div class="card"><div class="card-body">
 //   <div class="shop-summary-row"><span>Items:</span><span>2</span></div>
-//   <div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">€ 1 249</span></div>
+//   <div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">$1,249</span></div>
 // </div></div></div>
 .shop-summary {
 	@media (min-width: 992px) {

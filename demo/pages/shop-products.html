@@ -1,83 +1,331 @@
-	<h1 class="h3 mb-4">Products</h1>
+	<h1 class="h3 mb-3">Products</h1>
 
-	<div class="row g-3">
+	<div class="shop-catalog">
 
-		<div class="col-6 col-md-4 col-xl-3">
-			<article class="shop-product">
-				<a class="shop-product-image" href="shop-product.html">
-					<img src="https://picsum.photos/id/0/400/300" alt="UltraBook Air 13" loading="lazy">
-					<span class="badge theme-danger shop-product-badge">-15%</span>
-				</a>
-				<div class="shop-product-body">
-					<h2 class="shop-product-title"><a href="shop-product.html">UltraBook Air 13</a></h2>
-					<p class="shop-product-text mb-2">Thin 13&quot; notebook for work on the go.</p>
-					<div class="shop-product-footer">
-						<p class="mb-2"><span class="shop-price-old me-2">€ 1 099</span><span class="shop-price text-danger">€ 934</span></p>
-						<p class="shop-stock text-success mb-3"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> In stock &gt; 5 pcs</p>
-						<a href="shop-product.html" class="btn btn-primary btn-sm w-100">Choose variant</a>
-					</div>
-				</div>
-			</article>
+		<div class="offcanvas-lg offcanvas-start" id="shop-filters" tabindex="-1" aria-labelledby="shop-filters-title">
+			<div class="offcanvas-header">
+				<h2 class="offcanvas-title h5" id="shop-filters-title">Filters</h2>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#shop-filters" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<form class="shop-filters" action="#">
+					<fieldset class="shop-filter">
+						<legend class="shop-filter-title">Availability</legend>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-1" checked><label class="form-check-label" for="shop-filter-1">In stock <span class="shop-filter-count">(24)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-2"><label class="form-check-label" for="shop-filter-2">On sale <span class="shop-filter-count">(6)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-3"><label class="form-check-label" for="shop-filter-3">New <span class="shop-filter-count">(3)</span></label></div>
+					</fieldset>
+					<fieldset class="shop-filter">
+						<legend class="shop-filter-title">Price</legend>
+						<div class="shop-filter-range">
+							$
+							<input type="text" inputmode="numeric" class="form-control form-control-sm" value="29" aria-label="Price from">
+							–
+							<input type="text" inputmode="numeric" class="form-control form-control-sm" value="1,190" aria-label="Price to">
+						</div>
+					</fieldset>
+					<fieldset class="shop-filter">
+						<legend class="shop-filter-title">Brand</legend>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-4"><label class="form-check-label" for="shop-filter-4">UltraBook <span class="shop-filter-count">(12)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-5"><label class="form-check-label" for="shop-filter-5">ProBook <span class="shop-filter-count">(8)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-6"><label class="form-check-label" for="shop-filter-6">Acme <span class="shop-filter-count">(5)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-7"><label class="form-check-label" for="shop-filter-7">Nordic <span class="shop-filter-count">(3)</span></label></div>
+					</fieldset>
+					<fieldset class="shop-filter">
+						<legend class="shop-filter-title">Memory</legend>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-8"><label class="form-check-label" for="shop-filter-8">8 GB <span class="shop-filter-count">(7)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-9" checked><label class="form-check-label" for="shop-filter-9">16 GB <span class="shop-filter-count">(11)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-10"><label class="form-check-label" for="shop-filter-10">32 GB <span class="shop-filter-count">(6)</span></label></div>
+					</fieldset>
+					<fieldset class="shop-filter">
+						<legend class="shop-filter-title">Display</legend>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-11"><label class="form-check-label" for="shop-filter-11">13&quot; <span class="shop-filter-count">(4)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-12"><label class="form-check-label" for="shop-filter-12">14&quot; <span class="shop-filter-count">(9)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-13"><label class="form-check-label" for="shop-filter-13">15.6&quot; <span class="shop-filter-count">(8)</span></label></div>
+						<div class="form-check"><input class="form-check-input" type="checkbox" id="shop-filter-14"><label class="form-check-label" for="shop-filter-14">17&quot; <span class="shop-filter-count">(3)</span></label></div>
+					</fieldset>
+					<button type="button" class="btn btn-primary w-100 mt-4 d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#shop-filters">Show 11 products</button>
+				</form>
+			</div>
 		</div>
 
-		<div class="col-6 col-md-4 col-xl-3">
-			<article class="shop-product">
-				<a class="shop-product-image" href="shop-product.html">
-					<img src="https://picsum.photos/id/9/400/300" alt="ProBook 15" loading="lazy">
-				</a>
-				<div class="shop-product-body">
-					<h2 class="shop-product-title"><a href="shop-product.html">ProBook 15</a></h2>
-					<p class="shop-product-text mb-2">A 15&quot; notebook with a numeric keypad.</p>
-					<div class="shop-product-footer">
-						<p class="shop-price mb-2"><span class="fw-normal text-body-secondary">from</span> € 1 190</p>
-						<p class="shop-stock text-warning-emphasis mb-3"><i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i> In stock: 3 pcs</p>
-						<a href="shop-product.html" class="btn btn-primary btn-sm w-100">Choose variant</a>
-					</div>
-				</div>
-			</article>
-		</div>
+		<div>
 
-		<div class="col-6 col-md-4 col-xl-3">
-			<article class="shop-product">
-				<a class="shop-product-image" href="shop-product.html">
-					<img src="https://picsum.photos/id/8/400/300" alt="Wireless mouse" loading="lazy">
-				</a>
-				<div class="shop-product-body">
-					<h2 class="shop-product-title"><a href="shop-product.html">Wireless mouse</a></h2>
-					<p class="shop-product-text mb-2">Quiet mouse with a battery for a year.</p>
-					<div class="shop-product-footer">
-						<p class="shop-price mb-2">€ 29</p>
-						<p class="shop-stock text-success mb-3"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> In stock &gt; 5 pcs</p>
-						<button type="button" class="btn btn-primary btn-sm w-100">Add to cart</button>
-					</div>
-				</div>
-			</article>
-		</div>
+			<div class="shop-filter-chips">
+				<button type="button" class="btn btn-secondary btn-sm d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#shop-filters" aria-controls="shop-filters"><i class="bi bi-sliders me-1" aria-hidden="true"></i>Filters</button>
+				<a class="shop-filter-chip" href="#">In stock <i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">Remove the filter</span></a>
+				<a class="shop-filter-chip" href="#">Memory: 16 GB <i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">Remove the filter</span></a>
+				<a href="#">Clear all</a>
+			</div>
 
-		<div class="col-6 col-md-4 col-xl-3">
-			<article class="shop-product">
-				<a class="shop-product-image" href="shop-product.html">
-					<img src="https://picsum.photos/id/6/400/300" alt="USB-C dock" loading="lazy">
-				</a>
-				<div class="shop-product-body">
-					<h2 class="shop-product-title"><a href="shop-product.html">USB-C dock</a></h2>
-					<p class="shop-product-text mb-2">HDMI, Ethernet and three USB ports.</p>
-					<div class="shop-product-footer">
-						<p class="shop-price mb-2">€ 79</p>
-						<p class="shop-stock text-danger mb-3"><i class="bi bi-x-circle-fill" aria-hidden="true"></i> Out of stock</p>
-						<button type="button" class="btn btn-primary btn-sm w-100" disabled>Add to cart</button>
-					</div>
+			<nav class="shop-sort" aria-label="Sort products">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link active" href="#" aria-current="true">Recommended</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Bestsellers</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Cheapest</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Most expensive</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Top rated</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Newest</a></li>
+				</ul>
+			</nav>
+
+			<div class="row g-3">
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/notebook-silver.svg" alt="UltraBook Air 13" loading="lazy">
+							<span class="badge theme-danger shop-product-badge">-15%</span>
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.8" role="img" aria-label="4.8 of 5"></span> 4.8 <a href="shop-product.html#reviews" aria-label="24 reviews">24×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">UltraBook Air 13</a></h2>
+							<p class="shop-product-text mb-2">Notebook - Intel Core Ultra 5 125U, 13.3&quot; IPS anti-glare 1920 × 1200, RAM 16GB DDR5, Intel Graphics, SSD 512GB, backlit keyboard, webcam, fingerprint reader, USB-C, WiFi 6E, Bluetooth, weight 1.2 kg, Windows 11 Home</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price text-danger">$934</span><span class="shop-price-old">$1,099</span></div>
+									<a href="shop-product.html" class="btn btn-primary btn-sm">Choose variant</a>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
 				</div>
-			</article>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/notebook-dark.svg" alt="ProBook 15" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 5" role="img" aria-label="5.0 of 5"></span> 5.0 <a href="shop-product.html#reviews" aria-label="4 reviews">4×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">ProBook 15</a></h2>
+							<p class="shop-product-text mb-2">Notebook - Intel Core i7 13620H, 15.6&quot; IPS anti-glare 1920 × 1080 144Hz, RAM 16GB DDR5, NVIDIA RTX 4050 6GB, SSD 1000GB, numeric keypad, backlit keyboard, webcam, USB 3.2 Gen 2, USB-C, WiFi 6, Bluetooth, weight 1.9 kg, <strong>no operating system</strong></p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="text-body-secondary">from</span><span class="shop-price">$1,190</span></div>
+									<a href="shop-product.html" class="btn btn-primary btn-sm">Choose variant</a>
+								</div>
+								<p class="shop-stock text-warning-emphasis mb-0">In stock: 3 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/mouse.svg" alt="Wireless mouse" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.2" role="img" aria-label="4.2 of 5"></span> 4.2 <a href="shop-product.html#reviews" aria-label="118 reviews">118×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">Wireless mouse</a></h2>
+							<p class="shop-product-text mb-2">Mouse - wireless, optical, 4000 DPI, 5 buttons, quiet switches, Bluetooth and 2.4 GHz USB receiver, 1× AA battery for up to 12 months, for right-handers, weight 85 g</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price">$29</span></div>
+									<button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/dock.svg" alt="USB-C dock" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 3.9" role="img" aria-label="3.9 of 5"></span> 3.9 <a href="shop-product.html#reviews" aria-label="37 reviews">37×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">USB-C dock</a></h2>
+							<p class="shop-product-text mb-2">Docking station - USB-C, 1× HDMI 4K 60Hz, 3× USB-A 3.2 Gen 1, Gigabit Ethernet (RJ-45), Power Delivery 100 W, aluminium body, cable 20 cm</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price">$79</span></div>
+									<button type="button" class="btn btn-primary btn-sm" disabled>Add to cart</button>
+								</div>
+								<p class="shop-stock text-danger mb-0">Out of stock</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/monitor.svg" alt="ViewPro 27 4K" loading="lazy">
+							<span class="badge theme-danger shop-product-badge">-13%</span>
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.6" role="img" aria-label="4.6 of 5"></span> 4.6 <a href="shop-product.html#reviews" aria-label="52 reviews">52×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">ViewPro 27 4K</a></h2>
+							<p class="shop-product-text mb-2">LCD monitor - 27&quot; IPS 3840 × 2160, 60Hz, 5 ms, 350 cd/m², 99 % sRGB, HDMI 2.0, DisplayPort 1.4, USB-C with Power Delivery 65 W, height-adjustable stand, pivot, VESA 100 × 100</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price text-danger">$349</span><span class="shop-price-old">$399</span></div>
+									<button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/keyboard.svg" alt="Mechanical keyboard K87" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.4" role="img" aria-label="4.4 of 5"></span> 4.4 <a href="shop-product.html#reviews" aria-label="73 reviews">73×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">Mechanical keyboard K87</a></h2>
+							<p class="shop-product-text mb-2">Keyboard - mechanical, tactile switches, compact layout without a numeric block, white backlight, Bluetooth and USB-C cable, battery 4000 mAh, aluminium frame, EN layout</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price">$89</span></div>
+									<button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/headphones.svg" alt="Wireless headphones Tone" loading="lazy">
+							<span class="badge theme-success shop-product-badge">New</span>
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.7" role="img" aria-label="4.7 of 5"></span> 4.7 <a href="shop-product.html#reviews" aria-label="206 reviews">206×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">Wireless headphones Tone</a></h2>
+							<p class="shop-product-text mb-2">Headphones - wireless, over-ear, closed, active noise cancelling, Bluetooth 5.3, multipoint, microphone, up to 40 hours on a charge, USB-C fast charging, foldable, weight 250 g</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price">$159</span></div>
+									<button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+								</div>
+								<p class="shop-stock text-warning-emphasis mb-0">In stock: 2 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/tablet.svg" alt="Tab 11" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.3" role="img" aria-label="4.3 of 5"></span> 4.3 <a href="shop-product.html#reviews" aria-label="31 reviews">31×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">Tab 11</a></h2>
+							<p class="shop-product-text mb-2">Tablet - 11&quot; IPS 2000 × 1200 90Hz, octa-core processor, RAM 8GB, storage 128GB, WiFi 6, Bluetooth, 8 MP camera, battery 8000 mAh, USB-C, four speakers, weight 480 g</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="text-body-secondary">from</span><span class="shop-price">$299</span></div>
+									<a href="shop-product.html" class="btn btn-primary btn-sm">Choose variant</a>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/notebook-silver.svg" alt="UltraBook Pro 14" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.9" role="img" aria-label="4.9 of 5"></span> 4.9 <a href="shop-product.html#reviews" aria-label="15 reviews">15×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">UltraBook Pro 14</a></h2>
+							<p class="shop-product-text mb-2">Notebook - Intel Core Ultra 7 155H, 14&quot; OLED glossy 2880 × 1800 120Hz, RAM 32GB LPDDR5x, Intel Arc Graphics, SSD 1000GB, backlit keyboard, webcam, fingerprint reader, Thunderbolt 4, WiFi 7, weight 1.4 kg, Windows 11 Pro</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="text-body-secondary">from</span><span class="shop-price">$1,590</span></div>
+									<a href="shop-product.html" class="btn btn-primary btn-sm">Choose variant</a>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/notebook-dark.svg" alt="ProBook 17 Gaming" loading="lazy">
+							<span class="badge theme-danger shop-product-badge">-8%</span>
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">ProBook 17 Gaming</a></h2>
+							<p class="shop-product-text mb-2">Gaming notebook - Intel Core i7 14650HX, 17.3&quot; IPS anti-glare 1920 × 1080 144Hz, RAM 16GB DDR5, NVIDIA RTX 4070 8GB, SSD 1000GB, numeric keypad, RGB backlit keyboard, webcam, USB-C, WiFi 6E, weight 2.7 kg, Windows 11 Home</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price text-danger">$1,749</span><span class="shop-price-old">$1,899</span></div>
+									<a href="shop-product.html" class="btn btn-primary btn-sm">Choose variant</a>
+								</div>
+								<p class="shop-stock text-warning-emphasis mb-0">In stock: 1 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/mouse.svg" alt="Travel mouse Mini" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4" role="img" aria-label="4.0 of 5"></span> 4.0 <a href="shop-product.html#reviews" aria-label="64 reviews">64×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">Travel mouse Mini</a></h2>
+							<p class="shop-product-text mb-2">Mouse - wireless, optical, 1600 DPI, 3 buttons, Bluetooth, 1× AA battery, symmetric shape, weight 60 g</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price">$19</span></div>
+									<button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<div class="col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3">
+					<article class="shop-product">
+						<a class="shop-product-image" href="shop-product.html">
+							<img src="demo/img/dock.svg" alt="USB-C dock Pro" loading="lazy">
+						</a>
+						<div class="shop-product-body">
+							<div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.5" role="img" aria-label="4.5 of 5"></span> 4.5 <a href="shop-product.html#reviews" aria-label="12 reviews">12×</a></div>
+							<h2 class="shop-product-title"><a href="shop-product.html">USB-C dock Pro</a></h2>
+							<p class="shop-product-text mb-2">Docking station - USB-C, 2× HDMI 4K 60Hz, 1× DisplayPort, 4× USB-A 3.2 Gen 1, 1× USB-C, Gigabit Ethernet (RJ-45), SD card reader, Power Delivery 100 W, own power adapter</p>
+							<div class="shop-product-footer">
+								<div class="shop-product-buy">
+									<div class="shop-product-prices"><span class="shop-price">$149</span></div>
+									<button type="button" class="btn btn-primary btn-sm">Add to cart</button>
+								</div>
+								<p class="shop-stock text-success mb-0">In stock &gt; 5 pcs</p>
+							</div>
+						</div>
+					</article>
+				</div>
+
+			</div>
+
+			<nav aria-label="Pagination" class="mt-4">
+				<ul class="pagination justify-content-center">
+					<li class="page-item disabled"><a class="page-link" tabindex="-1">Previous</a></li>
+					<li class="page-item active"><a class="page-link" href="#" aria-current="page">1</a></li>
+					<li class="page-item"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</nav>
+
 		</div>
 
 	</div>
-
-	<nav aria-label="Pagination" class="mt-4">
-		<ul class="pagination justify-content-center">
-			<li class="page-item disabled"><a class="page-link" tabindex="-1">Previous</a></li>
-			<li class="page-item active"><a class="page-link" href="#" aria-current="page">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
-		</ul>
-	</nav>

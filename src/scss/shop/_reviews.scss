@@ -1,0 +1,165 @@
+//
+// shop: the reviews of a product on its detail
+//
+// <div class="shop-reviews-summary">
+//   <div class="shop-reviews-score"><div class="shop-reviews-value">4.8</div>
+//     <span class="rating-static" style="--rating-value: 4.8"></span><div>24 reviews</div></div>
+//   <ul class="shop-reviews-bars">
+//     <li><span>5</span><span class="shop-reviews-bar" style="--shop-reviews-share: 83%"></span><span>20</span></li>
+//   </ul>
+// </div>
+// <article class="shop-review">
+//   <header class="shop-review-header"><span class="avatar theme-primary">JN</span>
+//     <div class="shop-review-author"><strong>Jan Novák</strong><small>12 October 2026</small></div>
+//     <span class="rating-static rating-sm" style="--rating-value: 5"></span></header>
+//   <p>Text</p>
+//   <div class="shop-review-points"><ul class="shop-review-pros"><li>…</li></ul><ul class="shop-review-cons"><li>…</li></ul></div>
+//   <footer class="shop-review-footer">Was this review helpful? buttons</footer>
+// </article>
+//
+
+@use '../bootstrap' as bs;
+
+// the average with the stars and the count next to the shares of the five grades
+.shop-reviews-summary {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem 3rem;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.shop-reviews-score {
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+	align-items: center;
+	min-width: 9rem;
+	color: var(--bs-secondary-color);
+}
+
+.shop-reviews-value {
+	font-size: 2.5rem;
+	font-weight: 600;
+	line-height: 1.1;
+	color: var(--bs-emphasis-color);
+}
+
+// a row per grade: the grade, the bar of its share, the count
+.shop-reviews-bars {
+	display: grid;
+	flex: 1 1 14rem;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	gap: .375rem .75rem;
+	align-items: center;
+	max-width: 24rem;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	> li {
+		display: contents;
+	}
+
+	> li > :last-child {
+		color: var(--bs-secondary-color);
+		text-align: end;
+	}
+}
+
+.shop-reviews-bar {
+	height: .5rem;
+	overflow: hidden;
+	background-color: rgba(var(--bs-body-color-rgb), .08);
+	border-radius: var(--bs-border-radius-pill);
+
+	&::before {
+		display: block;
+		width: var(--shop-reviews-share, 0%);
+		height: 100%;
+		content: '';
+		background-color: var(--rating-color, #ffb800);
+		border-radius: inherit;
+	}
+}
+
+// one review; a line parts it from the one before
+.shop-review {
+	padding-block: 1.25rem;
+	border-top: var(--bs-border-width) solid var(--bs-border-color);
+
+	&:last-of-type {
+		padding-bottom: 0;
+	}
+
+	> p {
+		margin-bottom: .75rem;
+	}
+}
+
+.shop-review-header {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem .75rem;
+	align-items: center;
+	margin-bottom: .75rem;
+}
+
+// the name (with a badge of a verified purchase) and the date under it
+.shop-review-author {
+	display: flex;
+	flex: 1 1 10rem;
+	flex-direction: column;
+	min-width: 0;
+
+	> small {
+		color: var(--bs-secondary-color);
+	}
+}
+
+// what the customer liked and disliked, side by side from sm up
+.shop-review-points {
+	display: grid;
+	gap: .5rem 2rem;
+	margin-bottom: .75rem;
+
+	@include bs.media-breakpoint-up(sm) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.shop-review-pros,
+.shop-review-cons {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	> li {
+		position: relative;
+		padding-left: 1.25rem;
+
+		&::before {
+			position: absolute;
+			left: 0;
+			font-weight: 700;
+		}
+	}
+}
+
+.shop-review-pros > li::before {
+	color: var(--bs-success);
+	content: '+';
+}
+
+.shop-review-cons > li::before {
+	color: var(--bs-danger);
+	content: '\2212';
+}
+
+.shop-review-footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+	color: var(--bs-secondary-color);
+}

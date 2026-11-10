@@ -3,8 +3,9 @@
 //
 
 // offcanvas floats: a gap from the edges of the window, rounded corners and a shadow instead of a border
-// (also the line under the header is left out); .offcanvas-flush keeps the panel stuck to the edge
-.offcanvas:is(.offcanvas-start, .offcanvas-end, .offcanvas-top, .offcanvas-bottom):not(.offcanvas-flush) {
+// (also the line under the header is left out); .offcanvas-flush keeps the panel stuck to the edge. The responsive
+// ones (.offcanvas-lg, …) float below their breakpoint, where they are a panel
+@mixin cs-offcanvas-float {
 	--cs-offcanvas-margin: .5rem;
 	--bs-offcanvas-border-width: 0;
 	--bs-offcanvas-transition: transform .3s ease-in-out, translate .3s ease-in-out;
@@ -36,6 +37,18 @@
 	&.showing,
 	&.show:not(.hiding) {
 		translate: none;
+	}
+}
+
+.offcanvas:is(.offcanvas-start, .offcanvas-end, .offcanvas-top, .offcanvas-bottom):not(.offcanvas-flush) {
+	@include cs-offcanvas-float;
+}
+
+@each $breakpoint in (sm, md, lg, xl, xxl) {
+	@include media-breakpoint-down($breakpoint) {
+		.offcanvas-#{$breakpoint}:is(.offcanvas-start, .offcanvas-end, .offcanvas-top, .offcanvas-bottom):not(.offcanvas-flush) {
+			@include cs-offcanvas-float;
+		}
 	}
 }
 

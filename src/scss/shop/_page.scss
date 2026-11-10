@@ -8,11 +8,14 @@
 [data-bs-theme='light'] {
 	--shop-page-bg: var(--bs-tertiary-bg);
 	--shop-surface-bg: var(--bs-body-bg);
+	--shop-tint-bg: rgba(var(--bs-body-color-rgb), .04);
 }
 
 // the page is darker than its surfaces in the dark theme, as in the dashboard
 [data-bs-theme='dark'] {
 	--shop-page-bg: color-mix(in srgb, var(--bs-body-bg) 55%, #000);
+	// a light tint is weaker on a dark surface, so it is stronger there
+	--shop-tint-bg: rgba(var(--bs-body-color-rgb), .09);
 }
 
 // the footer stays at the bottom of a short page
@@ -76,7 +79,7 @@
 }
 
 // the cart in the header: an icon with the count over it and the price
-// <a class="shop-minicart" href="..."><span class="shop-minicart-icon"><i class="bi bi-cart3"></i><span class="badge theme-danger">2</span></span> <span>€ 1 249</span></a>
+// <a class="shop-minicart" href="..."><span class="shop-minicart-icon"><i class="bi bi-cart3"></i><span class="badge theme-danger">2</span></span> <span>$1,249</span></a>
 .shop-minicart {
 	display: inline-flex;
 	align-items: center;

@@ -611,6 +611,13 @@
 					Administrator role has full access granted by default. These settings have no effect.
 				</div>
 			</div>
+<!-- overlays -->
+<script>
+	// the label of a switch follows its state, as the toggle of drago redraws it
+	document.querySelectorAll('.setting-row .form-check-input:not(:disabled)').forEach((input) => input.addEventListener('change', () => {
+		input.nextElementSibling.textContent = input.checked ? 'Allowed' : 'Denied';
+	}));
+</script>
 
 			</main>
 
@@ -624,12 +631,7 @@
 	</div>
 </div>
 
-<script>
-	// the label of a switch follows its state, as the toggle of drago redraws it
-	document.querySelectorAll('.setting-row .form-check-input:not(:disabled)').forEach((input) => input.addEventListener('change', () => {
-		input.nextElementSibling.textContent = input.checked ? 'Allowed' : 'Denied';
-	}));
-</script>
+
 
 <!-- the layout of the demo: variants of the navbar and of the brand, tried live and remembered (demo only) -->
 <button type="button" class="btn btn-primary btn-sm demo-customize" data-bs-toggle="offcanvas" data-bs-target="#demo-layout" aria-controls="demo-layout">

@@ -3,13 +3,33 @@
 //
 // <article class="shop-product">
 //   <a class="shop-product-image" href="..."><img src="..." alt=""><span class="badge theme-danger shop-product-badge">-15%</span></a>
-//   <div class="shop-product-body"><h2 class="shop-product-title"><a href="...">Name</a></h2>
+//   <div class="shop-product-body">
+//     <div class="shop-product-rating"><span class="rating-static rating-sm" style="--rating-value: 4.8"></span> 4.8 <a href="...">24×</a></div>
+//     <h2 class="shop-product-title"><a href="...">Name</a></h2>
 //     <p class="shop-product-text">Excerpt</p>
-//     <div class="shop-product-footer">price, stock, button</div></div>
+//     <div class="shop-product-footer">
+//       <div class="shop-product-buy"><div class="shop-product-prices"><span class="shop-price">$934</span>
+//         <span class="shop-price-old">$1,099</span></div><button class="btn btn-primary btn-sm">Add to cart</button></div>
+//       <p class="shop-stock text-success">In stock</p></div></div>
 // </article>
 //
 
 @use '../bootstrap' as bs;
+
+// the order of the product list (recommended, cheapest, …): links as tabs in one row, which scrolls on a phone
+// <nav class="shop-sort" aria-label="Sort products"><ul class="nav nav-tabs">
+//   <li class="nav-item"><a class="nav-link active" href="..." aria-current="true">Recommended</a></li>
+// </ul></nav>
+.shop-sort {
+	margin-bottom: 1rem;
+
+	.nav {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		white-space: nowrap;
+		scrollbar-width: none;
+	}
+}
 
 .shop-product {
 	display: flex;
@@ -22,14 +42,17 @@
 
 .shop-product-image {
 	position: relative;
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	aspect-ratio: 4 / 3;
-	background-color: var(--bs-tertiary-bg);
+	padding: 1rem 1rem 0;
 
+	// the whole photo, centered in the area (never cropped)
 	> img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
 	}
 }
 
@@ -44,6 +67,20 @@
 	flex: 1;
 	flex-direction: column;
 	padding: 1rem;
+}
+
+// the rating over the title: stars (module rating), the value and the count of reviews; the row keeps its height
+// without a rating, so the titles of a row of tiles stay in line
+.shop-product-rating {
+	display: flex;
+	gap: .375rem;
+	align-items: center;
+	min-height: 1.5rem;
+	margin-bottom: .25rem;
+
+	a {
+		color: var(--bs-secondary-color);
+	}
 }
 
 .shop-product-title {
@@ -63,12 +100,40 @@
 }
 
 .shop-product-footer {
+	padding-top: 1rem;
 	margin-top: auto;
+
+	// the availability in the middle under the price and the button
+	> .shop-stock {
+		justify-content: center;
+		font-weight: 500;
+	}
+}
+
+// the price (the original one under it) on the left, the button on the right, together on a tinted strip that parts
+// them from the text; the strip is as high with one price as with two, so the tiles of a row stay in line
+.shop-product-buy {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 3.5rem;
+	padding: .5rem .5rem .5rem .625rem;
+	margin-bottom: .75rem;
+	background-color: var(--shop-tint-bg);
+	border-radius: var(--bs-border-radius);
+}
+
+.shop-product-prices {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.3;
 }
 
 // prices: the current one, the original one crossed out
 .shop-price {
-	font-size: 1.125rem;
+	font-size: 1rem;
 	font-weight: 600;
 	color: var(--bs-emphasis-color);
 }
@@ -78,7 +143,7 @@
 	text-decoration: line-through;
 }
 
-// the availability of a product: an icon and a text in the color of the state
+// the availability of a product: a text in the color of the state (an icon before it is possible)
 .shop-stock {
 	display: flex;
 	align-items: center;
@@ -140,7 +205,7 @@
 	display: block;
 	width: 100%;
 	aspect-ratio: 4 / 3;
-	object-fit: cover;
+	object-fit: contain;
 	border-radius: var(--bs-border-radius);
 }
 
@@ -171,7 +236,7 @@
 	img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
+		object-fit: contain;
 	}
 }
 

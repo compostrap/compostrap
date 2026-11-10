@@ -684,7 +684,7 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 			<ul class="shop-nav"><li><a href="/products" class="active">Products</a></li></ul>
 			<a class="shop-minicart" href="/cart" aria-label="Go to shopping cart">
 				<span class="shop-minicart-icon"><i class="bi bi-cart3"></i><span class="badge badge-sm theme-danger rounded-pill">2</span></span>
-				<span>€ 1 399</span>
+				<span>$1,399</span>
 			</a>
 		</div>
 	</header>
@@ -693,9 +693,13 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 </body>
 ```
 
-**Product list.** A tile is an `article.shop-product` with an image (`.shop-product-image`, a `badge` of the discount in `.shop-product-badge`) and a body: `.shop-product-title`, `.shop-product-text` and `.shop-product-footer` with the prices (`.shop-price`, the original one in `.shop-price-old`), the availability (`.shop-stock` with a color class such as `text-success`) and a button. Tiles go into a Bootstrap grid (`col-6 col-md-4 col-xl-3`).
+**Product list.** Over the list, `nav.shop-sort` holds the links of the order (recommended, bestsellers, cheapest…) as `nav nav-tabs` in one row that scrolls on a phone. A tile is an `article.shop-product` with an image (`.shop-product-image`, a `badge` of the discount in `.shop-product-badge`) and a body: `.shop-product-rating` (a `rating-static rating-sm`, the value and a link with the count of reviews), `.shop-product-title`, `.shop-product-text` and `.shop-product-footer` with a row `.shop-product-buy` (a tinted strip with the prices in `.shop-product-prices`: `.shop-price` with the original one in `.shop-price-old` under it or a word such as "from" over it; a small button on the right) and the availability in the middle under it (`.shop-stock`, a text with a color class such as `text-success`). Tiles go into a Bootstrap grid (`col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3` next to the filters, `col-xl-3` without them).
+
+**Filters.** `.shop-catalog` puts the filters into a column next to the list (`--shop-filters-width`, from lg up); below lg they are a panel: the wrapper is the responsive offcanvas of Bootstrap (`offcanvas-lg offcanvas-start`), opened by a button with `data-bs-toggle="offcanvas"`. Inside, `form.shop-filters` holds groups `fieldset.shop-filter` with a `legend.shop-filter-title` and plain `form-check` choices (the count of products in `.shop-filter-count`); `.shop-filter-range` is a row of two fields (price from – to). The chosen filters are shown over the list in `.shop-filter-chips` as links `.shop-filter-chip`, a click removes one.
 
 **Product detail.** The photos are `.shop-detail-gallery` with a big `img.shop-detail-main` and `.shop-detail-thumbs` of `button.shop-detail-thumb` (the shown one has `active`). A choice of a variant is a `.shop-variant-group` with a `.shop-variant-title` and `.shop-variant-options` of `button.shop-variant-pill`: the chosen one has `active`, an unavailable combination is `disabled`. Switching the variants and the photos is up to the project.
+
+**Reviews.** On the detail, `.shop-reviews-summary` shows the average (`.shop-reviews-score` with `.shop-reviews-value`, a `rating-static` and the count) next to the shares of the grades (`ul.shop-reviews-bars`, a row per grade with a `.shop-reviews-bar` filled by `--shop-reviews-share`). A review is an `article.shop-review`: `.shop-review-header` (an `avatar`, `.shop-review-author` with the name and the date, a `rating-static rating-sm`), the text, `.shop-review-points` with the lists `.shop-review-pros` and `.shop-review-cons` (a green plus and a red minus before each item) and `.shop-review-footer` with the buttons of a helpful review. The rating row of a tile (`.shop-product-rating`) is used under the name of the product too, its link leads to the reviews.
 
 **Steps of the order.** An `ol.shop-stepper` of `li.shop-stepper-item` with a `.shop-stepper-badge` (the number, or a check icon in a done step), a `.shop-stepper-label` and a `.shop-stepper-line` that joins it with the next one. `is-done` marks a step already passed (its badge is a link back), `is-current` the present one. On phones only the current step keeps its name.
 
@@ -717,7 +721,7 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 <input type="radio" class="btn-check" name="carrier" id="carrier-1" checked>
 <label class="shop-option" for="carrier-1">
 	<span class="shop-option-main"><i class="shop-option-icon bi bi-truck"></i><span>Courier</span></span>
-	<span class="shop-option-price">€ 5</span>
+	<span class="shop-option-price">$5</span>
 </label>
 ```
 
@@ -727,7 +731,7 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 
 ```html
 <div class="shop-bar">
-	<div class="shop-bar-total"><span class="shop-bar-label">Total to pay</span><span class="shop-bar-sum">€ 1 404</span></div>
+	<div class="shop-bar-total"><span class="shop-bar-label">Total to pay</span><span class="shop-bar-sum">$1,404</span></div>
 	<a class="btn btn-primary" href="/customer">Continue <i class="bi bi-arrow-right"></i></a>
 </div>
 ```

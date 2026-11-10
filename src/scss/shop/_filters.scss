@@ -1,0 +1,114 @@
+//
+// shop: the filters of the product list
+//
+// <div class="shop-catalog">
+//   <div class="offcanvas-lg offcanvas-start" id="shop-filters" tabindex="-1">
+//     <div class="offcanvas-header">title, close button</div>
+//     <div class="offcanvas-body"><form class="shop-filters">
+//       <fieldset class="shop-filter"><legend class="shop-filter-title">Brand</legend>
+//         <div class="form-check"><input class="form-check-input" type="checkbox" id="f1">
+//           <label class="form-check-label" for="f1">Acme <span class="shop-filter-count">(12)</span></label></div>
+//       </fieldset>
+//       <fieldset class="shop-filter"><legend class="shop-filter-title">Price</legend>
+//         <div class="shop-filter-range"><input class="form-control form-control-sm"> – <input class="form-control form-control-sm"></div>
+//       </fieldset>
+//     </form></div>
+//   </div>
+//   <div>
+//     <div class="shop-filter-chips"><a class="shop-filter-chip" href="...">In stock <i class="bi bi-x-lg"></i></a></div>
+//     the order (.shop-sort) and the tiles
+//   </div>
+// </div>
+//
+// From lg up the filters are a box in a column next to the list; below it they are a panel (the responsive offcanvas
+// of Bootstrap) opened by a button with data-bs-toggle="offcanvas".
+//
+
+@use '../bootstrap' as bs;
+
+.shop-catalog {
+	--shop-filters-width: 16rem;
+
+	@include bs.media-breakpoint-up(lg) {
+		display: grid;
+		grid-template-columns: var(--shop-filters-width) minmax(0, 1fr);
+		gap: 1rem;
+		align-items: start;
+	}
+}
+
+.shop-filters {
+	width: 100%;
+
+	@include bs.media-breakpoint-up(lg) {
+		padding: 1rem;
+		background-color: var(--shop-surface-bg);
+		border-radius: var(--bs-border-radius-lg);
+	}
+}
+
+// a group of the filters: its title and the choices
+.shop-filter {
+	min-width: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+
+	& + & {
+		margin-top: 1.25rem;
+	}
+
+	.form-check:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.shop-filter-title {
+	float: none;
+	margin-bottom: .5rem;
+	font-size: inherit;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+}
+
+// the count of products of a choice
+.shop-filter-count {
+	color: var(--bs-secondary-color);
+}
+
+// a range (price from – to)
+.shop-filter-range {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+	color: var(--bs-secondary-color);
+}
+
+// the chosen filters over the list: a click removes one
+.shop-filter-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.shop-filter-chip {
+	display: inline-flex;
+	gap: .375rem;
+	align-items: center;
+	padding: .25rem .75rem;
+	color: var(--bs-body-color);
+	text-decoration: none;
+	background-color: rgba(var(--bs-body-color-rgb), .06);
+	border-radius: var(--bs-border-radius-pill);
+
+	&:hover {
+		color: var(--bs-emphasis-color);
+		background-color: rgba(var(--bs-body-color-rgb), .1);
+	}
+
+	.bi {
+		font-size: .75em;
+	}
+}
