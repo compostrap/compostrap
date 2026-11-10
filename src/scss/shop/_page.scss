@@ -78,7 +78,9 @@
 	}
 }
 
-// the cart in the header: an icon with the count over it and the price
+// the cart in the header: an icon with the count over it and the price. The count is the number of pieces; over 99
+// the shop prints "99+", for an empty cart it leaves the badge empty (it stays in the page as the aria-live region
+// and is not shown)
 // <a class="shop-minicart" href="..."><span class="shop-minicart-icon"><i class="bi bi-cart3"></i><span class="badge theme-danger">2</span></span> <span>$1,249</span></a>
 .shop-minicart {
 	display: inline-flex;
@@ -98,22 +100,29 @@
 .shop-minicart-icon {
 	position: relative;
 	display: inline-flex;
+	align-items: center;
 	font-size: 1.25rem;
 
-	// the count: a circle for one digit (as wide as high), a pill for more; placed by whole pixels, because a translate
-	// by half of a width that changes lands between pixels and blurs the edge
+	// the count: a circle for one digit (as wide as high), a pill for more ("99+"). It overlaps the icon by a negative
+	// margin and stays in the flow, so a wider count moves the price instead of covering it; placed by whole pixels,
+	// because a translate by half of a width that changes lands between pixels and blurs the edge
 	.badge {
-		position: absolute;
-		top: -.5rem;
-		left: .75rem;
+		position: relative;
+		top: -.5625rem;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		min-width: 1.125rem;
 		height: 1.125rem;
 		padding: 0 .25rem;
+		margin-right: -.25rem;
+		margin-left: -.5rem;
 		font-size: .6875rem;
 		line-height: 1;
+
+		&:empty {
+			display: none;
+		}
 	}
 }
 

@@ -58,11 +58,14 @@
 		box-shadow: 0 0 0 1px rgba(var(--bs-primary-rgb), .6);
 	}
 
-	// a dot over the top right corner of the icon (also when a text follows the icon)
+	// a dot over the top right corner of the icon (also when a text follows the icon), smaller than elsewhere; its
+	// size is an even count of pixels, as a circle of 7px is drawn with uneven corners on a plain screen
 	> .status-dot {
 		position: absolute;
-		top: .4rem;
-		left: 1.3rem;
+		top: .25rem;
+		left: 1.375rem;
+		width: .375rem;
+		height: .375rem;
 	}
 }
 

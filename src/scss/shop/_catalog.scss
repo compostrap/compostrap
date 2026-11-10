@@ -69,8 +69,9 @@
 	padding: 1rem;
 }
 
-// the rating over the title: stars (module rating), the value and the count of reviews; the row keeps its height
-// without a rating, so the titles of a row of tiles stay in line
+// the rating over the title: stars (module rating), the value and the count of reviews; a product without a rating
+// shows empty stars (--rating-value: 0) and a quiet text, so the row is not empty and the titles of a row of tiles
+// stay in line
 .shop-product-rating {
 	display: flex;
 	gap: .375rem;
