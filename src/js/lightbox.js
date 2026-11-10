@@ -52,6 +52,7 @@ export class Lightbox {
 
 	static open(index) {
 		const dialog = this._getDialog();
+		this._setLabels(dialog);
 		dialog.classList.toggle('lightbox-single', this._links.length < 2);
 		this._show(index);
 		if (!dialog.open) {
@@ -86,6 +87,14 @@ export class Lightbox {
 		});
 	}
 
+	// on every opening, so labels given by a later init() reach a dialog that already exists
+	static _setLabels(dialog) {
+		dialog.setAttribute('aria-label', this.labels.dialog);
+		dialog.querySelector('.lightbox-close').setAttribute('aria-label', this.labels.close);
+		dialog.querySelector('.lightbox-prev').setAttribute('aria-label', this.labels.previous);
+		dialog.querySelector('.lightbox-next').setAttribute('aria-label', this.labels.next);
+	}
+
 	static _getDialog() {
 		if (this._dialog) {
 			return this._dialog;
@@ -93,16 +102,17 @@ export class Lightbox {
 
 		const dialog = document.createElement('dialog');
 		dialog.className = 'lightbox';
-		dialog.setAttribute('aria-label', this.labels.dialog);
+		// the markup is fixed; the labels are texts of a project (translations), so they are set as attributes
+		// in _setLabels(), never written into the HTML
 		dialog.innerHTML = `
 			<figure class="lightbox-figure">
 				<img class="lightbox-image" alt="">
 				<figcaption class="lightbox-caption"></figcaption>
 			</figure>
 			<div class="lightbox-counter" aria-live="polite"></div>
-			<button type="button" class="lightbox-button lightbox-close" aria-label="${this.labels.close}">${icon('close')}</button>
-			<button type="button" class="lightbox-button lightbox-prev" aria-label="${this.labels.previous}">${icon('previous')}</button>
-			<button type="button" class="lightbox-button lightbox-next" aria-label="${this.labels.next}">${icon('next')}</button>`;
+			<button type="button" class="lightbox-button lightbox-close">${icon('close')}</button>
+			<button type="button" class="lightbox-button lightbox-prev">${icon('previous')}</button>
+			<button type="button" class="lightbox-button lightbox-next">${icon('next')}</button>`;
 
 		dialog.querySelector('.lightbox-close').addEventListener('click', () => this.close());
 		dialog.querySelector('.lightbox-prev').addEventListener('click', () => this._show(this._index - 1));
