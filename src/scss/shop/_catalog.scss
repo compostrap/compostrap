@@ -15,6 +15,7 @@
 //
 
 @use '../bootstrap' as bs;
+@use '../variables' as var;
 
 // the order of the product list (recommended, cheapest, …): links as tabs in one row, which scrolls on a phone
 // <nav class="shop-sort" aria-label="Sort products"><ul class="nav nav-tabs">
@@ -31,12 +32,51 @@
 	}
 }
 
+// the box over the tiles: the chosen filters (.shop-filter-chips) and under them the order of the list (.shop-sort).
+// The tabs of the order stand on the bottom edge of the box: no frames, the current one has a line under it
+// <div class="shop-toolbar"><div class="shop-filter-chips">…</div><nav class="shop-sort">…</nav></div>
+.shop-toolbar {
+	padding: .75rem 1rem 0;
+	margin-bottom: 1rem;
+	background-color: var(--shop-surface-bg);
+	border: var.$surface-border;
+	border-radius: var(--bs-border-radius-lg);
+
+	.shop-filter-chips {
+		margin-bottom: .25rem;
+	}
+
+	.shop-sort {
+		margin-bottom: 0;
+	}
+
+	.nav-tabs {
+		gap: .25rem;
+		border-bottom: 0;
+	}
+
+	.nav-tabs .nav-link {
+		padding: .625rem .75rem;
+		margin-bottom: 0;
+		border: 0;
+		border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+
+		&.active {
+			font-weight: 500;
+			color: var(--bs-primary);
+			background-color: transparent;
+			box-shadow: inset 0 -2px 0 var(--bs-primary);
+		}
+	}
+}
+
 .shop-product {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	overflow: hidden;
 	background-color: var(--shop-surface-bg);
+	border: var.$surface-border;
 	border-radius: var(--bs-border-radius-lg);
 }
 
@@ -195,13 +235,8 @@
 	}
 }
 
-// the photos of a product: the big one and the thumbnails under it
-.shop-detail-gallery {
-	padding: 1rem;
-	background-color: var(--shop-surface-bg);
-	border-radius: var(--bs-border-radius-lg);
-}
-
+// the photos of a product: the big one and the thumbnails under it. They have no surface of their own, they stand in
+// the box of the detail (a card) next to the name, the price and the choice of a variant
 .shop-detail-main {
 	display: block;
 	width: 100%;

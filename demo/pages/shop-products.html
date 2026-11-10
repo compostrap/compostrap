@@ -1,4 +1,4 @@
-	<h1 class="h3 mb-3">Products</h1>
+	<h1 class="visually-hidden">Products</h1>
 
 	<div class="shop-catalog">
 
@@ -51,23 +51,26 @@
 
 		<div>
 
-			<div class="shop-filter-chips">
-				<button type="button" class="btn btn-secondary btn-sm d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#shop-filters" aria-controls="shop-filters"><i class="bi bi-sliders me-1" aria-hidden="true"></i>Filters</button>
-				<a class="shop-filter-chip" href="#">In stock <i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">Remove the filter</span></a>
-				<a class="shop-filter-chip" href="#">Memory: 16 GB <i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">Remove the filter</span></a>
-				<a href="#">Clear all</a>
-			</div>
+			<!-- the chosen filters and the order of the list in one box over the tiles -->
+			<div class="shop-toolbar">
+				<div class="shop-filter-chips">
+					<button type="button" class="btn btn-secondary btn-sm d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#shop-filters" aria-controls="shop-filters"><i class="bi bi-sliders me-1" aria-hidden="true"></i>Filters</button>
+					<a class="shop-filter-chip" href="#">In stock <i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">Remove the filter</span></a>
+					<a class="shop-filter-chip" href="#">Memory: 16 GB <i class="bi bi-x-lg" aria-hidden="true"></i><span class="visually-hidden">Remove the filter</span></a>
+					<a href="#">Clear all</a>
+				</div>
 
-			<nav class="shop-sort" aria-label="Sort products">
-				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active" href="#" aria-current="true">Recommended</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Bestsellers</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Cheapest</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Most expensive</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Top rated</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Newest</a></li>
-				</ul>
-			</nav>
+				<nav class="shop-sort" aria-label="Sort products">
+					<ul class="nav nav-tabs">
+						<li class="nav-item"><a class="nav-link active" href="#" aria-current="true">Recommended</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Bestsellers</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Cheapest</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Most expensive</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Top rated</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Newest</a></li>
+					</ul>
+				</nav>
+			</div>
 
 			<div class="row g-3">
 

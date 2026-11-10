@@ -8,6 +8,7 @@
 //
 
 @use '../bootstrap' as bs;
+@use '../variables' as var;
 
 // the head of a step of the order: one bar, the title of the page in its left third and the steps in the other two,
 // so the steps stay in place whatever the length of the title; below lg the steps go under the title
@@ -20,6 +21,7 @@
 	// the gap under the page header is its own; under the bar the same gap as between the boxes of the page
 	margin-bottom: 1rem;
 	background-color: var(--shop-surface-bg);
+	border: var.$surface-border;
 	border-radius: var(--bs-border-radius-lg);
 
 	// the steps come first in the markup (the navigation before the title), the title is shown before them;

@@ -87,6 +87,7 @@
 	overflow: hidden;
 	color: var(--bs-body-color);
 	background-color: var(--auth-card-bg);
+	border: var.$surface-border;
 	border-radius: var(--bs-border-radius-lg);
 	box-shadow: var.$soft-shadow;
 }

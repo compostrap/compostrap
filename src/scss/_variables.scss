@@ -44,4 +44,9 @@ $sm-nanobar: .25rem !default;
 // it with shadows again: 1px 1px 1px rgba(0, 0, 0, .05), 2px 6px 16px -6px rgba(0, 0, 0, .12), right and down only,
 // and 0 8px 12px -8px rgba(0, 0, 0, .12) under the navbar); the theme has the same in $box-shadow-sm
 $soft-shadow: none !default;
+
+// a faint line around the boxes of the page (content boxes, cards, the sign-in box, the boxes of the shop); none for
+// now, the user is deciding (the last value tried: 1px solid rgba(var(--bs-body-color-rgb), .07), mixed from the color
+// of the text, so it works in both themes; .06 was too weak, .08 too strong). The theme has the same in $surface-border
+$surface-border: none !default;
 $navbar-scroll-shadow: none !default;

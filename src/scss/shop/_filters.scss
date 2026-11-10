@@ -25,6 +25,7 @@
 //
 
 @use '../bootstrap' as bs;
+@use '../variables' as var;
 
 .shop-catalog {
 	--shop-filters-width: 16rem;
@@ -43,6 +44,7 @@
 	@include bs.media-breakpoint-up(lg) {
 		padding: 1rem;
 		background-color: var(--shop-surface-bg);
+		border: var.$surface-border;
 		border-radius: var(--bs-border-radius-lg);
 	}
 }
