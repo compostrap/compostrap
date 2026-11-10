@@ -1,0 +1,153 @@
+//
+// shop: the cart, the choice of the delivery and the summary of the order
+//
+
+// a row of the cart: a photo, the name, the amount, the price, remove
+// <div class="shop-cart-item"><img class="shop-cart-photo" …><div class="shop-cart-info">…</div><div class="shop-cart-qty">number input</div><div class="shop-cart-price">…</div><div class="shop-cart-remove">…</div></div>
+.shop-cart-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 0;
+
+	+ .shop-cart-item {
+		border-top: 1px solid var(--bs-border-color-translucent);
+	}
+
+	&:first-child {
+		padding-top: 0;
+	}
+
+	&:last-child {
+		padding-bottom: 0;
+	}
+}
+
+.shop-cart-photo {
+	width: 4rem;
+	height: 4rem;
+	object-fit: cover;
+	border-radius: var(--bs-border-radius);
+}
+
+.shop-cart-info {
+	flex: 1 1 12rem;
+	min-width: 0;
+}
+
+.shop-cart-qty {
+	width: 9rem;
+}
+
+.shop-cart-price {
+	min-width: 6rem;
+	font-weight: 600;
+	text-align: end;
+}
+
+// the choice of a carrier or payment: a card next to a hidden radio (.btn-check); the chosen one is tinted
+// <input type="radio" class="btn-check" name="carrier" id="c1" checked>
+// <label class="shop-option" for="c1"><span class="shop-option-main"><i class="shop-option-icon bi bi-truck"></i><span>Name</span></span><span class="shop-option-price">€ 4</span></label>
+.shop-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: .75rem;
+	width: 100%;
+	padding: .875rem 1rem;
+	margin-bottom: .5rem;
+	cursor: pointer;
+	background-color: var(--bs-tertiary-bg);
+	border-radius: var(--bs-border-radius);
+
+	&:hover {
+		background-color: var(--bs-secondary-bg);
+	}
+}
+
+.shop-option-main {
+	display: flex;
+	align-items: center;
+	gap: .75rem;
+}
+
+.shop-option-icon {
+	flex-shrink: 0;
+	width: 1.75rem;
+	font-size: 1.25rem;
+	text-align: center;
+	color: var(--bs-secondary-color);
+}
+
+.shop-option-price {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.btn-check:checked + .shop-option {
+	background-color: var(--bs-primary-bg-subtle);
+
+	.shop-option-icon {
+		color: var(--bs-primary);
+	}
+}
+
+.btn-check:focus-visible + .shop-option {
+	box-shadow: 0 0 0 var(--bs-focus-ring-width, 1px) var(--bs-primary);
+}
+
+// the confirmation of a placed order: a check in a green circle, the title and the text, centered
+// <div class="shop-confirm"><span class="shop-confirm-icon"><i class="bi bi-check-lg"></i></span><h1>Thank you</h1><p>…</p></div>
+.shop-confirm {
+	padding: 2rem 0 1rem;
+	text-align: center;
+}
+
+.shop-confirm-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	height: 4rem;
+	margin-bottom: 1.25rem;
+	font-size: 2rem;
+	color: var(--bs-success);
+	background-color: var(--bs-success-bg-subtle);
+	border-radius: 50%;
+}
+
+// the summary of prices next to the steps, in view while the page scrolls (large screens)
+// <div class="shop-summary"><div class="card"><div class="card-body">
+//   <div class="shop-summary-row"><span>Items:</span><span>2</span></div>
+//   <div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">€ 1 249</span></div>
+// </div></div></div>
+.shop-summary {
+	@media (min-width: 992px) {
+		position: sticky;
+		top: 5.25rem;
+	}
+}
+
+.shop-summary-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: .5rem;
+}
+
+.shop-summary-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1rem;
+	padding-top: .75rem;
+	margin-top: .75rem;
+	border-top: 1px solid var(--bs-border-color-translucent);
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.shop-summary-sum {
+	color: var(--bs-primary);
+}

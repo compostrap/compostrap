@@ -1,0 +1,24 @@
+//
+// dashboard: the boxes of the page content
+//
+
+@use '../variables' as var;
+
+// a box of the page content looks like a card of the theme: no border, the soft shadow, a larger radius
+.content-box {
+	padding: 1.25rem;
+	color: var(--bs-body-color);
+	background-color: var(--ds-content-bg);
+	border-radius: var(--ds-box-radius);
+	box-shadow: var.$soft-shadow;
+
+	&.bg-white {
+		background-color: var(--ds-content-bg) !important;
+	}
+}
+
+// the heading of a box (h1.h5 or h2.h5 with a subtitle, in a header at the top of the box): the subtitle in the size
+// of the text, not small, so the two read as one heading
+.content-box > header .small {
+	font-size: .875rem;
+}

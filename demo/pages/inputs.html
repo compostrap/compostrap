@@ -1,0 +1,213 @@
+			<!-- number input (module number-input): minus and plus around a number -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h1 class="h5 mb-1">Number input</h1>
+					<p class="small text-body-secondary mb-0">A number with minus and plus buttons; a fractional step keeps its decimals, min and max stop the buttons.</p>
+				</header>
+
+				<div class="row g-4">
+					<div class="col-sm-6 col-xl-3">
+						<label class="form-label" for="num-qty">Quantity</label>
+						<div class="number-input">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" id="num-qty" value="1" min="1" max="10">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<div class="form-text">From 1 to 10.</div>
+					</div>
+					<div class="col-sm-6 col-xl-3">
+						<label class="form-label" for="num-weight">Weight (kg)</label>
+						<div class="number-input">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" id="num-weight" value="1.50" min="0" step="0.25">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<div class="form-text">step="0.25" keeps two decimals.</div>
+					</div>
+					<div class="col-sm-6 col-xl-3">
+						<label class="form-label" for="num-price">Price</label>
+						<div class="number-input">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" id="num-price" value="500" min="0" step="100">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<div class="form-text">step="100".</div>
+					</div>
+					<div class="col-sm-6 col-xl-3">
+						<label class="form-label" for="num-disabled">Disabled</label>
+						<div class="number-input">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" id="num-disabled" value="3" disabled>
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+					</div>
+					<div class="col-12 d-flex flex-wrap align-items-center gap-3">
+						<div class="number-input number-input-sm">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" value="2" min="0" aria-label="Small">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<div class="number-input">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" value="2" min="0" aria-label="Default">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<div class="number-input number-input-lg">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" value="2" min="0" aria-label="Large">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<span class="small text-body-secondary">Sizes: number-input-sm, default, number-input-lg.</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- a cart: changing the quantity recounts the prices (in drago an AJAX request of the change event) -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Cart</h2>
+					<p class="small text-body-secondary mb-0">A change of the quantity fires change, the cart recounts its prices.</p>
+				</header>
+				<div class="table-responsive">
+					<table class="table align-middle mb-0" id="demo-cart">
+						<thead>
+							<tr>
+								<th>Product</th>
+								<th class="text-end">Price</th>
+								<th>Quantity</th>
+								<th class="text-end">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-price="24990">
+								<td><div class="d-flex align-items-center gap-3"><img class="gallery-thumb" src="https://picsum.photos/id/0/80/80" alt="" width="40" height="40"><span>UltraBook Air 13<small class="d-block text-body-secondary">16 GB · 512 GB</small></span></div></td>
+								<td class="text-end text-nowrap">24 990 Kč</td>
+								<td>
+									<div class="number-input number-input-sm">
+										<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+										<input type="number" class="form-control" value="1" min="1" max="5" aria-label="Quantity of UltraBook Air 13">
+										<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+									</div>
+								</td>
+								<td class="text-end text-nowrap fw-medium" data-total>24 990 Kč</td>
+							</tr>
+							<tr data-price="1290">
+								<td><div class="d-flex align-items-center gap-3"><img class="gallery-thumb" src="https://picsum.photos/id/366/80/80" alt="" width="40" height="40"><span>Wireless keyboard K2<small class="d-block text-body-secondary">Black</small></span></div></td>
+								<td class="text-end text-nowrap">1 290 Kč</td>
+								<td>
+									<div class="number-input number-input-sm">
+										<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+										<input type="number" class="form-control" value="2" min="1" max="5" aria-label="Quantity of Wireless keyboard K2">
+										<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+									</div>
+								</td>
+								<td class="text-end text-nowrap fw-medium" data-total>2 580 Kč</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th colspan="3" class="text-end fw-semibold">Total</th>
+								<th class="text-end text-nowrap fw-semibold" id="demo-cart-total">27 570 Kč</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+
+			<!-- datepicker (module datepicker, Vanilla Calendar Pro like in Bootstrap 6) -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Datepicker</h2>
+					<p class="small text-body-secondary mb-0">The calendar of Bootstrap 6 under an input: an ISO date for the server, or the date in the language of the page.</p>
+				</header>
+
+				<div class="row g-4">
+					<div class="col-sm-6 col-xl-3">
+						<label class="form-label" for="date-published">Published</label>
+						<div class="input-group">
+							<span class="input-group-text"><i class="bi bi-calendar3" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" id="date-published" data-bs-toggle="datepicker" value="2026-11-07" autocomplete="off">
+						</div>
+						<div class="form-text">The value is an ISO date.</div>
+					</div>
+					<div class="col-sm-6 col-xl-3">
+						<label class="form-label" for="date-cs">Delivery (Czech)</label>
+						<input type="text" class="form-control" id="date-cs" data-bs-toggle="datepicker" data-bs-locale="cs-CZ" data-bs-date-format="locale" data-bs-date-min="today" placeholder="Choose a day" autocomplete="off">
+						<div class="form-text">From today, written in Czech.</div>
+					</div>
+					<div class="col-sm-12 col-xl-6">
+						<label class="form-label" for="date-range">Stay</label>
+						<input type="text" class="form-control" id="date-range" data-bs-toggle="datepicker" data-bs-selection-mode="multiple-ranged" data-bs-display-months-count="2" placeholder="From – to" autocomplete="off">
+						<div class="form-text">A range over two months.</div>
+					</div>
+					<div class="col-12">
+						<p class="form-label mb-2">Inline</p>
+						<div class="d-inline-block p-3 rounded-3 bg-body-tertiary" data-bs-toggle="datepicker" data-bs-inline="true">
+							<input type="hidden" name="day" value="2026-11-20">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- rating (module rating): radio stars in a form, a shown rating with halves -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Rating</h2>
+					<p class="small text-body-secondary mb-0">Stars of radio inputs in a form, without JavaScript; a shown rating fills to its value, halves too.</p>
+				</header>
+
+				<div class="row g-4">
+					<div class="col-md-6">
+						<p class="form-label mb-2">Your rating</p>
+						<div class="rating rating-lg" role="radiogroup" aria-label="Your rating">
+							<input type="radio" class="rating-input" name="rating" id="rating-1" value="1"><label class="rating-star" for="rating-1"><span class="visually-hidden">1 star</span></label>
+							<input type="radio" class="rating-input" name="rating" id="rating-2" value="2"><label class="rating-star" for="rating-2"><span class="visually-hidden">2 stars</span></label>
+							<input type="radio" class="rating-input" name="rating" id="rating-3" value="3"><label class="rating-star" for="rating-3"><span class="visually-hidden">3 stars</span></label>
+							<input type="radio" class="rating-input" name="rating" id="rating-4" value="4" checked><label class="rating-star" for="rating-4"><span class="visually-hidden">4 stars</span></label>
+							<input type="radio" class="rating-input" name="rating" id="rating-5" value="5"><label class="rating-star" for="rating-5"><span class="visually-hidden">5 stars</span></label>
+						</div>
+
+						<p class="form-label mt-4 mb-2">Sizes and disabled</p>
+						<div class="d-flex flex-wrap align-items-center gap-4">
+							<div class="rating rating-sm" role="radiogroup" aria-label="Small">
+								<input type="radio" class="rating-input" name="rating-sm" id="rating-sm-1" value="1"><label class="rating-star" for="rating-sm-1"><span class="visually-hidden">1 star</span></label>
+								<input type="radio" class="rating-input" name="rating-sm" id="rating-sm-2" value="2"><label class="rating-star" for="rating-sm-2"><span class="visually-hidden">2 stars</span></label>
+								<input type="radio" class="rating-input" name="rating-sm" id="rating-sm-3" value="3" checked><label class="rating-star" for="rating-sm-3"><span class="visually-hidden">3 stars</span></label>
+								<input type="radio" class="rating-input" name="rating-sm" id="rating-sm-4" value="4"><label class="rating-star" for="rating-sm-4"><span class="visually-hidden">4 stars</span></label>
+								<input type="radio" class="rating-input" name="rating-sm" id="rating-sm-5" value="5"><label class="rating-star" for="rating-sm-5"><span class="visually-hidden">5 stars</span></label>
+							</div>
+							<div class="rating" role="radiogroup" aria-label="Disabled">
+								<input type="radio" class="rating-input" name="rating-off" id="rating-off-1" value="1" disabled><label class="rating-star" for="rating-off-1"><span class="visually-hidden">1 star</span></label>
+								<input type="radio" class="rating-input" name="rating-off" id="rating-off-2" value="2" disabled checked><label class="rating-star" for="rating-off-2"><span class="visually-hidden">2 stars</span></label>
+								<input type="radio" class="rating-input" name="rating-off" id="rating-off-3" value="3" disabled><label class="rating-star" for="rating-off-3"><span class="visually-hidden">3 stars</span></label>
+								<input type="radio" class="rating-input" name="rating-off" id="rating-off-4" value="4" disabled><label class="rating-star" for="rating-off-4"><span class="visually-hidden">4 stars</span></label>
+								<input type="radio" class="rating-input" name="rating-off" id="rating-off-5" value="5" disabled><label class="rating-star" for="rating-off-5"><span class="visually-hidden">5 stars</span></label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<p class="form-label mb-2">Reviews of a product</p>
+						<div class="list-row"><span class="avatar theme-primary">JN</span><span class="list-row-text">Jan Novák<small>Fast and quiet, the battery holds all day.</small></span><span class="rating-static rating-sm" style="--rating-value: 5" role="img" aria-label="5 of 5"></span></div>
+						<div class="list-row"><span class="avatar theme-success">PK</span><span class="list-row-text">Petra Králová<small>Great display, a bit heavier than I expected.</small></span><span class="rating-static rating-sm" style="--rating-value: 4.5" role="img" aria-label="4.5 of 5"></span></div>
+						<div class="list-row"><span class="avatar theme-warning">TM</span><span class="list-row-text">Tomáš Malý<small>Fine for the office work.</small></span><span class="rating-static rating-sm" style="--rating-value: 3" role="img" aria-label="3 of 5"></span></div>
+						<div class="d-flex align-items-center gap-2 mt-3">
+							<span class="rating-static" style="--rating-value: 4.2" role="img" aria-label="4.2 of 5"></span>
+							<span class="fw-semibold">4.2</span><span class="small text-body-secondary">from 128 reviews</span>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- overlays -->
+<script>
+	// the demo cart recounts its prices on a change of a quantity (drago would send it by AJAX)
+	const money = (value) => `${value.toLocaleString('cs-CZ')} Kč`;
+	document.getElementById('demo-cart').addEventListener('change', () => {
+		let total = 0;
+		document.querySelectorAll('#demo-cart tbody tr').forEach((row) => {
+			const sum = Number(row.dataset.price) * Number(row.querySelector('input').value);
+			row.querySelector('[data-total]').textContent = money(sum);
+			total += sum;
+		});
+		document.getElementById('demo-cart-total').textContent = money(total);
+	});
+</script>

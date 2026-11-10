@@ -1,0 +1,115 @@
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h1 class="h5 mb-1">Elements</h1>
+					<p class="small text-body-secondary mb-0">The small parts compostrap adds to Bootstrap: tooltips, avatars, state dots, stat tiles and list rows.</p>
+				</header>
+
+				<h2 class="h6 text-uppercase text-body-secondary mb-3">Tooltips <span class="fw-normal text-lowercase">(data-tooltip, CSS only)</span></h2>
+				<div class="d-flex flex-wrap gap-2 mb-3">
+					<button type="button" class="btn btn-secondary" aria-label="Above (the default)" data-tooltip>Above</button>
+					<button type="button" class="btn btn-secondary" aria-label="Under the element" data-tooltip="bottom">Bottom</button>
+					<button type="button" class="btn btn-secondary" aria-label="On the left side" data-tooltip="left">Left</button>
+					<button type="button" class="btn btn-secondary" aria-label="Aligned to the right edge" data-tooltip="end">End</button>
+				</div>
+				<div class="d-flex flex-wrap gap-2 mb-4">
+					<button type="button" class="btn btn-icon btn-subtle theme-primary" aria-label="Primary" data-tooltip data-tooltip-color="primary"><i class="bi bi-info-circle" aria-hidden="true"></i></button>
+					<button type="button" class="btn btn-icon btn-subtle theme-success" aria-label="Success" data-tooltip data-tooltip-color="success"><i class="bi bi-check-lg" aria-hidden="true"></i></button>
+					<button type="button" class="btn btn-icon btn-subtle theme-danger" aria-label="Danger" data-tooltip data-tooltip-color="danger"><i class="bi bi-trash" aria-hidden="true"></i></button>
+					<button type="button" class="btn btn-icon btn-subtle theme-warning" aria-label="Warning" data-tooltip data-tooltip-color="warning"><i class="bi bi-exclamation-lg" aria-hidden="true"></i></button>
+					<button type="button" class="btn btn-icon btn-subtle theme-info" aria-label="Info" data-tooltip data-tooltip-color="info"><i class="bi bi-lightbulb" aria-hidden="true"></i></button>
+				</div>
+
+				<div class="row g-4">
+					<div class="col-md-6">
+						<h2 class="h6 text-uppercase text-body-secondary mb-3">Avatars</h2>
+						<div class="d-flex flex-wrap align-items-center gap-2">
+							<span class="avatar avatar-sm theme-primary">JN</span>
+							<span class="avatar theme-primary">JN</span>
+							<span class="avatar avatar-lg theme-primary">JN</span>
+							<span class="avatar theme-success">EK</span>
+							<span class="avatar theme-warning">PD</span>
+							<span class="avatar">AB</span>
+							<span class="avatar"><img src="https://picsum.photos/seed/avatar/96/96" alt=""></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h2 class="h6 text-uppercase text-body-secondary mb-3">State dots</h2>
+						<div class="d-flex flex-wrap align-items-center gap-3">
+							<span class="d-inline-flex align-items-center gap-2"><span class="status-dot theme-success"></span>Online</span>
+							<span class="d-inline-flex align-items-center gap-2"><span class="status-dot theme-warning"></span>Away</span>
+							<span class="d-inline-flex align-items-center gap-2"><span class="status-dot theme-secondary"></span>Offline</span>
+							<span class="d-inline-flex align-items-center gap-2"><span class="status-dot status-dot-pulse theme-danger"></span>Live</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content-box mb-3">
+				<header class="mb-3 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Stat tiles</h2>
+					<p class="small text-body-secondary mb-0">A number of the overview with its label and a colored icon; a link when it is an &lt;a&gt;.</p>
+				</header>
+				<div class="row g-3">
+					<div class="col-6 col-lg-3">
+						<a href="datagrid.html" class="stat-tile theme-primary">
+							<span class="stat-icon"><i class="bi bi-newspaper" aria-hidden="true"></i></span>
+							<span><span class="stat-value">25</span><span class="stat-label">Articles</span></span>
+						</a>
+					</div>
+					<div class="col-6 col-lg-3">
+						<a href="datagrid.html" class="stat-tile theme-warning">
+							<span class="stat-icon"><i class="bi bi-chat-left-text" aria-hidden="true"></i></span>
+							<span><span class="stat-value">3</span><span class="stat-label">Comments</span></span>
+						</a>
+					</div>
+					<div class="col-6 col-lg-3">
+						<a href="commerce.html" class="stat-tile theme-success">
+							<span class="stat-icon"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+							<span><span class="stat-value">128</span><span class="stat-label">Products</span></span>
+						</a>
+					</div>
+					<div class="col-6 col-lg-3">
+						<div class="stat-tile theme-info">
+							<span class="stat-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+							<span><span class="stat-value">14</span><span class="stat-label">Users</span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">List rows</h2>
+							<p class="small text-body-secondary mb-0">What waits or the latest items: an icon, the text, something on the right.</p>
+						</header>
+						<a class="list-row" href="datagrid.html">
+							<span class="stat-icon theme-warning"><i class="bi bi-chat-left-text" aria-hidden="true"></i></span>
+							<span class="list-row-text">Comments to approve<small>Blog</small></span>
+							<span class="badge badge-subtle theme-warning">3</span>
+						</a>
+						<a class="list-row" href="commerce.html">
+							<span class="stat-icon theme-info"><i class="bi bi-cart3" aria-hidden="true"></i></span>
+							<span class="list-row-text">New orders<small>Commerce</small></span>
+							<span class="badge badge-subtle theme-info">7</span>
+						</a>
+						<div class="list-row">
+							<span class="avatar theme-success">EK</span>
+							<span class="list-row-text">Eva Kovářová<small>Signed in 5 minutes ago</small></span>
+							<span class="status-dot theme-success"></span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Theme switcher</h2>
+							<p class="small text-body-secondary mb-0">Light and dark mode by the theme-switcher module; the same as the icon in the navbar.</p>
+						</header>
+						<button type="button" class="btn btn-secondary d-inline-flex align-items-center gap-2" data-theme-switcher data-theme-light-icon="bi bi-sun" data-theme-dark-icon="bi bi-moon">
+							<i data-theme-switcher-icon class="bi bi-moon" aria-hidden="true"></i>Toggle the theme
+						</button>
+					</div>
+				</div>
+			</div>

@@ -1,0 +1,23 @@
+//
+// all modules of compostrap
+//
+
+@use 'theme-switcher/index' as theme-switcher;
+@use 'tooltip/index' as tooltip;
+@use 'elements/index' as elements;
+@use 'dialogs/index' as dialogs;
+@use 'settings/index' as settings;
+@use 'number-input/index' as number-input;
+@use 'datepicker/index' as datepicker;
+@use 'rating/index' as rating;
+@use 'chart/index' as chart;
+@use 'gallery/index' as gallery;
+@use 'dropzone/index' as dropzone;
+@use 'lightbox/index' as lightbox;
+@use 'strength/index' as strength;
+@use 'empty/index' as empty;
+@use 'auth/index' as auth;
+@use 'shop/index' as shop;
+@use 'sidebar/index' as sidebar;
+@use 'sidebar-menu/index' as sidebar-menu;
+@use 'dashboard/index' as dashboard;

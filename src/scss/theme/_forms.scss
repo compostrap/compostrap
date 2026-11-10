@@ -1,0 +1,24 @@
+//
+// theme: forms (checks, radios, switches)
+//
+
+// checks, radios and switches are as high as the line of their label (Bootstrap 5 moves them down for a 1em box)
+.form-check-input {
+	margin-top: 0;
+}
+
+// a switch of Bootstrap 6: the white knob on a gray track while off, a light shadow under the knob is not possible
+// with the background image of Bootstrap 5
+.form-switch .form-check-input:not(:checked) {
+	background-color: var(--bs-secondary-bg);
+}
+
+// a click on a check, radio or switch only changes its state, no ring and no colored border around it; the ring stays
+// for the keyboard (focus-visible). A text field and a select keep theirs on focus: it shows where the typing goes.
+.form-check-input:focus:not(:focus-visible) {
+	box-shadow: none;
+}
+
+.form-check-input:not(:checked, :indeterminate):focus:not(:focus-visible) {
+	border-color: var(--bs-border-color);
+}

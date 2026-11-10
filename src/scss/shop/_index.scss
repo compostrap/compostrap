@@ -1,0 +1,19 @@
+//
+// shop: the storefront of an e-shop, the shopping cart and the order process, outside the administration
+//
+// <body class="shop-page">
+//   <header class="shop-header"><div class="container">brand, links, theme switch, <a class="shop-minicart">…</a></div></header>
+//   <main class="container">…</main>
+//   <footer class="shop-footer"><div class="container">…</div></footer>
+// </body>
+//
+// The parts: `.shop-stepper` (steps of the order), `.shop-option` (a card choice of a carrier or payment next to a
+// `.btn-check`), `.shop-product` (a product tile), `.shop-variant-pill` (a variant choice), `.shop-detail-gallery`,
+// `.shop-cart-item` (a row of the cart), `.shop-summary` (the sticky price summary), `.shop-bar` (the total and the button at the bottom of a phone), `.shop-minicart`.
+//
+
+@use 'page';
+@use 'stepper';
+@use 'catalog';
+@use 'checkout';
+@use 'bar';

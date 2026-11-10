@@ -1,0 +1,67 @@
+// a thin colored line at the top of a modal: <div class="modal-status"></div> as the first child of .modal-content;
+// its color comes from a .theme-* class of the dialog (or a bg-* utility on the line itself)
+.modal-status {
+	background-color: var(--theme-bg, var(--bs-primary));
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 3px;
+	border-radius: var(--bs-modal-border-radius) var(--bs-modal-border-radius) 0 0;
+}
+
+// a confirmation or a message: narrow, centered, a large icon over the title and the text, buttons of the same width;
+// a .theme-* class colors the line and the icon
+// <div class="modal-dialog modal-dialog-centered modal-confirm theme-danger">…<i class="bi bi-exclamation-triangle
+// modal-confirm-icon"></i><h2 class="modal-title">Are you sure?</h2><p>…</p>…</div>
+.modal-confirm {
+	--bs-modal-width: 26rem;
+
+	.modal-content {
+		text-align: center;
+	}
+
+	.btn-close {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		z-index: 1;
+	}
+
+	.modal-body {
+		padding: 2rem 1.75rem 1.5rem;
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.modal-title {
+		margin-bottom: .5rem;
+		font-size: 1.0625rem;
+		font-weight: 600;
+	}
+
+	.modal-body p {
+		color: var(--bs-secondary-color);
+	}
+
+	.modal-footer {
+		flex-wrap: nowrap;
+		gap: .75rem;
+		padding: 1rem 1.75rem;
+
+		> * {
+			flex: 1;
+			margin: 0;
+		}
+	}
+}
+
+.modal-confirm-icon {
+	display: block;
+	color: var(--theme-fg, inherit);
+	margin-bottom: 1rem;
+	font-size: 3rem;
+	line-height: 1;
+}

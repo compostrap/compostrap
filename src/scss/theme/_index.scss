@@ -1,0 +1,18 @@
+//
+// theme: what the theme changes and adds to Bootstrap after it is built, one part per component of Bootstrap; only
+// classes of Bootstrap 5 and 6 (and their size modifiers) live here, own components are modules
+//
+
+@import 'base';
+@import 'colors';
+@import 'forms';
+@import 'buttons';
+@import 'badges';
+@import 'alerts';
+@import 'navs';
+@import 'breadcrumb';
+@import 'tables';
+@import 'cards';
+@import 'accordion';
+@import 'overlays';
+@import 'avatar';

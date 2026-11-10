@@ -1,0 +1,112 @@
+//
+// theme: the colors
+//
+
+@use 'sass:color';
+@use 'sass:map';
+
+//
+// Colors in the way of Bootstrap 6, so the markup stays valid after the upgrade. A `.theme-*` class (and the classes of
+// Bootstrap 5 for one color: .btn-primary, .btn-outline-primary, .alert-primary) sets the tokens of the color:
+// --theme-bg (solid) and --theme-contrast (text on it), --theme-fg and --theme-fg-emphasis (text in the color),
+// --theme-bg-subtle and --theme-bg-muted (light tints), --theme-border. The steps follow Bootstrap 6: mixed in oklch
+// with white (100 = 80 %, 200 = 60 %, 300 = 40 %, 400 = 20 %) or black (600 = 16 %, 800 = 48 %); the light tints of the
+// dark theme are mixed with its body background instead (16 % and 26 % of the color), quieter than Bootstrap 6.
+//
+
+// the steps are mixed from the original oklch colors of Bootstrap 6 (the hex values in theme/_variables.scss are
+// clipped to sRGB, their tints would be paler); a color not listed here is mixed from its hex value
+$theme-color-sources: (
+	'primary': oklch(60% .24 240),
+	'success': oklch(64% .22 160),
+	'info': oklch(69% .22 220),
+	'warning': oklch(88% .24 88),
+	'danger': oklch(60% .22 20),
+) !default;
+
+// secondary is a light gray in Bootstrap 6 (a light button with dark text), not a dark gray
+$theme-secondary-light: (
+	bg: $gray-100,
+	contrast: $gray-900,
+	fg: $gray-600,
+	fg-emphasis: $gray-800,
+	bg-subtle: $body-tertiary-bg,
+	bg-muted: $gray-100,
+	border: $gray-300,
+) !default;
+$theme-secondary-dark: (
+	bg: $gray-600,
+	contrast: $white,
+	fg: $gray-400,
+	fg-emphasis: $gray-200,
+	bg-subtle: $gray-800,
+	bg-muted: $gray-700,
+	border: $gray-600,
+) !default;
+
+// the text of a color (fg) is mixed with 16 % black; the light colors (green, cyan, yellow) need more to be read on
+// their own tint with a contrast of 4.5:1 (alerts, subtle badges, outline buttons)
+$theme-fg-weights: (
+	'success': 24%,
+	'info': 29%,
+	'warning': 40%,
+) !default;
+
+// a solid fill that takes white text although Bootstrap 6 writes dark text on it: cyan is darkened a little, so the
+// info buttons and badges read like the blue and green ones
+$theme-solid-shades: (
+	'info': 14%,
+) !default;
+
+@function -cs-step($color, $with, $weight) {
+	@return color.to-space(color.to-gamut(color.mix($with, $color, $weight, $method: oklch), $space: rgb, $method: local-minde), rgb);
+}
+
+@mixin -cs-tokens($tokens) {
+	@each $key, $value in $tokens {
+		--theme-#{$key}: #{$value};
+	}
+}
+
+@each $name, $value in $theme-colors {
+	$source: map.get($theme-color-sources, $name) or $value;
+	$selectors: '.theme-#{$name}, .btn-#{$name}, .btn-outline-#{$name}, .alert-#{$name}';
+	$light: (
+		bg: $value,
+		contrast: color-contrast($value),
+		fg: -cs-step($source, #000, map.get($theme-fg-weights, $name) or 16%),
+		fg-emphasis: -cs-step($source, #000, 48%),
+		bg-subtle: -cs-step($source, #fff, 80%),
+		bg-muted: -cs-step($source, #fff, 60%),
+		border: -cs-step($source, #fff, 40%),
+	);
+	$dark: (
+		fg: -cs-step($source, #fff, 20%),
+		fg-emphasis: -cs-step($source, #fff, 60%),
+		// a tint of the color on the dark page, not a saturated dark color
+		bg-subtle: -cs-step($source, $body-bg-dark, 84%),
+		bg-muted: -cs-step($source, $body-bg-dark, 74%),
+		border: -cs-step($source, #000, 16%),
+	);
+
+	@if map.has-key($theme-solid-shades, $name) {
+		$light: map.merge($light, (
+			bg: -cs-step($source, #000, map.get($theme-solid-shades, $name)),
+			contrast: $white,
+		));
+	}
+
+	@if $name == 'secondary' {
+		$light: $theme-secondary-light;
+		$dark: $theme-secondary-dark;
+	}
+
+	#{$selectors} {
+		@include -cs-tokens($light);
+	}
+
+	[data-bs-theme='dark'] :is(#{$selectors}),
+	:is(#{$selectors})[data-bs-theme='dark'] {
+		@include -cs-tokens($dark);
+	}
+}

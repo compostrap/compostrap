@@ -1,0 +1,82 @@
+	<nav aria-label="Checkout steps" class="my-4">
+		<ol class="shop-stepper">
+			<li class="shop-stepper-item is-done"><a href="shop-cart.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Cart</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item is-done"><a href="shop-delivery.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Delivery and payment</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item is-current" aria-current="step"><span><span class="shop-stepper-badge">3</span><span class="shop-stepper-label">Your details</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item"><span><span class="shop-stepper-badge">4</span><span class="shop-stepper-label">Summary</span></span></li>
+		</ol>
+	</nav>
+
+	<h1 class="h4 mb-4"><i class="bi bi-person-vcard text-body-secondary me-2" aria-hidden="true"></i>Customer information</h1>
+
+	<form onsubmit="return false">
+		<div class="row g-4">
+
+			<div class="col-lg-8">
+				<div class="row g-3">
+
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<p class="fw-semibold mb-3"><i class="bi bi-person text-primary me-2" aria-hidden="true"></i>Contact information</p>
+								<div class="mb-3"><label class="form-label" for="c-email">Email</label><input type="email" class="form-control" id="c-email" value="jan.novak@example.com"></div>
+								<div class="mb-3"><label class="form-label" for="c-phone">Telephone</label><input type="tel" class="form-control" id="c-phone" value="+420 777 123 456"></div>
+								<div class="row gx-2">
+									<div class="col-6 mb-3"><label class="form-label" for="c-name">Name</label><input type="text" class="form-control" id="c-name" value="Jan"></div>
+									<div class="col-6 mb-3"><label class="form-label" for="c-surname">Surname</label><input type="text" class="form-control" id="c-surname" value="Novák"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card h-100">
+							<div class="card-body">
+								<p class="fw-semibold mb-3"><i class="bi bi-file-earmark-text text-body-secondary me-2" aria-hidden="true"></i>Billing information</p>
+								<div class="mb-3"><label class="form-label" for="c-street">Street</label><input type="text" class="form-control" id="c-street" value="Dlouhá 12"></div>
+								<div class="row gx-2">
+									<div class="col-6 mb-3"><label class="form-label" for="c-city">City</label><input type="text" class="form-control" id="c-city" value="Praha"></div>
+									<div class="col-6 mb-3"><label class="form-label" for="c-country">Country</label><select class="form-select" id="c-country"><option>Czechia</option><option>Slovakia</option></select></div>
+								</div>
+								<div class="mb-3"><label class="form-label" for="c-zip">Postal code</label><input type="text" class="form-control" id="c-zip" value="110 00"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<p class="fw-semibold mb-3"><i class="bi bi-sticky text-body-secondary me-2" aria-hidden="true"></i>Order information</p>
+								<label class="form-label" for="c-note">Note</label>
+								<textarea class="form-control" id="c-note" rows="3"></textarea>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="shop-summary">
+					<div class="card">
+						<div class="card-body">
+							<p class="fw-semibold mb-3"><i class="bi bi-receipt text-body-secondary me-2" aria-hidden="true"></i>Order summary</p>
+							<div class="shop-summary-row"><span class="text-body-secondary">Items:</span><span>2</span></div>
+							<div class="shop-summary-row"><span class="text-body-secondary">Subtotal:</span><span>€ 1 399</span></div>
+							<div class="shop-summary-row"><span class="text-body-secondary">Carrier: Courier to your door</span><span>€ 5</span></div>
+							<div class="shop-summary-row"><span class="text-body-secondary">Payment: Card online</span><span>Free</span></div>
+							<div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">€ 1 404</span></div>
+							<a href="shop-summary.html" class="btn btn-primary w-100 mt-3 d-none d-lg-block">Continue with order <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</form>
+
+	<!-- on phones the total and the button stay at the bottom of the screen -->
+	<div class="shop-bar">
+		<div class="shop-bar-total"><span class="shop-bar-label">Total to pay</span><span class="shop-bar-sum">€ 1 404</span></div>
+		<a href="shop-summary.html" class="btn btn-primary">Continue <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
+	</div>

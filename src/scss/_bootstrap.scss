@@ -1,0 +1,9 @@
+//
+// Bootstrap 5.3 has no Sass modules, so its functions, variables and mixins are loaded here by @import, once for the
+// whole package, with the variables of the theme first; the modules use them as `@use '../bootstrap' as bs;`
+//
+
+@import 'theme/variables';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';

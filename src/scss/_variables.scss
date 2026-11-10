@@ -1,0 +1,47 @@
+//
+// settings shared by the modules
+//
+
+// icon font of the menu arrows and the breadcrumb separators: Bootstrap Icons
+// (for Font Awesome: 'Font Awesome 7 Free', weight 900, '\f105' and '\f107')
+$icon-font: 'bootstrap-icons' !default;
+$icon-font-weight: 400 !default;
+$icon-chevron-right: '\f285' !default;
+$icon-chevron-down: '\f282' !default;
+
+// width of the sidebar and height of the navbar and sidebar brand
+$sm-width: 15rem !default;
+$sm-top: 3.75rem !default;
+
+// menu: text, rows of the first level (44px) and of submenus (32px), section titles
+$sm-font-size: .875rem !default;
+$sm-line-height: 1.25rem !default;
+$sm-link-padding-y: .75rem !default;
+$sm-link-padding-x: 1.25rem !default;
+$sm-sublink-padding-y: .375rem !default;
+$sm-sub-indent: 1rem !default;
+$sm-title-font-size: .75rem !default;
+$sm-section-gap: 1rem !default;
+
+// menu icons: the column they sit in, the gap to the text and their size
+$sm-icon-width: 1.5rem !default;
+$sm-icon-gap: .625rem !default;
+$sm-icon-size: 1rem !default;
+
+// size of the rotating arrows of submenus
+$sm-arrow-size: .5625rem !default;
+// shift of the arrows towards the right edge (into the padding of the link)
+$sm-arrow-shift: .1875rem !default;
+// a thin glyph of 9px looks pale, a stroke of its own color makes it as strong as the text
+$sm-arrow-stroke: .4px !default;
+
+// width of the menu scrollbar and height of the nanobar
+$sm-scrollbar: .25rem !default;
+$sm-nanobar: .25rem !default;
+
+// the shadow of the surfaces on the page (boxes, cards, the sidebar, tiles, the sign-in box) and the shadow under the
+// white navbar while the content scrolls; none for now, the surfaces part from the page by their color only (to try
+// it with shadows again: 1px 1px 1px rgba(0, 0, 0, .05), 2px 6px 16px -6px rgba(0, 0, 0, .12), right and down only,
+// and 0 8px 12px -8px rgba(0, 0, 0, .12) under the navbar); the theme has the same in $box-shadow-sm
+$soft-shadow: none !default;
+$navbar-scroll-shadow: none !default;

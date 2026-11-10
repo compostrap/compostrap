@@ -1,0 +1,54 @@
+	<!-- the sign-up page of drago (project-auth): name, e-mail, the password with its strength meter (module strength)
+		and its confirmation -->
+	<div class="auth-card auth-card-split">
+		<aside class="auth-visual" aria-hidden="true">
+			<i class="bi bi-person-plus"></i>
+		</aside>
+
+		<main class="auth-body">
+			<div class="auth-toolbar">
+				<a href="#" lang="cs">Čeština</a>
+				<span class="text-body-tertiary" aria-hidden="true">&middot;</span>
+				<a href="#" lang="en" class="active" aria-current="true">English</a>
+			</div>
+
+			<header class="auth-header">
+				<h1 class="auth-title">Create account</h1>
+				<p class="auth-subtitle">Enter your details to create a new account.</p>
+			</header>
+
+			<form class="row g-3" onsubmit="return false">
+				<div class="col-12">
+					<label for="up-name" class="form-label">Full name</label>
+					<input type="text" class="form-control" id="up-name" autocomplete="name" placeholder="Jan Novák">
+				</div>
+				<div class="col-12">
+					<label for="up-email" class="form-label">E-mail</label>
+					<input type="email" class="form-control" id="up-email" autocomplete="email" placeholder="jan@example.com">
+				</div>
+				<div class="col-12">
+					<label for="up-password" class="form-label">Password</label>
+					<input type="password" class="form-control" id="up-password" autocomplete="new-password" aria-describedby="up-strength">
+					<div class="strength" data-bs-strength>
+						<div class="strength-segment"></div>
+						<div class="strength-segment"></div>
+						<div class="strength-segment"></div>
+						<div class="strength-segment"></div>
+					</div>
+					<span class="strength-text" id="up-strength" aria-live="polite"></span>
+				</div>
+				<div class="col-12">
+					<label for="up-verify" class="form-label">Password again</label>
+					<input type="password" class="form-control" id="up-verify" autocomplete="new-password">
+				</div>
+				<div class="col-12 d-grid">
+					<button type="submit" class="btn btn-primary">Create account</button>
+				</div>
+			</form>
+
+			<div class="auth-links">
+				<a href="sign-in.html">Back to sign in</a>
+				<a href="recovery.html">Forgot your password?</a>
+			</div>
+		</main>
+	</div>

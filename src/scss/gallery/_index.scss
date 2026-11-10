@@ -1,0 +1,162 @@
+//
+// gallery: square tiles of images with buttons that appear over the image on hover or keyboard focus
+//
+// <figure class="gallery-item">
+//   <img src="..." alt="...">
+//   <span class="gallery-badge"><span class="badge theme-primary">Main photo</span></span>
+//   <figcaption class="gallery-caption" title="mountains.jpg">
+//     <span class="gallery-name">mountains</span><span class="gallery-ext">jpg</span>
+//   </figcaption>
+//   <div class="gallery-actions">
+//     <a class="btn btn-sm btn-icon btn-light" aria-label="Preview" data-tooltip><i class="bi bi-zoom-in"></i></a>
+//   </div>
+// </figure>
+//
+// `gallery-actions show` keeps the buttons shown, e.g. while a delete waits for its confirmation.
+//
+
+@use '../variables' as var;
+
+.gallery-item {
+	position: relative;
+	aspect-ratio: 1;
+	margin: 0;
+	overflow: hidden;
+	background-color: var(--bs-tertiary-bg);
+	border-radius: var(--bs-border-radius-lg);
+	box-shadow: var.$soft-shadow;
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform .3s ease;
+	}
+
+	&:hover > img,
+	&:focus-within > img {
+		transform: scale(1.04);
+	}
+}
+
+// a label in the top left corner, it does not take the clicks of the image
+.gallery-badge {
+	position: absolute;
+	top: .5rem;
+	left: .5rem;
+	z-index: 1;
+	pointer-events: none;
+}
+
+// the buttons over a dimmed image
+.gallery-actions {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+	justify-content: center;
+	padding: .5rem;
+	background-color: rgba(0, 0, 0, .45);
+	opacity: 0;
+	transition: opacity .15s ease-in-out;
+
+	.gallery-item:hover &,
+	.gallery-item:focus-within &,
+	&.show {
+		opacity: 1;
+	}
+
+	// a text over the image, e.g. the question of a confirmation
+	.gallery-text {
+		flex-basis: 100%;
+		font-size: .875rem;
+		font-weight: 600;
+		color: #fff;
+		text-align: center;
+	}
+}
+
+// the name at the bottom of the image on a dark fade: the name cut to one line, the extension as a small label;
+// it gives way to the buttons on hover
+.gallery-caption {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	display: flex;
+	gap: .375rem;
+	align-items: center;
+	padding: 1.75rem .625rem .5rem;
+	font-size: .875rem;
+	font-weight: 500;
+	line-height: 1.25;
+	color: #fff;
+	pointer-events: none;
+	background: linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+	transition: opacity .15s ease-in-out;
+
+	.gallery-item:hover &,
+	.gallery-item:focus-within &,
+	.gallery-item:has(.gallery-actions.show) & {
+		opacity: 0;
+	}
+}
+
+.gallery-name {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.gallery-ext {
+	flex-shrink: 0;
+	padding: .125rem .375rem;
+	font-size: .6875rem;
+	font-weight: 600;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	background-color: rgba(255, 255, 255, .2);
+	border-radius: var(--bs-border-radius-sm);
+}
+
+// touch screens have no hover: the buttons stay shown in a column at the right edge, without dimming the image, so the
+// label in the top left corner and the name at the bottom stay free
+@media (hover: none) {
+	.gallery-actions:not(.show) {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		gap: .375rem;
+		align-items: flex-end;
+		justify-content: flex-start;
+		background-color: transparent;
+		opacity: 1;
+	}
+
+	.gallery-item .gallery-caption {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gallery-item > img,
+	.gallery-actions,
+	.gallery-caption {
+		transition: none;
+	}
+}
+
+// a small square image in a table row or a list, e.g. the photo of a product in a datagrid
+.gallery-thumb {
+	flex-shrink: 0;
+	width: 2.5rem;
+	height: 2.5rem;
+	object-fit: cover;
+	background-color: var(--bs-tertiary-bg);
+	border-radius: var(--bs-border-radius);
+}

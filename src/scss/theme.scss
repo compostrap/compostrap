@@ -1,0 +1,9 @@
+//
+// theme module of compostrap: Bootstrap built with the theme variables, then the theme additions
+//
+// Use it instead of `@import 'bootstrap/scss/bootstrap'`; set own variables before it.
+//
+
+@import 'theme/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'theme/index';

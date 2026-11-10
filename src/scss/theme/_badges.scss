@@ -1,0 +1,50 @@
+//
+// theme: badges
+//
+
+//
+// badges like in Bootstrap 6: <span class="badge theme-primary">, <span class="badge badge-subtle theme-primary">,
+// <span class="badge badge-outline theme-primary">
+//
+
+.badge {
+	display: inline-flex;
+	gap: .375em;
+	align-items: center;
+	justify-content: center;
+	min-height: 1.375rem;
+	line-height: 1;
+	color: var(--theme-contrast, var(--bs-badge-color));
+	background-color: var(--theme-bg, transparent);
+	border: var(--bs-border-width) solid transparent;
+}
+
+// a small badge (16px, 10px text) for tight places such as the menu (counts, New); Bootstrap 6 has only .badge-lg,
+// the small labels in the menu of its docs are styles of the docs
+.badge-sm {
+	min-height: 1rem;
+	padding: .125rem .375rem;
+	font-size: .625rem;
+}
+
+// text of the color on its light tint; without a color it is gray
+.badge-subtle {
+	color: var(--theme-fg);
+	background-color: var(--theme-bg-subtle);
+}
+
+// text of the color in its outline
+.badge-outline {
+	color: var(--theme-fg);
+	background-color: transparent;
+	border-color: var(--theme-border);
+}
+
+// a badge that is a link (a state switch) darkens a little on hover
+a.badge {
+	text-decoration: none;
+
+	&.badge-subtle:hover {
+		background-color: var(--theme-bg-muted, var(--bs-secondary-bg));
+	}
+}

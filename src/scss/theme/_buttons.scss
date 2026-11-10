@@ -1,0 +1,184 @@
+//
+// theme: buttons and button groups
+//
+
+// extra small buttons of Bootstrap 6 (24px), e.g. the row actions of a datagrid
+.btn-xs {
+	--bs-btn-padding-y: .125rem;
+	--bs-btn-padding-x: .5rem;
+	--bs-btn-font-size: .75rem;
+	--bs-btn-line-height: 1.125;
+	--bs-btn-border-radius: var(--bs-border-radius);
+
+	// a flex box, so the text stays in the middle of the 24px (an inline-block keeps it at the top)
+	display: inline-flex;
+	gap: .25rem;
+	align-items: center;
+	justify-content: center;
+	min-height: 1.5rem;
+}
+
+// a square button with an icon only, like in Bootstrap 6: <a class="btn btn-xs btn-icon btn-outline-secondary">
+// (the side is the height of a text button of the same size, at least the 24px of .btn-xs; aspect-ratio alone does not
+// hold in a flex row)
+.btn-icon {
+	--cs-btn-icon-size: max(1.5rem, calc(var(--bs-btn-font-size) * var(--bs-btn-line-height) + 2 * var(--bs-btn-padding-y) + 2 * var(--bs-btn-border-width)));
+
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: var(--cs-btn-icon-size);
+	height: var(--cs-btn-icon-size);
+	padding: 0;
+}
+
+//
+// buttons: solid, outline, subtle and text like in Bootstrap 6; hover darkens by 5 %, a press by 10 %
+// (.btn-primary = .btn-solid.theme-primary, .btn-outline-primary = .btn-outline.theme-primary)
+//
+
+@mixin -cs-btn-solid {
+	--bs-btn-color: var(--theme-contrast);
+	--bs-btn-bg: var(--theme-bg);
+	--bs-btn-border-color: var(--theme-bg);
+	--bs-btn-hover-color: var(--theme-contrast);
+	--bs-btn-hover-bg: oklch(from var(--theme-bg) calc(l * .95) calc(c * 1.1) h);
+	--bs-btn-hover-border-color: oklch(from var(--theme-bg) calc(l * .95) calc(c * 1.1) h);
+	--bs-btn-active-color: var(--theme-contrast);
+	--bs-btn-active-bg: oklch(from var(--theme-bg) calc(l * .9) calc(c * 1.15) h);
+	--bs-btn-active-border-color: oklch(from var(--theme-bg) calc(l * .9) calc(c * 1.15) h);
+	--bs-btn-disabled-color: var(--theme-contrast);
+	--bs-btn-disabled-bg: var(--theme-bg);
+	--bs-btn-disabled-border-color: var(--theme-bg);
+}
+
+@mixin -cs-btn-outline {
+	--bs-btn-color: var(--theme-fg);
+	--bs-btn-bg: transparent;
+	--bs-btn-border-color: var(--theme-border);
+	--bs-btn-hover-color: var(--theme-contrast);
+	--bs-btn-hover-bg: var(--theme-bg);
+	--bs-btn-hover-border-color: var(--theme-bg);
+	--bs-btn-active-color: var(--theme-contrast);
+	--bs-btn-active-bg: oklch(from var(--theme-bg) calc(l * .9) calc(c * 1.15) h);
+	--bs-btn-active-border-color: oklch(from var(--theme-bg) calc(l * .9) calc(c * 1.15) h);
+	--bs-btn-disabled-color: var(--theme-fg);
+	--bs-btn-disabled-bg: transparent;
+	--bs-btn-disabled-border-color: var(--theme-border);
+}
+
+@mixin -cs-btn-subtle {
+	// the variants of Bootstrap 6 have no focus color of Bootstrap 5, so they take the focus ring of the theme
+	--bs-btn-focus-box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+	--bs-btn-color: var(--theme-fg);
+	--bs-btn-bg: var(--theme-bg-subtle);
+	--bs-btn-border-color: transparent;
+	--bs-btn-hover-color: var(--theme-fg-emphasis);
+	--bs-btn-hover-bg: color-mix(in oklch, var(--theme-bg-muted) 50%, var(--theme-bg-subtle));
+	--bs-btn-hover-border-color: transparent;
+	--bs-btn-active-color: var(--theme-fg-emphasis);
+	--bs-btn-active-bg: var(--theme-bg-muted);
+	--bs-btn-active-border-color: transparent;
+	--bs-btn-disabled-color: var(--theme-fg);
+	--bs-btn-disabled-bg: var(--theme-bg-subtle);
+	--bs-btn-disabled-border-color: transparent;
+}
+
+@mixin -cs-btn-text {
+	--bs-btn-focus-box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+	--bs-btn-color: var(--theme-fg);
+	--bs-btn-bg: transparent;
+	--bs-btn-border-color: transparent;
+	--bs-btn-hover-color: var(--theme-fg);
+	--bs-btn-hover-bg: var(--theme-bg-subtle);
+	--bs-btn-hover-border-color: transparent;
+	--bs-btn-active-color: var(--theme-fg-emphasis);
+	--bs-btn-active-bg: var(--theme-bg-muted);
+	--bs-btn-active-border-color: transparent;
+	--bs-btn-disabled-color: var(--theme-fg);
+	--bs-btn-disabled-bg: transparent;
+	--bs-btn-disabled-border-color: transparent;
+}
+
+// the variant classes of Bootstrap 6 without a color are gray (the secondary tokens, overridden by a .theme-* class)
+:where(.btn-solid, .btn-outline, .btn-subtle, .btn-text, .badge-subtle, .badge-outline) {
+	@include -cs-tokens($theme-secondary-light);
+}
+
+:where([data-bs-theme='dark'] :is(.btn-solid, .btn-outline, .btn-subtle, .btn-text, .badge-subtle, .badge-outline)) {
+	@include -cs-tokens($theme-secondary-dark);
+}
+
+@each $name, $value in $theme-colors {
+	.btn-#{$name} {
+		@include -cs-btn-solid;
+	}
+
+	.btn-outline-#{$name} {
+		@include -cs-btn-outline;
+	}
+}
+
+.btn-solid {
+	@include -cs-btn-solid;
+}
+
+.btn-outline {
+	@include -cs-btn-outline;
+}
+
+// a light gray outline button would fill with the light gray itself, as light as the page (the button got lost in a
+// group); it takes the hover and pressed fill of the solid button instead, so both look the same, and the border
+// takes the fill, as with the other outline buttons
+.btn-outline-secondary,
+.btn-outline-light,
+.btn-outline:is(.theme-secondary, .theme-light) {
+	--bs-btn-hover-bg: oklch(from var(--theme-bg) calc(l * .95) calc(c * 1.1) h);
+	--bs-btn-hover-border-color: oklch(from var(--theme-bg) calc(l * .95) calc(c * 1.1) h);
+}
+
+.btn-subtle {
+	@include -cs-btn-subtle;
+}
+
+.btn-text {
+	@include -cs-btn-text;
+}
+
+// tabs made of a button group (the drago markup: <div class="btn-group" role="tablist"> with btn-secondary buttons and
+// data-bs-toggle="pill") look like a segmented control: a quiet track, the active tab raised on it; .btn-group-segmented
+// gives the same look to any button group
+.btn-group[role='tablist'],
+.btn-group-segmented {
+	gap: 2px;
+	padding: 3px;
+	background-color: rgba(var(--bs-body-color-rgb), .06);
+	border-radius: var(--bs-border-radius);
+
+	> .btn {
+		--bs-btn-color: var(--bs-secondary-color);
+		--bs-btn-bg: transparent;
+		--bs-btn-border-color: transparent;
+		--bs-btn-hover-color: var(--bs-body-color);
+		--bs-btn-hover-bg: transparent;
+		--bs-btn-hover-border-color: transparent;
+		--bs-btn-active-color: var(--bs-body-color);
+		--bs-btn-active-bg: var(--bs-body-bg);
+		--bs-btn-active-border-color: transparent;
+
+		margin-left: 0 !important;
+		border-radius: calc(var(--bs-border-radius) - 2px) !important;
+
+		&.active,
+		&:active {
+			box-shadow: 0 0 1px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .08);
+		}
+	}
+
+	> .btn-check:checked + .btn {
+		color: var(--bs-body-color);
+		background-color: var(--bs-body-bg);
+		box-shadow: 0 0 1px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .08);
+	}
+}

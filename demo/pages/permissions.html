@@ -1,0 +1,136 @@
+			<!-- the role permissions page of drago (project-permission): the presenters on the left, the privileges of the
+				selected one on the right, each privilege one row with its labels, description and switch -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
+					<div>
+						<h1 class="h5 mb-1">Role permissions</h1>
+						<p class="small text-body-secondary mb-0">Setting access for the selected role.</p>
+					</div>
+					<div class="d-flex flex-wrap align-items-center gap-2">
+						<form class="d-flex align-items-center gap-2 mb-0" onsubmit="return false">
+							<label for="role-switch" class="small text-body-secondary">Role</label>
+							<select id="role-switch" class="form-select form-select-sm">
+								<option>Editor</option>
+								<option selected>Blog moderator</option>
+								<option>Administrator</option>
+							</select>
+						</form>
+						<span class="badge badge-subtle theme-success">8 allowed</span>
+						<span class="badge badge-subtle theme-danger">6 denied</span>
+					</div>
+				</header>
+
+				<div class="row g-4">
+					<div class="col-md-4 col-xl-3">
+						<nav class="nav-list nav-list-box" aria-label="Presenters">
+							<a href="#" class="nav-list-link"><span class="text-truncate">Backend:Admin</span><span class="nav-list-count">1/1</span></a>
+							<a href="#" class="nav-list-link active" aria-current="true"><span class="text-truncate">Backend:Blog</span><span class="nav-list-count">4/5</span></a>
+							<a href="#" class="nav-list-link"><span class="text-truncate">Backend:Gallery</span><span class="nav-list-count">0/3</span></a>
+							<a href="#" class="nav-list-link"><span class="text-truncate">Backend:Page</span><span class="nav-list-count">0/2</span></a>
+							<a href="#" class="nav-list-link"><span class="text-truncate">Backend:Permission</span><span class="nav-list-count">0/4</span></a>
+							<a href="#" class="nav-list-link"><span class="text-truncate">Backend:Settings</span><span class="nav-list-count">0/2</span></a>
+						</nav>
+					</div>
+
+					<!-- the list keeps a readable width on wide screens, the switches stay near their texts -->
+					<div class="col-md-8 col-xl-9">
+						<div class="setting-list">
+						<div class="d-flex flex-wrap align-items-baseline justify-content-between gap-2 mb-2">
+							<h2 class="h6 mb-0">Backend:Blog</h2>
+							<span class="small text-body-secondary">5 permissions</span>
+						</div>
+
+						<div class="setting-row">
+							<div class="setting-row-text row g-2 align-items-center">
+								<div class="col-md-5 col-xl-4 d-flex flex-wrap align-items-center gap-2">
+									<span class="fw-medium text-body-emphasis">default</span>
+									<span class="badge badge-subtle theme-primary" data-tooltip aria-label="Backend:Blog:default">Page</span>
+								</div>
+								<div class="col-md text-body-secondary">Blog articles</div>
+							</div>
+							<!-- inherited: allowed elsewhere (ACL, parent role), so no switch, a lock with the reason in its tooltip -->
+							<div class="setting-row-control">
+								<span class="setting-row-locked" tabindex="0" data-tooltip="left" aria-label="Allowed by the ACL or a parent role, change it there."><i class="bi bi-lock" aria-hidden="true"></i>Inherited</span>
+							</div>
+						</div>
+
+						<div class="setting-row">
+							<div class="setting-row-text row g-2 align-items-center">
+								<div class="col-md-5 col-xl-4 d-flex flex-wrap align-items-center gap-2">
+									<span class="fw-medium text-body-emphasis">edit</span>
+									<span class="badge badge-subtle theme-primary" data-tooltip aria-label="Backend:Blog:edit">Page</span>
+									<span class="badge badge-subtle theme-info" data-tooltip aria-label="articleForm">Form</span>
+								</div>
+								<div class="col-md text-body-secondary">Managing articles (adding and editing)</div>
+							</div>
+							<div class="setting-row-control form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" id="perm-edit" checked>
+								<label class="form-check-label small" for="perm-edit">Allowed</label>
+							</div>
+						</div>
+
+						<div class="setting-row">
+							<div class="setting-row-text row g-2 align-items-center">
+								<div class="col-md-5 col-xl-4 d-flex flex-wrap align-items-center gap-2">
+									<span class="fw-medium text-body-emphasis">delete</span>
+									<span class="badge badge-subtle theme-warning" data-tooltip aria-label="handleDelete">Action</span>
+								</div>
+								<div class="col-md text-body-secondary">Deleting articles</div>
+							</div>
+							<div class="setting-row-control form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" id="perm-delete">
+								<label class="form-check-label small" for="perm-delete">Denied</label>
+							</div>
+						</div>
+
+						<div class="setting-row">
+							<div class="setting-row-text row g-2 align-items-center">
+								<div class="col-md-5 col-xl-4 d-flex flex-wrap align-items-center gap-2">
+									<span class="fw-medium text-body-emphasis">categories</span>
+									<span class="badge badge-subtle theme-primary" data-tooltip aria-label="Backend:Blog:categories">Page</span>
+									<span class="badge badge-subtle theme-info" data-tooltip aria-label="categoryForm">Form</span>
+								</div>
+								<div class="col-md text-body-secondary">Managing categories</div>
+							</div>
+							<div class="setting-row-control form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" id="perm-categories" checked>
+								<label class="form-check-label small" for="perm-categories">Allowed</label>
+							</div>
+						</div>
+
+						<div class="setting-row">
+							<div class="setting-row-text row g-2 align-items-center">
+								<div class="col-md-5 col-xl-4 d-flex flex-wrap align-items-center gap-2">
+									<span class="fw-medium text-body-emphasis">approve</span>
+									<span class="badge badge-subtle theme-warning" data-tooltip aria-label="handleApprove">Action</span>
+								</div>
+								<div class="col-md text-body-secondary">Approving comments</div>
+							</div>
+							<div class="setting-row-control form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch" id="perm-approve" checked>
+								<label class="form-check-label small" for="perm-approve">Allowed</label>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- administrator: the notice instead of the switches -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Administrator role</h2>
+					<p class="small text-body-secondary mb-0">The notice shown above the list for the administrator role.</p>
+				</header>
+				<div class="alert alert-warning d-flex align-items-center gap-2 mb-0">
+					<i class="bi bi-shield-check" aria-hidden="true"></i>
+					Administrator role has full access granted by default. These settings have no effect.
+				</div>
+			</div>
+<!-- overlays -->
+<script>
+	// the label of a switch follows its state, as the toggle of drago redraws it
+	document.querySelectorAll('.setting-row .form-check-input:not(:disabled)').forEach((input) => input.addEventListener('change', () => {
+		input.nextElementSibling.textContent = input.checked ? 'Allowed' : 'Denied';
+	}));
+</script>

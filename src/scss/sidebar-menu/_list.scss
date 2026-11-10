@@ -1,0 +1,128 @@
+//
+// list component for sidebar skeleton
+//
+
+@use '../variables' as var;
+
+.list {
+	width: var.$sm-width;
+	font-size: var.$sm-font-size;
+	line-height: var.$sm-line-height;
+
+	&-item {
+		padding: 0;
+		margin-top: var.$sm-section-gap;
+	}
+
+	// a section title sits close to its first link
+	&-title {
+		padding: .25rem var.$sm-link-padding-x .125rem;
+		margin-bottom: 0;
+		font-size: var.$sm-title-font-size;
+		font-weight: 500;
+		letter-spacing: .04em;
+	}
+
+	&-link {
+		display: block;
+		padding: var.$sm-link-padding-y var.$sm-link-padding-x;
+		margin: 0;
+		text-decoration: none;
+
+		// never underlined, also when the theme (or a project) underlines links on hover
+		&:hover {
+			text-decoration: none;
+
+			.bell {
+				animation: bell-shake .5s cubic-bezier(.36, .07, .19, .97) both;
+				backface-visibility: hidden;
+				transform-origin: top right;
+			}
+		}
+	}
+
+	// a submenu spans the whole width (so a highlight of its link does too), the text of its links starts under
+	// the text of the parent link, each deeper level is indented a bit more
+	& &-hidden {
+		display: none;
+		overflow: hidden;
+		padding: 0;
+	}
+
+	&-hidden &-link {
+		padding-top: var.$sm-sublink-padding-y;
+		padding-bottom: var.$sm-sublink-padding-y;
+		padding-left: var.$sm-link-padding-x + var.$sm-icon-width + var.$sm-icon-gap;
+	}
+
+	&-hidden &-hidden &-link {
+		padding-left: var.$sm-link-padding-x + var.$sm-icon-width + var.$sm-icon-gap + var.$sm-sub-indent;
+	}
+
+	@keyframes bell-shake {
+		0% { transform: rotate(0); }
+		15% { transform: rotate(5deg); }
+		30% { transform: rotate(-5deg); }
+		45% { transform: rotate(4deg); }
+		60% { transform: rotate(-4deg); }
+		75% { transform: rotate(2deg); }
+		85% { transform: rotate(-2deg); }
+		92% { transform: rotate(1deg); }
+		100% { transform: rotate(0); }
+	}
+
+	&-icon {
+		display: inline-block;
+		width: var.$sm-icon-width;
+		margin-right: var.$sm-icon-gap;
+		font-size: var.$sm-icon-size;
+		text-align: center;
+	}
+
+	// the current page and the group holding it are medium, so the section of the page is seen at once
+	.link-current {
+		font-weight: 500;
+	}
+}
+
+// arrow icon up and down in menu
+.link-arrow:before {
+	font-family: var.$icon-font, sans-serif;
+	font-weight: var.$icon-font-weight;
+	font-size: var.$sm-arrow-size;
+	margin-right: -(var.$sm-arrow-shift);
+	-webkit-text-stroke: var.$sm-arrow-stroke currentColor;
+	float: right;
+	transition-property: transform;
+}
+
+// a badge of a link with a submenu keeps a gap before the arrow
+.link-arrow .float-end {
+	margin-right: .5rem;
+}
+
+.link-arrow.up:before {
+	content: var.$icon-chevron-right;
+}
+
+.link-arrow.down:before {
+	content: var.$icon-chevron-down;
+}
+
+.link-arrow.transition:before {
+	transition: transform 0.1s;
+}
+
+.link-arrow.rotate:before {
+	transform: rotate(90deg);
+}
+
+.link-arrow.rotate-revert:before {
+	transform: rotate(-90deg);
+}
+
+// a link that only opens its submenu (no address) still shows the hand
+.link-arrow {
+	cursor: pointer;
+	user-select: none;
+}

@@ -1,0 +1,126 @@
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h1 class="h5 mb-1">Navigation</h1>
+					<p class="small text-body-secondary mb-0">Tabs, pills, the breadcrumb of Bootstrap 6, pagination and dropdowns.</p>
+				</header>
+
+				<h2 class="h6 text-uppercase text-body-secondary mb-3">Tabs</h2>
+				<ul class="nav nav-tabs mb-3" role="tablist">
+					<li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#demo-tab-1" type="button" role="tab">General</button></li>
+					<li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#demo-tab-2" type="button" role="tab">Prices</button></li>
+					<li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#demo-tab-3" type="button" role="tab">Photos</button></li>
+					<li class="nav-item" role="presentation"><button class="nav-link" type="button" disabled>Disabled</button></li>
+				</ul>
+				<div class="tab-content mb-4">
+					<div class="tab-pane fade show active" id="demo-tab-1" role="tabpanel"><p class="mb-0">The name, slug and description of a product.</p></div>
+					<div class="tab-pane fade" id="demo-tab-2" role="tabpanel"><p class="mb-0">The price, VAT and discounts.</p></div>
+					<div class="tab-pane fade" id="demo-tab-3" role="tabpanel"><p class="mb-0">The photos of the product.</p></div>
+				</div>
+
+				<div class="row g-4">
+					<div class="col-lg-6">
+						<h2 class="h6 text-uppercase text-body-secondary mb-3">Pills</h2>
+						<ul class="nav nav-pills">
+							<li class="nav-item"><a class="nav-link active" href="#" aria-current="page">All</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Published</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Drafts</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-6">
+						<h2 class="h6 text-uppercase text-body-secondary mb-3">Segmented <span class="fw-normal text-lowercase">(btn-group role="tablist")</span></h2>
+						<div class="btn-group" role="tablist">
+							<button type="button" class="btn btn-secondary btn-sm active" data-bs-toggle="pill" role="tab">Content</button>
+							<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="pill" role="tab">SEO</button>
+							<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="pill" role="tab">Settings</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Breadcrumb</h2>
+							<p class="small text-body-secondary mb-0">Links with a quiet pill on hover and a thin chevron divider.</p>
+						</header>
+						<nav aria-label="Breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a class="breadcrumb-link" href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-divider" aria-hidden="true"></li>
+								<li class="breadcrumb-item"><a class="breadcrumb-link" href="commerce.html">Commerce</a></li>
+								<li class="breadcrumb-divider" aria-hidden="true"></li>
+								<li class="breadcrumb-item"><a class="breadcrumb-link active" aria-current="page">Products</a></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Pagination</h2>
+							<p class="small text-body-secondary mb-0">The pages of a list, in the default and the small size.</p>
+						</header>
+						<nav aria-label="Pages" class="mb-2">
+							<ul class="pagination mb-0">
+								<li class="page-item disabled"><a class="page-link" aria-label="Previous"><i class="bi bi-chevron-left" aria-hidden="true"></i></a></li>
+								<li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</nav>
+						<nav aria-label="Pages">
+							<ul class="pagination pagination-sm mb-0">
+								<li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Dropdowns</h2>
+							<p class="small text-body-secondary mb-0">No border, a soft shadow; a header, icons, a divider and a danger item.</p>
+						</header>
+						<div class="d-flex flex-wrap gap-2">
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</button>
+								<ul class="dropdown-menu">
+									<li><h6 class="dropdown-header">Article</h6></li>
+									<li><a class="dropdown-item" href="#"><i class="bi bi-pencil me-2" aria-hidden="true"></i>Edit</a></li>
+									<li><a class="dropdown-item" href="#"><i class="bi bi-copy me-2" aria-hidden="true"></i>Duplicate</a></li>
+									<li><a class="dropdown-item disabled" aria-disabled="true"><i class="bi bi-archive me-2" aria-hidden="true"></i>Archive</a></li>
+									<li><hr class="dropdown-divider"></li>
+									<li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#demo-confirm"><i class="bi bi-trash me-2" aria-hidden="true"></i>Delete</a></li>
+								</ul>
+							</div>
+							<div class="dropdown">
+								<button class="btn btn-outline-secondary btn-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="More"><i class="bi bi-three-dots" aria-hidden="true"></i></button>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item active" href="#">Newest first</a></li>
+									<li><a class="dropdown-item" href="#">Oldest first</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">List group</h2>
+							<p class="small text-body-secondary mb-0">A list of links with the current item.</p>
+						</header>
+						<div class="list-group">
+							<a href="#" class="list-group-item list-group-item-action active" aria-current="true">Profile</a>
+							<a href="#" class="list-group-item list-group-item-action">Password</a>
+							<a href="#" class="list-group-item list-group-item-action">Notifications</a>
+						</div>
+					</div>
+				</div>
+			</div>

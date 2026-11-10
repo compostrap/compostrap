@@ -1,0 +1,71 @@
+.custom-dropdown .dropdown-toggle,
+.theme-switcher.nav-link {
+	--bs-btn-color: var(--bs-navbar-color);
+	--bs-btn-hover-color: var(--bs-navbar-hover-color);
+	--bs-btn-active-color: var(--bs-navbar-hover-color);
+
+	color: var(--bs-navbar-color);
+
+	&:hover,
+	&:focus,
+	&:active,
+	&.active,
+	&:focus-visible {
+		color: var(--bs-navbar-hover-color);
+		box-shadow: none;
+	}
+}
+
+.custom-dropdown {
+	.dropdown-item {
+		&:active,
+		&.active {
+			color: var(--bs-dropdown-link-hover-color);
+			background-color: var(--bs-dropdown-link-hover-bg);
+		}
+
+		&.current {
+			font-weight: 600;
+		}
+	}
+}
+
+// the theme in the user menu: a label and a segmented control light / dark / auto over the width of the menu
+// <li class="dropdown-theme"><span class="dropdown-theme-label">Theme</span><div class="btn-group btn-group-segmented"
+//   role="group"><button class="btn btn-sm" data-theme-value="light">…</button>…</div></li>
+.dropdown-menu:has(> .dropdown-theme) {
+	min-width: 16rem;
+}
+
+.dropdown-theme {
+	padding: .25rem var(--bs-dropdown-item-padding-x) .375rem;
+
+	> .btn-group {
+		display: flex;
+		width: 100%;
+
+		> .btn {
+			display: inline-flex;
+			flex: 1;
+			gap: .375rem;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+}
+
+.dropdown-theme-label {
+	display: block;
+	margin-bottom: .375rem;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+}
+
+// in the dark theme the menu is a lighter surface, so the chosen mode is lighter still (raised, not sunk)
+[data-bs-theme='dark'] .dropdown-theme > .btn-group > .btn {
+	--bs-btn-active-bg: rgba(var(--bs-body-color-rgb), .14);
+
+	&.active {
+		box-shadow: none;
+	}
+}

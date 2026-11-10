@@ -1,0 +1,64 @@
+//
+// shop: the bar at the bottom of a phone with the total and the button to go on, so the button is not far below the
+// content. From large screens it is hidden, the summary card (.shop-summary) with its own button is in view there.
+//
+// <div class="shop-bar">
+//   <div class="shop-bar-total"><span class="shop-bar-label">Total to pay</span><span class="shop-bar-sum">€ 1 404</span></div>
+//   <a class="btn btn-primary" href="...">Continue with order</a>
+// </div>
+//
+// The button of the summary card gets `d-none d-lg-block`, so the page has one button at a time. The page leaves room
+// under its footer for the bar.
+//
+
+@use '../bootstrap' as bs;
+
+.shop-bar {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+	background-color: var(--shop-surface-bg);
+	box-shadow: 0 -4px 12px -6px rgba(0, 0, 0, .18);
+
+	.btn {
+		flex: 0 1 auto;
+		white-space: nowrap;
+	}
+}
+
+.shop-bar-total {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	line-height: 1.25;
+}
+
+.shop-bar-label {
+	color: var(--bs-secondary-color);
+}
+
+.shop-bar-sum {
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.shop-page:has(.shop-bar) {
+	padding-bottom: 4.75rem;
+}
+
+@include bs.media-breakpoint-up(lg) {
+	.shop-bar {
+		display: none;
+	}
+
+	.shop-page:has(.shop-bar) {
+		padding-bottom: 0;
+	}
+}

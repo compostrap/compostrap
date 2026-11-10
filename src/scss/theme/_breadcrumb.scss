@@ -1,0 +1,64 @@
+//
+// theme: breadcrumb
+//
+
+// breadcrumb of Bootstrap 6 (its markup, so it stays valid after the upgrade): links with a quiet pill on hover, the
+// current page in the body color, a thin chevron as a separate divider; the corners stay those of Bootstrap 5
+// <ol class="breadcrumb">
+//   <li class="breadcrumb-item"><a class="breadcrumb-link" href="...">Dashboard</a></li>
+//   <li class="breadcrumb-divider" aria-hidden="true"></li>
+//   <li class="breadcrumb-item"><a class="breadcrumb-link active" aria-current="page">Blog articles</a></li>
+// </ol>
+.breadcrumb {
+	--cs-breadcrumb-link-padding-x: .625rem;
+
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 0;
+	margin-bottom: 0;
+	list-style: none;
+	background-color: transparent;
+}
+
+.breadcrumb-divider {
+	display: flex;
+	margin-inline: calc(var(--cs-breadcrumb-link-padding-x) / 4);
+	color: rgba(var(--bs-body-color-rgb), .35);
+
+	// a chevron painted in the current color, unless the divider has its own content
+	&:empty::before {
+		display: block;
+		width: .375rem;
+		height: .75rem;
+		content: '';
+		background-color: currentcolor;
+		mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 16'%3e%3cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M2 2l4 6-4 6'/%3e%3c/svg%3e") no-repeat center / contain;
+	}
+}
+
+.breadcrumb-link {
+	display: flex;
+	align-items: center;
+	min-height: 2.25rem;
+	padding: .25rem var(--cs-breadcrumb-link-padding-x);
+	color: var(--bs-secondary-color);
+	text-decoration: none;
+	border-radius: var(--bs-border-radius);
+
+	&:hover {
+		color: var(--bs-body-color);
+		text-decoration: none;
+		background-color: rgba(var(--bs-body-color-rgb), .05);
+	}
+
+	&.active {
+		font-weight: 500;
+		color: var(--bs-body-color);
+	}
+
+	// the current page is not a link
+	&.active:not([href]) {
+		background-color: transparent;
+	}
+}

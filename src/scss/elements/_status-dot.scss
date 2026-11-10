@@ -1,0 +1,38 @@
+// a small colored dot of a state, e.g. on the bell of notifications: <span class="status-dot theme-danger"></span>;
+// status-dot-pulse adds a ring that keeps spreading from it
+.status-dot {
+	position: relative;
+	display: inline-block;
+	flex-shrink: 0;
+	width: .5rem;
+	height: .5rem;
+	background-color: var(--theme-bg, var(--bs-danger));
+	border-radius: 50%;
+}
+
+.status-dot-pulse::after {
+	position: absolute;
+	inset: 0;
+	content: '';
+	background-color: inherit;
+	border-radius: inherit;
+	animation: cs-status-pulse 1.6s ease-out infinite;
+}
+
+@keyframes cs-status-pulse {
+	0% {
+		opacity: .7;
+		transform: scale(1);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(2.75);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.status-dot-pulse::after {
+		animation: none;
+	}
+}

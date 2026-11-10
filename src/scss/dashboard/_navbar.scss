@@ -1,0 +1,306 @@
+//
+// navbar component
+//
+
+@use '../bootstrap' as bs;
+@use '../variables' as var;
+
+.navbar.fixed-top {
+	background-color: var(--ds-body-bg) !important;
+}
+
+.navbar-nav-breadcrumb {
+	.nav-link {
+		margin-right: .125rem;
+		margin-left: .5rem;
+	}
+
+	li + li:before {
+		font-family: var.$icon-font;
+		font-weight: var.$icon-font-weight;
+		content: var.$icon-chevron-right;
+		position: absolute;
+		top: 1.25rem;
+		@include bs.font-size(bs.$font-size-sm);
+		opacity: 0.2;
+	}
+}
+
+// icon buttons of the navbar (theme switch, notifications, language) stay quiet on hover and while their dropdown is open;
+// an icon with a short text (the language: an icon and EN) widens it
+// <button class="navbar-icon" aria-label="Notifications"><i class="bi bi-bell"></i><span class="status-dot status-dot-pulse
+// theme-danger"></span></button>
+.navbar-icon {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: .5rem;
+	justify-content: center;
+	min-width: 2.25rem;
+	height: 2.25rem;
+	padding: 0 .5rem;
+	font-size: 1.125rem;
+	line-height: 1;
+	color: var(--bs-navbar-color, var(--bs-body-color));
+	text-decoration: none;
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--bs-border-radius);
+
+	&:hover,
+	&[aria-expanded='true'] {
+		color: var(--bs-body-color);
+		background-color: rgba(var(--bs-body-color-rgb), .06);
+	}
+
+	&:focus-visible {
+		outline: 0;
+		box-shadow: 0 0 0 1px rgba(var(--bs-primary-rgb), .6);
+	}
+
+	// a dot over the top right corner of the icon (also when a text follows the icon)
+	> .status-dot {
+		position: absolute;
+		top: .4rem;
+		left: 1.3rem;
+	}
+}
+
+// a short text beside or instead of an icon, e.g. the code of the current language
+.navbar-icon-text {
+	font-size: .875rem;
+	font-weight: 500;
+	letter-spacing: .02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.navbar-icon {
+		transition: none;
+	}
+}
+
+// the column of the content next to a sidebar over the whole height, with its own navbar on top
+.layout-content {
+	flex: 1;
+	min-width: 0;
+}
+
+// the navbar over the content only: the color of the page, stuck to the top while the page scrolls
+.navbar-content {
+	min-height: var.$sm-top;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	background-color: var(--ds-body-bg);
+}
+
+.navbar-content:not(.navbar-bar)::after {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	left: 0;
+	height: .75rem;
+	content: '';
+	background-color: var(--ds-body-bg);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.navbar-content.has-scrolled-content:not(.navbar-bar)::after {
+	opacity: 1;
+}
+
+// the navbar as a white bar over the whole width of the content, on the surface of the boxes (with the white sidebar):
+// flat at the top of the page; a soft shadow comes in as the content starts to scroll under it (the negative spread
+// keeps it off the sides; no clip-path: it would cut off the dropdowns)
+.navbar-bar {
+	margin-bottom: .75rem;
+	background-color: var(--ds-content-bg);
+}
+
+// the shadow under the bar comes in as the content scrolls under it (when $navbar-scroll-shadow is set)
+@if var.$navbar-scroll-shadow != none {
+	@supports (animation-timeline: scroll()) {
+		.navbar-bar {
+			animation: cs-navbar-bar-shadow linear both;
+			animation-timeline: scroll(root);
+			animation-range: 0 2rem;
+		}
+	}
+
+	@keyframes cs-navbar-bar-shadow {
+		from {
+			box-shadow: none;
+		}
+
+		to {
+			box-shadow: var.$navbar-scroll-shadow;
+		}
+	}
+}
+
+// the user in the navbar: an avatar with the name and the role, a dropdown with the account and the sign out
+.navbar-user {
+	display: inline-flex;
+	gap: .625rem;
+	align-items: center;
+	padding: .375rem 1.125rem .375rem .625rem;
+	line-height: 1.2;
+	text-align: left;
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--bs-border-radius);
+
+	&:hover,
+	&[aria-expanded='true'] {
+		background-color: rgba(var(--bs-body-color-rgb), .06);
+	}
+
+	&:focus-visible {
+		outline: 0;
+		box-shadow: 0 0 0 1px rgba(var(--bs-primary-rgb), .6);
+	}
+}
+
+.navbar-user-name {
+	display: block;
+	font-size: .875rem;
+	font-weight: 500;
+	color: var(--bs-body-color);
+}
+
+.navbar-user-role {
+	display: block;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+}
+
+// the brand in the navbar below md, where the sidebar (with its brand) is hidden; from md up the sidebar shows it
+// <a class="navbar-brand-mobile" href="/"><svg>…</svg><span>Name</span></a> as the first child of the container
+.navbar-brand-mobile {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+	margin-right: auto;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--bs-emphasis-color);
+		text-decoration: none;
+	}
+
+	@include bs.media-breakpoint-up(md) {
+		display: none;
+	}
+}
+
+// on a very narrow phone only the logo stays, the name would push the buttons out
+@media (max-width: 359.98px) {
+	.navbar-brand-mobile > span {
+		display: none;
+	}
+}
+
+// the brand of the sidebar in two looks:
+// - .sidebar-brand: on the white surface of the sidebar (the brand is a part of the sidebar)
+// - .sidebar-brand.sidebar-brand-page: on the background of the page, as high as the navbar; the white
+//   sidebar starts below it as a panel with a rounded corner, in line with the first box (with a navbar in the color
+//   of the page)
+.sidebar-brand-page {
+	position: relative;
+	z-index: 1;
+}
+
+// the brand on the page and the panel below it only beside the content (from md up); the sidebar that opens over the
+// page on phones stays white as a whole, a strip of the page color with a corner would look cut off there
+@include bs.media-breakpoint-up(md) {
+	.sidebar-brand-page {
+		height: var.$sm-top;
+		background-color: var(--ds-body-bg);
+	}
+
+	// the white panel of the sidebar below a brand on the page background; it is drawn on the fixed part of the menu, so
+	// it stays in place while the page scrolls (the sidebar itself scrolls with the page)
+	.sidebar:has(.sidebar-brand-page) {
+		background-color: transparent !important;
+		box-shadow: none !important;
+	}
+
+	.sidebar-menu-fixed:has(> .sidebar-brand-page)::before {
+		position: absolute;
+		inset: var.$sm-top 0 0;
+		content: '';
+		background-color: var(--ds-surface-bg, var(--bs-body-bg));
+		border-top-right-radius: var(--ds-box-radius, var(--bs-border-radius-lg));
+		box-shadow: var.$soft-shadow;
+	}
+}
+
+// a colored navbar, with the white sidebar: the bar and the brand of the sidebar in one color (a .theme-* class:
+// primary, success, danger, info, or theme-gray: a gray between the light secondary and dark; not warning, too light,
+// and not dark, the same as the page in the dark theme), its text and icons light; the dropdowns in it keep the colors of the page
+// <header class="navbar … navbar-content navbar-bar navbar-colored theme-primary">
+// <a class="sidebar-brand sidebar-brand-colored theme-primary" href="…">
+:root {
+	--cs-page-body-color: var(--bs-body-color);
+	--cs-page-body-color-rgb: var(--bs-body-color-rgb);
+	--cs-page-emphasis-color: var(--bs-emphasis-color);
+	--cs-page-secondary-color: var(--bs-secondary-color);
+}
+
+.navbar-colored,
+.sidebar-brand-colored {
+	--bs-body-color: var(--theme-contrast, #fff);
+	--bs-body-color-rgb: 255, 255, 255;
+	--bs-emphasis-color: var(--theme-contrast, #fff);
+	--bs-secondary-color: rgba(255, 255, 255, .72);
+	--bs-emphasis-color-rgb: 255, 255, 255;
+	--bs-navbar-color: rgba(255, 255, 255, .88);
+	--bs-navbar-hover-color: #fff;
+	--bs-navbar-active-color: #fff;
+
+	background-color: var(--theme-bg);
+}
+
+.navbar-colored {
+	--bs-navbar-toggler-icon-bg: #{bs.escape-svg(bs.$navbar-dark-toggler-icon-bg)};
+	--bs-navbar-toggler-border-color: rgba(255, 255, 255, .15);
+	// Tooltips use the page colors; the colored navbar overrides Bootstrap's emphasis color for its text.
+	[data-tooltip]::after {
+		background-color: var(--cs-tooltip-bg, var(--cs-page-emphasis-color));
+		color: var(--cs-tooltip-color, var(--bs-body-bg));
+	}
+
+	.dropdown-menu {
+		--bs-body-color: var(--cs-page-body-color);
+		--bs-body-color-rgb: var(--cs-page-body-color-rgb);
+		--bs-emphasis-color: var(--cs-page-emphasis-color);
+		--bs-secondary-color: var(--cs-page-secondary-color);
+	}
+
+	.navbar-icon:hover,
+	.navbar-icon[aria-expanded='true'],
+	.navbar-user:hover,
+	.navbar-user[aria-expanded='true'],
+	.breadcrumb-link:hover {
+		background-color: rgba(255, 255, 255, .12);
+	}
+}
+
+.sidebar-brand-colored {
+	height: var.$sm-top;
+}
+
+// a gray between the light secondary and dark, only for the colored navbar (it is not a color of Bootstrap)
+:is(.navbar-colored, .sidebar-brand-colored).theme-gray {
+	--theme-bg: #{bs.$gray-600};
+	--theme-contrast: #fff;
+}
+
+// a dot of a state gets a light ring, so it is seen on any color (a red dot on a red navbar)
+.navbar-colored .status-dot {
+	box-shadow: 0 0 0 1.5px #fff;
+}

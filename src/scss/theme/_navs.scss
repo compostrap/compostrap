@@ -1,0 +1,15 @@
+//
+// theme: navs and tabs
+//
+
+// navs of Bootstrap 6: tabs and pills keep a 2px gap (the frame of the active tab never touches a hovered
+// neighbor), a hovered link that is not the current one gets a light background
+.nav-tabs,
+.nav-pills {
+	gap: .125rem;
+}
+
+.nav-tabs .nav-link:not(.active, :disabled, .disabled):hover,
+.nav-pills .nav-link:not(.active, :disabled, .disabled):hover {
+	background-color: var(--bs-tertiary-bg);
+}

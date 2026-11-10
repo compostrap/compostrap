@@ -1,0 +1,85 @@
+	<nav aria-label="Checkout steps" class="my-4">
+		<ol class="shop-stepper">
+			<li class="shop-stepper-item is-done"><a href="shop-cart.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Cart</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item is-done"><a href="shop-delivery.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Delivery and payment</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item is-done"><a href="shop-customer.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Your details</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item is-current" aria-current="step"><span><span class="shop-stepper-badge">4</span><span class="shop-stepper-label">Summary</span></span></li>
+		</ol>
+	</nav>
+
+	<h1 class="h4 mb-4"><i class="bi bi-clipboard-check text-body-secondary me-2" aria-hidden="true"></i>Pre-shipment summary</h1>
+
+	<div class="row g-4">
+
+		<div class="col-lg-8">
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table align-middle mb-0">
+							<thead>
+								<tr>
+									<th scope="col">Product name</th>
+									<th scope="col" class="text-end">Price</th>
+									<th scope="col" class="text-center">Amount</th>
+									<th scope="col" class="text-end">Discount</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>UltraBook Air 13<div class="small text-body-secondary">16 GB, 512 GB</div></td>
+									<td class="text-end text-nowrap">€ 934</td>
+									<td class="text-center">1</td>
+									<td class="text-end"><span class="badge badge-subtle theme-danger">-15%</span></td>
+								</tr>
+								<tr>
+									<td>ProBook 15<div class="small text-body-secondary">16 GB, 1 TB</div></td>
+									<td class="text-end text-nowrap">€ 465</td>
+									<td class="text-center">1</td>
+									<td class="text-end"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="h5 mb-3"><i class="bi bi-person-vcard text-body-secondary me-2" aria-hidden="true"></i>Customer information</h2>
+			<div class="card">
+				<div class="card-body">
+					<div class="row gy-3">
+						<div class="col-md-6"><strong class="d-block mb-1">Name and surname</strong>Jan Novák</div>
+						<div class="col-md-6"><strong class="d-block mb-1">Email</strong>jan.novak@example.com</div>
+						<div class="col-md-6"><strong class="d-block mb-1">Telephone</strong>+420 777 123 456</div>
+						<div class="col-md-6"><strong class="d-block mb-1">Delivery address</strong>Dlouhá 12<br>110 00 Praha<br>Czechia</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-lg-4">
+			<div class="shop-summary">
+				<div class="card">
+					<div class="card-body">
+						<p class="fw-semibold mb-3"><i class="bi bi-receipt text-body-secondary me-2" aria-hidden="true"></i>Order summary</p>
+						<div class="shop-summary-row"><span class="text-body-secondary">Items:</span><span>2</span></div>
+						<div class="shop-summary-row"><span class="text-body-secondary">Price without discount:</span><span>€ 1 564</span></div>
+						<div class="shop-summary-row text-success"><span>Product discounts:</span><span>-€ 165</span></div>
+						<div class="shop-summary-row"><span class="text-body-secondary">Subtotal:</span><span>€ 1 399</span></div>
+						<div class="shop-summary-row"><span class="text-body-secondary">Carrier: Courier to your door</span><span>€ 5</span></div>
+						<div class="shop-summary-row"><span class="text-body-secondary">Payment: Card online</span><span>Free</span></div>
+						<div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">€ 1 404</span></div>
+						<a href="shop-confirmation.html" class="btn btn-success w-100 mt-3 d-none d-lg-block" aria-label="Confirm your order and complete the purchase">Confirm order</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- on phones the total and the button stay at the bottom of the screen -->
+	<div class="shop-bar">
+		<div class="shop-bar-total"><span class="shop-bar-label">Total to pay</span><span class="shop-bar-sum">€ 1 404</span></div>
+		<a href="shop-confirmation.html" class="btn btn-success" aria-label="Confirm your order and complete the purchase">Confirm order</a>
+	</div>

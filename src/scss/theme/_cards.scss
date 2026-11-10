@@ -1,0 +1,14 @@
+//
+// theme: cards
+//
+
+// a card lifts from the page by the soft shadow instead of a border (Bootstrap adds it only with $enable-shadows)
+.card {
+	box-shadow: var(--bs-box-shadow-sm);
+}
+
+// cards inside an offcanvas or a modal are sections of a form on its surface: no shadow, which would join them
+.offcanvas .card,
+.modal .card {
+	box-shadow: none;
+}

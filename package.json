@@ -1,0 +1,85 @@
+{
+	"name": "compostrap",
+	"version": "1.0.0",
+	"description": "Components for Bootstrap 5: sidebar, multi-level menu, dashboard layout and theme switcher.",
+	"type": "module",
+	"license": "MIT",
+	"author": "Zdeněk Papučík",
+	"homepage": "https://github.com/compostrap/compostrap",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/compostrap/compostrap.git"
+	},
+	"keywords": [
+		"bootstrap",
+		"sidebar",
+		"menu",
+		"dashboard",
+		"theme",
+		"dark-mode"
+	],
+	"files": [
+		"dist",
+		"src"
+	],
+	"sideEffects": [
+		"*.css",
+		"*.scss"
+	],
+	"exports": {
+		".": "./dist/js/index.js",
+		"./sidebar": "./dist/js/sidebar.js",
+		"./sidebar-menu": "./dist/js/sidebar-menu.js",
+		"./theme-switcher": "./dist/js/theme-switcher.js",
+		"./dropzone": "./dist/js/dropzone.js",
+		"./lightbox": "./dist/js/lightbox.js",
+		"./strength": "./dist/js/strength.js",
+		"./number-input": "./dist/js/number-input.js",
+		"./datepicker": "./dist/js/datepicker.js",
+		"./chart": "./dist/js/chart.js",
+		"./css/*": "./dist/css/*",
+		"./src/scss/*": "./src/scss/*",
+		"./illustrations/*": "./src/illustrations/*"
+	},
+	"peerDependencies": {
+		"bootstrap": "^5.3.0",
+		"bootstrap-icons": "^1.11.0",
+		"nanobar": "^0.4.2",
+		"perfect-scrollbar": "^1.5.6",
+		"vanilla-calendar-pro": "^3.4.0",
+		"chart.js": "^4.6.0"
+	},
+	"peerDependenciesMeta": {
+		"bootstrap-icons": {
+			"optional": true
+		},
+		"nanobar": {
+			"optional": true
+		},
+		"perfect-scrollbar": {
+			"optional": true
+		},
+		"vanilla-calendar-pro": {
+			"optional": true
+		},
+		"chart.js": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"bootstrap": "^5.3.8",
+		"bootstrap-icons": "^1.13.2",
+		"chart.js": "^4.6.1",
+		"nanobar": "^0.4.2",
+		"perfect-scrollbar": "^1.5.6",
+		"sass": "^1.97.1",
+		"vanilla-calendar-pro": "^3.4.0",
+		"vite": "^8.0.16"
+	},
+	"scripts": {
+		"dev": "npm run demo && vite",
+		"build": "vite build && node scripts/build-css.js",
+		"demo": "node scripts/build-demo.js",
+		"prepublishOnly": "npm run build"
+	}
+}

@@ -1,0 +1,38 @@
+// a box (or a card, a snippet) that loads: its content fades and cannot be clicked, a small ring turns over it;
+// set aria-busy="true" while an AJAX request runs and remove it afterwards
+:is(.content-box, .card, [data-loading-area])[aria-busy='true'] {
+	position: relative;
+	cursor: progress;
+
+	> * {
+		pointer-events: none;
+		opacity: .45;
+	}
+
+	// in the middle of the box, at most 10rem from its top, so it is seen in a long list too
+	&::after {
+		position: absolute;
+		top: min(50%, 10rem);
+		left: 50%;
+		width: 1.5rem;
+		height: 1.5rem;
+		margin: -.75rem 0 0 -.75rem;
+		content: '';
+		border: 2px solid var(--bs-border-color);
+		border-top-color: var(--bs-primary);
+		border-radius: 50%;
+		animation: cs-busy .7s linear infinite;
+	}
+}
+
+@keyframes cs-busy {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:is(.content-box, .card, [data-loading-area])[aria-busy='true']::after {
+		animation-duration: 2s;
+	}
+}

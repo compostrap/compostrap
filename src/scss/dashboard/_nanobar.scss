@@ -1,0 +1,34 @@
+//
+// nanobar: the loading bar at the top of the page (the Nanobar library), in the color of --ds-nanobar-bg
+//
+
+@use 'sass:list';
+@use '../bootstrap' as bs;
+@use '../variables' as var;
+
+.nanobar {
+	top: 0;
+	z-index: 9999;
+	width: 100%;
+	height: var.$sm-nanobar;
+
+	& .bar {
+		width: 0;
+		height: 100%;
+		background-color: var(--ds-nanobar-bg);
+		transition: height .3s;
+	}
+}
+
+// with a colored navbar the nanobar takes its color, lightened, so it is seen over the bar and goes with it
+@each $name, $value in bs.$theme-colors {
+	@if not list.index(('secondary', 'light', 'warning', 'dark'), $name) {
+		:root:has(.navbar-colored.theme-#{$name}) {
+			--ds-nanobar-bg: color-mix(in srgb, var(--bs-#{$name}) 50%, #fff);
+		}
+	}
+}
+
+:root:has(.navbar-colored.theme-gray) {
+	--ds-nanobar-bg: color-mix(in srgb, #{bs.$gray-600} 50%, #fff);
+}

@@ -1,0 +1,95 @@
+//
+// theme: offcanvas, modals and dropdowns
+//
+
+// offcanvas floats: a gap from the edges of the window, rounded corners and a shadow instead of a border
+// (also the line under the header is left out); .offcanvas-flush keeps the panel stuck to the edge
+.offcanvas:is(.offcanvas-start, .offcanvas-end, .offcanvas-top, .offcanvas-bottom):not(.offcanvas-flush) {
+	--cs-offcanvas-margin: .5rem;
+	--bs-offcanvas-border-width: 0;
+	--bs-offcanvas-transition: transform .3s ease-in-out, translate .3s ease-in-out;
+
+	max-width: calc(100% - 2 * var(--cs-offcanvas-margin));
+	max-height: calc(100% - 2 * var(--cs-offcanvas-margin));
+	margin: var(--cs-offcanvas-margin);
+	overflow: hidden;
+	border-radius: var(--bs-border-radius-lg);
+	box-shadow: var(--bs-box-shadow-lg);
+
+	// a closed panel has to travel past its margin too, to leave the window
+	&.offcanvas-start {
+		translate: calc(-1 * var(--cs-offcanvas-margin));
+	}
+
+	&.offcanvas-end {
+		translate: var(--cs-offcanvas-margin);
+	}
+
+	&.offcanvas-top {
+		translate: 0 calc(-1 * var(--cs-offcanvas-margin));
+	}
+
+	&.offcanvas-bottom {
+		translate: 0 var(--cs-offcanvas-margin);
+	}
+
+	&.showing,
+	&.show:not(.hiding) {
+		translate: none;
+	}
+}
+
+.offcanvas-header {
+	border-bottom: 0;
+}
+
+// a modal lifts by a shadow (Bootstrap adds it only with $enable-shadows)
+.modal-content {
+	box-shadow: var(--bs-box-shadow-lg);
+}
+
+// tabs in the header of an offcanvas (between its title and the close button) move to their own row on narrow screens,
+// over the whole width, so neither the title nor the tabs wrap
+.offcanvas-header > .btn-group[role='tablist'] > .btn {
+	white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+	.offcanvas-header:has(> .btn-group[role='tablist']) {
+		flex-wrap: wrap;
+		row-gap: .75rem;
+
+		> .btn-close {
+			margin-left: auto !important;
+		}
+
+		> .btn-group[role='tablist'] {
+			order: 3;
+			width: 100%;
+			margin: 0 !important;
+
+			> .btn {
+				flex: 1;
+			}
+		}
+	}
+}
+
+// a textarea in an offcanvas whose height follows the window (e.g. the description of a product) gets a fixed height
+// of about 12 lines on narrow screens, so the fields below it stay close
+@media (max-width: 767.98px) {
+	.offcanvas textarea.form-control[style*='height'] {
+		height: 16rem !important;
+	}
+}
+
+// dropdowns: no border, the soft shadow of the theme; in the dark theme, where a shadow is not seen, a lighter surface
+.dropdown-menu {
+	box-shadow: var(--bs-box-shadow-lg);
+}
+
+[data-bs-theme='dark'] .dropdown-menu,
+.dropdown-menu[data-bs-theme='dark'] {
+	--bs-dropdown-bg: var(--bs-secondary-bg);
+	--bs-dropdown-link-hover-bg: rgba(var(--bs-body-color-rgb), .08);
+}

@@ -1,0 +1,131 @@
+//
+// number input: a number with a minus and a plus button in one box, e.g. the quantity of an item in a cart
+//
+// <div class="number-input">
+//   <button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+//   <input type="number" class="form-control" value="1" min="1" max="99" step="1" aria-label="Quantity">
+//   <button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+// </div>
+//
+// No border: a quiet track with the buttons close to the number, a hovered button raised on it. The buttons draw their
+// minus and plus themselves (an icon inside replaces them). A fractional step sets how many decimals the value keeps;
+// min and max disable the buttons at the ends. The spin buttons of the browser are hidden, its validation stays.
+// number-input-sm and number-input-lg follow the heights of the form controls (30, 36, 44px).
+//
+
+@use '../bootstrap' as bs;
+
+.number-input {
+	--number-input-btn-size: 1.875rem;
+	--number-input-bg: rgba(var(--bs-body-color-rgb), .05);
+
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	padding: .1875rem;
+	background-color: var(--number-input-bg);
+	border-radius: var(--bs-border-radius);
+
+	// no ring: a click on a button used to light the whole track like a border; a keyboard focus darkens the track
+	&:has(:focus-visible) {
+		--number-input-bg: rgba(var(--bs-body-color-rgb), .1);
+	}
+
+	// the field is as wide as its number (at least two digits), so the buttons stay close to it
+	> .form-control {
+		min-width: 2.75ch;
+		height: var(--number-input-btn-size);
+		min-height: 0;
+		padding: 0 .25rem;
+		font-variant-numeric: tabular-nums;
+		text-align: center;
+		field-sizing: content;
+		background-color: transparent;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		appearance: textfield;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			margin: 0;
+			appearance: none;
+		}
+
+		&:disabled {
+			color: var(--bs-secondary-color);
+		}
+	}
+}
+
+// a browser without field-sizing gets a field for about four digits
+@supports not (field-sizing: content) {
+	.number-input > .form-control {
+		width: 5ch;
+	}
+}
+
+.number-input-btn {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: var(--number-input-btn-size);
+	height: var(--number-input-btn-size);
+	padding: 0;
+	color: var(--bs-body-color);
+	background-color: transparent;
+	border: 0;
+	border-radius: calc(var(--bs-border-radius) - .125rem);
+
+	// the hovered button is raised on the track, like a tab of a segmented control
+	&:hover {
+		background-color: var(--bs-body-bg);
+		box-shadow: 0 0 1px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .08);
+	}
+
+	// the focused button (keyboard) is raised like a hovered one, no ring
+	&:focus-visible {
+		outline: 0;
+		background-color: var(--bs-body-bg);
+		box-shadow: 0 0 1px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .08);
+	}
+
+	&:disabled {
+		color: var(--bs-tertiary-color);
+		pointer-events: none;
+	}
+
+	// a minus, and a plus for the second button, when the button has no icon of its own
+	&:empty::before {
+		width: .75rem;
+		height: .75rem;
+		content: '';
+		background-color: currentcolor;
+		mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath stroke='black' stroke-width='1.75' stroke-linecap='round' d='M2.5 8h11'/%3e%3c/svg%3e") no-repeat center / contain;
+	}
+
+	&[data-number-input='up']:empty::before {
+		mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath stroke='black' stroke-width='1.75' stroke-linecap='round' d='M2.5 8h11M8 2.5v11'/%3e%3c/svg%3e");
+	}
+}
+
+// in the dark theme the raised button is a lighter surface (a shadow is not seen there)
+[data-bs-theme='dark'] .number-input-btn:is(:hover, :focus-visible) {
+	background-color: rgba(var(--bs-body-color-rgb), .12);
+	box-shadow: none;
+}
+
+// the sizes follow the form controls: 30, 36 and 44px high
+.number-input-sm {
+	--number-input-btn-size: 1.5rem;
+
+	font-size: bs.$input-font-size-sm;
+}
+
+.number-input-lg {
+	--number-input-btn-size: 2.375rem;
+
+	font-size: bs.$input-font-size-lg;
+	border-radius: var(--bs-border-radius-lg);
+}

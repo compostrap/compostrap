@@ -1,0 +1,73 @@
+//
+// links as pills: inset from the sidebar edges, the current page on any level in a pill of the page background color
+//
+
+@use '../variables' as var;
+
+// links are pills inset from the sidebar edges with a small gap between them (pills of 36px on the first level and
+// 32px in submenus, rows of 42px and 38px); their text stays where the base menu has it
+$inset: .5rem;
+$gap: .375rem; // vertical margins of neighbouring links collapse into one gap of this size
+$pill-padding-y: .5rem;
+$subpill-padding-y: .375rem;
+$text-start: var.$sm-link-padding-x + var.$sm-icon-width + var.$sm-icon-gap;
+
+.list {
+	.list-link {
+		margin: $gap $inset;
+		padding: $pill-padding-y (var.$sm-link-padding-x - $inset);
+		border-radius: var(--sm-pill-border-radius);
+	}
+
+	.list-hidden .list-link {
+		padding-top: $subpill-padding-y;
+		padding-bottom: $subpill-padding-y;
+		padding-left: $text-start - $inset;
+	}
+
+	// a submenu hides its overflow, so the margins of its first and last link would add to the gap around it instead
+	// of collapsing with the neighbouring links; the gap stays the same as between any two links
+	.list-hidden > li:first-child > .list-link {
+		margin-top: 0;
+	}
+
+	// the first link of a section keeps only a small gap under the section title
+	.list-title + .list-unstyled > li:first-child > .list-link {
+		margin-top: .25rem;
+	}
+
+	.list-hidden > li:last-child > .list-link {
+		margin-bottom: 0;
+	}
+
+	.list-hidden .list-hidden .list-link {
+		padding-left: $text-start + var.$sm-sub-indent - $inset;
+	}
+
+	// the pill marks the current page on any level; a group holding it is not filled, so the menu never shows
+	// two selections
+	.list-link:hover,
+	.list-link.link-current:not(.link-arrow) {
+		background-color: var(--sm-pill-link-bg);
+	}
+
+	.list-link .list-icon {
+		color: var(--sm-pill-icon-color);
+	}
+
+	.list-link:hover .list-icon {
+		color: var(--sm-icon-hover);
+	}
+
+	.list-link.link-current .list-icon {
+		color: var(--sm-icon-current);
+	}
+}
+
+// the pill has the color of the page background (of the dashboard when it is used, else the tertiary background
+// of Bootstrap), the icons are muted like in the base menu
+:root {
+	--sm-pill-border-radius: var(--bs-border-radius);
+	--sm-pill-icon-color: var(--sm-icon-color);
+	--sm-pill-link-bg: var(--ds-body-bg, var(--bs-tertiary-bg));
+}

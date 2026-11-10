@@ -1,0 +1,157 @@
+//
+// lightbox: the full-screen preview of the script Lightbox (a <dialog class="lightbox"> it creates itself): the image
+// on a dark backdrop, its caption, a counter and round buttons to close and to browse
+//
+
+// the page under it does not scroll
+.lightbox-open {
+	overflow: hidden;
+}
+
+.lightbox {
+	width: 100vw;
+	max-width: 100vw;
+	height: 100dvh;
+	max-height: 100dvh;
+	padding: 0;
+	margin: 0;
+	color: #fff;
+	background: transparent;
+	border: 0;
+
+	&::backdrop {
+		background-color: rgba(0, 0, 0, .95);
+	}
+
+	&[open] {
+		animation: lightbox-in .2s ease-out;
+	}
+}
+
+.lightbox-figure {
+	position: absolute;
+	inset: 3.5rem 4.5rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+}
+
+.lightbox-image {
+	max-width: 100%;
+	max-height: calc(100% - 2.5rem);
+	object-fit: contain;
+	border-radius: var(--bs-border-radius);
+	box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+}
+
+.lightbox-caption {
+	min-height: 1.25rem;
+	margin-top: .75rem;
+	font-size: .875rem;
+	color: rgba(255, 255, 255, .75);
+	text-align: center;
+}
+
+.lightbox-counter {
+	position: absolute;
+	top: 1.25rem;
+	left: 1.5rem;
+	font-size: .875rem;
+	font-variant-numeric: tabular-nums;
+	color: rgba(255, 255, 255, .75);
+}
+
+.lightbox-button {
+	position: absolute;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	color: #fff;
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, .1);
+	border: 0;
+	border-radius: 50%;
+
+	&:hover {
+		background-color: rgba(255, 255, 255, .2);
+	}
+
+	&:focus-visible {
+		outline: 2px solid rgba(255, 255, 255, .8);
+		outline-offset: 2px;
+	}
+}
+
+.lightbox-close {
+	top: .75rem;
+	right: .75rem;
+}
+
+.lightbox-prev,
+.lightbox-next {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.lightbox-prev {
+	left: .75rem;
+}
+
+.lightbox-next {
+	right: .75rem;
+}
+
+// one image: nothing to browse
+.lightbox-single {
+	.lightbox-prev,
+	.lightbox-next {
+		display: none;
+	}
+}
+
+// small screens: the image over the whole width, the arrows at the bottom
+@media (max-width: 575.98px) {
+	.lightbox-figure {
+		inset: 3.5rem .5rem 4.5rem;
+	}
+
+	.lightbox-prev,
+	.lightbox-next {
+		top: auto;
+		bottom: .75rem;
+		transform: none;
+	}
+
+	.lightbox-prev {
+		left: calc(50% - 3.25rem);
+	}
+
+	.lightbox-next {
+		right: calc(50% - 3.25rem);
+	}
+}
+
+@keyframes lightbox-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lightbox[open] {
+		animation: none;
+	}
+
+	.lightbox-button {
+		transition: none;
+	}
+}

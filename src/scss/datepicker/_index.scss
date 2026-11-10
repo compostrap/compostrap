@@ -1,0 +1,384 @@
+//
+// datepicker: the calendar of Vanilla Calendar Pro in the look of the theme, as the datepicker of Bootstrap 6 has it
+// (its styles, MIT, moved to the tokens of Bootstrap 5; no border, the shadow of the dropdowns)
+//
+// <input type="text" class="form-control" data-bs-toggle="datepicker" value="2026-11-07">
+//
+
+:root {
+	--datepicker-padding: 1rem;
+	--datepicker-bg: var(--bs-body-bg);
+	--datepicker-color: var(--bs-body-color);
+	--datepicker-border-radius: var(--bs-border-radius-lg);
+	--datepicker-box-shadow: var(--bs-box-shadow-lg);
+	--datepicker-font-size: .875rem;
+	--datepicker-min-width: 17.5rem;
+	--datepicker-zindex: 1060;
+	--datepicker-radius: var(--bs-border-radius);
+	--datepicker-weekday-color: var(--bs-secondary-color);
+	--datepicker-day-hover-bg: var(--bs-tertiary-bg);
+	--datepicker-day-selected-bg: var(--bs-primary);
+	--datepicker-day-selected-color: #fff;
+	--datepicker-day-today-bg: var(--bs-secondary-bg);
+	--datepicker-day-today-color: var(--bs-emphasis-color);
+	--datepicker-day-disabled-color: var(--bs-tertiary-color);
+}
+
+// in the dark theme a shadow is not seen, the calendar gets a lighter surface like the dropdowns
+[data-bs-theme='dark'] {
+	--datepicker-bg: var(--bs-secondary-bg);
+	--datepicker-day-hover-bg: rgba(var(--bs-body-color-rgb), .08);
+	--datepicker-day-today-bg: rgba(var(--bs-body-color-rgb), .14);
+}
+
+[data-vc='calendar'] {
+	position: absolute;
+	z-index: var(--datepicker-zindex);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	min-width: var(--datepicker-min-width);
+	padding: var(--datepicker-padding);
+	font-family: var(--bs-body-font-family);
+	font-size: var(--datepicker-font-size);
+	color: var(--datepicker-color);
+	background-color: var(--datepicker-bg);
+	border-radius: var(--datepicker-border-radius);
+	box-shadow: var(--datepicker-box-shadow);
+	opacity: 1;
+
+	button:focus-visible {
+		position: relative;
+		z-index: 1;
+		outline: 0;
+		box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+	}
+}
+
+[data-vc-calendar-hidden] {
+	pointer-events: none;
+	opacity: 0;
+}
+
+// an inline calendar sits in the page without the look of a popup
+[data-vc='calendar']:not([data-vc-input]) {
+	position: relative;
+	width: fit-content;
+	padding: 0;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+[data-vc-position='bottom'] {
+	margin-top: .25rem;
+}
+
+[data-vc-position='top'] {
+	margin-bottom: -.25rem;
+}
+
+[data-vc-arrow] {
+	position: relative;
+	display: block;
+	width: 2rem;
+	height: 2rem;
+	color: var(--datepicker-color);
+	pointer-events: auto;
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--datepicker-radius);
+
+	&::before {
+		position: absolute;
+		inset: .5rem;
+		content: '';
+		background-color: currentcolor;
+		mask: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M3 6l5 5 5-5'/%3e%3c/svg%3e") no-repeat center / contain;
+	}
+
+	&:hover {
+		background-color: var(--datepicker-day-hover-bg);
+	}
+}
+
+[data-vc-arrow='prev']::before {
+	transform: rotate(90deg);
+}
+
+[data-vc-arrow='next']::before {
+	transform: rotate(-90deg);
+}
+
+[data-vc='controls'] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--datepicker-padding) var(--datepicker-padding) 0;
+	pointer-events: none;
+}
+
+[data-vc='calendar']:not([data-vc-input]) [data-vc='controls'] {
+	padding: 0;
+}
+
+[data-vc='grid'] {
+	display: flex;
+	flex-grow: 1;
+	flex-wrap: wrap;
+	gap: 1.75rem;
+}
+
+[data-vc='column'] {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	min-width: 15rem;
+}
+
+[data-vc='header'] {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 2rem;
+	margin-bottom: .75rem;
+}
+
+[data-vc-header='content'] {
+	display: inline-flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: center;
+	white-space: pre-wrap;
+}
+
+[data-vc='month'],
+[data-vc='year'] {
+	padding: .25rem .5rem;
+	margin-inline: -.125rem;
+	font-size: .875rem;
+	font-weight: 600;
+	color: var(--datepicker-color);
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--datepicker-radius);
+
+	&:disabled {
+		color: var(--datepicker-day-disabled-color);
+		pointer-events: none;
+	}
+
+	&:hover:not(:disabled) {
+		background-color: var(--datepicker-day-hover-bg);
+	}
+}
+
+[data-vc='content'] {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+}
+
+[data-vc='months'],
+[data-vc='years'] {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	row-gap: 1rem;
+}
+
+[data-vc-months='row'],
+[data-vc-years='row'] {
+	display: grid;
+	grid-template-columns: repeat(var(--vc-columns, 4), minmax(0, 1fr));
+	column-gap: .25rem;
+	align-items: center;
+}
+
+[data-vc='years'] {
+	--vc-columns: 5;
+}
+
+[data-vc-months='cell'],
+[data-vc-years='cell'] {
+	display: flex;
+}
+
+[data-vc-months-month],
+[data-vc-years-year] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 2.5rem;
+	padding: .25rem;
+	font-size: .875rem;
+	font-weight: 600;
+	line-height: 1rem;
+	color: var(--datepicker-weekday-color);
+	text-align: center;
+	word-break: break-all;
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--datepicker-radius);
+
+	&:disabled {
+		color: var(--datepicker-day-disabled-color);
+		pointer-events: none;
+	}
+
+	&:hover:not(:disabled) {
+		background-color: var(--datepicker-day-hover-bg);
+	}
+
+	&[data-vc-months-month-selected],
+	&[data-vc-years-year-selected] {
+		&,
+		&:hover {
+			color: var(--datepicker-day-selected-color);
+			background-color: var(--datepicker-day-selected-bg);
+		}
+	}
+}
+
+[data-vc='week'] {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	justify-items: center;
+	margin-bottom: .5rem;
+}
+
+[data-vc-week-day] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-width: 1.875rem;
+	padding: 0;
+	margin: 0;
+	font-size: .75rem;
+	font-weight: 600;
+	line-height: 1rem;
+	color: var(--datepicker-weekday-color);
+	background-color: transparent;
+	border: 0;
+}
+
+button[data-vc-week-day] {
+	cursor: pointer;
+}
+
+[data-vc='dates'] {
+	pointer-events: none;
+}
+
+[data-vc-dates='row'] {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	align-items: center;
+	justify-items: center;
+	width: 100%;
+}
+
+[data-vc-date] {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding-block: .125rem;
+	pointer-events: auto;
+
+	&:not(:has([data-vc-date-btn])),
+	&[data-vc-date-disabled],
+	&[data-vc-date-disabled] [data-vc-date-btn] {
+		pointer-events: none;
+	}
+}
+
+[data-vc-date-btn] {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-width: 2rem;
+	height: 100%;
+	min-height: 2rem;
+	padding: 0;
+	font-size: .875rem;
+	line-height: 1rem;
+	font-variant-numeric: tabular-nums;
+	color: var(--datepicker-color);
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--datepicker-radius);
+
+	&:hover {
+		background-color: var(--datepicker-day-hover-bg);
+	}
+}
+
+[data-vc-date-today] [data-vc-date-btn] {
+	font-weight: 600;
+	color: var(--datepicker-day-today-color);
+	background-color: var(--datepicker-day-today-bg);
+}
+
+[data-vc-date-month='next'] [data-vc-date-btn],
+[data-vc-date-month='prev'] [data-vc-date-btn] {
+	opacity: .45;
+}
+
+[data-vc-date-disabled] [data-vc-date-btn] {
+	color: var(--datepicker-day-disabled-color);
+}
+
+// a range: the days between the ends and the hovered days have square corners, so they join into one band
+[data-vc-date-hover] [data-vc-date-btn] {
+	background-color: var(--datepicker-day-hover-bg);
+	border-radius: 0;
+}
+
+[data-vc-date-hover='first'] [data-vc-date-btn] {
+	border-start-start-radius: var(--datepicker-radius);
+	border-end-start-radius: var(--datepicker-radius);
+}
+
+[data-vc-date-hover='last'] [data-vc-date-btn] {
+	border-start-end-radius: var(--datepicker-radius);
+	border-end-end-radius: var(--datepicker-radius);
+}
+
+[data-vc-date-hover='first-and-last'] [data-vc-date-btn] {
+	border-radius: var(--datepicker-radius);
+}
+
+[data-vc-date-selected] [data-vc-date-btn] {
+	color: var(--datepicker-day-selected-color);
+	background-color: var(--datepicker-day-selected-bg);
+}
+
+[data-vc-date-selected='middle'] [data-vc-date-btn] {
+	color: var(--bs-primary-text-emphasis);
+	background-color: var(--bs-primary-bg-subtle);
+	border-radius: 0;
+}
+
+[data-vc-date-selected='first'] [data-vc-date-btn] {
+	border-radius: var(--datepicker-radius) 0 0 var(--datepicker-radius);
+}
+
+[data-vc-date-selected='last'] [data-vc-date-btn] {
+	border-radius: 0 var(--datepicker-radius) var(--datepicker-radius) 0;
+}
+
+[data-vc-date-selected='first-and-last'] [data-vc-date-btn] {
+	border-radius: var(--datepicker-radius);
+}

@@ -1,0 +1,119 @@
+//
+// Tooltip of pure CSS, for buttons with an icon only: the text of aria-label shown on hover and keyboard focus,
+// dark on a light page and light on a dark one (also for outline buttons, which have no background of their own),
+// so it needs no JavaScript and survives Naja snippets.
+// <a class="btn btn-sm btn-danger" aria-label="Delete" data-tooltip><i class="bi bi-trash"></i></a>
+// data-tooltip="left" shows it on the left, e.g. at the right edge of a table, data-tooltip="end" above but aligned to
+// the right edge, data-tooltip="bottom" under the element, e.g. in a navbar; data-tooltip-color="success" (any theme color of Bootstrap) colors it, with dark text on the light
+// colors.
+//
+
+@use '../bootstrap' as bs;
+
+// The tooltip exists only while it is shown: a hidden one (opacity 0) would still widen the scroll area of its
+// container, e.g. a table-responsive with buttons in the last column would get a horizontal scrollbar. So it is
+// created on hover or focus and fades in by an animation.
+[data-tooltip] {
+	position: relative;
+
+	&::after {
+		position: absolute;
+		bottom: calc(100% + .375rem);
+		left: 50%;
+		z-index: 1080;
+		padding: .25rem .5rem;
+		border-radius: var(--bs-border-radius-sm);
+		background-color: var(--cs-tooltip-bg, var(--bs-emphasis-color));
+		color: var(--cs-tooltip-color, var(--bs-body-bg));
+		font-size: .75rem;
+		font-weight: 400;
+		line-height: 1.2;
+		white-space: nowrap;
+		pointer-events: none;
+		transform: translate(-50%, 0);
+		animation: cs-tooltip-up .15s ease-out;
+	}
+
+	&:hover::after,
+	&:focus-visible::after {
+		content: attr(aria-label);
+	}
+
+	// a button whose dropdown is open shows the dropdown, not its tooltip over it
+	&[aria-expanded='true']::after {
+		content: none;
+	}
+}
+
+[data-tooltip='left'] {
+	&::after {
+		top: 50%;
+		bottom: auto;
+		left: auto;
+		right: calc(100% + .375rem);
+		transform: translate(0, -50%);
+		animation-name: cs-tooltip-left;
+	}
+}
+
+// above the element, aligned to its right edge, so it does not reach out of its container (a button at the right
+// edge of a card or an offcanvas)
+[data-tooltip='end'] {
+	&::after {
+		right: 0;
+		left: auto;
+		transform: none;
+		animation-name: cs-tooltip-up-end;
+	}
+}
+
+// under the element, e.g. in a navbar at the top of the window
+[data-tooltip='bottom'] {
+	&::after {
+		top: calc(100% + .375rem);
+		bottom: auto;
+		animation-name: cs-tooltip-down;
+	}
+}
+
+@keyframes cs-tooltip-up {
+	from {
+		opacity: 0;
+		transform: translate(-50%, .25rem);
+	}
+}
+
+@keyframes cs-tooltip-up-end {
+	from {
+		opacity: 0;
+		transform: translateY(.25rem);
+	}
+}
+
+@keyframes cs-tooltip-down {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -.25rem);
+	}
+}
+
+@keyframes cs-tooltip-left {
+	from {
+		opacity: 0;
+		transform: translate(-.25rem, -50%);
+	}
+}
+
+// colored tooltips: the color of Bootstrap at run time, the text color chosen for it when the styles are built
+@each $name, $value in bs.$theme-colors {
+	[data-tooltip-color='#{$name}'] {
+		--cs-tooltip-bg: var(--bs-#{$name});
+		--cs-tooltip-color: #{bs.color-contrast($value)};
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-tooltip]::after {
+		animation: none;
+	}
+}

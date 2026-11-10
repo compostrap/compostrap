@@ -1,0 +1,13 @@
+// buttons of a form in an offcanvas, stuck to its bottom while the content scrolls (it reaches over the bottom padding
+// of the offcanvas body, so nothing shows below it)
+.offcanvas-actions {
+	position: sticky;
+	bottom: calc(-1 * var(--bs-offcanvas-padding-y));
+	z-index: 2;
+	display: flex;
+	gap: .5rem;
+	justify-content: flex-end;
+	padding-top: 1rem;
+	padding-bottom: calc(1rem + var(--bs-offcanvas-padding-y));
+	background-color: var(--bs-offcanvas-bg, var(--bs-body-bg));
+}

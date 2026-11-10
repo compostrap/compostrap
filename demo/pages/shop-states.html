@@ -1,0 +1,135 @@
+	<h1 class="h3 mb-1 mt-3">Cart and form states</h1>
+	<p class="text-body-secondary mb-4">What the shop shows when something is empty, wrong, loading or unavailable.</p>
+
+	<div class="row g-4">
+
+		<!-- an empty cart -->
+		<div class="col-lg-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<p class="fw-semibold mb-3">Empty cart</p>
+					<div class="empty">
+						<span class="empty-icon"><i class="bi bi-cart3" aria-hidden="true"></i></span>
+						<p class="empty-title">Your shopping cart is empty</p>
+						<p class="empty-subtitle">Add a product and it will wait here for you.</p>
+						<div class="empty-action">
+							<a href="shop-products.html" class="btn btn-primary">Continue shopping</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- a product that is not available -->
+		<div class="col-lg-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<p class="fw-semibold mb-3">Out of stock</p>
+					<div class="d-flex gap-3 align-items-center">
+						<img class="shop-cart-photo" src="https://picsum.photos/id/6/120/120" alt="USB-C dock">
+						<div class="flex-grow-1">
+							<p class="fw-semibold mb-1">USB-C dock</p>
+							<p class="shop-stock text-danger mb-0"><i class="bi bi-x-circle-fill" aria-hidden="true"></i> Out of stock</p>
+						</div>
+						<span class="shop-price">€ 79</span>
+					</div>
+					<button type="button" class="btn btn-primary w-100 mt-3" disabled>Add to cart</button>
+					<p class="small text-body-secondary mt-2 mb-0">The button stays disabled, the product cannot be ordered.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- the discount code: applied and not valid -->
+		<div class="col-lg-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<p class="fw-semibold mb-3">Discount code applied</p>
+					<label class="form-label fw-semibold" for="code-ok"><i class="bi bi-ticket-perforated text-body-secondary me-2" aria-hidden="true"></i>Have a discount code?</label>
+					<div class="d-flex gap-2">
+						<input type="text" class="form-control form-control-sm" id="code-ok" value="SPRING10">
+						<button type="button" class="btn btn-sm btn-primary px-3">Apply</button>
+					</div>
+					<p class="small text-success mt-2 mb-0 d-flex align-items-center flex-wrap gap-1">
+						<i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+						Discount code <strong>SPRING10</strong> applied.
+						<a href="#" class="btn btn-sm btn-link text-danger p-0 ms-1 text-decoration-none">&times; Remove</a>
+					</p>
+					<div class="shop-summary-row text-success mt-3 mb-0"><span>Discount (SPRING10):</span><span>-€ 140</span></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<p class="fw-semibold mb-3">Discount code not valid</p>
+					<label class="form-label fw-semibold" for="code-bad"><i class="bi bi-ticket-perforated text-body-secondary me-2" aria-hidden="true"></i>Have a discount code?</label>
+					<div class="d-flex align-items-start gap-2">
+						<div class="flex-grow-1">
+							<input type="text" class="form-control form-control-sm is-invalid" id="code-bad" value="SUMMER">
+							<div class="invalid-feedback">This discount code is not valid or has expired.</div>
+						</div>
+						<button type="button" class="btn btn-sm btn-primary px-3">Apply</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- the customer form with errors -->
+		<div class="col-lg-6">
+			<div class="card h-100">
+				<div class="card-body">
+					<p class="fw-semibold mb-3">Form with errors</p>
+					<div class="alert alert-danger" role="alert">
+						<ul class="mb-0 ps-3">
+							<li>Fill in a valid email address.</li>
+							<li>The postal code has 5 digits.</li>
+						</ul>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="e-email">Email</label>
+						<input type="email" class="form-control is-invalid" id="e-email" value="jan.novak@example">
+						<div class="invalid-feedback">Fill in a valid email address.</div>
+					</div>
+					<div class="mb-0">
+						<label class="form-label" for="e-zip">Postal code</label>
+						<input type="text" class="form-control is-invalid" id="e-zip" value="110">
+						<div class="invalid-feedback">The postal code has 5 digits.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- loading: the cart recounts after a change of the amount (aria-busy while the request runs) -->
+		<div class="col-lg-6">
+			<div class="card h-100" id="shop-loading-card">
+				<div class="card-body">
+					<div class="d-flex justify-content-between align-items-center mb-3">
+						<p class="fw-semibold mb-0">Cart recounts</p>
+						<button type="button" class="btn btn-sm btn-secondary" id="shop-loading-start">Change the amount</button>
+					</div>
+					<div class="shop-cart-item">
+						<img class="shop-cart-photo" src="https://picsum.photos/id/0/120/120" alt="UltraBook Air 13">
+						<div class="shop-cart-info">
+							<p class="fw-semibold mb-1">UltraBook Air 13</p>
+							<p class="small text-body-secondary mb-0">16 GB, 512 GB</p>
+						</div>
+						<div class="shop-cart-price">€ 934</div>
+					</div>
+					<div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">€ 934</span></div>
+					<p class="small text-body-secondary mt-2 mb-0">While Naja loads the new prices the box is <code>aria-busy="true"</code>: its content fades and a ring turns over it.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+<!-- overlays -->
+<script>
+	// the demo loads for two seconds, as a request of Naja would
+	document.getElementById('shop-loading-start').addEventListener('click', () => {
+		const card = document.getElementById('shop-loading-card');
+		card.setAttribute('aria-busy', 'true');
+		setTimeout(() => card.removeAttribute('aria-busy'), 2000);
+	});
+</script>

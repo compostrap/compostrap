@@ -1,0 +1,73 @@
+//
+// stat tile: a number of the overview with its label and a colored icon, a link to its page when it is an <a>;
+// a .theme-* class gives the color of the icon
+// <a href="..." class="stat-tile theme-primary"><span class="stat-icon"><i class="bi bi-box-seam"></i></span>
+//   <span><span class="stat-value">128</span><span class="stat-label">Products</span></span></a>
+//
+
+.stat-tile {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	height: 100%;
+	padding: 1rem 1.25rem;
+	color: var(--bs-body-color);
+	text-decoration: none;
+	background-color: rgba(var(--bs-body-color-rgb), .03);
+	border-radius: var(--bs-border-radius-lg);
+}
+
+a.stat-tile:hover {
+	color: var(--bs-body-color);
+	text-decoration: none;
+	background-color: rgba(var(--bs-body-color-rgb), .06);
+}
+
+.stat-icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	font-size: 1.25rem;
+	color: var(--theme-fg, var(--bs-secondary-color));
+	background-color: var(--theme-bg-subtle, var(--bs-secondary-bg));
+	border-radius: var(--bs-border-radius-lg);
+}
+
+.stat-value {
+	display: block;
+	font-size: 1.375rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	line-height: 1.2;
+}
+
+.stat-label {
+	display: block;
+	font-size: 1em;
+	color: var(--bs-secondary-color);
+}
+
+// on phones two tiles fit side by side (columns col-6): a smaller icon and number
+@media (max-width: 575.98px) {
+	.stat-tile {
+		gap: .625rem;
+		padding: .75rem;
+	}
+
+	.stat-icon {
+		width: 2.25rem;
+		height: 2.25rem;
+		font-size: 1rem;
+	}
+
+	.stat-value {
+		font-size: 1.0625rem;
+	}
+
+	.stat-label {
+		font-size: 1em;
+	}
+}

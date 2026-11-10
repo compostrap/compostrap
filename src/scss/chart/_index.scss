@@ -1,0 +1,114 @@
+//
+// chart: the box, legend and tooltip of the charts of Chart.js (the module script draws them in these colors)
+//
+// <div class="chart-legend">…made by the script for two or more series…</div>
+// <div class="chart" style="--chart-height: 16rem"><canvas data-chart='{…}' aria-label="Revenue"></canvas></div>
+//
+// The categorical colors --chart-1…4 are checked for color blindness and contrast on the surface of both themes
+// (blue, orange, purple, green); a series of context takes --chart-muted. Text never takes a series color.
+//
+
+:root,
+[data-bs-theme='light'] {
+	--chart-1: #0089d7;
+	--chart-2: #e5590a;
+	--chart-3: #7740ff;
+	--chart-4: #00995c;
+	--chart-muted: color-mix(in srgb, var(--bs-body-color) 28%, var(--bs-body-bg));
+	--chart-grid: color-mix(in srgb, var(--bs-body-color) 8%, transparent);
+	--chart-axis: color-mix(in srgb, var(--bs-body-color) 30%, transparent);
+	--chart-surface: var(--ds-content-bg, var(--bs-body-bg));
+}
+
+[data-bs-theme='dark'] {
+	--chart-4: #00aa67;
+	--chart-muted: color-mix(in srgb, var(--bs-body-color) 35%, var(--bs-body-bg));
+	--chart-grid: color-mix(in srgb, var(--bs-body-color) 10%, transparent);
+}
+
+.chart {
+	position: relative;
+	height: var(--chart-height, 16rem);
+
+	> canvas {
+		display: block;
+	}
+}
+
+// a small trend in a stat tile
+.chart-sparkline {
+	--chart-height: 2.5rem;
+}
+
+.chart-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .25rem 1rem;
+	margin-bottom: .75rem;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+}
+
+.chart-legend-item {
+	display: inline-flex;
+	gap: .5rem;
+	align-items: center;
+}
+
+// a short line in the color of a series; chart-key-box is a square for bars
+.chart-key {
+	flex-shrink: 0;
+	width: .875rem;
+	height: 2px;
+	background-color: var(--chart-key-color);
+	border-radius: 1px;
+}
+
+.chart-key-box {
+	width: .625rem;
+	height: .625rem;
+	border-radius: 2px;
+}
+
+.chart-tooltip {
+	position: absolute;
+	z-index: 10;
+	display: none;
+	padding: .5rem .625rem;
+	font-size: .875rem;
+	line-height: 1.4;
+	white-space: nowrap;
+	pointer-events: none;
+	background-color: var(--bs-body-bg);
+	border-radius: var(--bs-border-radius);
+	box-shadow: var(--bs-box-shadow);
+
+	&.show {
+		display: block;
+	}
+}
+
+[data-bs-theme='dark'] .chart-tooltip {
+	background-color: var(--bs-secondary-bg);
+}
+
+.chart-tooltip-title {
+	margin-bottom: .25rem;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+}
+
+.chart-tooltip-row {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+
+	> strong {
+		font-weight: 600;
+		color: var(--bs-emphasis-color);
+	}
+}
+
+.chart-tooltip-name {
+	color: var(--bs-secondary-color);
+}

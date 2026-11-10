@@ -1,0 +1,94 @@
+			<!-- empty states of the module empty: in a box with an illustration, small with an icon, a search without results -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
+					<div>
+						<h1 class="h5 mb-1">Blog articles</h1>
+						<p class="small text-body-secondary mb-0">An empty list: the illustration, what is missing and how to start.</p>
+					</div>
+					<div class="d-flex flex-wrap align-items-center gap-2">
+						<button type="button" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add article</button>
+					</div>
+				</header>
+
+				<div class="empty">
+					<div class="empty-img">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" fill="none" role="img" aria-label="No items">
+							<!-- soft background shape -->
+							<path style="fill: var(--cs-illustration-bg, #ededed)" d="M42 98c-6-32 20-58 52-64 24-5 40 6 62 4 28-3 50 12 52 38 2 30-20 56-50 62-26 5-44-4-68-2-26 2-42-10-48-38z"/>
+							<!-- shadow -->
+							<ellipse style="fill: var(--cs-illustration-muted, #d4d4d4)" cx="120" cy="158" rx="64" ry="5"/>
+							<!-- open box -->
+							<path style="fill: var(--cs-illustration-muted, #d4d4d4)" d="M72 84l48-18 48 18-48 18z"/>
+							<path style="fill: var(--cs-illustration-surface, #fff); stroke: var(--cs-illustration-line, #525252)" stroke-width="2.5" stroke-linejoin="round" d="M72 84v52l48 18V102z"/>
+							<path style="fill: var(--cs-illustration-surface, #fff); stroke: var(--cs-illustration-line, #525252)" stroke-width="2.5" stroke-linejoin="round" d="M168 84v52l-48 18V102z"/>
+							<!-- flaps -->
+							<path style="fill: var(--cs-illustration-surface, #fff); stroke: var(--cs-illustration-line, #525252)" stroke-width="2.5" stroke-linejoin="round" d="M72 84l-14 18 48 18 14-18z"/>
+							<path style="fill: var(--cs-illustration-surface, #fff); stroke: var(--cs-illustration-line, #525252)" stroke-width="2.5" stroke-linejoin="round" d="M168 84l14 18-48 18-14-18z"/>
+							<!-- sparkles of emptiness -->
+							<path style="stroke: var(--cs-illustration-accent, #0089d7)" d="M120 36v14M113 43h14M86 52v8M82 56h8M156 50v10M151 55h10" stroke-width="3" stroke-linecap="round"/>
+						</svg>
+					</div>
+					<p class="empty-title">No articles yet</p>
+					<p class="empty-subtitle">Write the first article of the blog, it will appear in this list.</p>
+					<div class="empty-action">
+						<button type="button" class="btn btn-primary"><i class="bi bi-plus-lg me-2" aria-hidden="true"></i>Add article</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6">
+					<!-- a small empty state with an icon, e.g. a page that waits for a choice -->
+					<div class="content-box h-100">
+						<header class="mb-4 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Role permissions</h2>
+							<p class="small text-body-secondary mb-0">A state that waits for a choice.</p>
+						</header>
+						<div class="empty">
+							<span class="empty-icon"><i class="bi bi-person-check" aria-hidden="true"></i></span>
+							<p class="empty-title">Select a role</p>
+							<p class="empty-subtitle">Choose a role above to set its permissions.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<!-- a search or a filter without results -->
+					<div class="content-box h-100">
+						<header class="mb-4 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Search</h2>
+							<p class="small text-body-secondary mb-0">A filter that found nothing.</p>
+						</header>
+						<div class="empty">
+							<span class="empty-icon"><i class="bi bi-search" aria-hidden="true"></i></span>
+							<p class="empty-title">No results for “notebok”</p>
+							<p class="empty-subtitle">Check the spelling or clear the filter.</p>
+							<div class="empty-action">
+								<button type="button" class="btn btn-secondary btn-sm">Clear filter</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- loading: aria-busy="true" on a box while an AJAX request runs -->
+			<div class="content-box mb-3" id="demo-busy">
+				<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
+					<div>
+						<h2 class="h5 mb-1">Loading</h2>
+						<p class="small text-body-secondary mb-0">A box that loads: aria-busy="true" fades its content and turns a ring over it.</p>
+					</div>
+					<button type="button" class="btn btn-secondary btn-sm" id="demo-busy-toggle">Load again</button>
+				</header>
+				<div class="list-row"><span class="stat-icon theme-primary"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><span class="list-row-text">First steps with the new administration<small>Blog · 6. 11. 2026</small></span></div>
+				<div class="list-row"><span class="stat-icon theme-success"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><span class="list-row-text">How to write a good article<small>Blog · 2. 11. 2026</small></span></div>
+				<div class="list-row"><span class="stat-icon theme-warning"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><span class="list-row-text">Spring sale of notebooks<small>Shop · 28. 10. 2026</small></span></div>
+			</div>
+<!-- overlays -->
+<script>
+	// the demo loads for two seconds, as an AJAX request of drago would (Naja sets and removes aria-busy)
+	document.getElementById('demo-busy-toggle').addEventListener('click', () => {
+		const box = document.getElementById('demo-busy');
+		box.setAttribute('aria-busy', 'true');
+		setTimeout(() => box.removeAttribute('aria-busy'), 2000);
+	});
+</script>

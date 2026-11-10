@@ -1,0 +1,132 @@
+//
+// shop: the page, the header with the mini cart and the footer
+//
+
+@use '../bootstrap' as bs;
+
+:root,
+[data-bs-theme='light'] {
+	--shop-page-bg: var(--bs-tertiary-bg);
+	--shop-surface-bg: var(--bs-body-bg);
+}
+
+// the page is darker than its surfaces in the dark theme, as in the dashboard
+[data-bs-theme='dark'] {
+	--shop-page-bg: color-mix(in srgb, var(--bs-body-bg) 55%, #000);
+}
+
+// the footer stays at the bottom of a short page
+.shop-page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--shop-page-bg);
+
+	> main {
+		flex: 1 0 auto;
+		width: 100%;
+	}
+}
+
+// the header is a white bar over the page, its content in the width of the page
+.shop-header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	margin-bottom: 1.5rem;
+	background-color: var(--shop-surface-bg);
+
+	> .container {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		min-height: 3.75rem;
+	}
+}
+
+.shop-brand {
+	display: inline-flex;
+	align-items: center;
+	gap: .625rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+	text-decoration: none;
+}
+
+.shop-nav {
+	display: flex;
+	gap: .25rem;
+	margin: 0 auto 0 1.5rem;
+	padding: 0;
+	list-style: none;
+
+	a {
+		display: block;
+		padding: .375rem .75rem;
+		color: var(--bs-secondary-color);
+		text-decoration: none;
+		border-radius: var(--bs-border-radius);
+
+		&:hover,
+		&.active {
+			color: var(--bs-emphasis-color);
+			background-color: var(--bs-tertiary-bg);
+		}
+	}
+}
+
+// the cart in the header: an icon with the count over it and the price
+// <a class="shop-minicart" href="..."><span class="shop-minicart-icon"><i class="bi bi-cart3"></i><span class="badge theme-danger">2</span></span> <span>€ 1 249</span></a>
+.shop-minicart {
+	display: inline-flex;
+	align-items: center;
+	gap: .625rem;
+	padding: .375rem .75rem;
+	font-weight: 500;
+	color: var(--bs-body-color);
+	text-decoration: none;
+	border-radius: var(--bs-border-radius);
+
+	&:hover {
+		background-color: var(--bs-tertiary-bg);
+	}
+}
+
+.shop-minicart-icon {
+	position: relative;
+	display: inline-flex;
+	font-size: 1.25rem;
+
+	// the count: a circle for one digit (as wide as high), a pill for more; placed by whole pixels, because a translate
+	// by half of a width that changes lands between pixels and blurs the edge
+	.badge {
+		position: absolute;
+		top: -.5rem;
+		left: .75rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 1.125rem;
+		height: 1.125rem;
+		padding: 0 .25rem;
+		font-size: .6875rem;
+		line-height: 1;
+	}
+}
+
+.shop-footer {
+	margin-top: 3rem;
+	padding: 1.5rem 0;
+	color: var(--bs-secondary-color);
+	background-color: var(--shop-surface-bg);
+}
+
+@include bs.media-breakpoint-down(md) {
+	.shop-nav {
+		display: none;
+	}
+
+	.shop-minicart {
+		margin-left: auto;
+	}
+}

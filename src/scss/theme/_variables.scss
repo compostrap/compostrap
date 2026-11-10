@@ -1,0 +1,169 @@
+//
+// theme: Bootstrap variables in the look of Bootstrap 6 (neutral grays, 14px text, quieter shadows and controls)
+//
+// Loaded before Bootstrap by @import, so every component of Bootstrap is built with them. All values are !default:
+// a project can set its own before this file.
+//
+
+// neutral grays without the blue tint of Bootstrap
+$gray-100: #f5f5f5 !default;
+$gray-200: #e5e5e5 !default;
+$gray-300: #d4d4d4 !default;
+$gray-400: #a3a3a3 !default;
+$gray-500: #737373 !default;
+$gray-600: #525252 !default;
+$gray-700: #404040 !default;
+$gray-800: #262626 !default;
+$gray-900: #171717 !default;
+
+// colors of Bootstrap 6 (its oklch values converted to hex): a lighter, clearer blue and livelier status colors
+$blue: #0089d7 !default;
+$indigo: #7740ff !default;
+$purple: #ae29c9 !default;
+$pink: #e12871 !default;
+$red: #e62845 !default;
+$orange: #fb6f00 !default;
+$yellow: #ffce00 !default;
+$green: #00aa67 !default;
+$teal: #00b2ab !default;
+$cyan: #00afd9 !default;
+
+// white text on blue, green, red and orange like in Bootstrap 6, dark text on yellow and cyan
+$min-contrast-ratio: 2.7 !default;
+
+// body: dark gray text, the page background just off white (the dashboard uses the tertiary background)
+$body-color: $gray-800 !default;
+$body-tertiary-bg: #fafafa !default;
+$border-color: $gray-200 !default;
+
+// typography: 14px text with 20px lines; headings semibold in a compact scale (h5 stays readable, it heads pages
+// and boxes in administrations)
+$font-size-base: .875rem !default;
+$line-height-base: 1.4285714286 !default;
+$headings-font-weight: 600 !default;
+// small text (small, .small, form texts, feedback, the footer of a quote) in the size of the text: nothing readable is
+// under 14px unless it is a -sm size, a badge or an uppercase label
+$small-font-size: 1em !default;
+$h1-font-size: 1.75rem !default;
+$h2-font-size: 1.5rem !default;
+$h3-font-size: 1.3125rem !default;
+$h4-font-size: 1.1875rem !default;
+$h5-font-size: 1.125rem !default;
+$h6-font-size: .875rem !default;
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+
+// shadows: hardly visible, they only lift a surface from the page; the small one is the soft shadow of compostrap
+// (.shadow-soft), which boxes and cards use instead of a border
+$box-shadow-sm: none !default; // as $soft-shadow of the modules: no shadow for now
+$box-shadow: 0 2px 4px -1px rgba(18, 18, 23, .06), 0 4px 6px -1px rgba(18, 18, 23, .08) !default;
+$box-shadow-lg: 0 4px 6px -2px rgba(18, 18, 23, .05), 0 10px 15px -3px rgba(18, 18, 23, .08) !default;
+
+// buttons and form controls share one scale: 36px, small 30px, large 44px; buttons are medium
+$input-btn-padding-y: .4375rem !default;
+$input-btn-padding-x: .75rem !default;
+$input-btn-padding-y-sm: .3125rem !default;
+$input-btn-padding-x-sm: .625rem !default;
+$input-btn-padding-y-lg: .5625rem !default;
+$input-btn-padding-x-lg: 1.25rem !default;
+$btn-font-weight: 500 !default;
+
+// focus: no wide glow, the border turns into the primary color (tinted by 50 %) with a 1px ring of it around, so
+// together a clean 2px line; buttons and checks get the same thin ring
+$focus-ring-width: 1px !default;
+$focus-ring-opacity: .6 !default;
+// a text field and a select show their focus by the tinted border only, without the ring around it
+$input-focus-box-shadow: none !default;
+$form-select-focus-box-shadow: none !default;
+$form-label-font-weight: 500 !default;
+$form-label-margin-bottom: .375rem !default;
+
+// checks, radios and switches of the size of Bootstrap 6: 20px boxes as high as a line of text, a 35 × 20px switch
+// with a white knob on a gray track (the track color is in theme/_index.scss)
+$form-check-input-width: 1.25rem !default;
+$form-check-padding-start: 1.75rem !default;
+$form-check-input-border-radius: .3125rem !default;
+$form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m5.5 10 3 3 6-6'/></svg>") !default;
+$form-check-input-indeterminate-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10h8'/></svg>") !default;
+$form-switch-width: 2.1875rem !default;
+$form-switch-padding-start: 2.6875rem !default;
+$form-switch-color: #fff !default;
+$form-switch-focus-color: #fff !default;
+$form-switch-color-dark: #fff !default;
+$form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#fff'/></svg>") !default;
+$form-switch-focus-bg-image: $form-switch-bg-image !default;
+$form-switch-checked-bg-image: $form-switch-bg-image !default;
+$form-switch-bg-image-dark: $form-switch-bg-image !default;
+
+// cards: no border (the soft shadow lifts them), a larger radius, a calm header
+$card-border-width: 0 !default;
+$card-border-radius: .5rem !default;
+$card-spacer-y: 1.25rem !default;
+$card-spacer-x: 1.25rem !default;
+$card-cap-padding-y: 1rem !default;
+$card-cap-bg: transparent !default;
+
+// dropdowns: no border (the shadow lifts them), a faint divider, the chosen item (e.g. the current language) is tinted, not filled with the primary color
+$dropdown-border-width: 0 !default;
+$dropdown-divider-bg: rgba(var(--bs-body-color-rgb), .08) !default;
+$dropdown-link-active-color: var(--bs-body-color) !default;
+$dropdown-link-active-bg: rgba(var(--bs-primary-rgb), .1) !default;
+
+// accordion like in Bootstrap 6: the open item is a light gray (half the border color on the surface, so it sits with
+// the lines in both themes), its text and arrow stay in the body color, the arrow is a thin chevron
+$accordion-button-active-bg: color-mix(in srgb, var(--bs-border-color) 50%, var(--bs-body-bg)) !default;
+$accordion-button-active-color: var(--bs-body-color) !default;
+$accordion-icon-color: $body-color !default;
+$accordion-icon-active-color: $body-color !default;
+$accordion-icon-width: 1rem !default;
+$accordion-button-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$gray-300}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>") !default;
+$accordion-button-active-icon-dark: $accordion-button-icon-dark !default;
+
+// modals: no border around the window and under the header, a light line above the footer
+$modal-content-border-width: 0 !default;
+$modal-header-border-width: 0 !default;
+$modal-footer-border-width: 1px !default;
+$modal-footer-border-color: var(--bs-border-color-translucent) !default;
+
+// tables: more air in the rows, also in the small table of a datagrid; a quiet hover
+$table-cell-padding-y: .625rem !default;
+$table-cell-padding-x: .75rem !default;
+$table-cell-padding-y-sm: .5rem !default;
+$table-cell-padding-x-sm: .625rem !default;
+$table-hover-bg-factor: .035 !default;
+$table-active-bg-factor: .06 !default;
+
+// pagination: separate rounded buttons without borders, the current page in the primary color
+$pagination-border-width: 0 !default;
+$pagination-margin-start: .25rem !default;
+$pagination-color: var(--bs-body-color) !default;
+$pagination-bg: transparent !default;
+$pagination-hover-color: var(--bs-body-color) !default;
+$pagination-hover-bg: var(--bs-secondary-bg) !default;
+$pagination-focus-bg: var(--bs-secondary-bg) !default;
+// no ring around the focused page: the tint of the focus background shows it (a ring looked like a border)
+$pagination-focus-box-shadow: none !default;
+$pagination-disabled-color: var(--bs-tertiary-color) !default;
+$pagination-disabled-bg: transparent !default;
+$pagination-padding-x-sm: .625rem !default;
+
+// badges like in Bootstrap 6: semibold, at least 22px high (the rest is in theme/_index.scss); the corners stay those
+// of Bootstrap 5
+$badge-font-size: .75rem !default; // 12px, the least of Bootstrap 6
+$badge-font-weight: 600 !default;
+$badge-padding-y: .25em !default;
+$badge-padding-x: .625em !default;
+
+// navs like in Bootstrap 6: gray links that darken on hover, a light background on hover; a hovered tab gets only a
+// faint frame (the full frame of Bootstrap 5 stuck to the frame of the active tab), tabs keep a 2px gap (theme/_index)
+$nav-link-color: var(--bs-secondary-color) !default;
+$nav-link-hover-color: var(--bs-emphasis-color) !default;
+$nav-link-disabled-color: var(--bs-tertiary-color) !default;
+$nav-tabs-link-active-color: var(--bs-body-color) !default;
+$nav-tabs-link-hover-border-color: color-mix(in srgb, var(--bs-border-color) 50%, transparent) color-mix(in srgb, var(--bs-border-color) 50%, transparent) var(--bs-border-color) !default;
+
+// no animation on hover anywhere: buttons, nav links and pages change their colors at once
+$btn-transition: null !default;
+$nav-link-transition: null !default;
+$pagination-transition: null !default;
+$accordion-transition: border-radius .15s ease !default;

@@ -1,0 +1,53 @@
+//
+// scrollbar component for list
+//
+
+@use '../variables' as var;
+
+.scrollbar {
+	width: var.$sm-width;
+	overflow: hidden;
+	position: relative;
+
+	&-not-navbar {
+		height: calc(100vh);
+	}
+
+	&-use-navbar {
+		height: calc(100vh - #{var.$sm-top});
+	}
+}
+
+// customize
+.ps__rail-y {
+	margin-top: .125rem;
+	margin-bottom: .125rem;
+}
+
+.ps__rail-y.ps--clicking .ps__thumb-y,
+.ps__rail-y:focus .ps__thumb-y,
+.ps__rail-y:hover .ps__thumb-y,
+.ps__thumb-y {
+	width: var.$sm-scrollbar;
+}
+
+// with a brand on top the fixed part of the sidebar is a column over the height of the window: the brand, and the menu
+// fills the rest whatever the height of the brand is (a fixed calc() cut the last links off below the window); the
+// menu ends with some room, so its last links can be scrolled up from the bottom edge and are easy to reach
+.sidebar-menu-fixed:has(> .sidebar-brand) {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	height: 100dvh;
+
+	> .sidebar-brand {
+		flex-shrink: 0;
+	}
+
+	> .scrollbar {
+		flex: 1 1 auto;
+		height: auto;
+		min-height: 0;
+		padding-bottom: 2rem;
+	}
+}

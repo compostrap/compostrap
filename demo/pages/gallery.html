@@ -1,0 +1,99 @@
+			<!-- the gallery like in the drago administration: copy mode, upload and the tiles of the images -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
+					<div>
+						<h1 class="h5 mb-1">Gallery</h1>
+						<p class="small text-body-secondary mb-0">Upload images and copy them into the texts.</p>
+					</div>
+					<div class="d-flex flex-wrap align-items-center gap-2">
+						<span class="small text-body-secondary">Copy as</span>
+						<span class="btn-group btn-group-sm btn-group-segmented" role="group" aria-label="Copy as">
+						<input type="radio" class="btn-check" name="demo-copy-mode" id="demo-copy-texy" autocomplete="off" checked>
+						<label class="btn btn-outline-secondary" for="demo-copy-texy">Texy</label>
+						<input type="radio" class="btn-check" name="demo-copy-mode" id="demo-copy-path" autocomplete="off">
+						<label class="btn btn-outline-secondary" for="demo-copy-path">Path</label>
+						</span>
+					</div>
+				</header>
+
+				<!-- the upload as a dropzone; in the administration data-dropzone-submit sends the form at once -->
+				<form class="mb-4" onsubmit="return false">
+					<label class="dropzone">
+						<input type="file" name="images[]" class="dropzone-input" multiple accept="image/jpeg,image/png,image/gif,image/webp" aria-label="Images">
+						<i class="bi bi-cloud-arrow-up dropzone-icon" aria-hidden="true"></i>
+						<span class="dropzone-title">Drop images here or <span class="dropzone-link">choose them</span></span>
+						<span class="dropzone-hint">JPEG, PNG, GIF or WebP, at most 8 MB each.</span>
+						<span class="dropzone-files" data-dropzone-files></span>
+					</label>
+				</form>
+
+				<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-6 g-3">
+				<div class="col">
+					<figure class="gallery-item">
+						<img src="https://picsum.photos/seed/compostrap1/400/400" alt="mountains.jpg" loading="lazy">
+						<span class="gallery-badge"><span class="badge theme-primary">Main photo</span></span>
+						<div class="gallery-actions">
+							<a href="https://picsum.photos/seed/compostrap1/1600/1200" class="btn btn-light btn-sm btn-icon" aria-label="Preview" data-tooltip data-lightbox="demo-gallery" data-caption="mountains.jpg"><i class="bi bi-zoom-in" aria-hidden="true"></i></a>
+							<button type="button" class="btn btn-light btn-sm btn-icon" aria-label="Copy for the content" data-tooltip><i class="bi bi-copy" aria-hidden="true"></i></button>
+							<a href="#" class="btn btn-danger btn-sm btn-icon" aria-label="Delete" data-tooltip><i class="bi bi-trash" aria-hidden="true"></i></a>
+						</div>
+						<figcaption class="gallery-caption" title="mountains.jpg"><span class="gallery-name">mountains</span><span class="gallery-ext">jpg</span></figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="gallery-item">
+						<img src="https://picsum.photos/seed/compostrap2/400/400" alt="city-at-night.jpg" loading="lazy">
+						<div class="gallery-actions">
+							<a href="https://picsum.photos/seed/compostrap2/1600/1200" class="btn btn-light btn-sm btn-icon" aria-label="Preview" data-tooltip data-lightbox="demo-gallery" data-caption="city-at-night.jpg"><i class="bi bi-zoom-in" aria-hidden="true"></i></a>
+							<button type="button" class="btn btn-light btn-sm btn-icon" aria-label="Copy for the content" data-tooltip><i class="bi bi-copy" aria-hidden="true"></i></button>
+							<a href="#" class="btn btn-danger btn-sm btn-icon" aria-label="Delete" data-tooltip><i class="bi bi-trash" aria-hidden="true"></i></a>
+						</div>
+						<figcaption class="gallery-caption" title="city-at-night.jpg"><span class="gallery-name">city-at-night</span><span class="gallery-ext">jpg</span></figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="gallery-item">
+						<img src="https://picsum.photos/seed/compostrap3/400/400" alt="forest-path.webp" loading="lazy">
+						<div class="gallery-actions">
+							<a href="https://picsum.photos/seed/compostrap3/1600/1200" class="btn btn-light btn-sm btn-icon" aria-label="Preview" data-tooltip data-lightbox="demo-gallery" data-caption="forest-path.webp"><i class="bi bi-zoom-in" aria-hidden="true"></i></a>
+							<button type="button" class="btn btn-light btn-sm btn-icon" aria-label="Copy for the content" data-tooltip><i class="bi bi-copy" aria-hidden="true"></i></button>
+							<a href="#" class="btn btn-danger btn-sm btn-icon" aria-label="Delete" data-tooltip><i class="bi bi-trash" aria-hidden="true"></i></a>
+						</div>
+						<figcaption class="gallery-caption" title="forest-path.webp"><span class="gallery-name">forest-path</span><span class="gallery-ext">webp</span></figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="gallery-item">
+						<img src="https://picsum.photos/seed/compostrap4/400/400" alt="sea.png" loading="lazy">
+						<div class="gallery-actions show">
+							<span class="gallery-text">Are you sure you want to delete the image?</span>
+							<a href="#" class="btn btn-danger btn-sm">Delete</a>
+							<a href="#" class="btn btn-light btn-sm">Cancel</a>
+						</div>
+						<figcaption class="gallery-caption" title="sea.png"><span class="gallery-name">sea</span><span class="gallery-ext">png</span></figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="gallery-item">
+						<img src="https://picsum.photos/seed/compostrap5/400/400" alt="old-town.jpg" loading="lazy">
+						<div class="gallery-actions">
+							<a href="https://picsum.photos/seed/compostrap4/1600/1200" class="btn btn-light btn-sm btn-icon" aria-label="Preview" data-tooltip data-lightbox="demo-gallery" data-caption="sea.png"><i class="bi bi-zoom-in" aria-hidden="true"></i></a>
+							<button type="button" class="btn btn-light btn-sm btn-icon" aria-label="Copy for the content" data-tooltip><i class="bi bi-copy" aria-hidden="true"></i></button>
+							<a href="#" class="btn btn-danger btn-sm btn-icon" aria-label="Delete" data-tooltip><i class="bi bi-trash" aria-hidden="true"></i></a>
+						</div>
+						<figcaption class="gallery-caption" title="old-town.jpg"><span class="gallery-name">old-town</span><span class="gallery-ext">jpg</span></figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="gallery-item">
+						<img src="https://picsum.photos/seed/compostrap6/400/400" alt="coffee.jpg" loading="lazy">
+						<div class="gallery-actions">
+							<a href="https://picsum.photos/seed/compostrap6/1600/1200" class="btn btn-light btn-sm btn-icon" aria-label="Preview" data-tooltip data-lightbox="demo-gallery" data-caption="coffee.jpg"><i class="bi bi-zoom-in" aria-hidden="true"></i></a>
+							<button type="button" class="btn btn-light btn-sm btn-icon" aria-label="Copy for the content" data-tooltip><i class="bi bi-copy" aria-hidden="true"></i></button>
+							<a href="#" class="btn btn-danger btn-sm btn-icon" aria-label="Delete" data-tooltip><i class="bi bi-trash" aria-hidden="true"></i></a>
+						</div>
+						<figcaption class="gallery-caption" title="coffee.jpg"><span class="gallery-name">coffee</span><span class="gallery-ext">jpg</span></figcaption>
+					</figure>
+				</div>
+				</div>
+			</div>

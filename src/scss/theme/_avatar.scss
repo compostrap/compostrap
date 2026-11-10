@@ -1,0 +1,37 @@
+//
+// theme: avatar (of Bootstrap 6)
+//
+
+// avatar of a user: initials or a photo in a circle, in a .theme-* color (gray without one); avatar-sm and avatar-lg
+// <span class="avatar theme-primary">JN</span>, <span class="avatar"><img src="..." alt=""></span>
+.avatar {
+	--cs-avatar-size: 2rem;
+
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	width: var(--cs-avatar-size);
+	height: var(--cs-avatar-size);
+	overflow: hidden;
+	font-size: calc(var(--cs-avatar-size) * .4);
+	font-weight: 600;
+	line-height: 1;
+	color: var(--theme-fg, var(--bs-secondary-color));
+	background-color: var(--theme-bg-subtle, var(--bs-secondary-bg));
+	border-radius: 50%;
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.avatar-sm {
+	--cs-avatar-size: 1.5rem;
+}
+
+.avatar-lg {
+	--cs-avatar-size: 3rem;
+}

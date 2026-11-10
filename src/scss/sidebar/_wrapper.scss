@@ -1,0 +1,17 @@
+//
+// wrapper for content layout
+//
+
+@use '../variables' as var;
+
+.wrapper {
+	min-height: 100vh;
+
+	&-navbar-used {
+		min-height: calc(100vh - #{var.$sm-top});
+	}
+
+	&-navbar-fixed {
+		margin-top: var.$sm-top;
+	}
+}

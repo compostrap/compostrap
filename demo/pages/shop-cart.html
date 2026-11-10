@@ -1,0 +1,97 @@
+	<nav aria-label="Checkout steps" class="my-4">
+		<ol class="shop-stepper">
+			<li class="shop-stepper-item is-current" aria-current="step"><span><span class="shop-stepper-badge">1</span><span class="shop-stepper-label">Cart</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item"><span><span class="shop-stepper-badge">2</span><span class="shop-stepper-label">Delivery and payment</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item"><span><span class="shop-stepper-badge">3</span><span class="shop-stepper-label">Your details</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+			<li class="shop-stepper-item"><span><span class="shop-stepper-badge">4</span><span class="shop-stepper-label">Summary</span></span></li>
+		</ol>
+	</nav>
+
+	<h1 class="h4 mb-4"><i class="bi bi-cart3 text-body-secondary me-2" aria-hidden="true"></i>Your shopping cart</h1>
+
+	<div class="row g-4">
+
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+
+					<div class="shop-cart-item">
+						<img class="shop-cart-photo" src="https://picsum.photos/id/0/120/120" alt="UltraBook Air 13">
+						<div class="shop-cart-info">
+							<p class="fw-semibold mb-1">UltraBook Air 13</p>
+							<p class="small text-body-secondary mb-1">16 GB, 512 GB</p>
+							<span class="small text-body-secondary">€ 934 / pcs</span>
+							<span class="badge badge-subtle theme-danger ms-1"><i class="bi bi-tag me-1" aria-hidden="true"></i>-15%</span>
+						</div>
+						<div class="shop-cart-qty">
+							<div class="number-input">
+								<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+								<input type="number" class="form-control" value="1" min="1" max="10" aria-label="Amount">
+								<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+							</div>
+						</div>
+						<div class="shop-cart-price">€ 934</div>
+						<div class="shop-cart-remove">
+							<button type="button" class="btn btn-xs btn-icon btn-subtle theme-danger" aria-label="Remove UltraBook Air 13 from cart" data-tooltip="left"><i class="bi bi-trash3" aria-hidden="true"></i></button>
+						</div>
+					</div>
+
+					<div class="shop-cart-item">
+						<img class="shop-cart-photo" src="https://picsum.photos/id/9/120/120" alt="ProBook 15">
+						<div class="shop-cart-info">
+							<p class="fw-semibold mb-1">ProBook 15</p>
+							<p class="small text-body-secondary mb-1">16 GB, 1 TB</p>
+							<span class="small text-body-secondary">€ 465 / pcs</span>
+						</div>
+						<div class="shop-cart-qty">
+							<div class="number-input">
+								<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+								<input type="number" class="form-control" value="1" min="1" max="3" aria-label="Amount">
+								<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+							</div>
+						</div>
+						<div class="shop-cart-price">€ 465</div>
+						<div class="shop-cart-remove">
+							<button type="button" class="btn btn-xs btn-icon btn-subtle theme-danger" aria-label="Remove ProBook 15 from cart" data-tooltip="left"><i class="bi bi-trash3" aria-hidden="true"></i></button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<div class="shop-summary">
+
+				<div class="card mb-3">
+					<div class="card-body">
+						<label class="form-label fw-semibold" for="shop-code"><i class="bi bi-ticket-perforated text-body-secondary me-2" aria-hidden="true"></i>Have a discount code?</label>
+						<div class="d-flex gap-2">
+							<input type="text" class="form-control form-control-sm" id="shop-code" placeholder="SPRING10">
+							<button type="button" class="btn btn-sm btn-primary px-3">Apply</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<p class="fw-semibold mb-3"><i class="bi bi-receipt text-body-secondary me-2" aria-hidden="true"></i>Order summary</p>
+						<div class="shop-summary-row"><span class="text-body-secondary">Items:</span><span>2</span></div>
+						<div class="shop-summary-row"><span class="text-body-secondary">Price without discount:</span><span>€ 1 099 + € 465</span></div>
+						<div class="shop-summary-row text-success"><span>Product discounts:</span><span>-€ 165</span></div>
+						<div class="shop-summary-total"><span>Total to pay:</span><span class="shop-summary-sum">€ 1 399</span></div>
+						<p class="small text-body-secondary mt-3 mb-0"><i class="bi bi-info-circle me-1" aria-hidden="true"></i>Shipping and payment are added once selected.</p>
+						<a href="shop-delivery.html" class="btn btn-primary w-100 mt-3 d-none d-lg-block">Continue with order <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- on phones the total and the button stay at the bottom of the screen -->
+	<div class="shop-bar">
+		<div class="shop-bar-total"><span class="shop-bar-label">Total to pay</span><span class="shop-bar-sum">€ 1 399</span></div>
+		<a href="shop-delivery.html" class="btn btn-primary">Continue <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
+	</div>

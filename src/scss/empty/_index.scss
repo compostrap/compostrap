@@ -1,0 +1,117 @@
+//
+// empty: an empty state (no items, nothing found, no role chosen) inside a box, or a whole error page
+//
+// <div class="empty">
+//   <div class="empty-img"><svg>…an illustration of src/illustrations…</svg></div>
+//   <p class="empty-header">404</p>
+//   <p class="empty-title">Nothing here yet</p>
+//   <p class="empty-subtitle">Add the first article, it will appear in this list.</p>
+//   <div class="empty-action"><a class="btn btn-primary" href="…">Add article</a></div>
+// </div>
+//
+// Every part is optional; a box without an illustration can use an icon instead (`empty-icon`). `empty-page` centers
+// the state on a page of its own (404, 403, 500, maintenance). The illustrations take their colors from the
+// --cs-illustration-* tokens when inlined, so they follow the theme; as an <img> they use their own fallback colors.
+//
+
+:root,
+[data-bs-theme='light'] {
+	--cs-illustration-bg: var(--bs-secondary-bg);
+	--cs-illustration-surface: var(--bs-body-bg);
+	--cs-illustration-line: color-mix(in srgb, var(--bs-body-color) 80%, transparent);
+	--cs-illustration-muted: color-mix(in srgb, var(--bs-body-color) 18%, var(--bs-body-bg));
+	--cs-illustration-accent: var(--bs-primary);
+	--cs-illustration-danger: var(--bs-danger);
+}
+
+[data-bs-theme='dark'] {
+	--cs-illustration-bg: color-mix(in srgb, var(--bs-body-color) 10%, var(--bs-body-bg));
+	--cs-illustration-line: color-mix(in srgb, var(--bs-body-color) 70%, transparent);
+	--cs-illustration-muted: color-mix(in srgb, var(--bs-body-color) 22%, var(--bs-body-bg));
+}
+
+.empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 1rem;
+	text-align: center;
+}
+
+.empty-img {
+	width: 100%;
+	max-width: 15rem;
+	margin-bottom: 1.5rem;
+
+	> svg,
+	> img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+// an icon in a soft circle, for small empty states in boxes
+.empty-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	margin-bottom: 1rem;
+	font-size: 1.375rem;
+	color: var(--bs-secondary-color);
+	background-color: var(--bs-tertiary-bg);
+	border-radius: 50%;
+}
+
+// the code of an error page (404), large and quiet
+.empty-header {
+	margin-bottom: .75rem;
+	font-size: 3.5rem;
+	font-weight: 300;
+	line-height: 1;
+	color: var(--bs-secondary-color);
+	font-variant-numeric: tabular-nums;
+}
+
+.empty-title {
+	margin-bottom: .25rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+}
+
+.empty-subtitle {
+	max-width: 30rem;
+	margin-bottom: 0;
+	color: var(--bs-secondary-color);
+}
+
+.empty-action {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	justify-content: center;
+	margin-top: 1.5rem;
+}
+
+// a page of its own: the state in the middle of the page background
+.empty-page {
+	min-height: 100vh;
+	min-height: 100dvh;
+
+	> .empty {
+		min-height: inherit;
+		padding-block: 3rem;
+	}
+
+	.empty-img {
+		max-width: 20rem;
+	}
+
+	.empty-title {
+		font-size: 1.25rem;
+	}
+}

@@ -1,0 +1,182 @@
+//
+// shop: the product list and the product detail
+//
+// <article class="shop-product">
+//   <a class="shop-product-image" href="..."><img src="..." alt=""><span class="badge theme-danger shop-product-badge">-15%</span></a>
+//   <div class="shop-product-body"><h2 class="shop-product-title"><a href="...">Name</a></h2>
+//     <p class="shop-product-text">Excerpt</p>
+//     <div class="shop-product-footer">price, stock, button</div></div>
+// </article>
+//
+
+@use '../bootstrap' as bs;
+
+.shop-product {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	background-color: var(--shop-surface-bg);
+	border-radius: var(--bs-border-radius-lg);
+}
+
+.shop-product-image {
+	position: relative;
+	display: block;
+	aspect-ratio: 4 / 3;
+	background-color: var(--bs-tertiary-bg);
+
+	> img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.shop-product-badge {
+	position: absolute;
+	top: .75rem;
+	left: .75rem;
+}
+
+.shop-product-body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+.shop-product-title {
+	margin-bottom: .25rem;
+	font-size: 1rem;
+	font-weight: 600;
+
+	a {
+		color: var(--bs-emphasis-color);
+		text-decoration: none;
+	}
+}
+
+.shop-product-text {
+	margin-bottom: .75rem;
+	color: var(--bs-secondary-color);
+}
+
+.shop-product-footer {
+	margin-top: auto;
+}
+
+// prices: the current one, the original one crossed out
+.shop-price {
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+}
+
+.shop-price-old {
+	color: var(--bs-secondary-color);
+	text-decoration: line-through;
+}
+
+// the availability of a product: an icon and a text in the color of the state
+.shop-stock {
+	display: flex;
+	align-items: center;
+	gap: .375rem;
+}
+
+// a choice of a variant (memory, color, …) as pills; the chosen one is tinted
+// <div class="shop-variant-group"><div class="shop-variant-title">Memory</div><div class="shop-variant-options">
+//   <button type="button" class="shop-variant-pill active">16 GB</button>
+// </div></div>
+.shop-variant-group + .shop-variant-group {
+	margin-top: 1.25rem;
+}
+
+.shop-variant-title {
+	margin-bottom: .5rem;
+	font-weight: 600;
+}
+
+.shop-variant-options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+}
+
+.shop-variant-pill {
+	padding: .4375rem .875rem;
+	font-weight: 500;
+	color: var(--bs-body-color);
+	cursor: pointer;
+	background-color: var(--bs-secondary-bg);
+	border: 0;
+	border-radius: var(--bs-border-radius);
+
+	&:hover:not(:disabled) {
+		background-color: var(--bs-border-color);
+	}
+
+	&.active {
+		color: var(--bs-primary);
+		background-color: var(--bs-primary-bg-subtle);
+	}
+
+	&:disabled {
+		opacity: .45;
+		text-decoration: line-through;
+		cursor: not-allowed;
+	}
+}
+
+// the photos of a product: the big one and the thumbnails under it
+.shop-detail-gallery {
+	padding: 1rem;
+	background-color: var(--shop-surface-bg);
+	border-radius: var(--bs-border-radius-lg);
+}
+
+.shop-detail-main {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: var(--bs-border-radius);
+}
+
+.shop-detail-thumbs {
+	display: flex;
+	gap: .625rem;
+	margin-top: .75rem;
+	overflow-x: auto;
+}
+
+.shop-detail-thumb {
+	flex: 0 0 4.5rem;
+	height: 4.5rem;
+	padding: 0;
+	overflow: hidden;
+	cursor: pointer;
+	background: none;
+	border: 0;
+	border-radius: var(--bs-border-radius);
+	opacity: .5;
+
+	// the shown photo is the one at full strength, the others are dimmed (no border)
+	&:hover,
+	&.active {
+		opacity: 1;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+@include bs.media-breakpoint-down(sm) {
+	.shop-detail-main {
+		aspect-ratio: 1;
+	}
+}

@@ -1,0 +1,203 @@
+//
+// auth: pages outside the administration (sign in, sign up, password recovery), a box in the middle of the page
+//
+// <body class="auth-page">
+//   <div class="auth">
+//     <div class="auth-top"><a class="auth-brand" href="...">logo Name</a> theme switch</div>
+//     <div class="auth-card auth-card-split">
+//       <aside class="auth-visual" aria-hidden="true"><i class="bi bi-shield-lock"></i></aside>
+//       <main class="auth-body">
+//         <div class="auth-toolbar">languages</div>
+//         <header class="auth-header"><h1 class="auth-title">Sign in</h1><p class="auth-subtitle">...</p></header>
+//         form
+//         <div class="auth-links"><a href="...">Forgot your password?</a></div>
+//       </main>
+//     </div>
+//     <footer class="auth-footer">&copy; 2026 Name</footer>
+//   </div>
+// </body>
+//
+// Without `auth-card-split` the box is narrow and has no visual. `otp-code` spaces the digits of a one-time code.
+//
+
+@use '../bootstrap' as bs;
+@use '../variables' as var;
+
+:root,
+[data-bs-theme='light'] {
+	--auth-page-bg: var(--bs-tertiary-bg);
+	--auth-card-bg: var(--bs-body-bg);
+	--auth-visual-bg: color-mix(in srgb, var(--bs-secondary-bg) 60%, var(--bs-body-bg));
+	// the icon is a deeper shade of the same gray (lighter in the dark theme, towards the text)
+	--auth-visual-color: color-mix(in srgb, var(--bs-secondary-bg) 70%, var(--bs-body-color));
+	--auth-card-width: 26rem;
+	--auth-card-split-width: 56rem;
+}
+
+// the page is darker than the box, as in the dashboard
+[data-bs-theme='dark'] {
+	--auth-page-bg: color-mix(in srgb, var(--bs-body-bg) 55%, #000);
+}
+
+.auth-page {
+	min-height: 100vh;
+	min-height: 100dvh;
+	background-color: var(--auth-page-bg);
+}
+
+.auth {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: min(100% - 2rem, var(--auth-card-width));
+	min-height: 100vh;
+	min-height: 100dvh;
+	padding-block: 2rem 1rem;
+	margin-inline: auto;
+
+	&:has(> .auth-card-split) {
+		width: min(100% - 2rem, var(--auth-card-split-width));
+	}
+}
+
+.auth-top {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+	padding-inline: .25rem;
+}
+
+.auth-brand {
+	display: inline-flex;
+	gap: .625rem;
+	align-items: center;
+	font-size: 1.0625rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--bs-emphasis-color);
+	}
+}
+
+.auth-card {
+	overflow: hidden;
+	color: var(--bs-body-color);
+	background-color: var(--auth-card-bg);
+	border-radius: var(--bs-border-radius-lg);
+	box-shadow: var.$soft-shadow;
+}
+
+.auth-visual {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	font-size: 6rem;
+	color: var(--auth-visual-color);
+	background-color: var(--auth-visual-bg);
+}
+
+.auth-body {
+	min-width: 0;
+	padding: 2rem 1.5rem;
+}
+
+.auth-toolbar {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+	justify-content: flex-end;
+	margin-bottom: 1.5rem;
+	font-size: .875rem;
+
+	a {
+		color: var(--bs-secondary-color);
+
+		&:hover,
+		&.active {
+			color: var(--bs-emphasis-color);
+		}
+
+		&.active {
+			font-weight: 600;
+		}
+	}
+}
+
+.auth-header {
+	margin-bottom: 1.5rem;
+}
+
+.auth-title {
+	margin-bottom: 0;
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.auth-subtitle {
+	margin: .375rem 0 0;
+	color: var(--bs-secondary-color);
+}
+
+.auth-links {
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+	margin-top: 1.25rem;
+	font-size: .875rem;
+	text-align: center;
+}
+
+.auth-footer {
+	margin-top: 1rem;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+	text-align: center;
+}
+
+.otp-code {
+	font-variant-numeric: tabular-nums;
+	letter-spacing: .5rem;
+	text-align: center;
+	text-indent: .5rem;
+}
+
+@include bs.media-breakpoint-up(sm) {
+	.auth-body {
+		padding: 2.5rem;
+	}
+}
+
+// the split box: the visual on the left, the form on the right, the form keeps the width of the narrow box
+@include bs.media-breakpoint-up(lg) {
+	.auth-card-split {
+		display: grid;
+		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+		min-height: 34rem;
+
+		> .auth-visual {
+			display: flex;
+		}
+
+		// the side padding keeps the content 24rem wide in the middle of the column
+		> .auth-body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 3rem max(3rem, (100% - 24rem) / 2);
+
+			// the free height goes above and below the form, the languages keep their gap on a tall form
+			> .auth-toolbar {
+				padding-bottom: 1.5rem;
+				margin-bottom: auto;
+			}
+
+			> .auth-links {
+				margin-bottom: auto;
+			}
+		}
+	}
+}

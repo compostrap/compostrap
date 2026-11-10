@@ -1,0 +1,121 @@
+//
+// rating: stars to choose a rating in a form (radio inputs, no JavaScript) or to show one (also halves)
+//
+// <div class="rating" role="radiogroup" aria-label="Rating">
+//   <input type="radio" class="rating-input" name="rating" id="rating-1" value="1">
+//   <label class="rating-star" for="rating-1"><span class="visually-hidden">1 star</span></label>
+//   …up to 5
+// </div>
+//
+// <span class="rating-static" style="--rating-value: 4.5" role="img" aria-label="4.5 of 5"></span>
+//
+// The stars up to the checked one are filled; on hover they show the rating the click would give. rating-sm and
+// rating-lg change the size (also of rating-static), --rating-color the color of the filled stars.
+//
+
+$-star: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3e%3cpath d='M12 2.6l2.83 5.97 6.5.82-4.8 4.5 1.25 6.45L12 17.2l-5.78 3.14 1.25-6.45-4.8-4.5 6.5-.82z' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3e%3c/svg%3e");
+
+:root {
+	--rating-color: #ffb800;
+	--rating-empty: color-mix(in srgb, var(--bs-body-color) 16%, var(--bs-body-bg));
+}
+
+.rating,
+.rating-static {
+	--rating-size: 1.25rem;
+	--rating-gap: .125rem;
+}
+
+.rating {
+	display: inline-flex;
+	gap: var(--rating-gap);
+	align-items: center;
+	vertical-align: middle;
+}
+
+.rating-input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.rating-star {
+	display: block;
+	width: var(--rating-size);
+	height: var(--rating-size);
+	margin: 0;
+	cursor: pointer;
+	background-color: var(--rating-empty);
+	border-radius: 2px;
+	mask: $-star no-repeat center / contain;
+}
+
+// the checked star and the stars before it
+.rating-input:checked + .rating-star,
+.rating-star:has(~ .rating-input:checked) {
+	background-color: var(--rating-color);
+}
+
+// on hover: the hovered star and the stars before it, nothing after it
+.rating:not(:has(.rating-input:disabled)):has(.rating-star:hover) {
+	.rating-star {
+		background-color: var(--rating-empty);
+	}
+
+	.rating-star:hover,
+	.rating-star:has(~ .rating-star:hover) {
+		background-color: var(--rating-color);
+	}
+}
+
+// the focus ring of the keyboard around the star of the focused input (a mask would cut a box-shadow off)
+.rating-input:focus-visible + .rating-star {
+	outline: var(--bs-focus-ring-width) solid var(--bs-focus-ring-color);
+	outline-offset: 2px;
+	mask: none;
+	background: none;
+	position: relative;
+
+	&::before {
+		position: absolute;
+		inset: 0;
+		content: '';
+		background-color: var(--rating-empty);
+		mask: $-star no-repeat center / contain;
+	}
+}
+
+.rating-input:focus-visible:checked + .rating-star::before,
+.rating-star:has(~ .rating-input:checked) + .rating-input:focus-visible + .rating-star::before {
+	background-color: var(--rating-color);
+}
+
+.rating-input:disabled + .rating-star {
+	cursor: default;
+}
+
+// a rating shown only: five stars filled to --rating-value (0 to 5, halves and tenths too)
+.rating-static {
+	--rating-value: 0;
+
+	display: inline-block;
+	width: calc(5 * var(--rating-size) + 4 * var(--rating-gap));
+	height: var(--rating-size);
+	vertical-align: middle;
+	background: linear-gradient(90deg, var(--rating-color) calc(var(--rating-value) / 5 * 100%), var(--rating-empty) 0);
+	mask: $-star repeat-x left center / calc(var(--rating-size) + var(--rating-gap)) var(--rating-size);
+	mask-size: var(--rating-size) var(--rating-size);
+	mask-repeat: space no-repeat;
+}
+
+.rating-sm {
+	--rating-size: 1rem;
+}
+
+.rating-lg {
+	--rating-size: 1.75rem;
+	--rating-gap: .25rem;
+}

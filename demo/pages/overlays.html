@@ -1,0 +1,120 @@
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h1 class="h5 mb-1">Overlays</h1>
+					<p class="small text-body-secondary mb-0">Modals, offcanvas, toasts and accordions; a modal with a theme-* class gets a colored stripe and icon.</p>
+				</header>
+
+				<h2 class="h6 text-uppercase text-body-secondary mb-3">Modals</h2>
+				<div class="d-flex flex-wrap gap-2 mb-4">
+					<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#demo-modal">Plain modal</button>
+					<button type="button" class="btn btn-subtle theme-danger" data-bs-toggle="modal" data-bs-target="#demo-confirm">Confirm (danger)</button>
+					<button type="button" class="btn btn-subtle theme-success" data-bs-toggle="modal" data-bs-target="#demo-success">Success</button>
+					<button type="button" class="btn btn-subtle theme-info" data-bs-toggle="modal" data-bs-target="#demo-info">Info</button>
+					<button type="button" class="btn btn-subtle theme-warning" data-bs-toggle="modal" data-bs-target="#demo-warning">Warning</button>
+				</div>
+
+				<h2 class="h6 text-uppercase text-body-secondary mb-3">Offcanvas and toasts</h2>
+				<div class="d-flex flex-wrap gap-2">
+					<button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#demo-offcanvas"><i class="bi bi-layout-sidebar-reverse me-1" aria-hidden="true"></i>Open offcanvas</button>
+					<button type="button" class="btn btn-secondary" id="demo-toast-button">Show a toast</button>
+				</div>
+			</div>
+
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Accordion</h2>
+							<p class="small text-body-secondary mb-0">Sections that open one at a time.</p>
+						</header>
+						<div class="accordion" id="demo-accordion">
+							<div class="accordion-item">
+								<h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#demo-acc-1" aria-expanded="true">How is the shop paid?</button></h3>
+								<div id="demo-acc-1" class="accordion-collapse collapse show" data-bs-parent="#demo-accordion"><div class="accordion-body">By card or by a bank transfer.</div></div>
+							</div>
+							<div class="accordion-item">
+								<h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#demo-acc-2" aria-expanded="false">When is an order sent?</button></h3>
+								<div id="demo-acc-2" class="accordion-collapse collapse" data-bs-parent="#demo-accordion"><div class="accordion-body">The next working day after the payment.</div></div>
+							</div>
+							<div class="accordion-item">
+								<h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#demo-acc-3" aria-expanded="false">Can I return goods?</button></h3>
+								<div id="demo-acc-3" class="accordion-collapse collapse" data-bs-parent="#demo-accordion"><div class="accordion-body">Within 14 days without giving a reason.</div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Progress and spinners</h2>
+							<p class="small text-body-secondary mb-0">The state of an upload or a loading part.</p>
+						</header>
+						<div class="progress mb-2" role="progressbar" aria-label="Upload" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 65%"></div></div>
+						<div class="progress mb-2" role="progressbar" aria-label="Stock" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-warning" style="width: 30%"></div></div>
+						<div class="progress mb-4" role="progressbar" aria-label="Done" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 100%"></div></div>
+						<div class="d-flex align-items-center gap-3">
+							<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+							<div class="spinner-border spinner-border-sm text-body-secondary" role="status"><span class="visually-hidden">Loading…</span></div>
+							<div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				document.getElementById('demo-toast-button').addEventListener('click', () => {
+					bootstrap.Toast.getOrCreateInstance(document.getElementById('demo-toast')).show();
+				});
+			</script>
+<!-- overlays -->
+<div class="modal fade" id="demo-modal" tabindex="-1" aria-labelledby="demo-modal-label" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title h5" id="demo-modal-label">New category</h2>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<label for="demo-modal-name" class="form-label">Name</label>
+				<input type="text" class="form-control" id="demo-modal-name">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="demo-offcanvas" aria-labelledby="demo-offcanvas-label">
+	<div class="offcanvas-header">
+		<h2 class="offcanvas-title h5" id="demo-offcanvas-label">Edit the article</h2>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+		<div class="mb-3">
+			<label for="demo-oc-title" class="form-label">Title</label>
+			<input type="text" class="form-control" id="demo-oc-title" value="First steps">
+		</div>
+		<div class="mb-3">
+			<label for="demo-oc-text" class="form-label">Text</label>
+			<textarea class="form-control" id="demo-oc-text" rows="8"></textarea>
+		</div>
+		<div class="offcanvas-actions">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+			<button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">Save</button>
+		</div>
+	</div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+	<div class="toast" id="demo-toast" role="status" aria-live="polite" aria-atomic="true">
+		<div class="toast-header">
+			<span class="status-dot theme-success me-2"></span>
+			<strong class="me-auto">Saved</strong>
+			<small class="text-body-secondary">just now</small>
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+		<div class="toast-body">The article was saved.</div>
+	</div>
+</div>

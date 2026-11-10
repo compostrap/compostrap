@@ -1,0 +1,118 @@
+//
+// strength: a meter of the password strength under a password input, with the classes and attributes of the strength
+// component of Bootstrap 6, so the markup stays when the package moves to it
+//
+// <div>
+//   <label class="form-label" for="password">Password</label>
+//   <input type="password" class="form-control" id="password">
+//   <div class="strength" data-bs-strength>
+//     <div class="strength-segment"></div><div class="strength-segment"></div>
+//     <div class="strength-segment"></div><div class="strength-segment"></div>
+//   </div>
+//   <span class="strength-text"></span>
+// </div>
+//
+// `strength-bar` (one bar that grows) can stand in place of the segments. The script sets data-bs-strength to weak,
+// fair, good or strong and fills the segments up to the level.
+//
+
+$strength-levels: (
+	weak: danger,
+	fair: warning,
+	good: info,
+	strong: success,
+);
+
+:root {
+	--strength-height: .375rem;
+	--strength-gap: .25rem;
+	--strength-margin-top: .375rem;
+	--strength-border-radius: var(--bs-border-radius-pill);
+	--strength-bg: var(--bs-secondary-bg);
+	--strength-weak-color: var(--bs-danger);
+	--strength-fair-color: var(--bs-warning);
+	--strength-good-color: var(--bs-info);
+	--strength-strong-color: var(--bs-success);
+}
+
+.strength {
+	--strength-color: var(--strength-bg);
+
+	display: flex;
+	gap: var(--strength-gap);
+	width: 100%;
+	margin-top: var(--strength-margin-top);
+}
+
+.strength-segment {
+	flex: 1;
+	height: var(--strength-height);
+	background-color: var(--strength-bg);
+	border-radius: var(--strength-border-radius);
+	transition: background-color .2s ease-in-out;
+
+	&.active {
+		background-color: var(--strength-color);
+	}
+}
+
+.strength-bar {
+	--strength-color: transparent;
+	--strength-width: 0%;
+
+	width: 100%;
+	height: var(--strength-height);
+	margin-top: var(--strength-margin-top);
+	overflow: hidden;
+	background-color: var(--strength-bg);
+	border-radius: var(--strength-border-radius);
+
+	&::after {
+		display: block;
+		width: var(--strength-width);
+		height: 100%;
+		content: '';
+		background-color: var(--strength-color);
+		border-radius: var(--strength-border-radius);
+		transition: background-color .2s ease-in-out, width .3s ease-in-out;
+	}
+}
+
+// the text of the level in the color of the level, hidden while empty
+.strength-text {
+	display: block;
+	margin-top: .25rem;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+	transition: color .2s ease-in-out;
+
+	&:empty {
+		display: none;
+	}
+}
+
+@each $level, $color in $strength-levels {
+	.strength[data-bs-strength='#{$level}'],
+	.strength-bar[data-bs-strength='#{$level}'] {
+		--strength-color: var(--strength-#{$level}-color);
+	}
+
+	.strength-text[data-bs-strength='#{$level}'] {
+		color: var(--bs-#{$color}-text-emphasis);
+	}
+}
+
+.strength-bar {
+	&[data-bs-strength='weak'] { --strength-width: 25%; }
+	&[data-bs-strength='fair'] { --strength-width: 50%; }
+	&[data-bs-strength='good'] { --strength-width: 75%; }
+	&[data-bs-strength='strong'] { --strength-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.strength-segment,
+	.strength-bar::after,
+	.strength-text {
+		transition: none;
+	}
+}

@@ -1,0 +1,92 @@
+	<nav class="mb-3" aria-label="Product navigation">
+		<a href="shop-products.html" class="small text-decoration-none"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to products</a>
+	</nav>
+
+	<div class="row g-4">
+
+		<div class="col-md-5">
+			<div class="shop-detail-gallery">
+				<img class="shop-detail-main" data-gallery-main src="https://picsum.photos/id/0/800/600" alt="UltraBook Air 13">
+				<div class="shop-detail-thumbs" role="group" aria-label="Product images">
+					<button type="button" class="shop-detail-thumb active" data-gallery-image="https://picsum.photos/id/0/800/600" aria-label="Show product image 1" aria-pressed="true"><img src="https://picsum.photos/id/0/120/120" alt=""></button>
+					<button type="button" class="shop-detail-thumb" data-gallery-image="https://picsum.photos/id/9/800/600" aria-label="Show product image 2" aria-pressed="false"><img src="https://picsum.photos/id/9/120/120" alt=""></button>
+					<button type="button" class="shop-detail-thumb" data-gallery-image="https://picsum.photos/id/8/800/600" aria-label="Show product image 3" aria-pressed="false"><img src="https://picsum.photos/id/8/120/120" alt=""></button>
+					<button type="button" class="shop-detail-thumb" data-gallery-image="https://picsum.photos/id/6/800/600" aria-label="Show product image 4" aria-pressed="false"><img src="https://picsum.photos/id/6/120/120" alt=""></button>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-7">
+			<div class="card"><div class="card-body">
+				<h1 class="h3 mb-1">UltraBook Air 13</h1>
+				<p class="small text-body-secondary mb-3">SKU: UB-AIR-13-16-512</p>
+
+				<p class="mb-1">
+					<span class="shop-price-old me-2">€ 1 099</span>
+					<span class="badge theme-danger">-15%</span>
+				</p>
+				<p class="mb-3">
+					<span class="h3 text-danger me-1">€ 934</span>
+					<span class="small text-body-secondary">incl. VAT</span>
+				</p>
+
+				<p class="shop-stock text-success mb-3"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> In stock &gt; 5 pcs</p>
+
+				<p class="text-body-secondary mb-4">A thin and light notebook with a 13&quot; display, a quiet processor and a battery for a whole working day.</p>
+
+				<!-- the variants: one group per attribute -->
+				<div class="mb-4" data-variants>
+					<div class="shop-variant-group">
+						<div class="shop-variant-title">Memory</div>
+						<div class="shop-variant-options">
+							<button type="button" class="shop-variant-pill active">16 GB</button>
+							<button type="button" class="shop-variant-pill">32 GB</button>
+						</div>
+					</div>
+					<div class="shop-variant-group">
+						<div class="shop-variant-title">Storage</div>
+						<div class="shop-variant-options">
+							<button type="button" class="shop-variant-pill">256 GB</button>
+							<button type="button" class="shop-variant-pill active">512 GB</button>
+							<button type="button" class="shop-variant-pill" disabled>1 TB</button>
+						</div>
+					</div>
+				</div>
+
+				<form onsubmit="return false">
+					<label class="form-label" for="shop-amount">Amount</label>
+					<!-- the amount and the button in one row, as high as each other; on phones the button takes the rest of the row -->
+					<div class="d-flex align-items-stretch gap-2">
+						<div class="number-input">
+							<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
+							<input type="number" class="form-control" id="shop-amount" value="1" min="1" max="10">
+							<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
+						</div>
+						<a href="shop-cart.html" class="btn btn-primary flex-grow-1 flex-sm-grow-0 px-4"><i class="bi bi-cart-plus me-1" aria-hidden="true"></i> Add to cart</a>
+					</div>
+				</form>
+			</div></div>
+		</div>
+
+	</div>
+
+<!-- overlays -->
+<script>
+	// the demo of the variants and the photos; the real shop does it by its Naja integration
+	document.querySelectorAll('.shop-variant-options').forEach((group) => group.addEventListener('click', (event) => {
+		const pill = event.target.closest('.shop-variant-pill:not(:disabled)');
+		if (pill) {
+			group.querySelectorAll('.shop-variant-pill').forEach((p) => p.classList.toggle('active', p === pill));
+		}
+	}));
+	document.querySelector('.shop-detail-thumbs').addEventListener('click', (event) => {
+		const thumb = event.target.closest('.shop-detail-thumb');
+		if (thumb) {
+			document.querySelector('[data-gallery-main]').src = thumb.dataset.galleryImage;
+			document.querySelectorAll('.shop-detail-thumb').forEach((t) => {
+				t.classList.toggle('active', t === thumb);
+				t.setAttribute('aria-pressed', String(t === thumb));
+			});
+		}
+	});
+</script>

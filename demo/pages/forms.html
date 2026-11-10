@@ -1,0 +1,146 @@
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h1 class="h5 mb-1">Forms</h1>
+					<p class="small text-body-secondary mb-0">Inputs, selects, checks and switches of one size scale with a quiet focus ring.</p>
+				</header>
+
+				<form class="row g-3" onsubmit="return false">
+					<div class="col-md-6">
+						<label for="demo-name" class="form-label">Name</label>
+						<input type="text" class="form-control" id="demo-name" placeholder="Jan Novák">
+					</div>
+					<div class="col-md-6">
+						<label for="demo-email" class="form-label">E-mail</label>
+						<input type="email" class="form-control" id="demo-email" placeholder="jan@example.com">
+						<div class="form-text">We never share your e-mail.</div>
+					</div>
+					<div class="col-md-4">
+						<label for="demo-role" class="form-label">Role</label>
+						<select class="form-select" id="demo-role">
+							<option>Administrator</option>
+							<option>Editor</option>
+							<option>Moderator</option>
+						</select>
+					</div>
+					<div class="col-md-4">
+						<label for="demo-born" class="form-label">Date</label>
+						<input type="date" class="form-control" id="demo-born">
+					</div>
+					<div class="col-md-4">
+						<label for="demo-file" class="form-label">File</label>
+						<input type="file" class="form-control" id="demo-file">
+					</div>
+					<div class="col-12">
+						<label for="demo-note" class="form-label">Note</label>
+						<textarea class="form-control" id="demo-note" rows="3"></textarea>
+					</div>
+					<div class="col-12 d-flex gap-2">
+						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="button" class="btn btn-secondary">Cancel</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="row g-3 mb-3">
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Checks, radios and switches</h2>
+							<p class="small text-body-secondary mb-0">The choices of a form.</p>
+						</header>
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="demo-check-1" checked>
+									<label class="form-check-label" for="demo-check-1">Send a newsletter</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="demo-check-2">
+									<label class="form-check-label" for="demo-check-2">Allow comments</label>
+								</div>
+								<div class="form-check mb-3">
+									<input class="form-check-input" type="checkbox" id="demo-check-3" disabled>
+									<label class="form-check-label" for="demo-check-3">Disabled</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="demo-radio" id="demo-radio-1" checked>
+									<label class="form-check-label" for="demo-radio-1">Card</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="demo-radio" id="demo-radio-2">
+									<label class="form-check-label" for="demo-radio-2">Bank transfer</label>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-1" checked>
+									<label class="form-check-label" for="demo-switch-1">Published</label>
+								</div>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-2">
+									<label class="form-check-label" for="demo-switch-2">Featured</label>
+								</div>
+								<div class="form-check form-switch mb-3">
+									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-3" disabled>
+									<label class="form-check-label" for="demo-switch-3">Disabled</label>
+								</div>
+								<label for="demo-range" class="form-label">Discount</label>
+								<input type="range" class="form-range" id="demo-range" min="0" max="50" value="10">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="content-box h-100">
+						<header class="mb-3 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Input groups and sizes</h2>
+							<p class="small text-body-secondary mb-0">Units and buttons next to a field; small, default and large fields.</p>
+						</header>
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<div class="input-group">
+									<input type="number" class="form-control" value="289" aria-label="Price">
+									<span class="input-group-text">Kč</span>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="input-group">
+									<span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+									<input type="search" class="form-control" placeholder="Search" aria-label="Search">
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="input-group">
+									<select class="form-select" aria-label="Manufacturer"><option>Northwind</option><option>Arcus</option></select>
+									<button type="button" class="btn btn-primary btn-icon" aria-label="New manufacturer" data-tooltip="end"><i class="bi bi-plus-lg" aria-hidden="true"></i></button>
+								</div>
+							</div>
+							<div class="col-12 d-flex flex-column gap-2">
+								<input type="text" class="form-control form-control-sm" placeholder="Small (30px)" aria-label="Small">
+								<input type="text" class="form-control" placeholder="Default (36px)" aria-label="Default">
+								<input type="text" class="form-control form-control-lg" placeholder="Large (44px)" aria-label="Large">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content-box mb-3">
+				<header class="mb-3 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Validation</h2>
+					<p class="small text-body-secondary mb-0">A valid and an invalid field with their messages, as Nette forms show them.</p>
+				</header>
+				<form class="row g-3" onsubmit="return false">
+					<div class="col-md-6">
+						<label for="demo-valid" class="form-label">Slug</label>
+						<input type="text" class="form-control is-valid" id="demo-valid" value="first-steps">
+						<div class="valid-feedback">The slug is free.</div>
+					</div>
+					<div class="col-md-6">
+						<label for="demo-invalid" class="form-label">E-mail</label>
+						<input type="email" class="form-control is-invalid" id="demo-invalid" value="jan@">
+						<div class="invalid-feedback">Please enter a valid e-mail.</div>
+					</div>
+				</form>
+			</div>

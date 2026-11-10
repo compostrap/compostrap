@@ -1,0 +1,24 @@
+//
+// theme: alerts
+//
+
+//
+// alerts: text of the color on its light tint like in Bootstrap 6, without a border; .alert-primary or
+// .alert.theme-primary, a plain .alert is gray
+//
+
+.alert {
+	--bs-alert-color: var(--theme-fg, var(--bs-body-color));
+	--bs-alert-bg: var(--theme-bg-subtle, var(--bs-tertiary-bg));
+	--bs-alert-border-color: transparent;
+	--bs-alert-link-color: var(--theme-fg-emphasis, inherit);
+}
+
+@each $name, $value in $theme-colors {
+	.alert-#{$name} {
+		--bs-alert-color: var(--theme-fg);
+		--bs-alert-bg: var(--theme-bg-subtle);
+		--bs-alert-border-color: transparent;
+		--bs-alert-link-color: var(--theme-fg-emphasis);
+	}
+}

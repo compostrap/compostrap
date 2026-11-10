@@ -1,0 +1,40 @@
+// a row of a list in a box (what waits, the latest items): an icon, the text, something on the right; no lines between
+// the rows, a quiet tint on hover when the row is a link
+// <a class="list-row" href="..."><span class="stat-icon theme-warning"><i class="bi bi-chat"></i></span>
+//   <span class="list-row-text">Comments to approve<small>Blog</small></span><span class="badge ...">3</span></a>
+.list-row {
+	display: flex;
+	gap: .75rem;
+	align-items: center;
+	padding: .625rem .75rem;
+	margin-inline: -.75rem;
+	color: var(--bs-body-color);
+	text-decoration: none;
+	border-radius: var(--bs-border-radius);
+
+	> .stat-icon {
+		width: 2.25rem;
+		height: 2.25rem;
+		font-size: 1rem;
+	}
+}
+
+a.list-row:hover {
+	color: var(--bs-body-color);
+	text-decoration: none;
+	background-color: rgba(var(--bs-body-color-rgb), .04);
+}
+
+.list-row-text {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	> small {
+		display: block;
+		font-size: 1em;
+		color: var(--bs-secondary-color);
+	}
+}

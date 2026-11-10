@@ -1,0 +1,109 @@
+//
+// theme default
+//
+
+// The colors come from the body color of Bootstrap, so they follow the light and dark theme by themselves:
+// links at 85 %, section titles at 60 %, icons at 60 % (75 % on hover and for the current page, so all icons
+// keep one shade), arrows at 85 % like the link text; the current page differs by the medium weight only, not by its color.
+:root {
+	--sm-list-color: rgba(var(--bs-body-color-rgb), .6);
+	--sm-link-color: rgba(var(--bs-body-color-rgb), .85);
+	--sm-link-hover: var(--bs-emphasis-color);
+	--sm-link-current: var(--bs-body-color);
+	--sm-hide-bg: transparent;
+	--sm-hide-color: rgba(var(--bs-body-color-rgb), .85);
+	--sm-hide-hover: var(--bs-emphasis-color);
+	--sm-hide-current: var(--bs-body-color);
+	--sm-icon-color: rgba(var(--bs-body-color-rgb), .6);
+	--sm-icon-hover: rgba(var(--bs-body-color-rgb), .75);
+	--sm-icon-current: rgba(var(--bs-body-color-rgb), .75);
+	--sm-arrow-color: rgba(var(--bs-body-color-rgb), .85);
+	--sm-arrow-hover: var(--bs-body-color);
+	--sm-arrow-current: rgba(var(--bs-body-color-rgb), .85);
+	--sm-scrollbar-bg: rgba(var(--bs-body-color-rgb), .2);
+}
+
+.list {
+	color: var(--sm-list-color);
+}
+
+.list .list-link {
+	color: var(--sm-link-color);
+}
+
+.list .list-link:hover {
+	color: var(--sm-link-hover);
+}
+
+.list .link-current,
+.list .link-current:hover {
+	color: var(--sm-link-current);
+}
+
+.list .list-hidden {
+	background-color: var(--sm-hide-bg);
+}
+
+.list .list-hidden .list-link {
+	color: var(--sm-hide-color);
+}
+
+.list .list-hidden .list-link:hover {
+	color: var(--sm-hide-hover);
+}
+
+.list .list-hidden .link-current,
+.list .list-hidden .link-current:hover {
+	color: var(--sm-hide-current);
+}
+
+.list .list-link .list-icon {
+	color: var(--sm-icon-color);
+}
+
+.list .list-link:hover .list-icon {
+	color: var(--sm-icon-hover);
+}
+
+.list .list-link.link-current .list-icon,
+.list .list-link.link-current:hover .list-icon {
+	color: var(--sm-icon-current);
+}
+
+.list .link-arrow:before {
+	color: var(--sm-arrow-color);
+}
+
+.list .link-arrow:hover:before {
+	color: var(--sm-arrow-hover);
+}
+
+.list .link-arrow.link-current:before,
+.list .link-arrow.link-current:hover:before {
+	color: var(--sm-arrow-current);
+}
+
+.sidebar-user {
+	background-color: var(--sm-hide-bg);
+}
+
+.sidebar-user .sidebar-user-link {
+	color: var(--sm-link-color);
+}
+
+.sidebar-user .sidebar-user-link:hover {
+	color: var(--sm-link-hover);
+}
+
+.ps .ps__rail-y.ps--clicking .ps__thumb-y,
+.ps .ps__rail-y:focus .ps__thumb-y,
+.ps .ps__rail-y:hover .ps__thumb-y,
+.ps .ps__thumb-y {
+	background-color: var(--sm-scrollbar-bg);
+}
+
+.ps .ps__rail-y.ps--clicking,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-y:hover {
+	background: none;
+}

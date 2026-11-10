@@ -1,0 +1,26 @@
+//
+// dashboard theme
+//
+
+
+:root,
+[data-bs-theme='light'] {
+	// corners of the content boxes (0 for square ones)
+	--ds-box-radius: var(--bs-border-radius-lg);
+	--ds-body-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98%, #000);
+	--ds-surface-bg: var(--bs-body-bg);
+	--ds-content-bg: var(--ds-surface-bg);
+	// the loading bar at the top of the page in a lighter primary color, so it is seen but does not shout
+	--ds-nanobar-bg: color-mix(in srgb, var(--bs-primary) 75%, #fff);
+}
+
+// in the dark theme the page is darker than its surfaces (sidebar, boxes, cards), the shadows are not seen there
+[data-bs-theme='dark'] {
+	--ds-body-bg: color-mix(in srgb, var(--bs-body-bg) 55%, #000);
+	--ds-surface-bg: var(--bs-body-bg);
+	--ds-content-bg: var(--ds-surface-bg);
+}
+
+body {
+	background-color: var(--ds-body-bg);
+}

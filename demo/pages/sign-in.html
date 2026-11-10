@@ -1,0 +1,39 @@
+	<!-- the sign-in page of drago (project-auth): a visual on the left, the form on the right; without `auth-card-split`
+		the box is narrow and has no visual -->
+	<div class="auth-card auth-card-split">
+		<aside class="auth-visual" aria-hidden="true">
+			<i class="bi bi-shield-lock"></i>
+		</aside>
+
+		<main class="auth-body">
+			<div class="auth-toolbar">
+				<a href="#" lang="cs">Čeština</a>
+				<span class="text-body-tertiary" aria-hidden="true">&middot;</span>
+				<a href="#" lang="en" class="active" aria-current="true">English</a>
+			</div>
+
+			<header class="auth-header">
+				<h1 class="auth-title">Sign in to your account</h1>
+				<p class="auth-subtitle">Enter your email and password to continue.</p>
+			</header>
+
+			<form class="row g-3" onsubmit="return false">
+				<div class="col-12">
+					<label for="sign-email" class="form-label">E-mail</label>
+					<input type="email" class="form-control" id="sign-email" autocomplete="username" placeholder="jan@example.com">
+				</div>
+				<div class="col-12">
+					<label for="sign-password" class="form-label">Password</label>
+					<input type="password" class="form-control" id="sign-password" autocomplete="current-password">
+				</div>
+				<div class="col-12 d-grid">
+					<button type="submit" class="btn btn-primary">Sign in</button>
+				</div>
+			</form>
+
+			<div class="auth-links">
+				<a href="sign-up.html">Create account</a>
+				<a href="recovery.html">Forgot your password?</a>
+			</div>
+		</main>
+	</div>

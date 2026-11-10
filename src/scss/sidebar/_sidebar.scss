@@ -1,0 +1,89 @@
+//
+// sidebar component
+//
+
+@use '../bootstrap' as bs;
+@use '../variables' as var;
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	z-index: 1045;
+	margin-left: -(var.$sm-width);
+	transition: margin 0.15s ease-out;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+
+	.wrapper-navbar-fixed & {
+		top: var.$sm-top;
+	}
+
+	@include bs.media-breakpoint-up('md') {
+		position: static;
+		z-index: auto;
+		margin-left: 0;
+	}
+
+	&-toggle {
+		margin-left: 0;
+	}
+
+	&-toggle-visible {
+		margin-left: 0;
+
+		@include bs.media-breakpoint-up('md') {
+			margin-left: -(var.$sm-width);
+		}
+	}
+
+	&-rounded-top-right {
+		border-top-right-radius: var(--bs-border-radius);
+	}
+
+	&-backdrop {
+		position: fixed;
+		inset: 0;
+		z-index: 1040;
+		display: none;
+		background-color: rgba(bs.$black, .60);
+		backdrop-filter: blur(.063rem);
+
+		&.show {
+			display: block;
+		}
+
+		@include bs.media-breakpoint-up('md') {
+			display: none !important;
+		}
+	}
+}
+
+.sidebar-menu {
+	width: var.$sm-width;
+
+	&-fixed {
+		position: fixed;
+	}
+}
+
+// the brand at the top of a sidebar that runs over the whole height (the navbar then sits over the content only):
+// <a class="sidebar-brand" href="..."><svg>…</svg><span>Compostrap</span></a> above the menu scrollbar
+.sidebar-brand {
+	display: flex;
+	gap: .625rem;
+	align-items: center;
+	height: var.$sm-top;
+	padding: 0 1.25rem;
+	font-size: 1.0625rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+	text-decoration: none;
+
+	&:hover {
+		color: var(--bs-emphasis-color);
+		text-decoration: none;
+	}
+}

@@ -1,0 +1,50 @@
+// a row of settings: text on the left, a control (switch, button) on the right, hover like a list row
+// <div class="setting-row"><div class="setting-row-text">...</div><div class="setting-row-control">switch</div></div>
+// The control has a fixed least width, so the texts of all rows line up even when the labels of the controls differ.
+.setting-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem 1rem;
+	align-items: center;
+	padding: .5rem .75rem;
+	margin-inline: -.75rem;
+	border-radius: var(--bs-border-radius);
+
+	&:hover {
+		background-color: rgba(var(--bs-body-color-rgb), .04);
+	}
+
+	+ .setting-row {
+		margin-top: .125rem;
+	}
+}
+
+.setting-row-text {
+	flex: 1 1 16rem;
+	min-width: 0;
+}
+
+// a list of setting rows keeps a readable width, so on a wide screen the controls stay near their texts
+.setting-list {
+	max-width: var(--setting-list-max-width, 60rem);
+}
+
+// a setting that cannot be changed here (inherited, set elsewhere): a lock and a short text in the body color
+.setting-row-locked {
+	display: inline-flex;
+	gap: .375rem;
+	align-items: center;
+	font-size: .875rem;
+	color: var(--bs-body-color);
+	cursor: default;
+
+	> .bi {
+		color: var(--bs-secondary-color);
+	}
+}
+
+.setting-row-control {
+	flex-shrink: 0;
+	min-width: var(--setting-row-control-width, 7rem);
+	margin-bottom: 0;
+}

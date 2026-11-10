@@ -1,0 +1,9 @@
+//
+// shadow utilities
+//
+
+@use '../variables' as var;
+
+.shadow-soft {
+	box-shadow: var.$soft-shadow !important;
+}

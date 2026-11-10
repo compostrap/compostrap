@@ -1,0 +1,52 @@
+// a vertical list of links with a count on the right, the current one in a pill (sections of a page, such as the
+// presenters on the permissions page)
+// <nav class="nav-list"> (`nav-list nav-list-box` in a box) <a class="nav-list-link active" aria-current="true" href="...">Blog<span class="nav-list-count">3/5</span></a></nav>
+.nav-list {
+	display: flex;
+	flex-direction: column;
+	gap: .125rem;
+}
+
+.nav-list-link {
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+	justify-content: space-between;
+	padding: .375rem .625rem;
+	color: var(--bs-secondary-color);
+	text-decoration: none;
+	border-radius: var(--bs-border-radius);
+
+	// like the menu: hover shows the pill of the current link
+	&:hover,
+	&.active {
+		color: var(--bs-emphasis-color);
+		text-decoration: none;
+		background-color: var(--ds-body-bg, var(--bs-tertiary-bg));
+	}
+
+	&.active {
+		font-weight: 500;
+	}
+}
+
+// the list in a box of the section color (like the cards of a form in an offcanvas), the current link in the plain
+// surface color, no shadow or border
+.nav-list-box {
+	padding: .375rem;
+	background-color: var(--bs-tertiary-bg);
+	border-radius: var(--bs-border-radius-lg);
+
+	.nav-list-link:hover,
+	.nav-list-link.active {
+		background-color: var(--bs-body-bg);
+	}
+}
+
+.nav-list-count {
+	flex-shrink: 0;
+	font-size: 1em;
+	font-weight: 400;
+	font-variant-numeric: tabular-nums;
+	color: var(--bs-secondary-color);
+}
