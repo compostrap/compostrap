@@ -6,7 +6,7 @@
  *
  * <div class="chart" style="--chart-height: 16rem">
  *   <canvas data-chart='{"type": "area", "labels": ["1. 11.", "2. 11."], "series": [{"name": "Revenue", "data": [120, 180]}],
- *     "format": {"style": "currency", "currency": "CZK", "maximumFractionDigits": 0}}' aria-label="Revenue"></canvas>
+ *     "format": {"style": "currency", "currency": "USD", "maximumFractionDigits": 0}}' aria-label="Revenue"></canvas>
  * </div>
  *
  * type: "area" (one series over time), "line", "bar" (columns), "bar-horizontal" (ranked bars with their values at

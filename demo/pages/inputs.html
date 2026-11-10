@@ -79,9 +79,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr data-price="24990">
+							<tr data-price="1099">
 								<td><div class="d-flex align-items-center gap-3"><img class="gallery-thumb" src="https://picsum.photos/id/0/80/80" alt="" width="40" height="40"><span>UltraBook Air 13<small class="d-block text-body-secondary">16 GB · 512 GB</small></span></div></td>
-								<td class="text-end text-nowrap">24 990 Kč</td>
+								<td class="text-end text-nowrap">$1,099</td>
 								<td>
 									<div class="number-input number-input-sm">
 										<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
@@ -89,11 +89,11 @@
 										<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
 									</div>
 								</td>
-								<td class="text-end text-nowrap fw-medium" data-total>24 990 Kč</td>
+								<td class="text-end text-nowrap fw-medium" data-total>$1,099</td>
 							</tr>
-							<tr data-price="1290">
+							<tr data-price="59">
 								<td><div class="d-flex align-items-center gap-3"><img class="gallery-thumb" src="https://picsum.photos/id/366/80/80" alt="" width="40" height="40"><span>Wireless keyboard K2<small class="d-block text-body-secondary">Black</small></span></div></td>
-								<td class="text-end text-nowrap">1 290 Kč</td>
+								<td class="text-end text-nowrap">$59</td>
 								<td>
 									<div class="number-input number-input-sm">
 										<button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
@@ -101,13 +101,13 @@
 										<button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
 									</div>
 								</td>
-								<td class="text-end text-nowrap fw-medium" data-total>2 580 Kč</td>
+								<td class="text-end text-nowrap fw-medium" data-total>$118</td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th colspan="3" class="text-end fw-semibold">Total</th>
-								<th class="text-end text-nowrap fw-semibold" id="demo-cart-total">27 570 Kč</th>
+								<th class="text-end text-nowrap fw-semibold" id="demo-cart-total">$1,217</th>
 							</tr>
 						</tfoot>
 					</table>
@@ -200,7 +200,7 @@
 <!-- overlays -->
 <script>
 	// the demo cart recounts its prices on a change of a quantity (drago would send it by AJAX)
-	const money = (value) => `${value.toLocaleString('cs-CZ')} Kč`;
+	const money = (value) => `$${value.toLocaleString('en-US')}`;
 	document.getElementById('demo-cart').addEventListener('change', () => {
 		let total = 0;
 		document.querySelectorAll('#demo-cart tbody tr').forEach((row) => {

@@ -9,6 +9,48 @@
 
 @use '../bootstrap' as bs;
 
+// the head of a step of the order: one bar, the title of the page in its left third and the steps in the other two,
+// so the steps stay in place whatever the length of the title; below lg the steps go under the title
+// <header class="shop-checkout-head"><nav aria-label="Checkout steps"><ol class="shop-stepper">…</ol></nav><h1 class="h4 mb-0">Your shopping cart</h1></header>
+.shop-checkout-head {
+	display: grid;
+	gap: 1rem 1.5rem;
+	align-items: center;
+	padding: 1rem 1.25rem;
+	// the gap under the page header is its own; under the bar the same gap as between the boxes of the page
+	margin-bottom: 1rem;
+	background-color: var(--shop-surface-bg);
+	border-radius: var(--bs-border-radius-lg);
+
+	// the steps come first in the markup (the navigation before the title), the title is shown before them;
+	// the steps are a container, so the names of the steps hide by the room the steps have (see the end of the file)
+	> nav {
+		order: 1;
+		min-width: 0;
+		container-type: inline-size;
+	}
+
+	@include bs.media-breakpoint-up(lg) {
+		// 5 : 7, so a longer title stays on one line (the steps then keep only the name of the current one)
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+
+		// steps without a title (the confirmation of the order) take the whole bar
+		> nav:only-child {
+			grid-column: 1 / -1;
+		}
+
+		// next to the title the lines between the steps are shorter, so the names of all steps fit from xl up
+		> nav:not(:only-child) .shop-stepper-line {
+			min-width: 1rem;
+			margin: 0 .5rem;
+		}
+	}
+
+	@include bs.media-breakpoint-up(xl) {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	}
+}
+
 .shop-stepper {
 	--shop-stepper-size: 2rem;
 	display: flex;
@@ -104,5 +146,12 @@
 
 	.shop-stepper-line {
 		margin: 0 .5rem;
+	}
+}
+
+// in a narrow head of a step too (a small window)
+@container (max-width: 36rem) {
+	.shop-stepper-item:not(.is-current) .shop-stepper-label {
+		display: none;
 	}
 }

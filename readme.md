@@ -515,8 +515,8 @@ Charts of [Chart.js](https://www.chartjs.org) written as markup, so a template p
 		"type": "area",
 		"labels": ["9. 10.", "10. 10.", "11. 10."],
 		"series": [{"name": "Revenue", "data": [32400, 30100, 21800]}],
-		"format": {"style": "currency", "currency": "CZK", "maximumFractionDigits": 0},
-		"locale": "cs-CZ"
+		"format": {"style": "currency", "currency": "USD", "maximumFractionDigits": 0},
+		"locale": "en-US"
 	}'></canvas>
 </div>
 ```
@@ -701,7 +701,7 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 
 **Reviews.** On the detail, `.shop-reviews-summary` shows the average (`.shop-reviews-score` with `.shop-reviews-value`, a `rating-static` and the count) next to the shares of the grades (`ul.shop-reviews-bars`, a row per grade with a `.shop-reviews-bar` filled by `--shop-reviews-share`). A review is an `article.shop-review`: `.shop-review-header` (an `avatar`, `.shop-review-author` with the name and the date, a `rating-static rating-sm`), the text, `.shop-review-points` with the lists `.shop-review-pros` and `.shop-review-cons` (a green plus and a red minus before each item) and `.shop-review-footer` with the buttons of a helpful review. The rating row of a tile (`.shop-product-rating`) is used under the name of the product too, its link leads to the reviews.
 
-**Steps of the order.** An `ol.shop-stepper` of `li.shop-stepper-item` with a `.shop-stepper-badge` (the number, or a check icon in a done step), a `.shop-stepper-label` and a `.shop-stepper-line` that joins it with the next one. `is-done` marks a step already passed (its badge is a link back), `is-current` the present one. On phones only the current step keeps its name.
+**Steps of the order.** A step of the order starts with `header.shop-checkout-head`, one bar from lg up: the title of the page (`h1`) in its left third, the steps in the other two thirds (5 : 7 between lg and xl), so they stay in place whatever the length of the title (below lg the steps go under the title; where the steps have little room, only the current one keeps its name). An `ol.shop-stepper` of `li.shop-stepper-item` with a `.shop-stepper-badge` (the number, or a check icon in a done step), a `.shop-stepper-label` and a `.shop-stepper-line` that joins it with the next one. `is-done` marks a step already passed (its badge is a link back), `is-current` the present one. On phones only the current step keeps its name.
 
 ```html
 <nav aria-label="Checkout steps">
@@ -736,7 +736,9 @@ The module `shop` styles the storefront of an e-shop, outside the administration
 </div>
 ```
 
-**Confirmation of an order.** `.shop-confirm` is the centered block after the order is placed: `.shop-confirm-icon` (a check in a green circle), a title and a text with the number of the order. Under it go the ordered items (`.shop-cart-item` rows without the amount control), the delivery and the `.shop-summary`; all steps of the stepper are `is-done`.
+**Facts of an order.** `dl.shop-info` shows the facts to read (the customer, the address, the carrier and the payment in the summary and the confirmation): each pair is a `div` with a `dt` (a quiet label) over a `dd` (the value), side by side as many as fit. An address inside is an `address.shop-address`, written as on a parcel: the name in a `strong` on its own line, then the street, the town and the country.
+
+**Confirmation of an order.** `.shop-confirm` (with `theme-success`) is the banner after the order is placed, in the tint of a subtle success badge: `.shop-confirm-icon` (a check in a green circle) on the left, next to it `.shop-confirm-title` in the green of the text and a text with the number of the order. Under it go the ordered items (`.shop-cart-item` rows without the amount control), the delivery and the `.shop-summary`; all steps of the stepper are `is-done`.
 
 ## Demo
 

@@ -46,6 +46,42 @@
 	text-align: end;
 }
 
+// facts of an order to read (the customer, the address, the carrier): a quiet label over each value, side by side
+// as many as fit
+// <dl class="shop-info"><div><dt>Email</dt><dd>jan@example.com</dd></div>…</dl>
+.shop-info {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+	gap: 1rem 2rem;
+	margin: 0;
+
+	dt {
+		margin-bottom: .125rem;
+		font-weight: 400;
+		color: var(--bs-secondary-color);
+	}
+
+	dd {
+		margin: 0;
+	}
+}
+
+// an address written as on a parcel: the name in bold on its own line, then the street, the town and the country
+// <address class="shop-address"><strong>Jan Novák</strong>Dlouhá 12<br>110 00 Praha<br>Czechia</address>
+.shop-address {
+	margin: 0;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.6;
+	color: var(--bs-body-color);
+
+	strong {
+		display: block;
+		font-weight: 600;
+		color: var(--bs-emphasis-color);
+	}
+}
+
 // the choice of a carrier or payment: a card next to a hidden radio (.btn-check); the chosen one is tinted
 // <input type="radio" class="btn-check" name="carrier" id="c1" checked>
 // <label class="shop-option" for="c1"><span class="shop-option-main"><i class="shop-option-icon bi bi-truck"></i><span>Name</span></span><span class="shop-option-price">$4</span></label>
@@ -55,8 +91,8 @@
 	justify-content: space-between;
 	gap: .75rem;
 	width: 100%;
-	padding: .875rem 1rem;
-	margin-bottom: .5rem;
+	padding: .5rem .875rem;
+	margin-bottom: .375rem;
 	cursor: pointer;
 	background-color: var(--bs-tertiary-bg);
 	border-radius: var(--bs-border-radius);
@@ -74,8 +110,9 @@
 
 .shop-option-icon {
 	flex-shrink: 0;
-	width: 1.75rem;
-	font-size: 1.25rem;
+	width: 1.5rem;
+	font-size: 1.125rem;
+	line-height: 1;
 	text-align: center;
 	color: var(--bs-secondary-color);
 }
@@ -97,24 +134,38 @@
 	box-shadow: 0 0 0 var(--bs-focus-ring-width, 1px) var(--bs-primary);
 }
 
-// the confirmation of a placed order: a check in a green circle, the title and the text, centered
-// <div class="shop-confirm"><span class="shop-confirm-icon"><i class="bi bi-check-lg"></i></span><h1>Thank you</h1><p>…</p></div>
+// the confirmation of a placed order: a banner in the tint of success (as a subtle badge), a check in a green
+// circle on the left, next to it the title in the green of the text and the text; .theme-success gives the colors
+// of the theme, without the theme the tokens of Bootstrap are used
+// <div class="shop-confirm theme-success"><span class="shop-confirm-icon"><i class="bi bi-check-lg"></i></span>
+//   <div><h2 class="shop-confirm-title">Thank you</h2><p>…</p></div></div>
 .shop-confirm {
-	padding: 2rem 0 1rem;
-	text-align: center;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	padding: 1.25rem;
+	margin-bottom: 1rem;
+	background-color: var(--theme-bg-subtle, var(--bs-success-bg-subtle));
+	border-radius: var(--bs-border-radius-lg);
 }
 
 .shop-confirm-icon {
 	display: inline-flex;
+	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
-	width: 4rem;
-	height: 4rem;
-	margin-bottom: 1.25rem;
-	font-size: 2rem;
-	color: var(--bs-success);
-	background-color: var(--bs-success-bg-subtle);
+	width: 2.75rem;
+	height: 2.75rem;
+	font-size: 1.5rem;
+	color: #fff;
+	background-color: var(--bs-success);
 	border-radius: 50%;
+}
+
+.shop-confirm-title {
+	margin-bottom: .125rem;
+	font-size: 1.1875rem;
+	color: var(--theme-fg, var(--bs-success-text-emphasis));
 }
 
 // the summary of prices next to the steps, in view while the page scrolls (large screens)

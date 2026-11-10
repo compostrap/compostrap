@@ -1,20 +1,26 @@
-	<nav aria-label="Checkout steps" class="my-4">
-		<ol class="shop-stepper">
-			<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Cart</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
-			<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Delivery and payment</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
-			<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Your details</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
-			<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Summary</span></span></li>
-		</ol>
-	</nav>
+	<!-- the head of the step: the steps of the order and the title of the page on one surface -->
+	<header class="shop-checkout-head">
+		<nav aria-label="Checkout steps">
+			<ol class="shop-stepper">
+				<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Cart</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+				<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Delivery and payment</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+				<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Your details</span></span><span class="shop-stepper-line" aria-hidden="true"></span></li>
+				<li class="shop-stepper-item is-done"><span><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Summary</span></span></li>
+			</ol>
+		</nav>
+		<h1 class="h4 mb-0"><i class="bi bi-bag-check text-body-secondary me-2" aria-hidden="true"></i>Order confirmation</h1>
+	</header>
 
 	<!-- the order is placed: a confirmation, the number, what follows -->
-	<div class="shop-confirm">
+	<div class="shop-confirm theme-success">
 		<span class="shop-confirm-icon" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
-		<h1 class="h3 mb-2">Thank you for your order</h1>
-		<p class="text-body-secondary mb-0">The order <strong class="text-body">#2026-0142</strong> is received. A confirmation was sent to <strong class="text-body">jan.novak@example.com</strong>.</p>
+		<div>
+			<h2 class="shop-confirm-title">Thank you for your order</h2>
+			<p class="mb-0">The order <strong class="text-body">#2026-0142</strong> is received. A confirmation was sent to <strong class="text-body">jan.novak@example.com</strong>.</p>
+		</div>
 	</div>
 
-	<div class="row g-4 mt-1 justify-content-center">
+	<div class="row g-4 justify-content-center">
 
 		<div class="col-lg-8">
 
@@ -47,11 +53,11 @@
 			<div class="card">
 				<div class="card-body">
 					<p class="fw-semibold mb-3"><i class="bi bi-signpost-2 text-body-secondary me-2" aria-hidden="true"></i>Delivery</p>
-					<div class="row gy-3">
-						<div class="col-md-6"><strong class="d-block mb-1">Delivery address</strong>Jan Novák<br>Dlouhá 12<br>110 00 Praha<br>Czechia</div>
-						<div class="col-md-6"><strong class="d-block mb-1">Carrier</strong>Courier to your door
-							<strong class="d-block mt-3 mb-1">Payment</strong>Card online <span class="badge badge-subtle theme-success ms-1">Paid</span></div>
-					</div>
+					<dl class="shop-info">
+						<div><dt>Delivery address</dt><dd><address class="shop-address"><strong>Jan Novák</strong>Dlouhá 12<br>110 00 Praha<br>Czechia</address></dd></div>
+						<div><dt>Carrier</dt><dd>Courier to your door</dd></div>
+						<div><dt>Payment</dt><dd>Card online <span class="badge badge-subtle theme-success ms-1">Paid</span></dd></div>
+					</dl>
 				</div>
 			</div>
 

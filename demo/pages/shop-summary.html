@@ -1,13 +1,15 @@
-	<nav aria-label="Checkout steps" class="my-4">
-		<ol class="shop-stepper">
-			<li class="shop-stepper-item is-done"><a href="shop-cart.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Cart</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
-			<li class="shop-stepper-item is-done"><a href="shop-delivery.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Delivery and payment</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
-			<li class="shop-stepper-item is-done"><a href="shop-customer.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Your details</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
-			<li class="shop-stepper-item is-current" aria-current="step"><span><span class="shop-stepper-badge">4</span><span class="shop-stepper-label">Summary</span></span></li>
-		</ol>
-	</nav>
-
-	<h1 class="h4 mb-4"><i class="bi bi-clipboard-check text-body-secondary me-2" aria-hidden="true"></i>Pre-shipment summary</h1>
+	<!-- the head of the step: the steps of the order and the title of the page on one surface -->
+	<header class="shop-checkout-head">
+		<nav aria-label="Checkout steps">
+			<ol class="shop-stepper">
+				<li class="shop-stepper-item is-done"><a href="shop-cart.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Cart</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+				<li class="shop-stepper-item is-done"><a href="shop-delivery.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Delivery and payment</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+				<li class="shop-stepper-item is-done"><a href="shop-customer.html"><span class="shop-stepper-badge"><i class="bi bi-check-lg" aria-hidden="true"></i></span><span class="shop-stepper-label">Your details</span></a><span class="shop-stepper-line" aria-hidden="true"></span></li>
+				<li class="shop-stepper-item is-current" aria-current="step"><span><span class="shop-stepper-badge">4</span><span class="shop-stepper-label">Summary</span></span></li>
+			</ol>
+		</nav>
+		<h1 class="h4 mb-0"><i class="bi bi-clipboard-check text-body-secondary me-2" aria-hidden="true"></i>Pre-shipment summary</h1>
+	</header>
 
 	<div class="row g-4">
 
@@ -44,15 +46,16 @@
 				</div>
 			</div>
 
-			<h2 class="h5 mb-3"><i class="bi bi-person-vcard text-body-secondary me-2" aria-hidden="true"></i>Customer information</h2>
 			<div class="card">
 				<div class="card-body">
-					<div class="row gy-3">
-						<div class="col-md-6"><strong class="d-block mb-1">Name and surname</strong>Jan Novák</div>
-						<div class="col-md-6"><strong class="d-block mb-1">Email</strong>jan.novak@example.com</div>
-						<div class="col-md-6"><strong class="d-block mb-1">Telephone</strong>+420 777 123 456</div>
-						<div class="col-md-6"><strong class="d-block mb-1">Delivery address</strong>Dlouhá 12<br>110 00 Praha<br>Czechia</div>
+					<div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+						<h2 class="fs-6 fw-semibold mb-0"><i class="bi bi-person-vcard text-body-secondary me-2" aria-hidden="true"></i>Customer information</h2>
+						<a href="shop-customer.html">Edit</a>
 					</div>
+					<dl class="shop-info">
+						<div><dt>Delivery address</dt><dd><address class="shop-address"><strong>Jan Novák</strong>Dlouhá 12<br>110 00 Praha<br>Czechia</address></dd></div>
+						<div><dt>Contact</dt><dd><address class="shop-address">+420 777 123 456<br>jan.novak@example.com</address></dd></div>
+					</dl>
 				</div>
 			</div>
 
