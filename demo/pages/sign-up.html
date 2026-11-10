@@ -28,7 +28,10 @@
 				</div>
 				<div class="col-12">
 					<label for="up-password" class="form-label">Password</label>
-					<input type="password" class="form-control" id="up-password" autocomplete="new-password" aria-describedby="up-strength">
+					<div class="password-toggle">
+						<input type="password" class="form-control" id="up-password" autocomplete="new-password" aria-describedby="up-strength">
+						<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+					</div>
 					<div class="strength" data-bs-strength>
 						<div class="strength-segment"></div>
 						<div class="strength-segment"></div>
@@ -39,7 +42,10 @@
 				</div>
 				<div class="col-12">
 					<label for="up-verify" class="form-label">Password again</label>
-					<input type="password" class="form-control" id="up-verify" autocomplete="new-password">
+					<div class="password-toggle">
+						<input type="password" class="form-control" id="up-verify" autocomplete="new-password">
+						<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+					</div>
 				</div>
 				<div class="col-12 d-grid">
 					<button type="submit" class="btn btn-primary">Create account</button>

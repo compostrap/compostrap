@@ -18,6 +18,7 @@ const entries = [
 	'dropzone',
 	'lightbox',
 	'strength',
+	'password-toggle',
 	'empty',
 	'auth',
 	'shop',

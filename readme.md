@@ -50,6 +50,7 @@ The package has three layers:
 | `dropzone` | component | a large area to drop files on or to click, made of a plain file input | `DropzoneInput` |
 | `lightbox` | component | a full-screen preview of images, browsed by arrows, keys and swipe | `Lightbox` |
 | `strength` | component | a meter of the password strength under a password input (markup of Bootstrap 6) | `Strength` |
+| `password-toggle` | component | a button with an eye in a password input that shows and hides the password | `PasswordToggle` |
 | `empty` | component | empty states in boxes and error pages (404, 403, 500, maintenance) with illustrations | – |
 | `auth` | component | pages outside the administration (sign in, sign up, recovery): a box in the middle of the page | – |
 | `shop` | component | the storefront of an e-shop: header with the mini cart, product tiles and detail, cart, steps of the order, choice of the delivery, price summary | `number-input` (amount) |
@@ -101,7 +102,7 @@ The styles can also be imported as SCSS:
 @import 'compostrap/src/scss/sidebar-menu';
 ```
 
-When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `empty`, `auth`, `shop`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
+When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `auth`, `shop`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
 
 ## Themes
 
@@ -623,6 +624,26 @@ Strength.init({ messages: { weak: 'Slabé', fair: 'Ucházející', good: 'Dobré
 
 A point is given for 8 characters, for 12, for lower case, upper case, a digit, a special character, two special characters and for 16 characters; up to 2 points is weak, 4 fair, 6 good, more strong. `minLength`, `thresholds` and an own `scorer(password)` change it. The meter fires `strengthChange` with `detail.strength` and `detail.score`. It only helps the user: the rules of a password belong to the validation of the form.
 
+### Password toggle
+
+A button with an eye inside a password input shows the typed password and hides it again. The input and the button stand in a `.password-toggle`; the button carries `data-password-toggle`, its text for readers is the `aria-label` and `aria-pressed` says whether the password is shown. The icon follows the type of the input: an eye for a hidden password, a crossed eye for a shown one.
+
+```html
+<label class="form-label" for="password">Password</label>
+<div class="password-toggle">
+	<input type="password" class="form-control" id="password" autocomplete="current-password">
+	<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+</div>
+```
+
+```js
+import { PasswordToggle } from 'compostrap/password-toggle';
+
+PasswordToggle.init(); // once; forms loaded later by AJAX work without a new init
+```
+
+The button is shown only once the script runs, so a page without JavaScript has a plain password input. A shown password is switched back to a password input when its form is sent. A meter of the strength (`.strength`) goes under the wrapper, not inside it, and rates a shown password too. The icons are glyphs of the icon font (Bootstrap Icons, the Sass variables `$icon-eye` and `$icon-eye-slash`), so the font has to be loaded. `--password-toggle-width` and `--password-toggle-icon` set the size of the button and of the icon.
+
 ### Empty states and error pages
 
 The module `empty` shows that a list has nothing yet, a search found nothing, a page waits for a choice, or a whole page is an error. Every part is optional: an illustration (`empty-img`) or a small icon (`empty-icon`), the code of an error (`empty-header`), a title, a sentence and buttons. `empty-page` puts it in the middle of a page of its own.
@@ -756,7 +777,7 @@ The demo is an overview of the components, one page each, with a menu by kind:
 - **Compostrap**: `elements.html`, what the package adds to Bootstrap (tooltips, avatars, state dots, stat tiles, list rows, theme switcher).
 - **Modules**: `datagrid.html`, `gallery.html` and `commerce.html` (an e-shop administration with products, variants and photos).
 - **Compostrap** also has `states.html` (empty states with an illustration and with an icon, a box that loads) and `inputs.html` (number inputs and a cart that recounts, datepickers, ratings).
-- **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`; recovery goes through its three steps), and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
+- **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`, the eye in the password inputs of module `password-toggle`; recovery goes through its three steps), and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
 - **Shop** (module `shop`, a storefront without the sidebar): `shop-products.html`, `shop-product.html`, `shop-cart.html`, `shop-delivery.html`, `shop-customer.html`, `shop-summary.html`, `shop-confirmation.html` and `shop-states.html` (an empty cart, a product out of stock, a valid and an invalid discount code, a form with errors, a cart that recounts), the whole way from the list of products to the confirmation of an order.
 
 ## Built on

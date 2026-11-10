@@ -25,6 +25,7 @@ export default defineConfig({
 				dropzone: entry('dropzone'),
 				lightbox: entry('lightbox'),
 				strength: entry('strength'),
+				'password-toggle': entry('password-toggle'),
 				'number-input': entry('number-input'),
 				datepicker: entry('datepicker'),
 				chart: entry('chart'),

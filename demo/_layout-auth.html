@@ -51,11 +51,12 @@
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script type="module">
-	import { ThemeSwitcher, Strength } from "./src/js/index.js";
+	import { ThemeSwitcher, Strength, PasswordToggle } from "./src/js/index.js";
 
 	document.addEventListener('DOMContentLoaded', () => {
 		new ThemeSwitcher({ lightIcon: 'bi bi-sun', darkIcon: 'bi bi-moon' }).initialize();
 		Strength.init();
+		PasswordToggle.init();
 	});
 </script>
 

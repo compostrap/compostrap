@@ -35,7 +35,7 @@ export class Strength {
 
 		this._initialized = true;
 		const update = (event) => {
-			if (event.target instanceof HTMLInputElement && event.target.type === 'password') {
+			if (event.target instanceof HTMLInputElement && (event.target.type === 'password' || event.target.closest('.password-toggle'))) {
 				this.evaluate(event.target);
 			}
 		};

@@ -68,7 +68,10 @@
 				</div>
 				<div class="col-12">
 					<label for="sign-password" class="form-label">Password</label>
-					<input type="password" class="form-control" id="sign-password" autocomplete="current-password">
+					<div class="password-toggle">
+						<input type="password" class="form-control" id="sign-password" autocomplete="current-password">
+						<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+					</div>
 				</div>
 				<div class="col-12 d-grid">
 					<button type="submit" class="btn btn-primary">Sign in</button>
@@ -89,11 +92,12 @@
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script type="module">
-	import { ThemeSwitcher, Strength } from "./src/js/index.js";
+	import { ThemeSwitcher, Strength, PasswordToggle } from "./src/js/index.js";
 
 	document.addEventListener('DOMContentLoaded', () => {
 		new ThemeSwitcher({ lightIcon: 'bi bi-sun', darkIcon: 'bi bi-moon' }).initialize();
 		Strength.init();
+		PasswordToggle.init();
 	});
 </script>
 

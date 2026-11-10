@@ -34,6 +34,7 @@
 		"./dropzone": "./dist/js/dropzone.js",
 		"./lightbox": "./dist/js/lightbox.js",
 		"./strength": "./dist/js/strength.js",
+		"./password-toggle": "./dist/js/password-toggle.js",
 		"./number-input": "./dist/js/number-input.js",
 		"./datepicker": "./dist/js/datepicker.js",
 		"./chart": "./dist/js/chart.js",

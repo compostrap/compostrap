@@ -1,0 +1,82 @@
+//
+// password-toggle: a button with an eye in a password input that shows the typed password and hides it again (the
+// password toggle of drago-ex/form, without Naja)
+//
+// <div class="password-toggle">
+//   <input type="password" class="form-control" id="password">
+//   <button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+// </div>
+//
+// The script switches the type of the input between password and text; the icon follows the type (an eye for a
+// hidden password, a crossed eye for a shown one). The button is shown only once the script runs (it sets
+// data-password-toggle on <html>), so a page without JavaScript has no dead button. The icons are glyphs of the icon
+// font ($icon-eye and $icon-eye-slash in _variables.scss, Bootstrap Icons by default) in the color of the text; drawn
+// as masks they were blurred wherever the input stood between two pixels (a page centered in the window).
+//
+
+@use '../variables' as var;
+
+.password-toggle {
+	--password-toggle-width: 2.5rem;
+	--password-toggle-icon: 1.125rem;
+
+	position: relative;
+
+	// the eye of Edge inside a password input would stand next to ours
+	input::-ms-reveal {
+		display: none;
+	}
+}
+
+.password-toggle-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: var(--password-toggle-width);
+	height: 100%;
+	padding: 0;
+	color: var(--bs-secondary-color);
+	cursor: pointer;
+	background: none;
+	border: 0;
+	border-radius: var(--bs-border-radius);
+
+	&::before {
+		font-family: var.$icon-font, sans-serif;
+		font-size: var(--password-toggle-icon);
+		font-weight: var.$icon-font-weight;
+		line-height: 1;
+		content: var.$icon-eye;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	&:hover {
+		color: var(--bs-body-color);
+	}
+
+	// the ring is only for the keyboard
+	&:focus-visible {
+		outline: 0;
+		box-shadow: inset 0 0 0 1px rgba(var(--bs-primary-rgb), .6);
+	}
+}
+
+// a shown password: the crossed eye
+.password-toggle > input[type='text'] ~ .password-toggle-btn::before {
+	content: var.$icon-eye-slash;
+}
+
+:root[data-password-toggle] {
+	.password-toggle-btn {
+		display: flex;
+	}
+
+	// room for the button; the icon of a validation state of Bootstrap would lie under it
+	.password-toggle > .form-control {
+		padding-right: var(--password-toggle-width);
+		background-image: none;
+	}
+}
