@@ -23,7 +23,7 @@ A new module:
 2. Load it in `src/scss/compostrap.scss` and list it in `scripts/build-css.js`, both in the module order below.
 3. JavaScript (when it has any): `src/js/<module>.js`, export it in `src/js/index.js`, an entry in `vite.config.js` and in `exports` of `package.json` (`compostrap/<module>`).
 4. A demo page (or a section of one) in `demo/pages/` and its item in the menu of `scripts/build-demo.js`.
-5. A section in `readme.md` under its layer and a row in the module table of the architecture.
+5. Its description in `docs/<module>.md` (a part of the theme in `docs/theme.md`, of the frame in `docs/layout.md`), a row in the module table of `readme.md` with a link to it and its link in the Documentation list there. `readme.md` holds only the overview (requirements, installation, architecture, usage, light and dark theme, demo, tests); the markup, classes, variables and JavaScript of a module are described in `docs/`, one file per component.
 
 ## Files
 
