@@ -9,6 +9,9 @@
 	--shop-page-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98.4%, #000);
 	--shop-surface-bg: var(--bs-body-bg);
 	--shop-tint-bg: rgba(var(--bs-body-color-rgb), .04);
+	// the primary color as a text on its light tint (the chosen variant, a finished step): darkened by 18 %, the least
+	// that reads 4.5:1 there
+	--shop-primary-text: color-mix(in oklch, var(--bs-primary) 82%, #000);
 }
 
 // the page is darker than its surfaces in the dark theme, as in the dashboard
@@ -16,6 +19,7 @@
 	--shop-page-bg: color-mix(in srgb, var(--bs-body-bg) 55%, #000);
 	// a light tint is weaker on a dark surface, so it is stronger there
 	--shop-tint-bg: rgba(var(--bs-body-color-rgb), .09);
+	--shop-primary-text: var(--bs-primary);
 }
 
 // the footer stays at the bottom of a short page

@@ -110,3 +110,13 @@ $theme-solid-shades: (
 		@include -cs-tokens($dark);
 	}
 }
+
+// a green text on a light surface takes the darker green ($success-text); on the dark one the green itself reads well
+.text-success {
+	--bs-success-rgb: #{to-rgb($success-text)};
+}
+
+[data-bs-theme='dark'] .text-success,
+.text-success[data-bs-theme='dark'] {
+	--bs-success-rgb: #{to-rgb($success)};
+}

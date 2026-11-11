@@ -28,6 +28,11 @@ $green: #00aa67 !default;
 $teal: #00b2ab !default;
 $cyan: #00afd9 !default;
 
+// green as a text on a light surface (.text-success, the text of a valid field): the green darkened by 16 % in oklch,
+// the least that reads 4.5:1 on white (the green itself has 3:1); the dark theme keeps the green
+$success-text: #00874f !default;
+$form-valid-color: $success-text !default;
+
 // white text on blue, green, red and orange like in Bootstrap 6, dark text on yellow and cyan
 $min-contrast-ratio: 2.7 !default;
 
@@ -44,6 +49,8 @@ $headings-font-weight: 600 !default;
 // small text (small, .small, form texts, feedback, the footer of a quote) in the size of the text: nothing readable is
 // under 14px unless it is a -sm size, a badge or an uppercase label
 $small-font-size: 1em !default;
+// the footer of a quote in the secondary color of the theme: the fixed gray of Bootstrap was 2.3:1 on the dark surface
+$blockquote-footer-color: var(--bs-secondary-color) !default;
 $h1-font-size: 1.75rem !default;
 $h2-font-size: 1.5rem !default;
 $h3-font-size: 1.3125rem !default;
