@@ -48,6 +48,12 @@ export class SidebarMenu {
 				}
 
 				link.addEventListener('click', (event) => {
+					// the compact sidebar (Sidebar) shows the links of a group in a menu next to its icon; the submenu
+					// keeps its state for the wide sidebar
+					if (this._isCompact()) {
+						return;
+					}
+
 					event.preventDefault();
 					const expanded = this._slideToggle(submenu, duration);
 					link.setAttribute('aria-expanded', String(expanded));
@@ -66,6 +72,11 @@ export class SidebarMenu {
 		document.querySelectorAll('.list-link.link-current:not(.link-arrow)').forEach((link) => {
 			link.setAttribute('aria-current', 'page');
 		});
+	}
+
+	// the compact sidebar with the icons only (html.sidebar-compact, from md up), the same test as Sidebar.isCompact()
+	static _isCompact() {
+		return document.documentElement.classList.contains('sidebar-compact') && window.matchMedia('(min-width: 768px)').matches;
 	}
 
 	static _slideToggle(target, duration) {

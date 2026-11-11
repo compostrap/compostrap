@@ -88,12 +88,64 @@
 	}
 }
 
-// the links of a group in the compact sidebar: a menu of the theme next to the icon (made by the Sidebar script)
+// the links of a group in the compact sidebar: a menu next to the icon (made by the Sidebar script) in the look of
+// the dropdowns of the theme, from their variables. It has classes of its own, not .dropdown-menu: Bootstrap handles
+// the keys of every .dropdown-menu and would open another dropdown of the page by the arrows
+// <ul class="sidebar-compact-menu"><li><h6 class="sidebar-compact-menu-header">Commerce</h6></li>
+//   <li><a class="sidebar-compact-menu-item active" aria-current="page" href="...">Products</a></li></ul>
 .sidebar-compact-menu {
+	--sm-menu-bg: #{bs.$dropdown-bg};
+	--sm-menu-item-hover-bg: #{bs.$dropdown-link-hover-bg};
+
 	position: fixed;
 	z-index: 1080;
 	min-width: 12rem;
+	padding: bs.$dropdown-padding-y 0;
 	margin: 0;
+	font-size: bs.$dropdown-font-size;
+	list-style: none;
+	background-color: var(--sm-menu-bg);
+	border-radius: bs.$dropdown-border-radius;
+	box-shadow: var(--bs-box-shadow-lg);
+}
+
+// in the dark theme, where a shadow is not seen, a lighter surface like the dropdowns
+[data-bs-theme='dark'] .sidebar-compact-menu {
+	--sm-menu-bg: var(--bs-secondary-bg);
+	--sm-menu-item-hover-bg: rgba(var(--bs-body-color-rgb), .08);
+}
+
+.sidebar-compact-menu-header {
+	padding: bs.$dropdown-header-padding-y bs.$dropdown-header-padding-x;
+	margin: 0;
+	font-size: bs.$font-size-sm;
+	color: var(--bs-secondary-color);
+	white-space: nowrap;
+}
+
+.sidebar-compact-menu-item {
+	display: block;
+	padding: bs.$dropdown-item-padding-y bs.$dropdown-item-padding-x;
+	color: bs.$dropdown-link-color;
+	white-space: nowrap;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: bs.$dropdown-link-hover-color;
+		text-decoration: none;
+		background-color: var(--sm-menu-item-hover-bg);
+	}
+
+	// the ring only for the keyboard, like the other menus
+	&:focus:not(:focus-visible) {
+		outline: 0;
+	}
+
+	&.active {
+		color: bs.$dropdown-link-active-color;
+		background-color: bs.$dropdown-link-active-bg;
+	}
 }
 
 // the name of a hovered link next to the compact sidebar, in the colors of the default tooltip; it is a box of its own

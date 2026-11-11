@@ -79,12 +79,13 @@ export class Sidebar {
 		try {
 			localStorage.setItem(this.compactStorageKey, compact ? '1' : '0');
 		} catch (e) { }
-		this._label?.setAttribute('hidden', '');
+		this._hideLabel();
 		this._closeFlyout();
 		// a scrollbar of the menu (Perfect scrollbar) measures its box again on a resize
 		window.dispatchEvent(new Event('resize'));
 	}
 
+	/** Whether the compact sidebar is shown (it is only from md up). */
 	static isCompact() {
 		return document.documentElement.classList.contains('sidebar-compact') && window.matchMedia('(min-width: 768px)').matches;
 	}
@@ -100,71 +101,58 @@ export class Sidebar {
 		try {
 			stored = localStorage.getItem(this.compactStorageKey);
 		} catch (e) { }
-		const compact = stored === null ? document.documentElement.classList.contains('sidebar-compact') : stored === '1';
-		document.documentElement.classList.toggle('sidebar-compact', compact);
+		if (stored !== null) {
+			document.documentElement.classList.toggle('sidebar-compact', stored === '1');
+		}
+		const compact = document.documentElement.classList.contains('sidebar-compact');
 		document.querySelectorAll('[data-sidebar-compact]').forEach((button) => button.setAttribute('aria-pressed', String(compact)));
 
+		// the button, a link with a submenu (its links in a menu next to the icon; SidebarMenu leaves the click alone in
+		// the compact sidebar) and a click outside an open menu
 		document.addEventListener('click', (event) => {
 			if (event.target.closest('[data-sidebar-compact]')) {
 				this.setCompact(!document.documentElement.classList.contains('sidebar-compact'));
 				return;
 			}
 
-			// a link with a submenu opens its links in a menu next to the icon (the sidebar stays narrow); the menu of the
-			// sidebar does not get the click, so its submenu keeps its state for the wide sidebar
 			const group = event.target.closest('.sidebar .list-link.link-arrow');
 			if (group && this.isCompact()) {
 				event.preventDefault();
-				event.stopImmediatePropagation();
 				if (this._flyoutGroup === group) {
 					this._closeFlyout();
 				} else {
 					// a click of the mouse leaves the focus on the icon, Enter or Space moves it into the menu
 					this._openFlyout(group, event.detail === 0);
 				}
-				return;
-			}
-
-			if (this._flyout && !event.target.closest('.sidebar-compact-menu')) {
+			} else if (this._flyout && !this._flyout.contains(event.target)) {
 				this._closeFlyout();
 			}
-		}, true);
+		});
 
-		// the keys of a dropdown: Esc closes the menu (the focus back on its icon), the arrows move between its links.
-		// The menu has the class of a dropdown of Bootstrap for its look, so its keys must not reach the handler of
-		// Bootstrap (on the document in the capture phase): it would open the first dropdown of the page, as the menu
-		// has no toggle of its own. So they are handled on the window, before the document, and stopped there
-		window.addEventListener('keydown', (event) => {
-			if (!this._flyout || !['Escape', 'ArrowDown', 'ArrowUp', 'Tab'].includes(event.key)) {
+		// the keys of a dropdown: Esc closes the menu (the focus back on its icon), the arrows move between its links;
+		// the menu stands at the end of the page, so Tab leaves it as if it stood after its icon
+		document.addEventListener('keydown', (event) => {
+			if (!this._flyout) {
 				return;
 			}
 
-			// the menu stands at the end of the page, so Tab leaves it as if it stood after its icon: Tab after the last
-			// link goes on from the icon to the next one, Shift+Tab before the first link returns to the icon
-			if (event.key === 'Tab') {
-				const items = [...this._flyout.querySelectorAll('.dropdown-item')];
-				if (event.shiftKey && event.target === items[0]) {
-					event.preventDefault();
-					this._closeFlyout(true);
-				} else if (!event.shiftKey && event.target === items[items.length - 1]) {
-					this._closeFlyout(true);
-				}
-				return;
-			}
-
+			const items = [...this._flyout.querySelectorAll('.sidebar-compact-menu-item')];
+			const index = items.indexOf(event.target);
 			if (event.key === 'Escape') {
 				this._closeFlyout(true);
-			} else if (this._flyout.contains(event.target)) {
-				const items = [...this._flyout.querySelectorAll('.dropdown-item')];
-				const index = items.indexOf(document.activeElement);
-				const next = event.key === 'ArrowDown' ? Math.min(index + 1, items.length - 1) : Math.max(index - 1, 0);
+			} else if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && (index !== -1 || event.target === this._flyoutGroup)) {
 				event.preventDefault();
-				items[index === -1 ? 0 : next]?.focus();
-			} else {
-				return;
+				items[Math.min(Math.max(index + (event.key === 'ArrowDown' ? 1 : -1), 0), items.length - 1)].focus();
+			} else if (event.key === 'Tab' && event.shiftKey && index === 0) {
+				// before the first link: back on the icon
+				event.preventDefault();
+				this._closeFlyout(true);
+			} else if (event.key === 'Tab' && !event.shiftKey && index === items.length - 1) {
+				// after the last link: the focus on the icon, then the browser moves on to the next one
+				this._closeFlyout(true);
 			}
-			event.stopPropagation();
-		}, true);
+		});
+
 		// the focus moving anywhere else (a click into a field, a dialog taking the focus) closes the menu
 		document.addEventListener('focusin', (event) => {
 			if (this._flyout && !this._flyout.contains(event.target) && event.target !== this._flyoutGroup) {
@@ -172,42 +160,29 @@ export class Sidebar {
 			}
 		});
 		window.addEventListener('resize', () => this._closeFlyout());
+		document.addEventListener('scroll', (event) => {
+			this._hideLabel();
+			if (!this._flyout?.contains(event.target)) {
+				this._closeFlyout();
+			}
+		}, true);
 
 		// the name of a hovered or focused link next to the compact sidebar
 		const show = (event) => {
 			const link = event.target.closest?.('.sidebar .list-link');
-			if (!link || !this.isCompact() || link === this._flyoutGroup) {
-				return;
+			if (link && link !== this._flyoutGroup && this.isCompact()) {
+				this._showLabel(link);
 			}
-
-			if (!this._label) {
-				this._label = document.createElement('div');
-				this._label.className = 'sidebar-compact-label';
-				this._label.setAttribute('aria-hidden', 'true');
-				document.body.append(this._label);
-			}
-
-			const rect = link.getBoundingClientRect();
-			this._label.textContent = this._linkText(link);
-			this._label.style.left = `${rect.right + 8}px`;
-			this._label.style.top = `${rect.top + rect.height / 2}px`;
-			this._label.removeAttribute('hidden');
 		};
 		const hide = (event) => {
 			if (event.target.closest?.('.sidebar .list-link')) {
-				this._label?.setAttribute('hidden', '');
+				this._hideLabel();
 			}
 		};
 		document.addEventListener('mouseover', show);
 		document.addEventListener('focusin', show);
 		document.addEventListener('mouseout', hide);
 		document.addEventListener('focusout', hide);
-		document.addEventListener('scroll', (event) => {
-			this._label?.setAttribute('hidden', '');
-			if (!event.target.closest?.('.sidebar-compact-menu')) {
-				this._closeFlyout();
-			}
-		}, true);
 	}
 
 	// the text of a link of the menu without its icon and badge
@@ -215,7 +190,33 @@ export class Sidebar {
 		return (link.querySelector('.float-start') || link).textContent.trim();
 	}
 
-	/** The links of a group in a menu of the theme (.dropdown-menu) next to its icon in the compact sidebar. */
+	// a box next to the compact sidebar at the end of the page: the scrolling menu would cut off a box inside it
+	static _place(box, link, top) {
+		const rect = link.getBoundingClientRect();
+		box.style.left = `${rect.right + 8}px`;
+		box.style.top = `${top ?? rect.top + rect.height / 2}px`;
+	}
+
+	static _showLabel(link) {
+		if (!this._label) {
+			this._label = document.createElement('div');
+			this._label.className = 'sidebar-compact-label';
+			this._label.setAttribute('aria-hidden', 'true');
+			document.body.append(this._label);
+		}
+
+		this._label.textContent = this._linkText(link);
+		this._place(this._label, link);
+		this._label.hidden = false;
+	}
+
+	static _hideLabel() {
+		if (this._label) {
+			this._label.hidden = true;
+		}
+	}
+
+	/** The links of a group in a menu next to its icon in the compact sidebar; deeper levels under their name. */
 	static _openFlyout(group, focus = false) {
 		this._closeFlyout();
 
@@ -225,75 +226,69 @@ export class Sidebar {
 		}
 
 		const menu = document.createElement('ul');
-		menu.className = 'dropdown-menu show sidebar-compact-menu';
+		menu.className = 'sidebar-compact-menu';
 		menu.id = 'sidebar-compact-menu';
 
-		const header = document.createElement('li');
-		header.innerHTML = '<h6 class="dropdown-header"></h6>';
-		header.firstChild.textContent = this._linkText(group);
-		menu.append(header);
-
-		// deeper levels follow under the name of their group, indented
-		submenu.querySelectorAll('.list-link').forEach((link) => {
-			const depth = this._depth(link, submenu);
+		const add = (link, depth) => {
 			const item = document.createElement('li');
-			if (link.classList.contains('link-arrow')) {
-				item.innerHTML = '<h6 class="dropdown-header"></h6>';
-			} else {
-				item.innerHTML = '<a class="dropdown-item"></a>';
-				const anchor = item.firstChild;
-				anchor.href = link.getAttribute('href') || '#';
+			const header = link === group || link.classList.contains('link-arrow');
+			const element = document.createElement(header ? 'h6' : 'a');
+			element.className = header ? 'sidebar-compact-menu-header' : 'sidebar-compact-menu-item';
+			element.textContent = this._linkText(link);
+			if (depth) {
+				element.style.paddingLeft = `${1 + depth}rem`;
+			}
+			if (!header) {
+				element.href = link.getAttribute('href') || '#';
 				if (link.classList.contains('link-current')) {
-					anchor.classList.add('active');
-					anchor.setAttribute('aria-current', 'page');
+					element.classList.add('active');
+					element.setAttribute('aria-current', 'page');
 				}
 			}
-			item.firstChild.textContent = this._linkText(link);
-			item.firstChild.style.paddingLeft = depth ? `calc(var(--bs-dropdown-item-padding-x) + ${depth}rem)` : '';
+			item.append(element);
 			menu.append(item);
-		});
+		};
 
+		add(group, 0);
+		submenu.querySelectorAll('.list-link').forEach((link) => add(link, this._depth(link, submenu)));
 		document.body.append(menu);
 
-		// next to the icon, its top in line with the icon, inside the window
-		const rect = group.getBoundingClientRect();
-		const top = Math.max(8, Math.min(rect.top - 8, window.innerHeight - menu.offsetHeight - 8));
-		menu.style.left = `${rect.right + 8}px`;
-		menu.style.top = `${top}px`;
+		// its top in line with the icon, inside the window
+		const top = Math.max(8, Math.min(group.getBoundingClientRect().top - 8, window.innerHeight - menu.offsetHeight - 8));
+		this._place(menu, group, top);
 
 		this._flyout = menu;
 		this._flyoutGroup = group;
 		group.setAttribute('aria-controls', menu.id);
 		group.setAttribute('aria-expanded', 'true');
 		group.classList.add('sidebar-compact-open');
-		this._label?.setAttribute('hidden', '');
+		this._hideLabel();
 		if (focus) {
-			menu.querySelector('.dropdown-item')?.focus({ preventScroll: true });
+			menu.querySelector('.sidebar-compact-menu-item')?.focus({ preventScroll: true });
 		}
 	}
 
-	/** Closes the menu of a group; `focusGroup` moves the focus back on its icon (Esc). */
+	/** Closes the menu of a group; `focusGroup` moves the focus back on its icon. */
 	static _closeFlyout(focusGroup = false) {
-		if (!this._flyout) {
+		const group = this._flyoutGroup;
+		if (!group) {
 			return;
 		}
 
 		if (focusGroup) {
-			this._flyoutGroup.focus();
+			group.focus();
 		}
 
-		const group = this._flyoutGroup;
+		// the group tells again the state of its submenu in the wide sidebar (opened by SidebarMenu by its own style)
 		const submenu = group.nextElementSibling;
 		group.classList.remove('sidebar-compact-open');
-		if (submenu) {
-			if (submenu.id) {
-				group.setAttribute('aria-controls', submenu.id);
-			} else {
-				group.removeAttribute('aria-controls');
-			}
-			// the state of the submenu in the wide sidebar (the compact one hides it by CSS, so only its own style counts)
-			group.setAttribute('aria-expanded', String(submenu.style.display === 'block'));
+		group.setAttribute('aria-expanded', String(submenu?.style.display === 'block'));
+		if (submenu?.id) {
+			group.setAttribute('aria-controls', submenu.id);
+		} else {
+			group.removeAttribute('aria-controls');
 		}
+
 		this._flyout.remove();
 		this._flyout = null;
 		this._flyoutGroup = null;
@@ -303,9 +298,7 @@ export class Sidebar {
 	static _depth(link, submenu) {
 		let depth = 0;
 		for (let element = link.parentElement; element && element !== submenu; element = element.parentElement) {
-			if (element.classList.contains('list-hidden')) {
-				depth++;
-			}
+			depth += element.classList.contains('list-hidden') ? 1 : 0;
 		}
 		return depth;
 	}
