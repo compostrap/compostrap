@@ -112,6 +112,13 @@
 	}
 }
 
+// info has white text like the info buttons and badges of the theme (the dark text of Bootstrap was too heavy on
+// cyan), on the cyan darkened by 14 % as there, so the white reads
+[data-tooltip-color='info'] {
+	--cs-tooltip-bg: color-mix(in oklch, var(--bs-info) 86%, #000);
+	--cs-tooltip-color: #fff;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	[data-tooltip]::after {
 		animation: none;
