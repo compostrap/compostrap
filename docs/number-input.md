@@ -2,7 +2,7 @@
 
 [← Compostrap](../readme.md#documentation)
 
-A number with a minus and a plus button, without a border: a quiet track with the buttons close to the number. A fractional `step` sets the decimals the value keeps (`step="0.25"` → 1.50), `min` and `max` disable the buttons at the ends. A step fires `input` and `change` on the input, so a form can react (e.g. recount a cart by AJAX); the keys ↑ ↓ step a text input too. The buttons draw their minus and plus themselves. `number-input-sm` and `number-input-lg` follow the heights of the form controls.
+A number between a minus and a plus button, without a border: two quiet gray buttons with the number between them on the surface of the page (the variables `--number-input-btn-size`, `--number-input-btn-bg`, `--number-input-btn-hover-bg` and `--number-input-focus-bg` tune it). A fractional `step` sets the decimals the value keeps (`step="0.25"` → 1.50), `min` and `max` disable the buttons at the ends. A step fires `input` and `change` on the input, so a form can react (e.g. recount a cart by AJAX); the keys ↑ ↓ step a text input too. The buttons draw their minus and plus themselves. `number-input-sm` and `number-input-lg` follow the heights of the form controls.
 
 ```html
 <div class="number-input">

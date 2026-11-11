@@ -1,5 +1,5 @@
 //
-// number input: a number with a minus and a plus button in one box, e.g. the quantity of an item in a cart
+// number input: a number between a minus and a plus button, e.g. the quantity of an item in a cart
 //
 // <div class="number-input">
 //   <button type="button" class="number-input-btn" data-number-input="down" aria-label="Decrease"></button>
@@ -7,42 +7,39 @@
 //   <button type="button" class="number-input-btn" data-number-input="up" aria-label="Increase"></button>
 // </div>
 //
-// No border: a quiet track with the buttons close to the number, a hovered button raised on it. The buttons draw their
-// minus and plus themselves (an icon inside replaces them). A fractional step sets how many decimals the value keeps;
-// min and max disable the buttons at the ends. The spin buttons of the browser are hidden, its validation stays.
-// number-input-sm and number-input-lg follow the heights of the form controls (30, 36, 44px).
+// No border and no box around the whole: two quiet gray buttons with the number between them on the surface of the
+// page. The buttons draw their minus and plus themselves (an icon inside replaces them). A fractional step sets how
+// many decimals the value keeps; min and max disable the buttons at the ends. The spin buttons of the browser are
+// hidden, its validation stays. The buttons are a step smaller than a form control (32px; 26px with number-input-sm,
+// 38px with number-input-lg).
 //
 
 @use '../bootstrap' as bs;
 
 .number-input {
-	--number-input-btn-size: 1.875rem;
-	--number-input-bg: rgba(var(--bs-body-color-rgb), .05);
+	--number-input-btn-size: 2rem;
+	--number-input-btn-bg: rgba(var(--bs-body-color-rgb), .06);
+	--number-input-btn-hover-bg: rgba(var(--bs-body-color-rgb), .11);
+	--number-input-focus-bg: rgba(var(--bs-body-color-rgb), .05);
 
 	display: flex;
+	gap: .125rem;
 	align-items: center;
 	width: fit-content;
-	padding: .1875rem;
-	background-color: var(--number-input-bg);
-	border-radius: var(--bs-border-radius);
-
-	// no ring: a click on a button used to light the whole track like a border; a keyboard focus darkens the track
-	&:has(:focus-visible) {
-		--number-input-bg: rgba(var(--bs-body-color-rgb), .1);
-	}
 
 	// the field is as wide as its number (at least two digits), so the buttons stay close to it
 	> .form-control {
-		min-width: 2.75ch;
+		min-width: calc(2.5ch + .5rem);
 		height: var(--number-input-btn-size);
 		min-height: 0;
 		padding: 0 .25rem;
+		font-size: inherit;
 		font-variant-numeric: tabular-nums;
 		text-align: center;
 		field-sizing: content;
 		background-color: transparent;
 		border: 0;
-		border-radius: 0;
+		border-radius: var(--bs-border-radius);
 		box-shadow: none;
 		appearance: textfield;
 
@@ -50,6 +47,11 @@
 		&::-webkit-outer-spin-button {
 			margin: 0;
 			appearance: none;
+		}
+
+		// a quiet tint shows where the typing goes (the number has no frame of its own)
+		&:focus {
+			background-color: var(--number-input-focus-bg);
 		}
 
 		&:disabled {
@@ -61,7 +63,7 @@
 // a browser without field-sizing gets a field for about four digits
 @supports not (field-sizing: content) {
 	.number-input > .form-control {
-		width: 5ch;
+		width: calc(5ch + .5rem);
 	}
 }
 
@@ -74,26 +76,21 @@
 	height: var(--number-input-btn-size);
 	padding: 0;
 	color: var(--bs-body-color);
-	background-color: transparent;
+	background-color: var(--number-input-btn-bg);
 	border: 0;
-	border-radius: calc(var(--bs-border-radius) - .125rem);
+	border-radius: var(--bs-border-radius);
 
-	// the hovered button is raised on the track, like a tab of a segmented control
-	&:hover {
-		background-color: var(--bs-body-bg);
-		box-shadow: 0 0 1px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .08);
-	}
-
-	// the focused button (keyboard) is raised like a hovered one, no ring
+	// a hovered button darkens at once; the focused one (keyboard) too, no ring
+	&:hover,
 	&:focus-visible {
 		outline: 0;
-		background-color: var(--bs-body-bg);
-		box-shadow: 0 0 1px rgba(0, 0, 0, .15), 0 1px 3px rgba(0, 0, 0, .08);
+		background-color: var(--number-input-btn-hover-bg);
 	}
 
 	&:disabled {
 		color: var(--bs-tertiary-color);
 		pointer-events: none;
+		background-color: rgba(var(--bs-body-color-rgb), .03);
 	}
 
 	// a minus, and a plus for the second button, when the button has no icon of its own
@@ -110,15 +107,16 @@
 	}
 }
 
-// in the dark theme the raised button is a lighter surface (a shadow is not seen there)
-[data-bs-theme='dark'] .number-input-btn:is(:hover, :focus-visible) {
-	background-color: rgba(var(--bs-body-color-rgb), .12);
-	box-shadow: none;
+// on the dark surface the same tints are fainter, so they are a step stronger
+[data-bs-theme='dark'] .number-input {
+	--number-input-btn-bg: rgba(var(--bs-body-color-rgb), .1);
+	--number-input-btn-hover-bg: rgba(var(--bs-body-color-rgb), .17);
+	--number-input-focus-bg: rgba(var(--bs-body-color-rgb), .07);
 }
 
-// the sizes follow the form controls: 30, 36 and 44px high
+// the sizes: 26, 32 and 38px high
 .number-input-sm {
-	--number-input-btn-size: 1.5rem;
+	--number-input-btn-size: 1.625rem;
 
 	font-size: bs.$input-font-size-sm;
 }
@@ -127,5 +125,9 @@
 	--number-input-btn-size: 2.375rem;
 
 	font-size: bs.$input-font-size-lg;
-	border-radius: var(--bs-border-radius-lg);
+
+	> .form-control,
+	.number-input-btn {
+		border-radius: var(--bs-border-radius-lg);
+	}
 }
