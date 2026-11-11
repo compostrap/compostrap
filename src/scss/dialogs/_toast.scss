@@ -1,0 +1,61 @@
+// a message of a state (a flash message: saved, deleted, failed) as a toast in the look of the modals: a thin colored
+// line at the top, an icon in the color, a title and a quiet text; a .theme-* class colors the line and the icon
+// <div class="toast-container position-fixed bottom-0 end-0 p-3">
+//   <div class="toast toast-status theme-success" role="status" aria-live="polite" aria-atomic="true">
+//     <i class="bi bi-check-circle toast-status-icon" aria-hidden="true"></i>
+//     <div class="toast-status-body"><strong class="toast-status-title">Saved</strong><p>The article was saved.</p></div>
+//     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+//   </div>
+// </div>
+.toast-status {
+	position: relative;
+	display: flex;
+	gap: .75rem;
+	align-items: flex-start;
+	padding: 1rem 1rem .875rem;
+	overflow: hidden;
+
+	// the line of .modal-status; the corners of the toast cut it
+	&::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: 3px;
+		content: '';
+		background-color: var(--theme-bg, var(--bs-primary));
+	}
+
+	> .btn-close {
+		flex-shrink: 0;
+		padding: .25rem;
+		margin: .125rem 0 0 auto;
+		font-size: .75rem;
+	}
+}
+
+.toast-status-icon {
+	flex-shrink: 0;
+	font-size: 1.5rem;
+	line-height: 1;
+	color: var(--theme-fg, inherit);
+}
+
+.toast-status-body {
+	flex: 1;
+	min-width: 0;
+	// the first line stands in the middle of the icon
+	padding-top: .0625rem;
+
+	p {
+		margin-bottom: 0;
+		color: var(--bs-secondary-color);
+	}
+}
+
+.toast-status-title {
+	display: block;
+	margin-bottom: .125rem;
+	font-weight: 600;
+	color: var(--bs-emphasis-color);
+}

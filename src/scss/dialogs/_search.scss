@@ -1,0 +1,79 @@
+// a search of the whole administration as a dialog (opened by a .navbar-icon button with a magnifier): one large
+// field without a frame at the top, the results as .list-row links under it in groups with a small title. The field
+// has no focus ring: it is the only field of the dialog and holds the focus while the dialog is open
+// <div class="modal-dialog modal-search"><div class="modal-content">
+//   <form class="modal-search-form" role="search"><i class="bi bi-search"></i>
+//     <input type="search" class="modal-search-input" placeholder="Search…" aria-label="Search"><kbd>Esc</kbd></form>
+//   <div class="modal-search-results"><p class="modal-search-title">Articles</p>
+//     <a class="list-row" href="...">…</a>
+//     <p class="modal-search-empty">Nothing found.</p></div>
+// </div></div>
+.modal-search {
+	--bs-modal-width: 36rem;
+
+	.modal-content {
+		overflow: hidden;
+	}
+}
+
+.modal-search-form {
+	display: flex;
+	gap: .75rem;
+	align-items: center;
+	padding: .875rem 1.25rem;
+	// a faint line under the field, drawn as a shadow
+	box-shadow: inset 0 -1px 0 rgba(var(--bs-body-color-rgb), .08);
+
+	> .bi {
+		font-size: 1.125rem;
+		line-height: 1;
+		color: var(--bs-secondary-color);
+	}
+}
+
+.modal-search-input {
+	flex: 1;
+	min-width: 0;
+	padding: 0;
+	font-size: 1rem;
+	color: var(--bs-body-color);
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+
+	&::placeholder {
+		color: var(--bs-secondary-color);
+	}
+
+	// the cross of the browser; the dialog closes by Esc
+	&::-webkit-search-cancel-button {
+		display: none;
+	}
+}
+
+// the results scroll inside the dialog, the field stays at the top
+.modal-search-results {
+	max-height: min(24rem, 60vh);
+	padding: .5rem 1.25rem .75rem;
+	overflow-y: auto;
+
+	&:empty {
+		display: none;
+	}
+}
+
+.modal-search-title {
+	margin: .75rem 0 .25rem;
+	font-size: .75rem;
+	font-weight: 600;
+	color: rgba(var(--bs-body-color-rgb), .6);
+	text-transform: uppercase;
+	letter-spacing: .02em;
+}
+
+.modal-search-empty {
+	padding: 1.5rem 0;
+	margin: 0;
+	color: var(--bs-secondary-color);
+	text-align: center;
+}

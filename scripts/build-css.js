@@ -10,6 +10,7 @@ const entries = [
 	'elements',
 	'dialogs',
 	'settings',
+	'selection',
 	'number-input',
 	'datepicker',
 	'rating',

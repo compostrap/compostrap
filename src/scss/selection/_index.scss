@@ -1,0 +1,79 @@
+//
+// selection: rows of a table chosen by checkboxes and a bar with the actions for them (the bulk actions of a datagrid)
+//
+// <div data-selection>
+//   <table class="table">
+//     <thead><tr><th class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-all aria-label="Select all"></th>…</tr></thead>
+//     <tbody><tr><td class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-item name="ids[]" value="1" aria-label="Select the row"></td>…</tr></tbody>
+//   </table>
+//   <div class="selection-bar" data-selection-bar hidden>
+//     <span class="selection-count"><strong data-selection-count>0</strong> selected</span>
+//     <div class="selection-actions"><button type="submit" class="btn btn-sm btn-secondary">Publish</button>…</div>
+//     <button type="button" class="btn-close" data-selection-clear aria-label="Clear the selection"></button>
+//   </div>
+// </div>
+//
+
+:root {
+	--selection-bar-bg: var(--bs-body-bg);
+	--selection-bar-box-shadow: var(--bs-box-shadow-lg);
+	--selection-bar-border-radius: var(--bs-border-radius-lg);
+	--selection-bar-offset: 1rem;
+}
+
+// in the dark theme a shadow is not seen, the bar gets a lighter surface like the dropdowns
+[data-bs-theme='dark'] {
+	--selection-bar-bg: var(--bs-secondary-bg);
+}
+
+// the column of the checkboxes: as narrow as the checkbox, which stands in the middle of the row
+.selection-cell {
+	width: 1%;
+	white-space: nowrap;
+	vertical-align: middle;
+
+	.form-check-input {
+		display: block;
+		margin: 0;
+	}
+}
+
+// the bar floats over the bottom of its table while the table is on the screen (it stays in the box, so it never
+// covers another part of the page); it is as wide as its content and wraps on a phone
+.selection-bar {
+	position: sticky;
+	bottom: var(--selection-bar-offset);
+	z-index: 3;
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem 1rem;
+	align-items: center;
+	width: fit-content;
+	max-width: 100%;
+	padding: .5rem .75rem .5rem 1rem;
+	margin: 1rem auto;
+	background-color: var(--selection-bar-bg);
+	border-radius: var(--selection-bar-border-radius);
+	box-shadow: var(--selection-bar-box-shadow);
+
+	// display: flex would show a bar that is hidden until a row is chosen
+	&[hidden] {
+		display: none;
+	}
+}
+
+.selection-count {
+	white-space: nowrap;
+	color: var(--bs-secondary-color);
+
+	strong {
+		color: var(--bs-body-color);
+	}
+}
+
+.selection-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	align-items: center;
+}

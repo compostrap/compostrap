@@ -13,10 +13,18 @@
 					<button type="button" class="btn btn-subtle theme-warning" data-bs-toggle="modal" data-bs-target="#demo-warning">Warning</button>
 				</div>
 
-				<h2 class="h6 text-uppercase text-body-secondary mb-3">Offcanvas and toasts</h2>
-				<div class="d-flex flex-wrap gap-2">
+				<h2 class="h6 text-uppercase text-body-secondary mb-3">Offcanvas</h2>
+				<div class="d-flex flex-wrap gap-2 mb-4">
 					<button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#demo-offcanvas"><i class="bi bi-layout-sidebar-reverse me-1" aria-hidden="true"></i>Open offcanvas</button>
-					<button type="button" class="btn btn-secondary" id="demo-toast-button">Show a toast</button>
+				</div>
+
+				<!-- the messages of a state (flash messages) in the corner of the window: .toast-status of the module dialogs -->
+				<h2 class="h6 text-uppercase text-body-secondary mb-3">Toasts</h2>
+				<div class="d-flex flex-wrap gap-2">
+					<button type="button" class="btn btn-subtle theme-success" data-demo-toast="#demo-flash-success">Success</button>
+					<button type="button" class="btn btn-subtle theme-danger" data-demo-toast="#demo-flash-danger">Error</button>
+					<button type="button" class="btn btn-subtle theme-warning" data-demo-toast="#demo-flash-warning">Warning</button>
+					<button type="button" class="btn btn-subtle theme-info" data-demo-toast="#demo-flash-info">Info</button>
 				</div>
 			</div>
 
@@ -60,12 +68,6 @@
 					</div>
 				</div>
 			</div>
-
-			<script>
-				document.getElementById('demo-toast-button').addEventListener('click', () => {
-					bootstrap.Toast.getOrCreateInstance(document.getElementById('demo-toast')).show();
-				});
-			</script>
 <!-- overlays -->
 <div class="modal fade" id="demo-modal" tabindex="-1" aria-labelledby="demo-modal-label" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
@@ -104,17 +106,5 @@
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
 			<button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas">Save</button>
 		</div>
-	</div>
-</div>
-
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-	<div class="toast" id="demo-toast" role="status" aria-live="polite" aria-atomic="true">
-		<div class="toast-header">
-			<span class="status-dot theme-success me-2"></span>
-			<strong class="me-auto">Saved</strong>
-			<small class="text-body-secondary">just now</small>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
-		<div class="toast-body">The article was saved.</div>
 	</div>
 </div>

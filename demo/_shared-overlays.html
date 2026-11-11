@@ -69,3 +69,79 @@
 		</div>
 	</div>
 </div>
+
+<!-- the search of the administration, opened by the magnifier in the navbar: the results are links in groups -->
+<div class="modal fade" id="demo-search" tabindex="-1" aria-label="Search" aria-hidden="true">
+	<div class="modal-dialog modal-search">
+		<div class="modal-content">
+			<form class="modal-search-form" role="search" onsubmit="return false">
+				<i class="bi bi-search" aria-hidden="true"></i>
+				<input type="search" class="modal-search-input" placeholder="Search articles, products, orders…" aria-label="Search" autocomplete="off">
+				<kbd>Esc</kbd>
+			</form>
+			<div class="modal-search-results">
+				<p class="modal-search-title">Articles</p>
+				<a class="list-row" href="datagrid.html">
+					<span class="stat-icon theme-primary"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+					<span class="list-row-text">First steps with the new administration<small>News · Published</small></span>
+				</a>
+				<a class="list-row" href="datagrid.html">
+					<span class="stat-icon theme-primary"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+					<span class="list-row-text">How to write a good article<small>Tips · Draft</small></span>
+				</a>
+				<p class="modal-search-title">Products</p>
+				<a class="list-row" href="commerce.html">
+					<span class="stat-icon theme-success"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+					<span class="list-row-text">Notebook Pro 14<small>Notebooks · $1,399</small></span>
+				</a>
+				<p class="modal-search-title">Pages</p>
+				<a class="list-row" href="permissions.html">
+					<span class="stat-icon"><i class="bi bi-shield-lock" aria-hidden="true"></i></span>
+					<span class="list-row-text">Permissions<small>Roles and their privileges</small></span>
+				</a>
+				<a class="list-row" href="account.html">
+					<span class="stat-icon"><i class="bi bi-person" aria-hidden="true"></i></span>
+					<span class="list-row-text">Account<small>Profile and password</small></span>
+				</a>
+				<p class="modal-search-empty" hidden>Nothing found.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- the messages of a state (flash messages) in the corner of the window; drago draws them here as a snippet and shows
+     them by bootstrap.Toast. The bottom padding only keeps them over the Customize button of the demo -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3 pb-5">
+	<div class="toast toast-status theme-success" id="demo-flash-success" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-check-circle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">Saved</strong>
+			<p>The changes of the article were saved.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast toast-status theme-danger" id="demo-flash-danger" role="alert" aria-live="assertive" aria-atomic="true">
+		<i class="bi bi-exclamation-octagon toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">Not saved</strong>
+			<p>The server did not answer, try it again in a while.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast toast-status theme-warning" id="demo-flash-warning" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-exclamation-triangle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">The article has no category</strong>
+			<p>It was saved, but it is not shown in any list.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast toast-status theme-info" id="demo-flash-info" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-info-circle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">A new version is ready</strong>
+			<p>Reload the page to use it.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+</div>

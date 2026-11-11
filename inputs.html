@@ -240,6 +240,14 @@
 									</a>
 								</li>
 								<li>
+									<a href="account.html" class="list-link">
+										<div class="clearfix">
+											<div class="float-start"><span class="list-icon"><i class="bi bi-person-gear bell"></i></span>Account</div>
+											<div class="float-end"></div>
+										</div>
+									</a>
+								</li>
+								<li>
 									<a href="permissions.html" class="list-link">
 										<div class="clearfix">
 											<div class="float-start"><span class="list-icon"><i class="bi bi-shield-lock bell"></i></span>Permissions</div>
@@ -430,6 +438,12 @@
 
 				<div class="ms-auto d-flex align-items-center gap-1">
 
+					<!-- search: opens the search dialog (.modal-search of the module dialogs), in the demo also by Ctrl+K -->
+					<button type="button" class="navbar-icon" data-bs-toggle="modal" data-bs-target="#demo-search" aria-label="Search">
+						<i class="bi bi-search" aria-hidden="true"></i>
+						<span class="navbar-icon-text d-none d-lg-inline">Search</span>
+					</button>
+
 					<!-- notifications: a pulsing dot when something waits, the numbers are in the dropdown -->
 					<div class="dropdown">
 						<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
@@ -473,7 +487,7 @@
 							<span class="d-none d-lg-block"><span class="navbar-user-name">Jan Novák</span><span class="navbar-user-role">Administrator</span></span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="#"><i class="bi bi-person me-2" aria-hidden="true"></i>Account</a></li>
+							<li><a class="dropdown-item" href="account.html"><i class="bi bi-person me-2" aria-hidden="true"></i>Account</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<!-- the theme: light, dark or the one of the system, one click; the menu stays open (auto-close outside) -->
 							<li class="dropdown-theme">
@@ -841,12 +855,88 @@
 	</div>
 </div>
 
+<!-- the search of the administration, opened by the magnifier in the navbar: the results are links in groups -->
+<div class="modal fade" id="demo-search" tabindex="-1" aria-label="Search" aria-hidden="true">
+	<div class="modal-dialog modal-search">
+		<div class="modal-content">
+			<form class="modal-search-form" role="search" onsubmit="return false">
+				<i class="bi bi-search" aria-hidden="true"></i>
+				<input type="search" class="modal-search-input" placeholder="Search articles, products, orders…" aria-label="Search" autocomplete="off">
+				<kbd>Esc</kbd>
+			</form>
+			<div class="modal-search-results">
+				<p class="modal-search-title">Articles</p>
+				<a class="list-row" href="datagrid.html">
+					<span class="stat-icon theme-primary"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+					<span class="list-row-text">First steps with the new administration<small>News · Published</small></span>
+				</a>
+				<a class="list-row" href="datagrid.html">
+					<span class="stat-icon theme-primary"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+					<span class="list-row-text">How to write a good article<small>Tips · Draft</small></span>
+				</a>
+				<p class="modal-search-title">Products</p>
+				<a class="list-row" href="commerce.html">
+					<span class="stat-icon theme-success"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+					<span class="list-row-text">Notebook Pro 14<small>Notebooks · $1,399</small></span>
+				</a>
+				<p class="modal-search-title">Pages</p>
+				<a class="list-row" href="permissions.html">
+					<span class="stat-icon"><i class="bi bi-shield-lock" aria-hidden="true"></i></span>
+					<span class="list-row-text">Permissions<small>Roles and their privileges</small></span>
+				</a>
+				<a class="list-row" href="account.html">
+					<span class="stat-icon"><i class="bi bi-person" aria-hidden="true"></i></span>
+					<span class="list-row-text">Account<small>Profile and password</small></span>
+				</a>
+				<p class="modal-search-empty" hidden>Nothing found.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- the messages of a state (flash messages) in the corner of the window; drago draws them here as a snippet and shows
+     them by bootstrap.Toast. The bottom padding only keeps them over the Customize button of the demo -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3 pb-5">
+	<div class="toast toast-status theme-success" id="demo-flash-success" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-check-circle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">Saved</strong>
+			<p>The changes of the article were saved.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast toast-status theme-danger" id="demo-flash-danger" role="alert" aria-live="assertive" aria-atomic="true">
+		<i class="bi bi-exclamation-octagon toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">Not saved</strong>
+			<p>The server did not answer, try it again in a while.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast toast-status theme-warning" id="demo-flash-warning" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-exclamation-triangle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">The article has no category</strong>
+			<p>It was saved, but it is not shown in any list.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+	<div class="toast toast-status theme-info" id="demo-flash-info" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-info-circle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">A new version is ready</strong>
+			<p>Reload the page to use it.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+</div>
+
 <!-- javascript library -->
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
 <script src="node_modules/nanobar/nanobar.js"></script>
 <script type="module">
-	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput } from "./src/js/index.js";
+	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, RowSelection, PasswordToggle, Strength } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";
 	import { Charts } from "./src/js/chart.js";
 	import PerfectScrollbar from "perfect-scrollbar";
@@ -856,6 +946,9 @@
 		SidebarMenuApp.init();
 		DropzoneInput.init();
 		NumberInput.init();
+		RowSelection.init();
+		PasswordToggle.init();
+		Strength.init();
 		Datepicker.init();
 		Charts.init();
 
@@ -904,6 +997,40 @@
 		new ThemeSwitcher({ lightIcon: 'bi bi-sun', darkIcon: 'bi bi-moon' }).initialize();
 		new Nanobar().go(100);
 		new PerfectScrollbar('.scrollbar', { wheelSpeed: 0.3 });
+
+		// a button with data-demo-toast shows the message of a state it names (drago shows its flash messages so)
+		document.addEventListener('click', (event) => {
+			const toast = document.querySelector(event.target.closest('[data-demo-toast]')?.dataset.demoToast || null);
+			if (toast) {
+				bootstrap.Toast.getOrCreateInstance(toast).show();
+			}
+		});
+
+		// the search dialog of the demo: Ctrl+K opens it, the field takes the focus and filters the sample results
+		// (in drago the results are drawn by the server)
+		const search = document.getElementById('demo-search');
+		const searchInput = search.querySelector('.modal-search-input');
+		document.addEventListener('keydown', (event) => {
+			if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+				event.preventDefault();
+				bootstrap.Modal.getOrCreateInstance(search).show();
+			}
+		});
+		search.addEventListener('shown.bs.modal', () => searchInput.focus());
+		searchInput.addEventListener('input', () => {
+			const words = searchInput.value.trim().toLowerCase();
+			let found = 0;
+			search.querySelectorAll('.modal-search-title').forEach((title) => {
+				let rows = 0;
+				for (let row = title.nextElementSibling; row?.matches('.list-row'); row = row.nextElementSibling) {
+					row.hidden = !row.textContent.toLowerCase().includes(words);
+					rows += row.hidden ? 0 : 1;
+				}
+				title.hidden = rows === 0;
+				found += rows;
+			});
+			search.querySelector('.modal-search-empty').hidden = found > 0;
+		});
 
 		// a click on a row of the products opens the product, except a click on its links and buttons (like row-click.js
 		// of drago-ex/datagrid)

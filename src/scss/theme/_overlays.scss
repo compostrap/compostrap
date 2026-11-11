@@ -1,5 +1,5 @@
 //
-// theme: offcanvas, modals and dropdowns
+// theme: offcanvas, modals, dropdowns and toasts
 //
 
 // offcanvas floats: a gap from the edges of the window, rounded corners and a shadow instead of a border
@@ -105,4 +105,10 @@
 .dropdown-menu[data-bs-theme='dark'] {
 	--bs-dropdown-bg: var(--bs-secondary-bg);
 	--bs-dropdown-link-hover-bg: rgba(var(--bs-body-color-rgb), .08);
+}
+
+// a toast is a floating surface like a dropdown: lighter in the dark theme, where a shadow is not seen
+[data-bs-theme='dark'] .toast,
+.toast[data-bs-theme='dark'] {
+	--bs-toast-bg: var(--bs-secondary-bg);
 }

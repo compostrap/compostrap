@@ -1,6 +1,8 @@
 //
-// dialogs: what compostrap adds to the modals and offcanvas panels of Bootstrap
+// dialogs: what compostrap adds to the modals, offcanvas panels and toasts of Bootstrap
 //
 
 @use 'modal';
 @use 'offcanvas';
+@use 'toast';
+@use 'search';

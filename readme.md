@@ -40,8 +40,9 @@ The package has three layers:
 | `theme-switcher` | component | switches the light and dark theme of Bootstrap and remembers the choice | `ThemeSwitcher` |
 | `tooltip` | component | a tooltip of pure CSS for buttons and links with an icon only | – |
 | `elements` | component | small pieces of a page: state dots, stat tiles, list rows, the loading state of a box | – |
-| `dialogs` | component | a colored line and a confirmation of a modal, a bar of buttons at the bottom of an offcanvas | – |
+| `dialogs` | component | a colored line and a confirmation of a modal, a bar of buttons at the bottom of an offcanvas, a toast with the message of a state, a search dialog | – |
 | `settings` | component | a list of the sections of a page and rows of settings with their controls | – |
+| `selection` | component | rows of a table chosen by checkboxes and a bar with the actions for them | `RowSelection` |
 | `number-input` | component | a number with minus and plus buttons, e.g. the quantity in a cart | `NumberInput` |
 | `datepicker` | component | the calendar of Bootstrap 6 (Vanilla Calendar Pro) under a date input | `Datepicker` |
 | `chart` | component | charts of Chart.js written as markup, in the colors and fonts of the theme | `Charts` |
@@ -103,7 +104,7 @@ The styles can also be imported as SCSS:
 @import 'compostrap/src/scss/sidebar-menu';
 ```
 
-When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
+When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `selection`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
 
 ## Themes
 
@@ -189,7 +190,7 @@ With the theme a button group with `role="tablist"` (or the class `btn-group-seg
 
 ### Offcanvas and modals
 
-An offcanvas floats: it keeps a gap of 8px from the edges of the window, has rounded corners and a shadow instead of a border. `offcanvas-flush` keeps a panel stuck to the edge. A modal has no border, a shadow and a light line above the footer. Dropdowns have no border and a soft shadow, the chosen item is tinted instead of filled with the primary color.
+An offcanvas floats: it keeps a gap of 8px from the edges of the window, has rounded corners and a shadow instead of a border. `offcanvas-flush` keeps a panel stuck to the edge. A modal has no border, a shadow and a light line above the footer. Dropdowns have no border and a soft shadow, the chosen item is tinted instead of filled with the primary color. A toast follows the modals: no border, an opaque surface (a lighter one in the dark theme), larger corners and a shadow.
 
 ## Layout
 
@@ -427,6 +428,50 @@ The module `dialogs` adds to the modals and offcanvas panels of Bootstrap: `moda
 </div>
 ```
 
+**Toasts.** `toast-status` is a toast with the message of a state (a flash message: saved, deleted, failed) in the look of the modals: a thin colored line at the top, an icon in the color, a title and a quiet text. A `theme-*` class colors the line and the icon. The toasts stand in a `toast-container` of Bootstrap in a corner of the window and are shown by `bootstrap.Toast`, which also hides them after a while.
+
+```html
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+	<div class="toast toast-status theme-success" role="status" aria-live="polite" aria-atomic="true">
+		<i class="bi bi-check-circle toast-status-icon" aria-hidden="true"></i>
+		<div class="toast-status-body">
+			<strong class="toast-status-title">Saved</strong>
+			<p>The changes of the article were saved.</p>
+		</div>
+		<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+	</div>
+</div>
+```
+
+```javascript
+document.querySelectorAll('.toast-status').forEach((toast) => bootstrap.Toast.getOrCreateInstance(toast).show());
+```
+
+**Search.** `modal-search` is a search of the whole administration as a dialog, opened by a `navbar-icon` button with a magnifier: one large field without a frame at the top (`modal-search-form`, `modal-search-input`) and the results under it (`modal-search-results`) as `list-row` links in groups with a `modal-search-title`; `modal-search-empty` is the text when nothing is found. The results are drawn by the server (or by an own script), compostrap only styles them.
+
+```html
+<button type="button" class="navbar-icon" data-bs-toggle="modal" data-bs-target="#search" aria-label="Search"><i class="bi bi-search" aria-hidden="true"></i><span class="navbar-icon-text d-none d-lg-inline">Search</span></button>
+
+<div class="modal fade" id="search" tabindex="-1" aria-label="Search" aria-hidden="true">
+	<div class="modal-dialog modal-search">
+		<div class="modal-content">
+			<form class="modal-search-form" role="search">
+				<i class="bi bi-search" aria-hidden="true"></i>
+				<input type="search" class="modal-search-input" name="q" placeholder="Search…" aria-label="Search" autocomplete="off">
+				<kbd>Esc</kbd>
+			</form>
+			<div class="modal-search-results">
+				<p class="modal-search-title">Articles</p>
+				<a class="list-row" href="...">
+					<span class="stat-icon theme-primary"><i class="bi bi-journal-text" aria-hidden="true"></i></span>
+					<span class="list-row-text">How to write a good article<small>Tips · Draft</small></span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+```
+
 ### Settings
 
 `nav-list` (module `settings`) is a vertical list of links with a count on the right, the current one in a pill of the page background; `nav-list-box` puts it in a box of the section color with the current link in the plain surface color; `setting-list` keeps a list of rows readable on wide screens (`--setting-list-max-width`, 60rem), and `setting-row-locked` (a lock and a short text, its reason in a tooltip) stands for a control that cannot be changed here; `setting-row` is a row of settings with the text on the left and a control on the right. The control keeps the least width `--setting-row-control-width` (7rem), so the texts of all rows line up.
@@ -444,6 +489,46 @@ The module `dialogs` adds to the modals and offcanvas panels of Bootstrap: `moda
 	</div>
 </div>
 ```
+
+### Selection
+
+Rows of a table chosen by checkboxes and a bar with the actions for them (the bulk actions of a datagrid). Inside a `data-selection` wrapper the checkbox `data-selection-all` checks all `data-selection-item` checkboxes and shows a dash when only some are checked; a chosen row gets `table-active`. The bar `selection-bar` (`data-selection-bar`) is hidden until a row is chosen, `data-selection-count` holds the number of the chosen rows and `data-selection-clear` unchecks them. The bar floats over the bottom edge of the window while its table is on the screen and stays inside its box. `selection-cell` is the narrow column of the checkboxes.
+
+```html
+<form class="content-box" data-selection>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-all aria-label="Select all"></th>
+				<th>Title</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-item name="ids[]" value="1" aria-label="Select the row"></td>
+				<td>First steps</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="selection-bar" data-selection-bar hidden>
+		<span class="selection-count"><strong data-selection-count>0</strong> selected</span>
+		<div class="selection-actions">
+			<button type="submit" name="publish" class="btn btn-sm btn-secondary">Publish</button>
+			<button type="submit" name="delete" class="btn btn-sm btn-subtle theme-danger">Delete</button>
+		</div>
+		<button type="button" class="btn-close" data-selection-clear aria-label="Clear the selection"></button>
+	</div>
+</form>
+```
+
+```javascript
+import { RowSelection } from 'compostrap/selection';
+
+RowSelection.init();
+```
+
+The checkboxes are found on every change, so a table drawn again by AJAX needs no new `init()`; `RowSelection.update(wrapper)` brings the bar in line with the new rows and `RowSelection.clear(wrapper)` unchecks them. The bar can be changed by `--selection-bar-bg`, `--selection-bar-box-shadow`, `--selection-bar-border-radius` and `--selection-bar-offset` (its distance from the bottom edge).
 
 ### Number input
 
@@ -845,7 +930,7 @@ The demo is an overview of the components, one page each, with a menu by kind:
 - **Compostrap**: `elements.html`, what the package adds to Bootstrap (tooltips, avatars, state dots, stat tiles, list rows, theme switcher).
 - **Modules**: `datagrid.html`, `gallery.html` and `commerce.html` (an e-shop administration with products, variants and photos).
 - **Compostrap** also has `states.html` (empty states with an illustration and with an icon, a box that loads) and `inputs.html` (number inputs and a cart that recounts, datepickers, ratings).
-- **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`, the eye in the password inputs of module `password-toggle`; recovery goes through its three steps), and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
+- **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`, the eye in the password inputs of module `password-toggle`; recovery goes through its three steps), `account.html` (the account of the signed-in user: profile information and the change of the password next to each other) and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
 - **Blog** (module `blog`, a website without the sidebar): `blog-articles.html` (categories, the newest article, cards) and `blog-article.html` (an article with its text, comments and the comment form).
 - **Shop** (module `shop`, a storefront without the sidebar): `shop-products.html`, `shop-product.html`, `shop-cart.html`, `shop-delivery.html`, `shop-customer.html`, `shop-summary.html`, `shop-confirmation.html` and `shop-states.html` (an empty cart, a product out of stock, a valid and an invalid discount code, a form with errors, a cart that recounts), the whole way from the list of products to the confirmation of an order.
 

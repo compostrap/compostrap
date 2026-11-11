@@ -6,6 +6,7 @@ import { Lightbox } from './lightbox.js';
 import { Strength } from './strength.js';
 import { PasswordToggle } from './password-toggle.js';
 import { NumberInput } from './number-input.js';
+import { RowSelection } from './selection.js';
 
 export class SidebarSkeleton {
 	static init() {
@@ -19,6 +20,6 @@ export class SidebarMenuApp {
 	}
 }
 
-export { Sidebar, SidebarMenu, ThemeSwitcher, DropzoneInput, Lightbox, Strength, PasswordToggle, NumberInput };
+export { Sidebar, SidebarMenu, ThemeSwitcher, DropzoneInput, Lightbox, Strength, PasswordToggle, NumberInput, RowSelection };
 
 // Datepicker is imported from 'compostrap/datepicker' only: it needs the optional vanilla-calendar-pro

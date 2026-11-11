@@ -102,6 +102,12 @@
 
 				<div class="ms-auto d-flex align-items-center gap-1">
 
+					<!-- search: opens the search dialog (.modal-search of the module dialogs), in the demo also by Ctrl+K -->
+					<button type="button" class="navbar-icon" data-bs-toggle="modal" data-bs-target="#demo-search" aria-label="Search">
+						<i class="bi bi-search" aria-hidden="true"></i>
+						<span class="navbar-icon-text d-none d-lg-inline">Search</span>
+					</button>
+
 					<!-- notifications: a pulsing dot when something waits, the numbers are in the dropdown -->
 					<div class="dropdown">
 						<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
@@ -145,7 +151,7 @@
 							<span class="d-none d-lg-block"><span class="navbar-user-name">Jan Novák</span><span class="navbar-user-role">Administrator</span></span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="#"><i class="bi bi-person me-2" aria-hidden="true"></i>Account</a></li>
+							<li><a class="dropdown-item" href="account.html"><i class="bi bi-person me-2" aria-hidden="true"></i>Account</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<!-- the theme: light, dark or the one of the system, one click; the menu stays open (auto-close outside) -->
 							<li class="dropdown-theme">
@@ -238,7 +244,7 @@
 <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
 <script src="node_modules/nanobar/nanobar.js"></script>
 <script type="module">
-	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput } from "./src/js/index.js";
+	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, RowSelection, PasswordToggle, Strength } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";
 	import { Charts } from "./src/js/chart.js";
 	import PerfectScrollbar from "perfect-scrollbar";
@@ -248,6 +254,9 @@
 		SidebarMenuApp.init();
 		DropzoneInput.init();
 		NumberInput.init();
+		RowSelection.init();
+		PasswordToggle.init();
+		Strength.init();
 		Datepicker.init();
 		Charts.init();
 
@@ -296,6 +305,40 @@
 		new ThemeSwitcher({ lightIcon: 'bi bi-sun', darkIcon: 'bi bi-moon' }).initialize();
 		new Nanobar().go(100);
 		new PerfectScrollbar('.scrollbar', { wheelSpeed: 0.3 });
+
+		// a button with data-demo-toast shows the message of a state it names (drago shows its flash messages so)
+		document.addEventListener('click', (event) => {
+			const toast = document.querySelector(event.target.closest('[data-demo-toast]')?.dataset.demoToast || null);
+			if (toast) {
+				bootstrap.Toast.getOrCreateInstance(toast).show();
+			}
+		});
+
+		// the search dialog of the demo: Ctrl+K opens it, the field takes the focus and filters the sample results
+		// (in drago the results are drawn by the server)
+		const search = document.getElementById('demo-search');
+		const searchInput = search.querySelector('.modal-search-input');
+		document.addEventListener('keydown', (event) => {
+			if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+				event.preventDefault();
+				bootstrap.Modal.getOrCreateInstance(search).show();
+			}
+		});
+		search.addEventListener('shown.bs.modal', () => searchInput.focus());
+		searchInput.addEventListener('input', () => {
+			const words = searchInput.value.trim().toLowerCase();
+			let found = 0;
+			search.querySelectorAll('.modal-search-title').forEach((title) => {
+				let rows = 0;
+				for (let row = title.nextElementSibling; row?.matches('.list-row'); row = row.nextElementSibling) {
+					row.hidden = !row.textContent.toLowerCase().includes(words);
+					rows += row.hidden ? 0 : 1;
+				}
+				title.hidden = rows === 0;
+				found += rows;
+			});
+			search.querySelector('.modal-search-empty').hidden = found > 0;
+		});
 
 		// a click on a row of the products opens the product, except a click on its links and buttons (like row-click.js
 		// of drago-ex/datagrid)

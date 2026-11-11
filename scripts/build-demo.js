@@ -34,6 +34,7 @@ const menu = [
 		{ file: 'sign-in.html', title: 'Sign in', icon: 'bi-box-arrow-in-right', layout: 'auth' },
 		{ file: 'sign-up.html', title: 'Sign up', icon: 'bi-person-plus', layout: 'auth' },
 		{ file: 'recovery.html', title: 'Password recovery', icon: 'bi-key', layout: 'auth' },
+		{ file: 'account.html', title: 'Account', icon: 'bi-person-gear' },
 		{ file: 'permissions.html', title: 'Permissions', icon: 'bi-shield-lock' },
 		// the storefront of an e-shop (module shop): its own shell without sidebar and navbar
 		{ title: 'Shop', icon: 'bi-bag', items: [

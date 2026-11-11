@@ -1,5 +1,6 @@
-			<!-- a datagrid page like in the drago administration: a box with the page heading, the table and its footer -->
-			<div class="content-box mb-3">
+			<!-- a datagrid page like in the drago administration: a box with the page heading, the table and its footer;
+			     the rows can be chosen by checkboxes for the actions of the bar under the table (module selection) -->
+			<div class="content-box mb-3" data-selection>
 				<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
 					<div>
 						<h1 class="h5 mb-1">Blog articles</h1>
@@ -16,6 +17,7 @@
 					<table class="table table-sm table-borderless table-hover datagrid-table">
 						<thead>
 							<tr>
+								<th class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-all aria-label="Select all"></th>
 								<th class="fw-semibold"><a href="#">Title &darr;</a></th>
 								<th class="fw-semibold"><a href="#">Category &varr;</a></th>
 								<th class="fw-semibold"><a href="#">Published &varr;</a></th>
@@ -23,6 +25,7 @@
 								<th class="fw-semibold text-end">&nbsp;</th>
 							</tr>
 							<tr class="datagrid-filter-row">
+								<th class="selection-cell p-1"></th>
 								<th class="p-1"><input type="text" class="form-control form-control-sm" aria-label="Title"></th>
 								<th class="p-1">
 									<select class="form-select form-select-sm" aria-label="Category">
@@ -44,6 +47,7 @@
 						</thead>
 						<tbody>
 							<tr>
+<td class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-item name="ids[]" value="46" aria-label="Select the row"></td>
 								<td>First steps with the new administration</td>
 								<td>News</td>
 								<td>6. 11. 2026</td>
@@ -61,6 +65,7 @@
 								</td>
 							</tr>
 							<tr>
+<td class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-item name="ids[]" value="63" aria-label="Select the row"></td>
 								<td>How to write a good article</td>
 								<td>Tips</td>
 								<td>2. 11. 2026</td>
@@ -78,6 +83,7 @@
 								</td>
 							</tr>
 							<tr>
+<td class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-item name="ids[]" value="80" aria-label="Select the row"></td>
 								<td>Release notes of October</td>
 								<td>News</td>
 								<td>31. 10. 2026</td>
@@ -95,6 +101,7 @@
 								</td>
 							</tr>
 							<tr>
+<td class="selection-cell"><input type="checkbox" class="form-check-input" data-selection-item name="ids[]" value="97" aria-label="Select the row"></td>
 								<td>Comments are open</td>
 								<td>News</td>
 								<td>24. 10. 2026</td>
@@ -113,6 +120,17 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+
+				<!-- the actions for the chosen rows: shown while a row is checked -->
+				<div class="selection-bar" data-selection-bar hidden>
+					<span class="selection-count"><strong data-selection-count>0</strong> selected</span>
+					<div class="selection-actions">
+						<button type="button" class="btn btn-sm btn-secondary" data-selection-clear data-demo-toast="#demo-flash-success"><i class="bi bi-check2-circle me-1" aria-hidden="true"></i>Publish</button>
+						<button type="button" class="btn btn-sm btn-secondary"><i class="bi bi-download me-1" aria-hidden="true"></i>Export</button>
+						<button type="button" class="btn btn-sm btn-subtle theme-danger" data-bs-toggle="modal" data-bs-target="#demo-confirm"><i class="bi bi-trash me-1" aria-hidden="true"></i>Delete</button>
+					</div>
+					<button type="button" class="btn-close" data-selection-clear aria-label="Clear the selection"></button>
 				</div>
 
 				<div class="d-flex flex-column flex-md-row align-items-baseline gap-2">

@@ -119,6 +119,15 @@ $dropdown-divider-bg: rgba(var(--bs-body-color-rgb), .08) !default;
 $dropdown-link-active-color: var(--bs-body-color) !default;
 $dropdown-link-active-bg: rgba(var(--bs-primary-rgb), .1) !default;
 
+// toasts in the look of the modals: no border, an opaque surface, larger corners and the large shadow
+$toast-padding-x: 1rem !default;
+$toast-padding-y: .75rem !default;
+$toast-background-color: var(--bs-body-bg) !default;
+$toast-border-width: 0 !default;
+$toast-border-radius: var(--bs-border-radius-lg) !default;
+$toast-box-shadow: var(--bs-box-shadow-lg) !default;
+$toast-header-background-color: transparent !default;
+
 // accordion like in Bootstrap 6: the open item is a light gray (half the border color on the surface, so it sits with
 // the lines in both themes), its text and arrow stay in the body color, the arrow is a thin chevron
 $accordion-button-active-bg: color-mix(in srgb, var(--bs-border-color) 50%, var(--bs-body-bg)) !default;

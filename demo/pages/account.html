@@ -1,0 +1,103 @@
+			<!-- the account page of drago (project-account) inside the administration: who is signed in, then the two forms of
+			     the package (profile information, change of the password) next to each other instead of tabs, so nothing
+			     is hidden; below xl they stand under each other -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h1 class="h5 mb-1">Account</h1>
+					<p class="small text-body-secondary mb-0">Manage your personal information and account security.</p>
+				</header>
+
+				<div class="d-flex flex-wrap align-items-center gap-3">
+					<span class="avatar avatar-lg theme-primary">JN</span>
+					<div class="me-auto">
+						<div class="fw-semibold">Jan Novák <span class="badge badge-subtle theme-primary ms-1">Administrator</span></div>
+						<div class="text-body-secondary">jan.novak@example.com</div>
+					</div>
+					<dl class="d-flex flex-wrap gap-4 mb-0">
+						<div>
+							<dt class="fw-normal text-body-secondary">Member since</dt>
+							<dd class="mb-0">12. 3. 2024</dd>
+						</div>
+						<div>
+							<dt class="fw-normal text-body-secondary">Last sign-in</dt>
+							<dd class="mb-0">Today, 8:14</dd>
+						</div>
+					</dl>
+				</div>
+			</div>
+
+			<div class="row g-3">
+				<div class="col-xl-6">
+					<div class="content-box h-100">
+						<header class="mb-4 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Profile information</h2>
+							<p class="small text-body-secondary mb-0">Update the name and email address used for your account.</p>
+						</header>
+
+						<form class="row g-3" onsubmit="return false">
+							<div class="col-12">
+								<label for="account-name" class="form-label">Full name</label>
+								<input type="text" class="form-control" id="account-name" autocomplete="name" value="Jan Novák">
+							</div>
+							<div class="col-12">
+								<label for="account-email" class="form-label">E-mail</label>
+								<input type="email" class="form-control" id="account-email" autocomplete="email" value="jan.novak@example.com" aria-describedby="account-email-help">
+								<div class="form-text" id="account-email-help">Changing the email address requires your current password.</div>
+							</div>
+							<div class="col-12">
+								<label for="account-current" class="form-label">Current password</label>
+								<div class="password-toggle">
+									<input type="password" class="form-control" id="account-current" autocomplete="current-password">
+									<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+								</div>
+							</div>
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary" data-demo-toast="#demo-flash-success">Save profile</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-xl-6">
+					<div class="content-box h-100">
+						<header class="mb-4 pb-2 border-bottom">
+							<h2 class="h5 mb-1">Change password</h2>
+							<p class="small text-body-secondary mb-0">Use a strong password to keep your account protected.</p>
+						</header>
+
+						<form class="row g-3" onsubmit="return false">
+							<div class="col-12">
+								<label for="account-old" class="form-label">Current password</label>
+								<div class="password-toggle">
+									<input type="password" class="form-control" id="account-old" autocomplete="current-password">
+									<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+								</div>
+							</div>
+							<div class="col-12">
+								<label for="account-new" class="form-label">New password</label>
+								<div class="password-toggle">
+									<input type="password" class="form-control" id="account-new" autocomplete="new-password" aria-describedby="account-strength">
+									<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+								</div>
+								<div class="strength" data-bs-strength>
+									<div class="strength-segment"></div>
+									<div class="strength-segment"></div>
+									<div class="strength-segment"></div>
+									<div class="strength-segment"></div>
+								</div>
+								<span class="strength-text" id="account-strength" aria-live="polite"></span>
+							</div>
+							<div class="col-12">
+								<label for="account-verify" class="form-label">New password again</label>
+								<div class="password-toggle">
+									<input type="password" class="form-control" id="account-verify" autocomplete="new-password">
+									<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
+								</div>
+							</div>
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary" data-demo-toast="#demo-flash-success">Change password</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
