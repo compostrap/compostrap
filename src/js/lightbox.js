@@ -2,7 +2,8 @@
  * Lightbox: a link with data-lightbox opens its image (href) in a full-screen preview; links with the same value of
  * data-lightbox form a group to browse by the arrows, the keys ← → and a swipe. data-caption gives the text under the
  * image. Built on the native <dialog>, so Esc closes it and the focus returns to the link. The links are found on
- * every click, so content loaded later (AJAX snippets) needs no new init().
+ * every click, so content loaded later (AJAX snippets) needs no new init(). An image linked twice in a group (a big
+ * photo over its thumbnails) is shown once, at the place of its last link.
  *
  * <a href="photo-large.jpg" data-lightbox="gallery" data-caption="photo.jpg">…</a>
  */
@@ -43,10 +44,13 @@ export class Lightbox {
 
 			event.preventDefault();
 			const group = link.dataset.lightbox;
-			this._links = group
+			const address = (item) => item.getAttribute('href');
+			const links = group
 				? [...document.querySelectorAll('[data-lightbox]')].filter((item) => item.dataset.lightbox === group)
 				: [link];
-			this.open(this._links.indexOf(link));
+			// an image linked twice (a big photo over its thumbnails) is shown once, at the place of its last link
+			this._links = links.filter((item, index) => !links.slice(index + 1).some((later) => address(later) === address(item)));
+			this.open(Math.max(0, this._links.findIndex((item) => address(item) === address(link))));
 		});
 	}
 

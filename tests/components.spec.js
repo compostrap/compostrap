@@ -203,6 +203,34 @@ test.describe('gallery', () => {
 	});
 });
 
+test.describe('product photos of the shop', () => {
+	test('a thumbnail shows its photo, the big photo opens the lightbox at it', async ({ page, errors }) => {
+		await open(page, 'shop-product.html');
+		const thumbs = page.locator('.shop-detail-thumb');
+		const dialog = page.locator('dialog.lightbox');
+		const third = await thumbs.nth(2).getAttribute('href');
+
+		// a thumbnail only changes the big photo
+		await thumbs.nth(2).click();
+		await expect(page.locator('.shop-detail-main')).toHaveAttribute('src', third);
+		await expect(thumbs.nth(2)).toHaveClass(/active/);
+		await expect(dialog).toHaveCount(0);
+		await expect(page).toHaveURL(/shop-product.html$/);
+
+		// the big photo is counted once among the photos
+		await page.locator('.shop-detail-zoom').click();
+		await expect(dialog).toBeVisible();
+		await expect(dialog.locator('.lightbox-counter')).toHaveText('3 / 4');
+		await expect(dialog.locator('.lightbox-image')).toHaveAttribute('src', third);
+
+		await page.keyboard.press('ArrowRight');
+		await expect(dialog.locator('.lightbox-counter')).toHaveText('4 / 4');
+		await page.keyboard.press('Escape');
+		await expect(dialog).toBeHidden();
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('datepicker', () => {
 	test('a chosen day is written as an ISO date', async ({ page, errors }) => {
 		await open(page, 'inputs.html');

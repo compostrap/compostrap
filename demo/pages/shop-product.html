@@ -4,12 +4,16 @@
 
 			<div class="col-md-5">
 				<div class="shop-detail-gallery">
-					<img class="shop-detail-main" data-gallery-main src="demo/img/notebook-silver.svg" alt="UltraBook Air 13">
+					<!-- the big photo opens the lightbox at the shown image; a thumbnail shows its image in the big photo
+					     (the script below) and is a link of the same lightbox group, so the lightbox browses all the photos -->
+					<a href="demo/img/notebook-silver.svg" class="shop-detail-zoom" data-gallery-main data-lightbox="product" aria-label="Enlarge the image">
+						<img class="shop-detail-main" src="demo/img/notebook-silver.svg" alt="UltraBook Air 13">
+					</a>
 					<div class="shop-detail-thumbs" role="group" aria-label="Product images">
-						<button type="button" class="shop-detail-thumb active" data-gallery-image="demo/img/notebook-silver.svg" aria-label="Show product image 1" aria-pressed="true"><img src="demo/img/notebook-silver.svg" alt=""></button>
-						<button type="button" class="shop-detail-thumb" data-gallery-image="demo/img/notebook-silver-keyboard.svg" aria-label="Show product image 2" aria-pressed="false"><img src="demo/img/notebook-silver-keyboard.svg" alt=""></button>
-						<button type="button" class="shop-detail-thumb" data-gallery-image="demo/img/notebook-silver-side.svg" aria-label="Show product image 3" aria-pressed="false"><img src="demo/img/notebook-silver-side.svg" alt=""></button>
-						<button type="button" class="shop-detail-thumb" data-gallery-image="demo/img/notebook-silver-lid.svg" aria-label="Show product image 4" aria-pressed="false"><img src="demo/img/notebook-silver-lid.svg" alt=""></button>
+						<a href="demo/img/notebook-silver.svg" class="shop-detail-thumb active" data-lightbox="product" data-caption="UltraBook Air 13 (1 / 4)" aria-label="Show product image 1" aria-current="true"><img src="demo/img/notebook-silver.svg" alt=""></a>
+						<a href="demo/img/notebook-silver-keyboard.svg" class="shop-detail-thumb" data-lightbox="product" data-caption="UltraBook Air 13 (2 / 4)" aria-label="Show product image 2"><img src="demo/img/notebook-silver-keyboard.svg" alt=""></a>
+						<a href="demo/img/notebook-silver-side.svg" class="shop-detail-thumb" data-lightbox="product" data-caption="UltraBook Air 13 (3 / 4)" aria-label="Show product image 3"><img src="demo/img/notebook-silver-side.svg" alt=""></a>
+						<a href="demo/img/notebook-silver-lid.svg" class="shop-detail-thumb" data-lightbox="product" data-caption="UltraBook Air 13 (4 / 4)" aria-label="Show product image 4"><img src="demo/img/notebook-silver-lid.svg" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -186,10 +190,14 @@
 	document.querySelector('.shop-detail-thumbs').addEventListener('click', (event) => {
 		const thumb = event.target.closest('.shop-detail-thumb');
 		if (thumb) {
-			document.querySelector('[data-gallery-main]').src = thumb.dataset.galleryImage;
+			// the thumbnail only changes the big photo (the lightbox leaves a prevented click alone)
+			event.preventDefault();
+			const main = document.querySelector('[data-gallery-main]');
+			main.href = thumb.getAttribute('href');
+			main.querySelector('img').src = thumb.getAttribute('href');
 			document.querySelectorAll('.shop-detail-thumb').forEach((t) => {
 				t.classList.toggle('active', t === thumb);
-				t.setAttribute('aria-pressed', String(t === thumb));
+				if (t === thumb) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
 			});
 		}
 	});

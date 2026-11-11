@@ -70,7 +70,8 @@ Tiles go into a Bootstrap grid (`col-6 col-md-4 col-lg-6 col-xl-4 col-xxl-3` nex
 
 **Product detail.** The photos and the text with the choice of a variant stand side by side in one box (a `card` with a `row` inside).
 
-- `.shop-detail-gallery` holds the photos (no surface of its own): a big `img.shop-detail-main` and `.shop-detail-thumbs` of `button.shop-detail-thumb` (the shown one has `active`).
+- `.shop-detail-gallery` holds the photos (no surface of its own): a big `img.shop-detail-main` and `.shop-detail-thumbs` of `.shop-detail-thumb` buttons or links (the shown one has `active`).
+- The big photo opens in the [lightbox](lightbox.md) when it stands in a link `a.shop-detail-zoom` with `data-lightbox`. With the thumbnails as links of the same group (`<a href="photo.jpg" class="shop-detail-thumb" data-lightbox="product">`) the lightbox browses all the photos and opens at the shown one; the script of the project that shows a thumbnail in the big photo prevents the click, so a thumbnail does not open the lightbox itself.
 - `.shop-variant-group` is a choice of a variant, with a `.shop-variant-title` and `.shop-variant-options` of `button.shop-variant-pill`: the chosen one has `active`, an unavailable combination is `disabled`.
 - Switching the variants and the photos is up to the project.
 

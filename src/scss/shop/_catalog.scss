@@ -253,7 +253,14 @@
 }
 
 // the photos of a product: the big one and the thumbnails under it. They have no surface of their own, they stand in
-// the box of the detail (a card) next to the name, the price and the choice of a variant
+// the box of the detail (a card) next to the name, the price and the choice of a variant. The big photo can be a link
+// that opens it in the lightbox (a.shop-detail-zoom around it), the thumbnails buttons or links
+.shop-detail-zoom {
+	display: block;
+	cursor: zoom-in;
+	border-radius: var(--bs-border-radius);
+}
+
 .shop-detail-main {
 	display: block;
 	width: 100%;
@@ -270,6 +277,7 @@
 }
 
 .shop-detail-thumb {
+	display: block;
 	flex: 0 0 4.5rem;
 	height: 4.5rem;
 	padding: 0;

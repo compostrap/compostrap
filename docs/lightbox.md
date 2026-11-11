@@ -2,7 +2,7 @@
 
 [← Compostrap](../readme.md#documentation)
 
-A link with `data-lightbox` opens its image in a full-screen preview on a dark backdrop. Links with the same value form a group: the arrows, the keys ← → and a swipe browse it, a counter shows the position. `data-caption` is the text under the image. It is built on the native `<dialog>`: Esc or a click beside the image closes it and the focus returns to the link.
+A link with `data-lightbox` opens its image in a full-screen preview on a dark backdrop. Links with the same value form a group: the arrows, the keys ← → and a swipe browse it, a counter shows the position. `data-caption` is the text under the image. It is built on the native `<dialog>`: Esc or a click beside the image closes it and the focus returns to the link. An image linked twice in a group (a big photo over its thumbnails, as on the product detail of the shop) is shown once, at the place of its last link.
 
 ```html
 <a href="photo-large.jpg" data-lightbox="gallery" data-caption="photo.jpg">
