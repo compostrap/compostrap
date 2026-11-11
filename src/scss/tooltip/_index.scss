@@ -10,6 +10,19 @@
 
 @use '../bootstrap' as bs;
 
+// the default tooltip: a dark gray with white text in the light theme (the gray of the gray navbar, softer than the
+// black of the text), the light text color with dark text in the dark theme, where a dark gray would sink into the page
+:root,
+[data-bs-theme='light'] {
+	--cs-tooltip-default-bg: #{bs.$gray-600};
+	--cs-tooltip-default-color: #fff;
+}
+
+[data-bs-theme='dark'] {
+	--cs-tooltip-default-bg: var(--bs-emphasis-color);
+	--cs-tooltip-default-color: var(--bs-body-bg);
+}
+
 // The tooltip exists only while it is shown: a hidden one (opacity 0) would still widen the scroll area of its
 // container, e.g. a table-responsive with buttons in the last column would get a horizontal scrollbar. So it is
 // created on hover or focus and fades in by an animation.
@@ -23,8 +36,8 @@
 		z-index: 1080;
 		padding: .25rem .5rem;
 		border-radius: var(--bs-border-radius-sm);
-		background-color: var(--cs-tooltip-bg, var(--bs-emphasis-color));
-		color: var(--cs-tooltip-color, var(--bs-body-bg));
+		background-color: var(--cs-tooltip-bg, var(--cs-tooltip-default-bg));
+		color: var(--cs-tooltip-color, var(--cs-tooltip-default-color));
 		font-size: .75rem;
 		font-weight: 400;
 		line-height: 1.2;
