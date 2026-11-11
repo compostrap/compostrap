@@ -35,7 +35,7 @@ The package has three layers:
 |--------|-------|--------------|------------|
 | `theme` | theme | Bootstrap in the look of compostrap: neutral grays, 14px text, quiet shadows, one size scale of buttons and form controls, the colors and variants of Bootstrap 6 | – |
 | `sidebar` | layout | the sidebar: fixed on large screens, an overlay with a backdrop on small | `Sidebar` |
-| `sidebar-menu` | layout | a multi-level menu in the sidebar, links as pills, the current page on any level in a pill | `SidebarMenu` |
+| `sidebar-menu` | layout | a multi-level menu in the sidebar, links as pills, the current page on any level in a pill; a compact sidebar with the icons only | `SidebarMenu`, `Sidebar` (compact) |
 | `dashboard` | layout | the page background, the navbar over the content with a breadcrumb, icons and the user, the content boxes, the nanobar | – |
 | `theme-switcher` | component | switches the light and dark theme of Bootstrap and remembers the choice | `ThemeSwitcher` |
 | `tooltip` | component | a tooltip of pure CSS for buttons and links with an icon only | – |
@@ -262,6 +262,28 @@ The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On sm
 | Shaking icon on hover   | `bell`         |
 
 The colors of the menu come from the body color of Bootstrap (titles at 60 %, icons at 60 %, arrows at 85 %), so both themes work without settings; they can be changed by the `--sm-*` CSS variables, the sizes by the Sass variables in `src/scss/_variables.scss`. The pills of the links have `--sm-pill-border-radius`, `--sm-pill-icon-color`, `--sm-pill-link-bg` (the current page) and `--sm-pill-hover-bg` (a hovered link, a bit weaker).
+
+#### Compact sidebar
+
+From the `md` breakpoint up the sidebar can be narrowed to the icons of the first level (`$sm-compact-width`, 72px); a phone keeps its sliding menu. A button with `data-sidebar-compact` switches the class `sidebar-compact` of `<html>`, keeps its `aria-pressed` in line and remembers the choice in `localStorage` (`sidebar-compact`); it is handled by `Sidebar.init()`. In the compact sidebar:
+
+- the brand shows only its logo, a section title becomes a short line, badges and submenus are hidden (a group holding the current page gets its pill);
+- the name of a hovered or focused link is shown next to it in the colors of the tooltip;
+- a link with a submenu opens its links in a menu of the theme next to the icon (the group name over them, the current page marked); it is closed by another click on the icon, a click outside, Esc or a scroll, and works by the keyboard like a dropdown (Enter or Space moves the focus into it, the arrows between the links, Tab leaves it to the next icon).
+
+```html
+<html class="…">
+<head>
+	<!-- the remembered compact sidebar before the page is drawn, so the menu does not jump -->
+	<script>try { if (localStorage.getItem('sidebar-compact') === '1') document.documentElement.classList.add('sidebar-compact'); } catch (e) { }</script>
+</head>
+…
+<button type="button" class="navbar-icon" data-sidebar-compact aria-pressed="false" aria-label="Collapse the menu" data-tooltip="bottom">
+	<i class="bi bi-layout-sidebar" aria-hidden="true"></i>
+</button>
+```
+
+`Sidebar.setCompact(true|false)` sets it from a script, `Sidebar.isCompact()` tells whether the compact sidebar is shown.
 
 ### Navbar
 

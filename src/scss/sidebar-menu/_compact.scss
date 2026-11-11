@@ -1,0 +1,117 @@
+//
+// the compact sidebar: only the icons of the first level, from md up (a phone keeps its sliding menu)
+//
+// <html class="sidebar-compact"> set by a button <button class="navbar-icon" data-sidebar-compact aria-pressed="false">,
+// remembered by the Sidebar script. The texts stay in the page (read by screen readers and shown in a label next to
+// a hovered link), the section titles become short lines, submenus and badges are hidden; a link with a submenu
+// opens its links in a menu next to the icon.
+//
+
+@use '../bootstrap' as bs;
+@use '../variables' as var;
+
+@include bs.media-breakpoint-up(md) {
+	.sidebar-compact {
+		.sidebar-menu,
+		.scrollbar,
+		.list {
+			width: var.$sm-compact-width;
+		}
+
+		// a sidebar hidden by its toggle (the older layout) moves out by its compact width
+		.sidebar-toggle-visible {
+			margin-left: -(var.$sm-compact-width);
+		}
+
+		// only the logo of the brand, in the middle
+		.sidebar-brand {
+			justify-content: center;
+			padding-inline: 0;
+
+			> :not(svg, img) {
+				display: none;
+			}
+		}
+
+		// a section title is a short line between the groups of icons (the first one is left out)
+		.list-title {
+			width: 1.5rem;
+			height: 1px;
+			padding: 0;
+			margin: .375rem auto .5rem;
+			overflow: hidden;
+			font-size: 0;
+			background-color: rgba(var(--bs-body-color-rgb), .12);
+		}
+
+		.list > .list-item:first-child > .list-title {
+			height: 0;
+			margin-block: 0;
+		}
+
+		// the icon in the middle of its pill, the text of the link hidden by a zero font size (the icon has its own)
+		.list .list-link {
+			padding-inline: 0;
+			text-align: center;
+
+			.float-start {
+				float: none !important;
+				font-size: 0;
+			}
+
+			.float-end {
+				display: none;
+			}
+		}
+
+		.list-icon {
+			margin-right: 0;
+		}
+
+		.link-arrow::before {
+			display: none;
+		}
+
+		// submenus are hidden, so a group holding the current page gets its pill
+		.list .list-hidden {
+			display: none !important;
+		}
+
+		.list .list-link.link-arrow.link-current {
+			background-color: var(--sm-pill-link-bg);
+		}
+
+		// a group whose menu is open keeps the pill of a hovered link
+		.list .list-link.sidebar-compact-open {
+			background-color: var(--sm-pill-hover-bg);
+		}
+	}
+}
+
+// the links of a group in the compact sidebar: a menu of the theme next to the icon (made by the Sidebar script)
+.sidebar-compact-menu {
+	position: fixed;
+	z-index: 1080;
+	min-width: 12rem;
+	margin: 0;
+}
+
+// the name of a hovered link next to the compact sidebar, in the colors of the default tooltip; it is a box of its own
+// in the body (made by the Sidebar script), because the scrolling menu would cut off a label inside it
+.sidebar-compact-label {
+	position: fixed;
+	z-index: 1080;
+	padding: .25rem .5rem;
+	font-size: .75rem;
+	line-height: 1.2;
+	color: var(--cs-tooltip-default-color, var(--bs-body-bg));
+	white-space: nowrap;
+	pointer-events: none;
+	background-color: var(--cs-tooltip-default-bg, var(--bs-emphasis-color));
+	border-radius: var(--bs-border-radius-sm);
+	transform: translateY(-50%);
+
+	&[hidden] {
+		display: none;
+	}
+}

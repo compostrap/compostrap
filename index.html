@@ -16,8 +16,12 @@
 			}
 		} catch (e) { }
 	</script>
+	<!-- the compact sidebar (icons only) before the page is drawn, so the menu does not jump -->
 	<script>
-		window.demoLayout = { layout: 'page', sticky: true, color: 'white' };
+		try { if (localStorage.getItem('sidebar-compact') === '1') document.documentElement.classList.add('sidebar-compact'); } catch (e) { }
+	</script>
+	<script>
+		window.demoLayout ={ layout: 'page', sticky: true, color: 'white' };
 		try { Object.assign(window.demoLayout, JSON.parse(localStorage.getItem('demo-layout') || '{}')); } catch (e) { }
 		if (!['page', 'sidebar', 'bar'].includes(window.demoLayout.layout)) window.demoLayout.layout = 'page';
 		if (!['white', 'gray', 'primary', 'success', 'danger', 'info'].includes(window.demoLayout.color)) window.demoLayout.color = 'white';
@@ -428,6 +432,10 @@
 				</a>
 
 				<div class="collapse navbar-collapse">
+					<!-- the compact sidebar with the icons only (from md up), remembered in the browser -->
+					<button type="button" class="navbar-icon me-2" data-sidebar-compact aria-pressed="false" aria-label="Collapse the menu" data-tooltip="bottom">
+						<i class="bi bi-layout-sidebar" aria-hidden="true"></i>
+					</button>
 					<!-- breadcrumb of Bootstrap 6 -->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a class="breadcrumb-link active" aria-current="page">Dashboard</a></li>
