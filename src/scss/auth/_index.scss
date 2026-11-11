@@ -3,7 +3,7 @@
 //
 // <body class="auth-page">
 //   <div class="auth">
-//     <div class="auth-top"><a class="auth-brand" href="...">logo Name</a> <div class="auth-actions">language dropdown, theme switch</div></div>
+//     <div class="auth-top"><a class="auth-brand" href="...">logo Name</a> <div class="auth-actions">theme switch, language dropdown</div></div>
 //     <div class="auth-card auth-card-split">
 //       <aside class="auth-visual" aria-hidden="true"><i class="bi bi-shield-lock"></i></aside>
 //       <main class="auth-body">
@@ -24,7 +24,7 @@
 
 :root,
 [data-bs-theme='light'] {
-	--auth-page-bg: var(--bs-tertiary-bg);
+	--auth-page-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98.4%, #000);
 	--auth-card-bg: var(--bs-body-bg);
 	--auth-visual-bg: color-mix(in srgb, var(--bs-secondary-bg) 60%, var(--bs-body-bg));
 	// the icon is a deeper shade of the same gray (lighter in the dark theme, towards the text)
@@ -68,7 +68,7 @@
 	padding-inline: .25rem;
 }
 
-// the buttons on the right of the top row: the language dropdown and the theme switch
+// the buttons on the right of the top row: the theme switch and the language dropdown
 .auth-actions {
 	display: flex;
 	gap: .25rem;
@@ -86,6 +86,7 @@
 
 	&:hover {
 		color: var(--bs-emphasis-color);
+		text-decoration: none;
 	}
 }
 

@@ -133,8 +133,8 @@ The dashboard keeps the surface colors of Bootstrap:
 
 | Theme | Page background            | Sidebar and content |
 |-------|----------------------------|---------------------|
-| Light | `var(--bs-tertiary-bg)`    | `var(--bs-body-bg)` |
-| Dark  | `var(--bs-dark-bg-subtle)` | `var(--bs-body-bg)` |
+| Light | `--bs-tertiary-bg` darkened by 1.6 % (`#f6f6f6` in the theme) | `var(--bs-body-bg)` |
+| Dark  | `--bs-body-bg` mixed 55 % with black | `var(--bs-body-bg)` |
 
 ## Theme
 
@@ -260,7 +260,7 @@ The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On sm
 | Hidden submenu          | `list-hidden`  |
 | Shaking icon on hover   | `bell`         |
 
-The colors of the menu come from the body color of Bootstrap (titles at 60 %, icons at 60 %, arrows at 85 %), so both themes work without settings; they can be changed by the `--sm-*` CSS variables, the sizes by the Sass variables in `src/scss/_variables.scss`. The pills of the links have `--sm-pill-border-radius`, `--sm-pill-icon-color` and `--sm-pill-link-bg`.
+The colors of the menu come from the body color of Bootstrap (titles at 60 %, icons at 60 %, arrows at 85 %), so both themes work without settings; they can be changed by the `--sm-*` CSS variables, the sizes by the Sass variables in `src/scss/_variables.scss`. The pills of the links have `--sm-pill-border-radius`, `--sm-pill-icon-color`, `--sm-pill-link-bg` (the current page) and `--sm-pill-hover-bg` (a hovered link, a bit weaker).
 
 ### Navbar
 
@@ -676,7 +676,7 @@ The module `auth` lays out a page outside the administration: the brand and the 
 ```html
 <body class="auth-page">
 	<div class="auth">
-		<div class="auth-top"><a class="auth-brand" href="/">Logo Name</a> <div class="auth-actions">(language dropdown, theme switch)</div></div>
+		<div class="auth-top"><a class="auth-brand" href="/">Logo Name</a> <div class="auth-actions">(theme switch, language dropdown)</div></div>
 		<div class="auth-card auth-card-split">
 			<aside class="auth-visual" aria-hidden="true"><i class="bi bi-shield-lock"></i></aside>
 			<main class="auth-body">
@@ -829,7 +829,7 @@ The module `blog` styles a website with a blog, outside the administration: a he
 
 **Article.** `article.blog-article` is a narrow column (`--blog-article-width`, 48rem): a link back (`.blog-back`), `.blog-article-title`, the perex `.blog-article-lead`, `.blog-meta.blog-article-meta` with the author, the date and the category, the cover `.blog-article-image` (a 21 : 9 cut) and the text in `.blog-content`: larger text with more room between lines, headings, lists, pictures as wide cuts, a quote with a line of the primary color and code blocks on the tint.
 
-**Comments.** `section.blog-comments` with `.blog-comments-title`; a comment is `article.blog-comment` with `.blog-comment-head` (avatar, `.blog-comment-author`, the link of its number, the time), `.blog-comment-content` and `.blog-meta.blog-comment-foot` (Reply and, in a comment that answers another one, the link to it as "In reply to"); the text of a comment holds only the message. A comment opened by its link (`#comment-2`) is stronger and stays under the sticky header. The form of a new comment stands in `.blog-comment-form` (`.blog-comment-form-title`).
+**Comments.** `section.blog-comments` with `.blog-comments-title`; a comment is `article.blog-comment` with `.blog-comment-head` (avatar, `.blog-comment-author`, the link of its number, the time), `.blog-comment-content` and `.blog-meta.blog-comment-foot` (Reply and, in a comment that answers another one, the link to it as "In reply to"); the text of a comment holds only the message. A comment opened by its link (`#comment-2`) is stronger and stays under the sticky header. The form of a new comment stands in `.blog-comment-form` with its title `.blog-comment-form-title` over the box.
 
 ## Demo
 

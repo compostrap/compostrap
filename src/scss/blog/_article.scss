@@ -37,7 +37,7 @@
 
 .blog-article-lead {
 	margin-bottom: 1rem;
-	font-size: 1.25rem;
+	font-size: 1.125rem;
 	color: var(--bs-secondary-color);
 }
 
@@ -60,10 +60,11 @@
 	}
 }
 
-// the text of an article or a page (written in Texy, Markdown…): larger, with more room between lines; pictures
+// the text of an article or a page (written in Texy, Markdown…): 16px, a step over the 14px of the page (18px was
+// too big next to the comments), with more room between lines; pictures
 // as the cover, a wide cut over the whole column
 .blog-content {
-	font-size: 1.125rem;
+	font-size: 1rem;
 	line-height: 1.7;
 
 	h2,
@@ -73,11 +74,11 @@
 	}
 
 	h2 {
-		font-size: 1.5rem;
+		font-size: 1.375rem;
 	}
 
 	h3 {
-		font-size: 1.25rem;
+		font-size: 1.125rem;
 	}
 
 	img {

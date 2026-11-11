@@ -8,7 +8,19 @@
 [data-bs-theme] {
 	--blog-page-bg: var(--bs-body-bg);
 	--blog-tint-bg: var(--bs-tertiary-bg);
-	--blog-tint-hover-bg: var(--bs-secondary-bg);
+	// a hovered block: halfway from the tint to the secondary background (the secondary one itself was too strong)
+	--blog-tint-hover-bg: color-mix(in srgb, var(--blog-tint-bg) 50%, var(--bs-secondary-bg));
+}
+
+// in the light theme the tint is the page color of the administration and the shop (#f6f6f6 in the theme): there
+// white boxes stand on it, here the header, the footer and the boxes in it stand on a white page
+:root,
+[data-bs-theme='light'] {
+	--blog-tint-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98.4%, #000);
+}
+
+[data-bs-theme='dark'] {
+	--blog-tint-bg: var(--bs-tertiary-bg);
 }
 
 // the footer stays at the bottom of a short page
@@ -62,6 +74,12 @@
 	font-weight: 600;
 	color: var(--bs-emphasis-color);
 	text-decoration: none;
+
+	// the brand is not underlined on hover like a link of the text
+	&:hover {
+		color: var(--bs-emphasis-color);
+		text-decoration: none;
+	}
 }
 
 .blog-header-actions {

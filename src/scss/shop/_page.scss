@@ -6,7 +6,7 @@
 
 :root,
 [data-bs-theme='light'] {
-	--shop-page-bg: var(--bs-tertiary-bg);
+	--shop-page-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98.4%, #000);
 	--shop-surface-bg: var(--bs-body-bg);
 	--shop-tint-bg: rgba(var(--bs-body-color-rgb), .04);
 }
@@ -54,6 +54,12 @@
 	font-weight: 600;
 	color: var(--bs-emphasis-color);
 	text-decoration: none;
+
+	// the brand is not underlined on hover like a link of the text
+	&:hover {
+		color: var(--bs-emphasis-color);
+		text-decoration: none;
+	}
 }
 
 .shop-nav {

@@ -48,8 +48,9 @@ const menu = [
 		] },
 		// a website with a blog (module blog): its own shell with a navbar of links and a footer
 		{ title: 'Blog', icon: 'bi-journal-text', items: [
+			// the article is opened from the list, so it has no item of its own in the menu (hidden: built, not listed)
 			{ file: 'blog-articles.html', title: 'Articles', layout: 'blog' },
-			{ file: 'blog-article.html', title: 'Article', layout: 'blog' },
+			{ file: 'blog-article.html', title: 'Article', layout: 'blog', hidden: true },
 		] },
 		{ title: 'Errors', icon: 'bi-exclamation-octagon', items: [
 			{ file: 'error-404.html', title: 'Not found (404)', layout: 'error' },
@@ -81,7 +82,7 @@ const itemHtml = (item, current) => {
 ${indent(label, 2)}
 	</a>
 	<ul class="list-unstyled list-hidden">
-${indent(item.items.map((child) => itemHtml(child, current)).join('\n'), 2)}
+${indent(item.items.filter((child) => !child.hidden).map((child) => itemHtml(child, current)).join('\n'), 2)}
 	</ul>
 </li>`;
 	}

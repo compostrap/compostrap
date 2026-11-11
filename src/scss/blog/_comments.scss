@@ -9,6 +9,7 @@
 //     <div class="blog-comment-content">text</div>
 //     <div class="blog-meta blog-comment-foot"><a href="#comment-form">Reply</a><span>In reply to: <a href="#comment-1">#1 Petra Králová</a></span></div>
 //   </article>
+//   <h3 class="blog-comment-form-title">Add a comment</h3>
 //   <div class="blog-comment-form" id="comment-form">form</div>
 // </section>
 //
@@ -66,6 +67,12 @@
 	color: var(--bs-body-color);
 }
 
+// the text of a comment is 15px, between the 14px of the page and the 16px of the article
+.blog-comment-content {
+	font-size: .9375rem;
+	line-height: 1.6;
+}
+
 // the paragraphs and lists of a comment without the bottom margin of the last one, so the box stays even
 .blog-comment-content > :last-child {
 	margin-bottom: 0;
@@ -76,7 +83,8 @@
 }
 
 .blog-comment-form {
-	margin-top: 2.5rem;
+	// opened by "Reply" (#comment-form) it leaves room for its title, which stands over the box
+	scroll-margin-top: 9rem;
 
 	// a field on the tint is in the color of the page, so it is seen
 	.form-control {
@@ -84,7 +92,9 @@
 	}
 }
 
+// the title of the form stands over its box, like the title of the comments
 .blog-comment-form-title {
+	margin-top: 2.5rem;
 	margin-bottom: 1rem;
 	font-size: 1.125rem;
 	font-weight: 600;

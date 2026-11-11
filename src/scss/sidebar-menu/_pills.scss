@@ -45,8 +45,11 @@ $text-start: var.$sm-link-padding-x + var.$sm-icon-width + var.$sm-icon-gap;
 	}
 
 	// the pill marks the current page on any level; a group holding it is not filled, so the menu never shows
-	// two selections
-	.list-link:hover,
+	// two selections; a hovered link gets a slightly weaker pill
+	.list-link:hover {
+		background-color: var(--sm-pill-hover-bg);
+	}
+
 	.list-link.link-current:not(.link-arrow) {
 		background-color: var(--sm-pill-link-bg);
 	}
@@ -70,4 +73,10 @@ $text-start: var.$sm-link-padding-x + var.$sm-icon-width + var.$sm-icon-gap;
 	--sm-pill-border-radius: var(--bs-border-radius);
 	--sm-pill-icon-color: var(--sm-icon-color);
 	--sm-pill-link-bg: var(--ds-body-bg, var(--bs-tertiary-bg));
+	// the hovered pill: the same color drawn a bit towards the surface of the sidebar, in both themes
+	--sm-pill-hover-bg: color-mix(in srgb, var(--sm-pill-link-bg) 85%, var(--bs-body-bg));
+}
+
+[data-bs-theme='dark'] {
+	--sm-pill-hover-bg: color-mix(in srgb, var(--sm-pill-link-bg) 70%, var(--bs-body-bg));
 }

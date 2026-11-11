@@ -7,7 +7,8 @@
 [data-bs-theme='light'] {
 	// corners of the content boxes (0 for square ones)
 	--ds-box-radius: var(--bs-border-radius-lg);
-	--ds-body-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98%, #000);
+	// #f6f6f6 over the #fafafa of the theme
+	--ds-body-bg: color-mix(in srgb, var(--bs-tertiary-bg) 98.4%, #000);
 	--ds-surface-bg: var(--bs-body-bg);
 	--ds-content-bg: var(--ds-surface-bg);
 	// the loading bar at the top of the page in a lighter primary color, so it is seen but does not shout
