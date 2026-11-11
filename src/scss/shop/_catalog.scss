@@ -208,12 +208,6 @@
 	gap: .375rem;
 }
 
-// the last pieces: orange between the green of "in stock" and the red of "out of stock" (the yellow text of a
-// warning read as olive); mixed with the color of the text, so it is darker on a light surface and lighter on a dark one
-.shop-stock-low {
-	color: color-mix(in srgb, var(--bs-orange) 70%, var(--bs-body-color));
-}
-
 // a choice of a variant (memory, color, …) as pills; the chosen one is tinted
 // <div class="shop-variant-group"><div class="shop-variant-title">Memory</div><div class="shop-variant-options">
 //   <button type="button" class="shop-variant-pill active">16 GB</button>

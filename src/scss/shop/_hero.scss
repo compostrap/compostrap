@@ -25,13 +25,13 @@
 @use '../bootstrap' as bs;
 
 .shop-hero {
-	--shop-hero-bg: color-mix(in srgb, var(--bs-primary) 8%, var(--shop-surface-bg));
+	--shop-hero-bg: color-mix(in srgb, var(--bs-primary) 11%, var(--shop-surface-bg));
 	--shop-hero-icon-size: 3rem;
 
 	padding: 1rem 0;
 	margin-bottom: 1.5rem;
 	// the tint grows towards the pictures
-	background: linear-gradient(100deg, var(--shop-hero-bg) 45%, color-mix(in srgb, var(--bs-primary) 16%, var(--shop-surface-bg)));
+	background: linear-gradient(100deg, var(--shop-hero-bg) 45%, color-mix(in srgb, var(--bs-primary) 21%, var(--shop-surface-bg)));
 
 	> .container {
 		display: flex;
