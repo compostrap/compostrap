@@ -336,3 +336,35 @@ test.describe('charts', () => {
 		expect(errors).toEqual([]);
 	});
 });
+
+test.describe('spinner', () => {
+	test('the line runs at the top and leaves the page in use', async ({ page, errors }) => {
+		await open(page, 'states.html');
+		const button = page.locator('[data-demo-spinner="line"]');
+
+		// two requests at once show one spinner
+		await button.click();
+		await button.click();
+		await expect(page.locator('body > .spinner')).toHaveCount(1);
+		await expect(page.locator('body > .spinner')).toHaveCount(0, { timeout: 5000 });
+		expect(errors).toEqual([]);
+	});
+
+	test('the overlay covers the page until the request ends', async ({ page, errors }) => {
+		await open(page, 'states.html');
+		const button = page.locator('[data-demo-spinner="overlay"]');
+		const overlay = page.locator('body > .spinner-overlay');
+
+		await button.click();
+		await expect(overlay).toBeVisible();
+		// whatever is clicked, the overlay takes it, and the keyboard does not reach the button
+		expect(await button.evaluate((element) => {
+			const { x, y, width, height } = element.getBoundingClientRect();
+			return document.elementFromPoint(x + width / 2, y + height / 2).className;
+		})).toBe('spinner-overlay');
+		await page.keyboard.press('Enter');
+		await expect(overlay).toHaveCount(0, { timeout: 5000 });
+		await expect(button).toBeFocused();
+		expect(errors).toEqual([]);
+	});
+});

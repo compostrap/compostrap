@@ -64,6 +64,7 @@ The package has three layers:
 | [`strength`](docs/strength.md) | component | a meter of the password strength under a password input (markup of Bootstrap 6) | `Strength` |
 | [`password-toggle`](docs/password-toggle.md) | component | a button with an eye in a password input that shows and hides the password | `PasswordToggle` |
 | [`empty`](docs/empty.md) | component | empty states in boxes and error pages (404, 403, 500, maintenance) with illustrations | – |
+| [`spinner`](docs/spinner.md) | component | shows that a request runs: a line at the top of the window, or a dark overlay that stops clicks | `Spinner` |
 | [`auth`](docs/auth.md) | component | pages outside the administration (sign in, sign up, recovery): a box in the middle of the page | – |
 | [`shop`](docs/shop.md) | component | the storefront of an e-shop: header with the mini cart, product tiles and detail, cart, steps of the order, choice of the delivery, price summary | `number-input` (amount) |
 | [`blog`](docs/blog.md) | component | a website with a blog: header with the links, list of articles with categories, an article with its text, comments | `avatar` of the theme |
@@ -115,7 +116,7 @@ The styles can also be imported as SCSS:
 @import 'compostrap/src/scss/sidebar-menu';
 ```
 
-When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `selection`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
+When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `selection`, `number-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `spinner`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
 
 ## Light and dark theme
 
@@ -154,9 +155,11 @@ Every module is described in `docs/`, with its markup, classes, variables and Ja
 
 - **Theme**: [theme](docs/theme.md) (colors, buttons, alerts and badges, breadcrumb, tabs as a segmented control, forms, offcanvas and modals)
 - **Layout**: [layout](docs/layout.md) ([page](docs/layout.md#page), [sidebar](docs/layout.md#sidebar), [sidebar menu](docs/layout.md#sidebar-menu) and its [compact form](docs/layout.md#compact-sidebar), [navbar](docs/layout.md#navbar), [content boxes](docs/layout.md#content-boxes-and-the-older-navbar))
-- **Components**: [theme switcher](docs/theme-switcher.md), [tooltip](docs/tooltip.md), [elements](docs/elements.md), [dialogs](docs/dialogs.md), [settings](docs/settings.md), [selection](docs/selection.md), [number input](docs/number-input.md), [datepicker](docs/datepicker.md), [rating](docs/rating.md), [charts](docs/chart.md), [gallery](docs/gallery.md), [dropzone](docs/dropzone.md), [lightbox](docs/lightbox.md), [password strength](docs/strength.md), [password toggle](docs/password-toggle.md), [empty states and error pages](docs/empty.md), [sign-in pages](docs/auth.md), [shop](docs/shop.md), [blog](docs/blog.md)
+- **Components**: [theme switcher](docs/theme-switcher.md), [tooltip](docs/tooltip.md), [elements](docs/elements.md), [dialogs](docs/dialogs.md), [settings](docs/settings.md), [selection](docs/selection.md), [number input](docs/number-input.md), [datepicker](docs/datepicker.md), [rating](docs/rating.md), [charts](docs/chart.md), [gallery](docs/gallery.md), [dropzone](docs/dropzone.md), [lightbox](docs/lightbox.md), [password strength](docs/strength.md), [password toggle](docs/password-toggle.md), [empty states and error pages](docs/empty.md), [spinner](docs/spinner.md), [sign-in pages](docs/auth.md), [shop](docs/shop.md), [blog](docs/blog.md)
 
 ## Demo
+
+The demo runs at [compostrap.github.io/demo](https://compostrap.github.io/demo/). To run it from the package:
 
 ```bash
 npm install
@@ -169,7 +172,7 @@ The demo is an overview of the components, one page each, with a menu by kind:
 - **Bootstrap**: typography, buttons, badges and alerts, forms, tables and cards, navigation, overlays (modals, offcanvas, toasts, accordion, progress), in the look of the theme.
 - **Compostrap**: `elements.html`, what the package adds to Bootstrap (tooltips, avatars, state dots, stat tiles, list rows, theme switcher).
 - **Modules**: `datagrid.html`, `gallery.html` and `commerce.html` (an e-shop administration with products, variants and photos).
-- **Compostrap** also has `states.html` (empty states with an illustration and with an icon, a box that loads) and `inputs.html` (number inputs and a cart that recounts, datepickers, ratings).
+- **Compostrap** also has `states.html` (empty states with an illustration and with an icon, a box that loads, both spinners) and `inputs.html` (number inputs and a cart that recounts, datepickers, ratings).
 - **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`, the eye in the password inputs of module `password-toggle`; recovery goes through its three steps), `account.html` (the account of the signed-in user: profile information and the change of the password next to each other) and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
 - **Blog** (module `blog`, a website without the sidebar): `blog-articles.html` (categories, the newest article, cards) and `blog-article.html` (an article with its text, comments and the comment form).
 - **Shop** (module `shop`, a storefront without the sidebar): `shop-products.html`, `shop-product.html`, `shop-cart.html`, `shop-delivery.html`, `shop-customer.html`, `shop-summary.html`, `shop-confirmation.html` and `shop-states.html` (an empty cart, a product out of stock, a valid and an invalid discount code, a form with errors, a cart that recounts), the whole way from the list of products to the confirmation of an order.
@@ -181,7 +184,7 @@ npx playwright install chromium   # once
 npm test
 ```
 
-Smoke tests in Playwright over the demo pages: every page loads without an error, and the JavaScript modules (sidebar and its compact form, menu, theme switcher, number input, password toggle, strength, row selection, lightbox, dropzone, datepicker, charts) behave as described here.
+Smoke tests in Playwright over the demo pages: every page loads without an error, and the JavaScript modules (sidebar and its compact form, menu, theme switcher, number input, password toggle, strength, row selection, lightbox, dropzone, datepicker, charts, spinner) behave as described here.
 
 ## Built on
 

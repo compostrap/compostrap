@@ -30,6 +30,7 @@ export default defineConfig({
 				selection: entry('selection'),
 				datepicker: entry('datepicker'),
 				chart: entry('chart'),
+				spinner: entry('spinner'),
 			},
 			formats: ['es'],
 		},

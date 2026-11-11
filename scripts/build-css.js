@@ -21,6 +21,7 @@ const entries = [
 	'strength',
 	'password-toggle',
 	'empty',
+	'spinner',
 	'auth',
 	'shop',
 	'blog',

@@ -1,0 +1,106 @@
+//
+// spinner: shows that a request runs (an AJAX request of the page), in two forms
+//
+// <div class="spinner" role="status" aria-label="Loading"></div>
+//   a thin line at the top of the window with a piece that runs from left to right (the spinner of drago-ex/project);
+//   the page stays in use
+//
+// <div class="spinner-overlay" role="status" aria-label="Loading"></div>
+//   the whole window darkens and a ring turns in its middle; it lies over everything, so nothing can be clicked
+//   until it is removed
+//
+// The element stands at the end of <body> while the request runs; the script (Spinner) adds and removes it, counts
+// the running requests and, for the overlay, also stops the keyboard.
+//
+
+.spinner {
+	--spinner-zindex: 9999;
+	--spinner-height: .2rem;
+	--spinner-width: 15rem;
+	--spinner-color: var(--bs-primary);
+	--spinner-duration: 1.5s;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: var(--spinner-zindex);
+	width: 100%;
+	height: var(--spinner-height);
+	overflow: hidden;
+	pointer-events: none;
+
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: var(--spinner-width);
+		height: 100%;
+		content: '';
+		background: var(--spinner-color);
+		animation: cs-spinner-run var(--spinner-duration) linear infinite;
+	}
+}
+
+.spinner-overlay {
+	--spinner-zindex: 9999;
+	--spinner-overlay-bg: rgba(0, 0, 0, .5);
+	--spinner-size: 3rem;
+	--spinner-border-width: 3px;
+	--spinner-color: #fff;
+	--spinner-track-color: rgba(255, 255, 255, .25);
+	--spinner-duration: .7s;
+
+	position: fixed;
+	inset: 0;
+	z-index: var(--spinner-zindex);
+	cursor: progress;
+	background: var(--spinner-overlay-bg);
+	animation: cs-spinner-in .15s ease-out;
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: var(--spinner-size);
+		height: var(--spinner-size);
+		margin: calc(var(--spinner-size) / -2) 0 0 calc(var(--spinner-size) / -2);
+		content: '';
+		border: var(--spinner-border-width) solid var(--spinner-track-color);
+		border-top-color: var(--spinner-color);
+		border-radius: 50%;
+		animation: cs-spinner-turn var(--spinner-duration) linear infinite;
+	}
+}
+
+@keyframes cs-spinner-run {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(100vw);
+	}
+}
+
+@keyframes cs-spinner-turn {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes cs-spinner-in {
+	from {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.spinner,
+	.spinner-overlay {
+		--spinner-duration: 3s;
+	}
+
+	.spinner-overlay {
+		animation: none;
+	}
+}
