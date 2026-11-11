@@ -1,5 +1,5 @@
 //
-// theme: forms (checks, radios, switches)
+// theme: forms (checks, radios, switches and their small size, the form adorn of Bootstrap 6)
 //
 
 // checks, radios and switches are as high as the line of their label (Bootstrap 5 moves them down for a 1em box)
@@ -21,4 +21,135 @@
 
 .form-check-input:not(:checked, :indeterminate):focus:not(:focus-visible) {
 	border-color: var(--bs-border-color);
+}
+
+// small checks, radios and switches (a size modifier in the naming of Bootstrap): form-check-sm on the wrapper
+// <div class="form-check form-check-sm">, or on a check without a wrapper <input class="form-check-input form-check-sm">;
+// a 16px box (28 × 16px switch) in the middle of the line of its label, the text keeps its size
+$form-check-input-width-sm: 1rem !default;
+$form-check-padding-start-sm: 1.5rem !default;
+$form-check-input-border-radius-sm: .25rem !default;
+$form-switch-width-sm: 1.75rem !default;
+$form-switch-padding-start-sm: 2.25rem !default;
+
+.form-check.form-check-sm {
+	padding-left: $form-check-padding-start-sm;
+
+	.form-check-input {
+		margin-top: calc((#{$line-height-base} * 1em - #{$form-check-input-width-sm}) / 2);
+		margin-left: -$form-check-padding-start-sm;
+	}
+
+	&.form-switch {
+		padding-left: $form-switch-padding-start-sm;
+
+		.form-check-input {
+			width: $form-switch-width-sm;
+			margin-left: -$form-switch-padding-start-sm;
+			border-radius: $form-switch-width-sm;
+		}
+	}
+}
+
+.form-check-sm .form-check-input,
+.form-check-input.form-check-sm {
+	width: $form-check-input-width-sm;
+	height: $form-check-input-width-sm;
+
+	&[type='checkbox'] {
+		border-radius: $form-check-input-border-radius-sm;
+	}
+}
+
+// the form adorn of Bootstrap 6: an icon or a short text inside a field instead of an input group. The wrapper is
+// a label with the look of the field (.form-control .form-adorn; a click anywhere in it focuses the field), the
+// field inside is a .form-ghost without a look of its own; .form-adorn-end moves the adornment to the end,
+// .form-control-sm/-lg size it. No button inside (a label holds no interactive content): that stays an input group.
+// <label class="form-control form-adorn">
+//   <span class="form-adorn-icon" aria-hidden="true"><i class="bi bi-search"></i></span>
+//   <input type="search" class="form-ghost" placeholder="Search">
+// </label>
+// <label class="form-control form-adorn form-adorn-end"><span class="form-adorn-text" aria-hidden="true">%</span>…
+.form-adorn {
+	--form-adorn-gap: .375rem;
+	--form-adorn-icon-size: 1rem;
+	--form-adorn-icon-color: var(--bs-secondary-color);
+
+	display: flex;
+	gap: var(--form-adorn-gap);
+	align-items: center;
+	cursor: text;
+
+	// the focus of the field inside is the focus of the field
+	&:focus-within {
+		color: $input-focus-color;
+		background-color: $input-focus-bg;
+		border-color: $input-focus-border-color;
+		outline: 0;
+		box-shadow: $input-focus-box-shadow;
+	}
+
+	&:has(> .form-ghost:disabled) {
+		cursor: default;
+		background-color: $input-disabled-bg;
+		border-color: $input-disabled-border-color;
+	}
+
+	> .form-ghost {
+		flex: 1;
+		min-width: 0;
+	}
+
+	&.form-adorn-end > .form-ghost {
+		order: -1;
+	}
+}
+
+.form-adorn-icon {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	font-size: var(--form-adorn-icon-size);
+	line-height: 1;
+	color: var(--form-adorn-icon-color);
+	pointer-events: none;
+
+	> svg {
+		width: var(--form-adorn-icon-size);
+		height: var(--form-adorn-icon-size);
+	}
+}
+
+.form-adorn-text {
+	flex-shrink: 0;
+	color: var(--form-adorn-icon-color);
+	pointer-events: none;
+	user-select: none;
+}
+
+// a field without a look, inside a wrapper that has it
+.form-ghost {
+	display: block;
+	width: 100%;
+	padding: 0;
+	font: inherit;
+	color: inherit;
+	appearance: none;
+	background: transparent;
+	border: 0;
+
+	&:focus {
+		outline: 0;
+	}
+
+	&::placeholder {
+		color: $input-placeholder-color;
+		opacity: 1;
+	}
+
+	&:disabled {
+		color: var(--bs-secondary-color);
+		cursor: not-allowed;
+	}
 }

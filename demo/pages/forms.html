@@ -24,7 +24,7 @@
 					</div>
 					<div class="col-md-4">
 						<label for="demo-born" class="form-label">Date</label>
-						<input type="date" class="form-control" id="demo-born">
+						<input type="text" class="form-control" id="demo-born" data-bs-toggle="datepicker" autocomplete="off">
 					</div>
 					<div class="col-md-4">
 						<label for="demo-file" class="form-label">File</label>
@@ -66,9 +66,26 @@
 									<input class="form-check-input" type="radio" name="demo-radio" id="demo-radio-1" checked>
 									<label class="form-check-label" for="demo-radio-1">Card</label>
 								</div>
-								<div class="form-check">
+								<div class="form-check mb-3">
 									<input class="form-check-input" type="radio" name="demo-radio" id="demo-radio-2">
 									<label class="form-check-label" for="demo-radio-2">Bank transfer</label>
+								</div>
+								<!-- the small size: form-check-sm -->
+								<div class="form-check form-check-sm">
+									<input class="form-check-input" type="checkbox" id="demo-check-sm-1" checked>
+									<label class="form-check-label" for="demo-check-sm-1">Small check</label>
+								</div>
+								<div class="form-check form-check-sm">
+									<input class="form-check-input" type="checkbox" id="demo-check-sm-2">
+									<label class="form-check-label" for="demo-check-sm-2">Small check</label>
+								</div>
+								<div class="form-check form-check-sm">
+									<input class="form-check-input" type="radio" name="demo-radio-sm" id="demo-radio-sm-1" checked>
+									<label class="form-check-label" for="demo-radio-sm-1">Small radio</label>
+								</div>
+								<div class="form-check form-check-sm">
+									<input class="form-check-input" type="radio" name="demo-radio-sm" id="demo-radio-sm-2">
+									<label class="form-check-label" for="demo-radio-sm-2">Small radio</label>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -80,9 +97,17 @@
 									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-2">
 									<label class="form-check-label" for="demo-switch-2">Featured</label>
 								</div>
-								<div class="form-check form-switch mb-3">
+								<div class="form-check form-switch">
 									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-3" disabled>
 									<label class="form-check-label" for="demo-switch-3">Disabled</label>
+								</div>
+								<div class="form-check form-check-sm form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-sm-1" checked>
+									<label class="form-check-label" for="demo-switch-sm-1">Small switch</label>
+								</div>
+								<div class="form-check form-check-sm form-switch mb-3">
+									<input class="form-check-input" type="checkbox" role="switch" id="demo-switch-sm-2">
+									<label class="form-check-label" for="demo-switch-sm-2">Small switch</label>
 								</div>
 								<label for="demo-range" class="form-label">Discount</label>
 								<input type="range" class="form-range" id="demo-range" min="0" max="50" value="10">
@@ -95,26 +120,38 @@
 					<div class="content-box h-100">
 						<header class="mb-3 pb-2 border-bottom">
 							<h2 class="h5 mb-1">Input groups and sizes</h2>
-							<p class="small text-body-secondary mb-0">Units and buttons next to a field; small, default and large fields.</p>
+							<p class="small text-body-secondary mb-0">Icons and units inside a field (the form adorn of Bootstrap 6), a button next to it; small, default and large fields.</p>
 						</header>
 						<div class="row g-3">
 							<div class="col-sm-6">
-								<div class="input-group">
-									<span class="input-group-text">$</span>
-									<input type="number" class="form-control" value="289" aria-label="Price">
-								</div>
+								<label class="form-control form-adorn">
+									<span class="form-adorn-text" aria-hidden="true">$</span>
+									<input type="number" class="form-ghost" value="289" aria-label="Price">
+								</label>
 							</div>
 							<div class="col-sm-6">
-								<div class="input-group">
-									<span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
-									<input type="search" class="form-control" placeholder="Search" aria-label="Search">
-								</div>
+								<label class="form-control form-adorn">
+									<span class="form-adorn-icon" aria-hidden="true"><i class="bi bi-search"></i></span>
+									<input type="search" class="form-ghost" placeholder="Search" aria-label="Search">
+								</label>
 							</div>
 							<div class="col-12">
 								<div class="input-group">
 									<select class="form-select" aria-label="Manufacturer"><option>Northwind</option><option>Arcus</option></select>
 									<button type="button" class="btn btn-primary btn-icon" aria-label="New manufacturer" data-tooltip="end"><i class="bi bi-plus-lg" aria-hidden="true"></i></button>
 								</div>
+							</div>
+							<div class="col-sm-6">
+								<label class="form-control form-adorn form-adorn-end">
+									<span class="form-adorn-icon" aria-hidden="true"><i class="bi bi-envelope"></i></span>
+									<input type="email" class="form-ghost" placeholder="you@example.com" aria-label="E-mail">
+								</label>
+							</div>
+							<div class="col-sm-6">
+								<label class="form-control form-adorn form-adorn-end">
+									<span class="form-adorn-text" aria-hidden="true">%</span>
+									<input type="number" class="form-ghost" value="21" aria-label="VAT rate">
+								</label>
 							</div>
 							<div class="col-12 d-flex flex-column gap-2">
 								<input type="text" class="form-control form-control-sm" placeholder="Small (30px)" aria-label="Small">

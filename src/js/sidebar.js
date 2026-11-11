@@ -275,8 +275,9 @@ export class Sidebar {
 			return;
 		}
 
-		if (focusGroup) {
-			group.focus();
+		// also when the menu closes by itself (a scroll, a resize) with the focus inside: it would be lost with the menu
+		if (focusGroup || this._flyout.contains(document.activeElement)) {
+			group.focus({ preventScroll: true });
 		}
 
 		// the group tells again the state of its submenu in the wide sidebar (opened by SidebarMenu by its own style)

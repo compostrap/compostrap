@@ -433,7 +433,7 @@
 
 				<div class="collapse navbar-collapse">
 					<!-- the compact sidebar with the icons only (from md up), remembered in the browser -->
-					<button type="button" class="navbar-icon me-2" data-sidebar-compact aria-pressed="false" aria-label="Collapse the menu" data-tooltip="bottom">
+					<button type="button" class="navbar-icon me-2" data-sidebar-compact aria-pressed="false" aria-label="Compact menu" data-tooltip="bottom">
 						<i class="bi bi-layout-sidebar" aria-hidden="true"></i>
 					</button>
 					<!-- breadcrumb of Bootstrap 6 -->
@@ -550,7 +550,13 @@
 							</tr>
 							<tr class="datagrid-filter-row">
 								<th class="selection-cell p-1"></th>
-								<th class="p-1"><input type="text" class="form-control form-control-sm" aria-label="Title"></th>
+								<!-- an active filter (the markup of drago DataGrid.latte): the field in an input group with a button that clears it -->
+								<th class="p-1">
+									<div class="datagrid-filter-control input-group input-group-sm">
+										<input type="text" class="form-control form-control-sm" aria-label="Title" value="article">
+										<a href="#" class="btn btn-secondary btn-sm datagrid-filter-clear" aria-label="Clear filter" data-tooltip>&times;</a>
+									</div>
+								</th>
 								<th class="p-1">
 									<select class="form-select form-select-sm" aria-label="Category">
 										<option value="">All</option>
@@ -558,7 +564,7 @@
 										<option>Tips</option>
 									</select>
 								</th>
-								<th class="p-1"><input type="date" class="form-control form-control-sm" aria-label="Published"></th>
+								<th class="p-1"><input type="text" class="form-control form-control-sm" data-bs-toggle="datepicker" aria-label="Published" autocomplete="off"></th>
 								<th class="p-1">
 									<select class="form-select form-select-sm" aria-label="State">
 										<option value="">All</option>
@@ -716,7 +722,7 @@
 			</div>
 			<div class="col-sm-6">
 				<label for="demo-article-date" class="form-label">Published</label>
-				<input type="date" class="form-control" id="demo-article-date">
+				<input type="text" class="form-control" id="demo-article-date" data-bs-toggle="datepicker" autocomplete="off">
 			</div>
 			<div class="col-12">
 				<label for="demo-article-text" class="form-label">Text</label>

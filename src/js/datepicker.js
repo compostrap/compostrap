@@ -93,6 +93,14 @@ export class Datepicker {
 			...(data.bsDateMax ? { dateMax: data.bsDateMax } : {}),
 			onInit: (self) => {
 				self.context.mainElement.__compostrapInput = element;
+				// the calendar stands at the end of the page; in a modal or an offcanvas Bootstrap keeps the focus
+				// inside the dialog and took it back from the calendar (which closed before a click reached it), so
+				// the focus in the calendar is kept from the focus trap
+				self.context.mainElement.addEventListener('focusin', (event) => {
+					if (element.closest('.modal, .offcanvas')) {
+						event.stopPropagation();
+					}
+				});
 			},
 			onClickDate: (self) => {
 				const dates = [...self.context.selectedDates];

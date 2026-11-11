@@ -5,6 +5,8 @@
 // <input type="text" class="form-control" data-bs-toggle="datepicker" value="2026-11-07">
 //
 
+@use '../bootstrap' as bs;
+
 :root {
 	--datepicker-padding: 1rem;
 	--datepicker-bg: var(--bs-body-bg);
@@ -29,6 +31,25 @@
 	--datepicker-bg: var(--bs-secondary-bg);
 	--datepicker-day-hover-bg: rgba(var(--bs-body-color-rgb), .08);
 	--datepicker-day-today-bg: rgba(var(--bs-body-color-rgb), .14);
+}
+
+// a field that opens the calendar shows a small calendar at its end, like a native date field (the icon calendar3 of
+// Bootstrap Icons, MIT, as a background like the arrow of a select: one gray that reads in both themes); not a field
+// of an input group, which has its icon in the group, and not a field with the icon of a validation state
+$datepicker-icon-color: bs.$gray-500 !default;
+$datepicker-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$datepicker-icon-color}'><path d='M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z'/><path d='M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2'/></svg>") !default;
+
+input.form-control[data-bs-toggle='datepicker']:not(.input-group > *, .is-valid, .is-invalid) {
+	padding-right: calc(#{bs.$input-padding-x} * 2 + 1em);
+	background-image: bs.escape-svg($datepicker-icon);
+	background-repeat: no-repeat;
+	background-position: right bs.$input-padding-x center;
+	background-size: 1em 1em;
+
+	&.form-control-sm {
+		padding-right: calc(#{bs.$input-padding-x-sm} * 2 + 1em);
+		background-position: right bs.$input-padding-x-sm center;
+	}
 }
 
 [data-vc='calendar'] {

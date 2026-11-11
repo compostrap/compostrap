@@ -1,0 +1,21 @@
+// the button that clears an active filter of a datagrid column (the markup of drago DataGrid.latte): a gray cross
+// button joined to its field, in $gray-600 with a white cross in both themes (the light gray of the secondary button
+// was too light next to a field)
+// <div class="datagrid-filter-control input-group input-group-sm">
+//   <input type="text" class="form-control form-control-sm" value="…">
+//   <a href="…" class="btn btn-secondary btn-sm datagrid-filter-clear" aria-label="Clear filter" data-tooltip>&times;</a>
+// </div>
+
+@use '../bootstrap' as bs;
+
+.btn.datagrid-filter-clear {
+	--bs-btn-color: #{bs.$white};
+	--bs-btn-bg: #{bs.$gray-600};
+	--bs-btn-border-color: #{bs.$gray-600};
+	--bs-btn-hover-color: #{bs.$white};
+	--bs-btn-hover-bg: #{bs.$gray-700};
+	--bs-btn-hover-border-color: #{bs.$gray-700};
+	--bs-btn-active-color: #{bs.$white};
+	--bs-btn-active-bg: #{bs.$gray-700};
+	--bs-btn-active-border-color: #{bs.$gray-700};
+}

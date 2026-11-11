@@ -139,7 +139,7 @@ The dashboard keeps the surface colors of Bootstrap:
 
 ## Theme
 
-The theme changes the components of Bootstrap and adds the classes of Bootstrap 6; there are no classes of its own besides the size modifiers `badge-sm` and `btn-group-segmented`.
+The theme changes the components of Bootstrap and adds the classes of Bootstrap 6; there are no classes of its own besides the size modifiers `badge-sm` and `form-check-sm` and `btn-group-segmented`.
 
 ### Colors, buttons, alerts and badges
 
@@ -186,6 +186,41 @@ With the theme a button group with `role="tablist"` (or the class `btn-group-seg
 	<button class="btn btn-secondary btn-sm active" type="button" role="tab" data-bs-toggle="pill" data-bs-target="#tab-1">Product</button>
 	<button class="btn btn-secondary btn-sm" type="button" role="tab" data-bs-toggle="pill" data-bs-target="#tab-2">Variants</button>
 </div>
+```
+
+### Forms
+
+An icon or a unit stands inside its field: the form adorn of Bootstrap 6. The wrapper is a `<label>` with `form-control form-adorn` (a click anywhere in it focuses the field), the field inside is a `form-ghost`; `form-adorn-end` moves the adornment to the end, `form-control-sm` and `form-control-lg` size it. Adornments are decorative (`aria-hidden`), and a button does not belong inside a label: a button or a select next to a field stays an `input-group`.
+
+```html
+<label class="form-control form-adorn">
+	<span class="form-adorn-icon" aria-hidden="true"><i class="bi bi-search"></i></span>
+	<input type="search" class="form-ghost" placeholder="Search" aria-label="Search">
+</label>
+
+<label for="price" class="form-label">Price</label>
+<label class="form-control form-adorn">
+	<span class="form-adorn-text" aria-hidden="true">$</span>
+	<input type="number" class="form-ghost" id="price">
+</label>
+
+<label class="form-control form-adorn form-adorn-end">
+	<span class="form-adorn-text" aria-hidden="true">%</span>
+	<input type="number" class="form-ghost" aria-label="Discount">
+</label>
+```
+
+The variables `--form-adorn-gap`, `--form-adorn-icon-size` and `--form-adorn-icon-color` tune it.
+
+Checks, radios and switches are 20px; `form-check-sm` makes them 16px (a 28 × 16px switch), on the wrapper or on a check without one:
+
+```html
+<div class="form-check form-check-sm">
+	<input class="form-check-input" type="checkbox" id="terms">
+	<label class="form-check-label" for="terms">I agree</label>
+</div>
+<div class="form-check form-check-sm form-switch">…</div>
+<input class="form-check-input form-check-sm" type="checkbox" aria-label="Select the row">
 ```
 
 ### Offcanvas and modals
@@ -278,7 +313,7 @@ From the `md` breakpoint up the sidebar can be narrowed to the icons of the firs
 	<script>try { if (localStorage.getItem('sidebar-compact') === '1') document.documentElement.classList.add('sidebar-compact'); } catch (e) { }</script>
 </head>
 …
-<button type="button" class="navbar-icon" data-sidebar-compact aria-pressed="false" aria-label="Collapse the menu" data-tooltip="bottom">
+<button type="button" class="navbar-icon" data-sidebar-compact aria-pressed="false" aria-label="Compact menu" data-tooltip="bottom">
 	<i class="bi bi-layout-sidebar" aria-hidden="true"></i>
 </button>
 ```
@@ -391,7 +426,7 @@ A tooltip of pure CSS for buttons and links with an icon only: the text of `aria
 
 ### Elements
 
-The module `elements` holds small pieces of a page: a `status-dot` of a state (`theme-*` colors it, `status-dot-pulse` makes it pulse), stat tiles, list rows and the loading state of a box.
+The module `elements` holds small pieces of a page: a `status-dot` of a state (`theme-*` colors it, `status-dot-pulse` makes it pulse), stat tiles, list rows, the loading state of a box and the cross that clears an active filter of a datagrid (`datagrid-filter-clear` on a `btn btn-secondary btn-sm` in an `input-group input-group-sm` with the field: a darker gray button with a white cross in both themes).
 
 #### Stat tiles
 
@@ -592,6 +627,8 @@ The calendar of Bootstrap 6: [Vanilla Calendar Pro](https://vanilla-calendar.pro
 | `data-bs-locale` | the language of the month and day names, the `lang` of the page by default |
 | `data-bs-date-format` | `iso` (default) or `locale` |
 | `data-bs-inline` | `true` shows the calendar in the page |
+
+A field that opens the calendar shows a small calendar icon at its end (`$datepicker-icon`, `$datepicker-icon-color`); a field in an `input-group` has none, its icon stands in the group.
 
 ```js
 import { Datepicker } from 'compostrap/datepicker'; // needs vanilla-calendar-pro
@@ -955,6 +992,15 @@ The demo is an overview of the components, one page each, with a menu by kind:
 - **Pages**: `sign-in.html`, `sign-up.html` and `recovery.html` (module `auth`, the password strength of module `strength`, the eye in the password inputs of module `password-toggle`; recovery goes through its three steps), `account.html` (the account of the signed-in user: profile information and the change of the password next to each other) and `permissions.html` (role permissions: a section list and setting rows), and the error pages `error-404.html`, `error-403.html`, `error-500.html` and `maintenance.html` (module `empty`).
 - **Blog** (module `blog`, a website without the sidebar): `blog-articles.html` (categories, the newest article, cards) and `blog-article.html` (an article with its text, comments and the comment form).
 - **Shop** (module `shop`, a storefront without the sidebar): `shop-products.html`, `shop-product.html`, `shop-cart.html`, `shop-delivery.html`, `shop-customer.html`, `shop-summary.html`, `shop-confirmation.html` and `shop-states.html` (an empty cart, a product out of stock, a valid and an invalid discount code, a form with errors, a cart that recounts), the whole way from the list of products to the confirmation of an order.
+
+## Tests
+
+```bash
+npx playwright install chromium   # once
+npm test
+```
+
+Smoke tests in Playwright over the demo pages: every page loads without an error, and the JavaScript modules (sidebar and its compact form, menu, theme switcher, number input, password toggle, strength, row selection, lightbox, dropzone, datepicker, charts) behave as described here.
 
 ## Built on
 

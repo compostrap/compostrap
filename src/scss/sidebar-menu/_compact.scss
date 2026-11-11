@@ -44,7 +44,8 @@
 			background-color: rgba(var(--bs-body-color-rgb), .12);
 		}
 
-		.list > .list-item:first-child > .list-title {
+		// (every section may be a .list of its own, so the first list is meant, not the first item of each)
+		.list:first-of-type > .list-item:first-child > .list-title {
 			height: 0;
 			margin-block: 0;
 		}
@@ -100,7 +101,10 @@
 	position: fixed;
 	z-index: 1080;
 	min-width: 12rem;
+	// a group longer than the window scrolls inside the menu
+	max-height: calc(100vh - 1rem);
 	padding: bs.$dropdown-padding-y 0;
+	overflow-y: auto;
 	margin: 0;
 	font-size: bs.$dropdown-font-size;
 	list-style: none;

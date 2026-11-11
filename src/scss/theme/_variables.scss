@@ -182,7 +182,7 @@ $nav-tabs-link-active-color: var(--bs-body-color) !default;
 $nav-tabs-link-hover-border-color: color-mix(in srgb, var(--bs-border-color) 50%, transparent) color-mix(in srgb, var(--bs-border-color) 50%, transparent) var(--bs-border-color) !default;
 
 // no animation on hover anywhere: buttons, nav links and pages change their colors at once
-$btn-transition: null !default;
-$nav-link-transition: null !default;
-$pagination-transition: null !default;
+$btn-transition: none !default;
+$nav-link-transition: none !default;
+$pagination-transition: none !default;
 $accordion-transition: border-radius .15s ease !default;

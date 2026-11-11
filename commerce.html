@@ -433,7 +433,7 @@
 
 				<div class="collapse navbar-collapse">
 					<!-- the compact sidebar with the icons only (from md up), remembered in the browser -->
-					<button type="button" class="navbar-icon me-2" data-sidebar-compact aria-pressed="false" aria-label="Collapse the menu" data-tooltip="bottom">
+					<button type="button" class="navbar-icon me-2" data-sidebar-compact aria-pressed="false" aria-label="Compact menu" data-tooltip="bottom">
 						<i class="bi bi-layout-sidebar" aria-hidden="true"></i>
 					</button>
 					<!-- breadcrumb of Bootstrap 6 -->
@@ -829,17 +829,17 @@
 									<div class="row g-3">
 										<div class="col-6">
 											<label for="demo-product-price" class="form-label fw-semibold">Price</label>
-											<div class="input-group">
-												<span class="input-group-text">$</span>
-												<input type="number" class="form-control" id="demo-product-price" value="1099">
-											</div>
+											<label class="form-control form-adorn">
+												<span class="form-adorn-text" aria-hidden="true">$</span>
+												<input type="number" class="form-ghost" id="demo-product-price" value="1099">
+											</label>
 										</div>
 										<div class="col-6">
 											<label for="demo-product-discount" class="form-label fw-semibold">Discount</label>
-											<div class="input-group">
-												<input type="number" class="form-control" id="demo-product-discount" value="0">
-												<span class="input-group-text">%</span>
-											</div>
+											<label class="form-control form-adorn form-adorn-end">
+												<span class="form-adorn-text" aria-hidden="true">%</span>
+												<input type="number" class="form-ghost" id="demo-product-discount" value="0">
+											</label>
 										</div>
 										<div class="col-6">
 											<label for="demo-product-vat" class="form-label fw-semibold">VAT rate</label>
