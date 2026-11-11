@@ -28,15 +28,15 @@
 			<h2>Load in the action, show in the render</h2>
 			<p>A common mistake is to load a record in <code>render</code>. A signal runs before it, so a handler that needs the record has nothing to work with. Load it in the action and keep it in a property:</p>
 <pre><code><span class="text-body-secondary fst-italic">// the record is loaded once, for the signals and for the render</span>
-<span class="text-primary">public</span> <span class="text-primary">function</span> actionDetail(<span class="text-primary">string</span> <span class="text-warning-emphasis">$slug</span>): <span class="text-primary">void</span>
+<span class="text-primary">public</span> <span class="text-primary">function</span> <span class="text-primary-emphasis">actionDetail</span>(<span class="text-primary">string</span> <span class="text-warning-emphasis">$slug</span>): <span class="text-primary">void</span>
 {
-	<span class="text-warning-emphasis">$this</span>->article = <span class="text-warning-emphasis">$this</span>->articles->getBySlug(<span class="text-warning-emphasis">$slug</span>)
-		?? <span class="text-warning-emphasis">$this</span>->error(<span class="text-success">'Article not found'</span>);
+	<span class="text-warning-emphasis">$this</span>-><span class="text-primary-emphasis">article</span> = <span class="text-warning-emphasis">$this</span>-><span class="text-primary-emphasis">articles</span>-><span class="text-primary-emphasis">getBySlug</span>(<span class="text-warning-emphasis">$slug</span>)
+		?? <span class="text-warning-emphasis">$this</span>-><span class="text-primary-emphasis">error</span>(<span class="text-success">'Article not found'</span>);
 }
 
-<span class="text-primary">public</span> <span class="text-primary">function</span> renderDetail(): <span class="text-primary">void</span>
+<span class="text-primary">public</span> <span class="text-primary">function</span> <span class="text-primary-emphasis">renderDetail</span>(): <span class="text-primary">void</span>
 {
-	<span class="text-warning-emphasis">$this</span>->template->article = <span class="text-warning-emphasis">$this</span>->article;
+	<span class="text-warning-emphasis">$this</span>-><span class="text-primary-emphasis">template</span>-><span class="text-primary-emphasis">article</span> = <span class="text-warning-emphasis">$this</span>-><span class="text-primary-emphasis">article</span>;
 }</code></pre>
 
 			<blockquote>

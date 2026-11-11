@@ -102,11 +102,73 @@
 		padding: 1rem 1.25rem;
 		font-size: .875rem;
 		line-height: 1.6;
-		background-color: var(--blog-tint-bg);
+		background-color: var(--blog-code-bg, var(--blog-tint-bg));
 		border-radius: var(--bs-border-radius-lg);
+
+		// the highlighter of drago prints text classes of Bootstrap; in a code block they take the colors of the code
+		// on nette.org (--blog-code-*), set through the variables these classes read, so no class of its own is needed
+		.text-primary {
+			--bs-primary-rgb: var(--blog-code-keyword);
+		}
+
+		.text-primary-emphasis {
+			--bs-primary-text-emphasis: rgb(var(--blog-code-function));
+		}
+
+		.text-success {
+			--bs-success-rgb: var(--blog-code-string);
+		}
+
+		.text-danger {
+			--bs-danger-rgb: var(--blog-code-number);
+		}
+
+		.text-warning-emphasis {
+			--bs-warning-text-emphasis: rgb(var(--blog-code-variable));
+		}
+
+		.text-info-emphasis {
+			--bs-info-text-emphasis: rgb(var(--blog-code-attribute));
+		}
+
+		.text-danger-emphasis {
+			--bs-danger-text-emphasis: rgb(var(--blog-code-macro));
+		}
+
+		.text-body-secondary {
+			--bs-secondary-color: rgb(var(--blog-code-comment));
+		}
 	}
 
 	> :last-child {
 		margin-bottom: 0;
 	}
+}
+
+// the colors of a highlighted code as on nette.org (its Prism theme): the light set on the light tint, the set of its
+// dark code blocks in the dark theme; r, g, b without rgb(), because the text classes of Bootstrap read them so
+:root,
+[data-bs-theme='light'] {
+	// the box of a code is the light blue of nette.org; in the dark theme it stays the tint of the blog
+	--blog-code-bg: #f1f7ff;
+	--blog-code-keyword: 34, 130, 187; // #2282bb: keywords and tags
+	--blog-code-function: 226, 49, 64; // #e23140: names of functions and methods
+	--blog-code-string: 51, 141, 0; // #338d00
+	--blog-code-number: 153, 0, 85; // #990055
+	--blog-code-variable: 213, 148, 1; // #d59401
+	--blog-code-attribute: 137, 163, 21; // #89a315
+	--blog-code-macro: 224, 60, 60; // #e03c3c: Latte tags
+	--blog-code-comment: 112, 128, 144; // #708090
+}
+
+[data-bs-theme='dark'] {
+	--blog-code-bg: var(--blog-tint-bg);
+	--blog-code-keyword: 255, 213, 160; // #ffd5a0
+	--blog-code-function: 240, 141, 73; // #f08d49
+	--blog-code-string: 143, 210, 107; // #8fd26b
+	--blog-code-number: 240, 141, 73; // #f08d49
+	--blog-code-variable: 248, 197, 85; // #f8c555
+	--blog-code-attribute: 143, 210, 107; // #8fd26b
+	--blog-code-macro: 226, 119, 122; // #e2777a
+	--blog-code-comment: 153, 153, 153; // #999999
 }
