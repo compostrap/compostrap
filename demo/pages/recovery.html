@@ -29,7 +29,10 @@
 				<form class="row g-3" onsubmit="return false">
 					<div class="col-12">
 						<label for="rec-code" class="form-label">Code</label>
-						<input type="text" class="form-control otp-code font-monospace fw-semibold" id="rec-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+						<div class="otp otp-fill" data-bs-otp>
+							<input type="text" class="otp-input" id="rec-code" maxlength="6" aria-describedby="rec-code-help">
+						</div>
+						<div class="form-text" id="rec-code-help">Enter the 6-digit code from the e-mail.</div>
 					</div>
 					<div class="col-12 d-grid">
 						<button type="submit" class="btn btn-primary" data-recovery-next="3">Verify code</button>

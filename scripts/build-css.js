@@ -12,6 +12,7 @@ const entries = [
 	'settings',
 	'selection',
 	'number-input',
+	'otp-input',
 	'datepicker',
 	'rating',
 	'chart',

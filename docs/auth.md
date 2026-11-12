@@ -2,7 +2,7 @@
 
 [← Compostrap](../readme.md#documentation)
 
-The module `auth` lays out a page outside the administration: the brand and the theme switch above a box in the middle, a footer under it. The box is narrow; `auth-card-split` makes it wide with a visual on the left from large screens (the visual is hidden on smaller ones). `otp-code` spaces the digits of a one-time code.
+The module `auth` lays out a page outside the administration: the brand and the theme switch above a box in the middle, a footer under it. The box is narrow; `auth-card-split` makes it wide with a visual on the left from large screens (the visual is hidden on smaller ones). A one-time code (the recovery of a password) is typed into the slots of the module [`otp-input`](otp-input.md).
 
 ```html
 <body class="auth-page">

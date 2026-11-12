@@ -16,7 +16,7 @@
 //   </div>
 // </body>
 //
-// Without `auth-card-split` the box is narrow and has no visual. `otp-code` spaces the digits of a one-time code.
+// Without `auth-card-split` the box is narrow and has no visual. A one-time code is the module `otp-input`.
 //
 
 @use '../bootstrap' as bs;
@@ -165,13 +165,6 @@
 	font-size: .875rem;
 	color: var(--bs-secondary-color);
 	text-align: center;
-}
-
-.otp-code {
-	font-variant-numeric: tabular-nums;
-	letter-spacing: .5rem;
-	text-align: center;
-	text-indent: .5rem;
 }
 
 @include bs.media-breakpoint-up(sm) {

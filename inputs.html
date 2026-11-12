@@ -638,6 +638,84 @@
 				</div>
 			</div>
 
+			<!-- otp input (module otp-input, the OTP input of Bootstrap 6): a code in separate slots over one real input -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h2 class="h5 mb-1">One-time code</h2>
+					<p class="small text-body-secondary mb-0">The OTP input of Bootstrap 6: one field drawn as a slot per character; a pasted code fills all of them.</p>
+				</header>
+
+				<div class="row g-4">
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-code">Verification code</label>
+						<div class="otp" data-bs-otp>
+							<input type="text" class="otp-input" id="otp-code" maxlength="6" aria-describedby="otp-code-help">
+						</div>
+						<div class="form-text" id="otp-code-help">Six digits. <span id="otp-code-state" aria-live="polite"></span></div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-connected">Connected</label>
+						<div class="otp otp-connected" data-bs-otp>
+							<input type="text" class="otp-input" id="otp-connected" maxlength="6">
+						</div>
+						<div class="form-text">otp-connected joins the slots into one field.</div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-groups">Groups</label>
+						<div class="otp otp-connected" data-bs-otp data-bs-groups="[3,3]">
+							<input type="text" class="otp-input" id="otp-groups" maxlength="6">
+						</div>
+						<div class="form-text">data-bs-groups="[3,3]".</div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-pin">PIN</label>
+						<div class="otp" data-bs-otp data-bs-mask="true">
+							<input type="text" class="otp-input" id="otp-pin" maxlength="4">
+						</div>
+						<div class="form-text">Four slots by maxlength="4", hidden by data-bs-mask="true".</div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-alnum">Letters and digits</label>
+						<div class="otp otp-connected" data-bs-otp data-bs-type="alphanumeric">
+							<input type="text" class="otp-input" id="otp-alnum" maxlength="6" value="A7K">
+						</div>
+						<div class="form-text">data-bs-type="alphanumeric".</div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-disabled">Disabled</label>
+						<div class="otp" data-bs-otp>
+							<input type="text" class="otp-input" id="otp-disabled" maxlength="6" value="482" disabled>
+						</div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-valid">Valid</label>
+						<div class="otp is-valid" data-bs-otp>
+							<input type="text" class="otp-input" id="otp-valid" maxlength="6" value="123456">
+						</div>
+						<div class="valid-feedback">The code is right.</div>
+					</div>
+					<div class="col-md-6 col-xl-4">
+						<label class="form-label" for="otp-invalid">Invalid</label>
+						<div class="otp is-invalid" data-bs-otp>
+							<input type="text" class="otp-input" id="otp-invalid" maxlength="6" value="123" aria-describedby="otp-invalid-text">
+						</div>
+						<div class="invalid-feedback" id="otp-invalid-text">The code has six digits.</div>
+					</div>
+					<div class="col-12 d-flex flex-wrap align-items-center gap-3">
+						<div class="otp otp-sm" data-bs-otp>
+							<input type="text" class="otp-input" maxlength="4" value="12" aria-label="Small">
+						</div>
+						<div class="otp" data-bs-otp>
+							<input type="text" class="otp-input" maxlength="4" value="12" aria-label="Default">
+						</div>
+						<div class="otp otp-lg" data-bs-otp>
+							<input type="text" class="otp-input" maxlength="4" value="12" aria-label="Large">
+						</div>
+						<span class="small text-body-secondary">Sizes: otp-sm, default, otp-lg.</span>
+					</div>
+				</div>
+			</div>
+
 			<!-- datepicker (module datepicker, Vanilla Calendar Pro like in Bootstrap 6) -->
 			<div class="content-box mb-3">
 				<header class="mb-4 pb-2 border-bottom">
@@ -743,6 +821,12 @@
 		});
 		document.getElementById('demo-cart-total').textContent = money(total);
 	});
+
+	// the first code says when it is whole (a form would be sent then)
+	const otpState = document.getElementById('otp-code-state');
+	const otpBox = document.getElementById('otp-code').closest('.otp');
+	otpBox.addEventListener('input.bs.otpInput', () => otpState.textContent = '');
+	otpBox.addEventListener('complete.bs.otpInput', (event) => otpState.textContent = `Complete: ${event.value}.`);
 </script>
 
 <!-- the layout of the demo: variants of the navbar and of the brand, tried live and remembered (demo only) -->
@@ -941,7 +1025,7 @@
 <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
 <script src="node_modules/nanobar/nanobar.js"></script>
 <script type="module">
-	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, RowSelection, PasswordToggle, Strength, Dialogs } from "./src/js/index.js";
+	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, OtpInput, RowSelection, PasswordToggle, Strength, Dialogs } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";
 	import { Charts } from "./src/js/chart.js";
 	import PerfectScrollbar from "perfect-scrollbar";
@@ -951,6 +1035,7 @@
 		SidebarMenuApp.init();
 		DropzoneInput.init();
 		NumberInput.init();
+		OtpInput.init();
 		RowSelection.init();
 		PasswordToggle.init();
 		Strength.init();

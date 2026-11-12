@@ -86,6 +86,80 @@ test.describe('number input', () => {
 	});
 });
 
+test.describe('otp input', () => {
+	test('a code is typed into its slots, pasted and completed', async ({ page, errors }) => {
+		await open(page, 'inputs.html');
+		const input = page.locator('#otp-code');
+		const box = page.locator('.otp', { has: input });
+		const slots = box.locator('.otp-slot');
+		await box.evaluate((element) => {
+			window.otpEvents = [];
+			for (const type of ['input.bs.otpInput', 'complete.bs.otpInput']) {
+				element.addEventListener(type, (event) => window.otpEvents.push(`${type.split('.')[0]}:${event.value}`));
+			}
+		});
+
+		await expect(box).toHaveClass(/otp-rendered/);
+		await expect(slots).toHaveCount(6);
+		await expect(input).toHaveAttribute('inputmode', 'numeric');
+		await expect(input).toHaveAttribute('autocomplete', 'one-time-code');
+
+		// letters are thrown away, a digit fills a slot and the next one is the current
+		await input.focus();
+		await expect(slots.nth(0)).toHaveClass(/otp-slot-active/);
+		await page.keyboard.type('a1b2');
+		await expect(input).toHaveValue('12');
+		await expect(slots.nth(1)).toHaveText('2');
+		await expect(slots.nth(2)).toHaveClass(/otp-slot-active/);
+
+		await page.keyboard.press('Backspace');
+		await expect(input).toHaveValue('1');
+		await expect(slots.nth(1)).toHaveClass(/otp-slot-active/);
+
+		// a click on a filled slot chooses it, the next key replaces its character
+		const first = await slots.nth(0).boundingBox();
+		await page.mouse.click(first.x + first.width / 2, first.y + first.height / 2);
+		await expect(slots.nth(0)).toHaveClass(/otp-slot-active/);
+		await page.keyboard.type('9');
+		await expect(input).toHaveValue('9');
+
+		// a pasted code is cleaned and replaces the value
+		await input.evaluate((element) => {
+			const clipboardData = new DataTransfer();
+			clipboardData.setData('text', '123 456');
+			element.dispatchEvent(new ClipboardEvent('paste', { clipboardData, bubbles: true, cancelable: true }));
+		});
+		await expect(input).toHaveValue('123456');
+		await expect(slots.nth(5)).toHaveText('6');
+		await expect(page.locator('#otp-code-state')).toHaveText('Complete: 123456.');
+		expect(await page.evaluate(() => window.otpEvents)).toEqual(['input:1', 'input:12', 'input:1', 'input:9', 'input:123456', 'complete:123456']);
+
+		// a mask hides the characters, groups put a separator between them, a disabled code takes nothing
+		await page.locator('#otp-pin').focus();
+		await page.keyboard.type('12');
+		await expect(page.locator('#otp-pin')).toHaveValue('12');
+		await expect(page.locator('.otp', { has: page.locator('#otp-pin') }).locator('.otp-slot').first()).toHaveText('•');
+		await expect(page.locator('.otp', { has: page.locator('#otp-groups') }).locator('.otp-separator')).toHaveCount(1);
+		await expect(page.locator('#otp-alnum')).toHaveValue('A7K');
+		expect(errors).toEqual([]);
+	});
+
+	test('the code of the password recovery fills the width of its form', async ({ page, errors }) => {
+		await open(page, 'recovery.html');
+		await page.locator('[data-recovery-next="2"]').first().click();
+		const input = page.locator('#rec-code');
+		const slots = page.locator('.otp', { has: input }).locator('.otp-slot');
+
+		await expect(input).toBeFocused();
+		await expect(slots).toHaveCount(6);
+		await expect(slots.nth(0)).toHaveClass(/otp-slot-active/);
+		await page.keyboard.type('482913');
+		await expect(input).toHaveValue('482913');
+		await expect(slots.nth(5)).toHaveClass(/otp-slot-active/);
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('password toggle and strength', () => {
 	test('the button shows the password, the meter rates it', async ({ page, errors }) => {
 		await open(page, 'sign-up.html');

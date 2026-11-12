@@ -27,6 +27,7 @@ export default defineConfig({
 				strength: entry('strength'),
 				'password-toggle': entry('password-toggle'),
 				'number-input': entry('number-input'),
+				'otp-input': entry('otp-input'),
 				selection: entry('selection'),
 				datepicker: entry('datepicker'),
 				chart: entry('chart'),

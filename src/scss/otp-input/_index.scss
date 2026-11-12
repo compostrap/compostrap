@@ -1,0 +1,214 @@
+//
+// otp input: a one-time code typed into separate slots, with the classes, attributes and variables of the OTP input
+// of Bootstrap 6, so the markup stays when the package moves to it
+//
+// <div class="otp" data-bs-otp>
+//   <input type="text" class="otp-input" maxlength="6" aria-label="Verification code">
+// </div>
+//
+// One real input holds the value. The script draws the slots (`.otp-slots` with an `.otp-slot` per character) and
+// marks the wrapper `otp-rendered`; the input then lies over them, transparent, and takes every click and key.
+// `otp-connected` joins the slots into one field, `otp-sm` and `otp-lg` size them, `is-valid` and `is-invalid` on the
+// wrapper color them, `otp-fill` (not in Bootstrap 6) spreads the slots over the whole width. A slot has the look of
+// a form control and the current one its focus.
+//
+
+@use '../bootstrap' as bs;
+
+.otp {
+	--otp-size: 2.75rem;
+	--otp-font-size: 1.125rem;
+	--otp-gap: .5rem;
+	--otp-slot-fg: var(--bs-body-color);
+	--otp-slot-bg: var(--bs-body-bg);
+	--otp-slot-border-width: var(--bs-border-width);
+	--otp-slot-border-color: var(--bs-border-color);
+	--otp-slot-border-radius: var(--bs-border-radius);
+
+	position: relative;
+	display: flex;
+	min-height: var(--otp-size);
+}
+
+// before the script draws the slots the input is a plain field of their height, so the page does not jump
+.otp-input {
+	min-width: 0;
+	height: var(--otp-size);
+	padding: 0 .75rem;
+	font-size: var(--otp-font-size);
+	font-weight: 500;
+	color: var(--otp-slot-fg);
+	letter-spacing: .5em;
+	background-color: var(--otp-slot-bg);
+	border: var(--otp-slot-border-width) solid var(--otp-slot-border-color);
+	border-radius: var(--otp-slot-border-radius);
+}
+
+.otp-rendered .otp-input {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	color: transparent;
+	cursor: default;
+	caret-color: transparent;
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	box-shadow: none;
+
+	// the characters under the slots never show, not even selected
+	&::selection {
+		color: transparent;
+		background-color: transparent;
+	}
+}
+
+// only drawn; the input over them handles the clicks. The slots shrink together when the row is too narrow.
+.otp-slots {
+	display: inline-flex;
+	gap: var(--otp-gap);
+	min-width: 0;
+	max-width: 100%;
+	pointer-events: none;
+}
+
+.otp-slot {
+	display: flex;
+	flex: 0 1 var(--otp-size);
+	align-items: center;
+	justify-content: center;
+	width: var(--otp-size);
+	min-width: 0;
+	min-height: var(--otp-size);
+	font-size: var(--otp-font-size);
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+	color: var(--otp-slot-fg);
+	user-select: none;
+	background-color: var(--otp-slot-bg);
+	border: var(--otp-slot-border-width) solid var(--otp-slot-border-color);
+	border-radius: var(--otp-slot-border-radius);
+}
+
+// the slot at the caret has the focus of a text field; an empty one shows a blinking caret
+.otp-slot-active {
+	z-index: 1;
+	border-color: bs.$input-focus-border-color;
+	box-shadow: bs.$input-focus-box-shadow;
+
+	&:not(.otp-slot-filled)::after {
+		width: 1px;
+		height: 50%;
+		content: '';
+		background-color: var(--otp-slot-fg);
+		animation: otp-caret-blink 1s step-end infinite;
+	}
+}
+
+.otp-input:disabled ~ .otp-slots .otp-slot {
+	color: var(--bs-secondary-color);
+	background-color: bs.$input-disabled-bg;
+}
+
+// the states of the validation, on the wrapper (Bootstrap 6) or on the input (a form renderer)
+.otp.is-valid,
+.otp:has(> .otp-input.is-valid) {
+	--otp-slot-border-color: var(--bs-form-valid-border-color);
+}
+
+.otp.is-invalid,
+.otp:has(> .otp-input.is-invalid) {
+	--otp-slot-border-color: var(--bs-form-invalid-border-color);
+}
+
+.otp:has(> .otp-input.is-invalid) ~ .invalid-feedback,
+.otp:has(> .otp-input.is-valid) ~ .valid-feedback {
+	display: block;
+}
+
+// slots that share their borders, one field
+.otp-connected .otp-slots {
+	gap: 0;
+}
+
+.otp-connected .otp-slot {
+	border-radius: 0;
+
+	&:not(:first-child) {
+		margin-inline-start: calc(var(--otp-slot-border-width) * -1);
+	}
+
+	&:first-child,
+	.otp-separator + & {
+		border-start-start-radius: var(--otp-slot-border-radius);
+		border-end-start-radius: var(--otp-slot-border-radius);
+	}
+
+	&:last-child,
+	&:has(+ .otp-separator) {
+		border-start-end-radius: var(--otp-slot-border-radius);
+		border-end-end-radius: var(--otp-slot-border-radius);
+	}
+
+	.otp-separator + & {
+		margin-inline-start: 0;
+	}
+}
+
+.otp-separator {
+	display: flex;
+	align-items: center;
+	padding-inline: var(--otp-gap);
+	font-size: var(--otp-font-size);
+	color: var(--bs-secondary-color);
+	user-select: none;
+}
+
+// the gaps of the separate slots already stand around a separator
+.otp:not(.otp-connected) .otp-separator {
+	padding-inline: 0;
+}
+
+// own addition to Bootstrap 6: the slots share the whole width of the wrapper, like the other fields of a narrow form
+.otp-fill .otp-slots {
+	display: flex;
+	flex: 1;
+}
+
+.otp-fill .otp-slot {
+	flex: 1 1 0;
+	width: auto;
+}
+
+.otp-sm {
+	--otp-size: 2.25rem;
+	--otp-font-size: 1rem;
+	--otp-gap: .375rem;
+	--otp-slot-border-radius: var(--bs-border-radius-sm);
+}
+
+.otp-lg {
+	--otp-size: 3.25rem;
+	--otp-font-size: 1.375rem;
+	--otp-slot-border-radius: var(--bs-border-radius-lg);
+}
+
+@keyframes otp-caret-blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.otp-slot-active::after {
+		animation: none;
+	}
+}

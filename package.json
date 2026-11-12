@@ -49,6 +49,7 @@
 		"./strength": "./dist/js/strength.js",
 		"./password-toggle": "./dist/js/password-toggle.js",
 		"./number-input": "./dist/js/number-input.js",
+		"./otp-input": "./dist/js/otp-input.js",
 		"./selection": "./dist/js/selection.js",
 		"./datepicker": "./dist/js/datepicker.js",
 		"./chart": "./dist/js/chart.js",
