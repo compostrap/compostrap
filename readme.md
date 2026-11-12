@@ -127,12 +127,12 @@ All modules follow the global theme of Bootstrap in `data-bs-theme`:
 <html lang="en" data-bs-theme="light">
 ```
 
-The switcher stores the choice in `localStorage` under `bootstrap-theme`. To avoid a light flash of a dark page, set the stored theme before the page is drawn:
+The switcher stores the choice in `localStorage` under `bootstrap-theme`; without a stored choice the page follows the system. To avoid a light flash of a dark page, set the theme before the page is drawn:
 
 ```html
 <script>
 	try {
-		let theme = localStorage.getItem('bootstrap-theme');
+		let theme = localStorage.getItem('bootstrap-theme') || 'auto';
 		if (theme === 'auto') {
 			theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		}

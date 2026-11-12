@@ -97,6 +97,11 @@
 	background-color: var(--ds-body-bg);
 }
 
+// a focused control or the target of an anchor stops under the stuck navbar and its gap, not behind it
+:root:has(.navbar-content.sticky-top) {
+	scroll-padding-top: calc(#{var.$sm-top} + .75rem);
+}
+
 .navbar-content:not(.navbar-bar)::after {
 	position: absolute;
 	top: 100%;

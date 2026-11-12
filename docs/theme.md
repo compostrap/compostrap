@@ -86,6 +86,15 @@ Checks, radios and switches are 20px; `form-check-sm` makes them 16px (a 28 × 1
 <input class="form-check-input form-check-sm" type="checkbox" aria-label="Select the row">
 ```
 
+On an iPhone or an iPad the text of a field is 16px instead of 14px (12px in the small size): Safari of iOS zooms the page in when a field with a smaller text gets the focus. The rule is inside `@supports (-webkit-touch-callout: none)`, which only iOS matches; the line keeps its height, so the fields are as high as elsewhere. The number of `number-input` does the same.
+
+A field with an error of the server (`is-invalid`) also says it to a screen reader: `aria-invalid="true"` and `aria-describedby` with the `id` of its `invalid-feedback`.
+
+```html
+<input type="email" class="form-control is-invalid" id="email" aria-invalid="true" aria-describedby="email-error">
+<div class="invalid-feedback" id="email-error">Please enter a valid e-mail.</div>
+```
+
 ## Offcanvas and modals
 
 An offcanvas floats: it keeps a gap of 8px from the edges of the window, has rounded corners and a shadow instead of a border. `offcanvas-flush` keeps a panel stuck to the edge. A modal has no border, a shadow and a light line above the footer. Dropdowns have no border and a soft shadow, the chosen item is tinted instead of filled with the primary color. A toast follows the modals: no border, an opaque surface (a lighter one in the dark theme), larger corners and a shadow.

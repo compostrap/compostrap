@@ -162,9 +162,13 @@ test.describe('compact sidebar', () => {
 		const toggler = page.locator('#sidebar');
 
 		await expect(toggler).toHaveAttribute('aria-expanded', 'false');
+		// closed, the sidebar stands outside the window and the keyboard does not reach its links
+		expect(await navigation.evaluate((element) => element.inert)).toBe(true);
 		await toggler.click();
 		await expect(navigation).toHaveClass(/sidebar-toggle/);
 		await expect(toggler).toHaveAttribute('aria-expanded', 'true');
+		// open, it takes the focus
+		expect(await navigation.evaluate((element) => !element.inert && element.contains(document.activeElement))).toBe(true);
 		expect(await page.locator('.sidebar-menu').evaluate((element) => element.getBoundingClientRect().width)).toBe(240);
 
 		// a group opens its submenu in place, not a menu next to it
@@ -176,6 +180,18 @@ test.describe('compact sidebar', () => {
 		await page.keyboard.press('Escape');
 		await expect(navigation).not.toHaveClass(/sidebar-toggle/);
 		await expect(toggler).toHaveAttribute('aria-expanded', 'false');
+		await expect(toggler).toBeFocused();
+		expect(await navigation.evaluate((element) => element.inert)).toBe(true);
+
+		// the focus that leaves the open sidebar closes it
+		await toggler.click();
+		await expect(navigation).toHaveClass(/sidebar-toggle/);
+		await page.locator('.layout-content a[href]').first().focus();
+		await expect(navigation).not.toHaveClass(/sidebar-toggle/);
+
+		// from md up the sidebar is a part of the page again
+		await page.setViewportSize({ width: 1280, height: 800 });
+		expect(await navigation.evaluate((element) => element.inert)).toBe(false);
 		expect(errors).toEqual([]);
 	});
 });

@@ -3,12 +3,17 @@
 // on a dark backdrop, its caption, a counter and round buttons to close and to browse
 //
 
-// the page under it does not scroll
-.lightbox-open {
-	overflow: hidden;
+// The page under it does not scroll: the dialog and its backdrop keep a scroll gesture to themselves (the backdrop has
+// to be a scroll container for that), so the scrollbar of the page stays and nothing shifts. Safari does not hold a
+// gesture in a box that cannot scroll yet; on iOS, where the scrollbar takes no room, the page is locked the old way.
+@supports (-webkit-touch-callout: none) {
+	.lightbox-open {
+		overflow: hidden;
+	}
 }
 
 .lightbox {
+	overscroll-behavior: contain;
 	width: 100vw;
 	max-width: 100vw;
 	height: 100dvh;
@@ -20,6 +25,8 @@
 	border: 0;
 
 	&::backdrop {
+		overflow: hidden;
+		overscroll-behavior: contain;
 		background-color: rgba(0, 0, 0, .95);
 	}
 

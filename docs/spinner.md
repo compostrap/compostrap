@@ -8,9 +8,9 @@ A spinner shows that a request runs, for example an AJAX request of the page. It
 - `.spinner-overlay`: the whole window darkens and a ring turns in its middle. It lies over everything, so nothing can be clicked until the request ends.
 
 ```html
-<div class="spinner" role="status" aria-label="Loading"></div>
+<div class="spinner" role="status"><span class="spinner-label">Loading</span></div>
 
-<div class="spinner-overlay" role="status" aria-label="Loading"></div>
+<div class="spinner-overlay" role="status"><span class="spinner-label">Loading</span></div>
 ```
 
 The element stands at the end of `<body>` only while the request runs. The script adds and removes it:
@@ -25,7 +25,7 @@ spinner.show();
 fetch(url).finally(() => spinner.hide());
 ```
 
-`show()` and `hide()` are counted: with more requests at once the spinner stays until the last one ends. `spinner.active` says whether a request runs. The overlay also stops the keys Tab, Enter and Space, so a focused button cannot send a form once more, and gives the focus back when it ends. The options are `overlay` (false), `label` (the `aria-label`, "Loading") and `parent` (`document.body`).
+`show()` and `hide()` are counted: with more requests at once the spinner stays until the last one ends. `spinner.active` says whether a request runs. The overlay also stops the keys Tab, Enter and Space, so a focused button cannot send a form once more, and gives the focus back when it ends. The options are `overlay` (false), `label` (the text for a screen reader in `.spinner-label`, "Loading"; the script writes it a moment after the spinner is shown, so a screen reader announces it) and `parent` (`document.body`).
 
 With Naja, show the spinner on its `start` event and hide it on `complete`:
 

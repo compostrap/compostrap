@@ -21,11 +21,11 @@
 						<div class="card h-100">
 							<div class="card-body">
 								<p class="fw-semibold mb-3"><i class="bi bi-person text-primary me-2" aria-hidden="true"></i>Contact information</p>
-								<div class="mb-3"><label class="form-label" for="c-email">Email</label><input type="email" class="form-control" id="c-email" value="jan.novak@example.com"></div>
-								<div class="mb-3"><label class="form-label" for="c-phone">Telephone</label><input type="tel" class="form-control" id="c-phone" value="+420 777 123 456"></div>
+								<div class="mb-3"><label class="form-label" for="c-email">Email</label><input type="email" class="form-control" id="c-email" autocomplete="email" value="jan.novak@example.com"></div>
+								<div class="mb-3"><label class="form-label" for="c-phone">Telephone</label><input type="tel" class="form-control" id="c-phone" autocomplete="tel" value="+420 777 123 456"></div>
 								<div class="row gx-2">
-									<div class="col-6 mb-3"><label class="form-label" for="c-name">Name</label><input type="text" class="form-control" id="c-name" value="Jan"></div>
-									<div class="col-6 mb-3"><label class="form-label" for="c-surname">Surname</label><input type="text" class="form-control" id="c-surname" value="Novák"></div>
+									<div class="col-6 mb-3"><label class="form-label" for="c-name">Name</label><input type="text" class="form-control" id="c-name" autocomplete="given-name" value="Jan"></div>
+									<div class="col-6 mb-3"><label class="form-label" for="c-surname">Surname</label><input type="text" class="form-control" id="c-surname" autocomplete="family-name" value="Novák"></div>
 								</div>
 							</div>
 						</div>
@@ -35,12 +35,12 @@
 						<div class="card h-100">
 							<div class="card-body">
 								<p class="fw-semibold mb-3"><i class="bi bi-file-earmark-text text-body-secondary me-2" aria-hidden="true"></i>Billing information</p>
-								<div class="mb-3"><label class="form-label" for="c-street">Street</label><input type="text" class="form-control" id="c-street" value="Dlouhá 12"></div>
+								<div class="mb-3"><label class="form-label" for="c-street">Street</label><input type="text" class="form-control" id="c-street" autocomplete="street-address" value="Dlouhá 12"></div>
 								<div class="row gx-2">
-									<div class="col-6 mb-3"><label class="form-label" for="c-city">City</label><input type="text" class="form-control" id="c-city" value="Praha"></div>
-									<div class="col-6 mb-3"><label class="form-label" for="c-country">Country</label><select class="form-select" id="c-country"><option>Czechia</option><option>Slovakia</option></select></div>
+									<div class="col-6 mb-3"><label class="form-label" for="c-city">City</label><input type="text" class="form-control" id="c-city" autocomplete="address-level2" value="Praha"></div>
+									<div class="col-6 mb-3"><label class="form-label" for="c-country">Country</label><select class="form-select" id="c-country" autocomplete="country-name"><option>Czechia</option><option>Slovakia</option></select></div>
 								</div>
-								<div class="mb-3"><label class="form-label" for="c-zip">Postal code</label><input type="text" class="form-control" id="c-zip" value="110 00"></div>
+								<div class="mb-3"><label class="form-label" for="c-zip">Postal code</label><input type="text" class="form-control" id="c-zip" autocomplete="postal-code" value="110 00"></div>
 							</div>
 						</div>
 					</div>

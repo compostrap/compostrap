@@ -153,3 +153,23 @@ $form-switch-padding-start-sm: 2.25rem !default;
 		cursor: not-allowed;
 	}
 }
+
+// Safari of iOS zooms the page in when a field with a text under 16px gets the focus, and the user has to zoom out
+// by hand. Only there (the test of -webkit-touch-callout matches no other browser) the text of a field is 16px;
+// the line keeps its height, so a field is as high as elsewhere. Large fields are over 16px already.
+@supports (-webkit-touch-callout: none) {
+	.form-control:where(:not(.form-control-lg)),
+	.form-select:where(:not(.form-select-lg)) {
+		font-size: 1rem;
+		line-height: $input-font-size * $input-line-height;
+	}
+
+	.form-control-sm,
+	.form-select-sm,
+	.input-group-sm > .form-control,
+	.input-group-sm > .form-select {
+		min-height: calc(#{$input-font-size-sm * $input-line-height + $input-padding-y-sm * 2} + #{$input-height-border});
+		font-size: 1rem;
+		line-height: $input-font-size-sm * $input-line-height;
+	}
+}

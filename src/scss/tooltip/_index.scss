@@ -53,6 +53,9 @@
 	&:hover::after,
 	&:focus-visible::after {
 		content: attr(aria-label);
+		// the text is the aria-label of the element already: the empty alternative keeps a screen reader from
+		// reading it twice (a browser without this syntax keeps the line above)
+		content: attr(aria-label) / '';
 	}
 
 	// a button whose dropdown is open shows the dropdown, not its tooltip over it

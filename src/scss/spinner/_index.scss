@@ -1,11 +1,11 @@
 //
 // spinner: shows that a request runs (an AJAX request of the page), in two forms
 //
-// <div class="spinner" role="status" aria-label="Loading"></div>
+// <div class="spinner" role="status"><span class="spinner-label">Loading</span></div>
 //   a thin line at the top of the window with a piece that runs from left to right (the spinner of drago-ex/project);
 //   the page stays in use
 //
-// <div class="spinner-overlay" role="status" aria-label="Loading"></div>
+// <div class="spinner-overlay" role="status"><span class="spinner-label">Loading</span></div>
 //   the whole window darkens and a ring turns in its middle; it lies over everything, so nothing can be clicked
 //   until it is removed
 //
@@ -72,6 +72,16 @@
 	}
 }
 
+// the text of the spinner for a screen reader, not seen
+.spinner-label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
 @keyframes cs-spinner-run {
 	from {
 		transform: translateX(-100%);
@@ -91,6 +101,20 @@
 @keyframes cs-spinner-in {
 	from {
 		opacity: 0;
+	}
+}
+
+// forced colors (the high contrast of Windows) take backgrounds away and give every border one color: the line and
+// the ring keep their own drawing, in the colors of the system
+@media (forced-colors: active) {
+	.spinner,
+	.spinner-overlay {
+		--spinner-color: CanvasText;
+		--spinner-track-color: Canvas;
+
+		&::after {
+			forced-color-adjust: none;
+		}
 	}
 }
 

@@ -52,6 +52,37 @@ test.describe('theme switcher', () => {
 		await expect(toggle).toHaveAttribute('aria-pressed', 'true');
 		await toggle.click();
 		await expect(html).toHaveAttribute('data-bs-theme', 'light');
+		// back at the theme of the system the page follows it again instead of being pinned
+		expect(await page.evaluate(() => localStorage.getItem('bootstrap-theme'))).toBe('auto');
+	});
+
+	test('without a stored choice the page follows the system', async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await open(page, 'index.html');
+		const html = page.locator('html');
+		const auto = page.locator('[data-theme-value="auto"]');
+
+		await expect(html).toHaveAttribute('data-bs-theme', 'dark');
+		await expect(auto).toHaveAttribute('aria-pressed', 'true');
+		// the auto choice tells the theme of the system
+		await expect(auto).toHaveAttribute('data-theme-system', 'dark');
+		await expect(auto).toHaveAttribute('title', 'System theme: dark');
+
+		await page.emulateMedia({ colorScheme: 'light' });
+		await expect(html).toHaveAttribute('data-bs-theme', 'light');
+		await expect(auto).toHaveAttribute('data-theme-system', 'light');
+	});
+
+	test('a choice made in another tab is taken over', async ({ page, context }) => {
+		await open(page, 'index.html');
+		const other = await context.newPage();
+		await open(other, 'index.html');
+
+		await other.locator('.navbar-user').click();
+		await other.locator('[data-theme-value="dark"]').click();
+
+		await expect(page.locator('html')).toHaveAttribute('data-bs-theme', 'dark');
+		await expect(page.locator('[data-theme-value="dark"]')).toHaveAttribute('aria-pressed', 'true');
 	});
 });
 
@@ -284,6 +315,18 @@ test.describe('gallery', () => {
 		await dialog.locator('.lightbox-prev').click();
 		await expect(counter).toHaveText(`${total} / ${total}`);
 
+		// the page under the preview does not scroll and keeps its scrollbar (nothing shifts); in a low window,
+		// where the page has something to scroll
+		await page.setViewportSize({ width: 1280, height: 400 });
+		expect(await page.evaluate(() => document.documentElement.scrollHeight - innerHeight)).toBeGreaterThan(0);
+		const scroll = () => page.evaluate(() => ({ y: scrollY, width: document.documentElement.clientWidth }));
+		const before = await scroll();
+		await page.mouse.move(640, 200);
+		await page.mouse.wheel(0, 300);
+		await page.waitForTimeout(200);
+		expect(await scroll()).toEqual(before);
+		expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflowY)).not.toBe('hidden');
+
 		await page.keyboard.press('Escape');
 		await expect(dialog).toBeHidden();
 		await expect(page.locator('html')).not.toHaveClass(/lightbox-open/);
@@ -452,6 +495,8 @@ test.describe('spinner', () => {
 		await button.click();
 		await button.click();
 		await expect(page.locator('body > .spinner')).toHaveCount(1);
+		// the text for a screen reader comes into the shown status
+		await expect(page.locator('body > .spinner[role="status"] .spinner-label')).toHaveText('Loading');
 		await expect(page.locator('body > .spinner')).toHaveCount(0, { timeout: 5000 });
 		expect(errors).toEqual([]);
 	});

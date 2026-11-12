@@ -14,16 +14,16 @@
 			<form class="row g-3" onsubmit="return false">
 				<div class="col-12">
 					<label for="up-name" class="form-label">Full name</label>
-					<input type="text" class="form-control" id="up-name" autocomplete="name" placeholder="Jan Novák">
+					<input type="text" class="form-control" id="up-name" required autocomplete="name" placeholder="Jan Novák">
 				</div>
 				<div class="col-12">
 					<label for="up-email" class="form-label">E-mail</label>
-					<input type="email" class="form-control" id="up-email" autocomplete="email" placeholder="jan@example.com">
+					<input type="email" class="form-control" id="up-email" required autocomplete="email" placeholder="jan@example.com">
 				</div>
 				<div class="col-12">
 					<label for="up-password" class="form-label">Password</label>
 					<div class="password-toggle">
-						<input type="password" class="form-control" id="up-password" autocomplete="new-password" aria-describedby="up-strength">
+						<input type="password" class="form-control" id="up-password" required autocomplete="new-password" aria-describedby="up-strength">
 						<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
 					</div>
 					<div class="strength" data-bs-strength>
@@ -37,7 +37,7 @@
 				<div class="col-12">
 					<label for="up-verify" class="form-label">Password again</label>
 					<div class="password-toggle">
-						<input type="password" class="form-control" id="up-verify" autocomplete="new-password">
+						<input type="password" class="form-control" id="up-verify" required autocomplete="new-password">
 						<button type="button" class="password-toggle-btn" data-password-toggle aria-label="Show password" aria-pressed="false"></button>
 					</div>
 				</div>

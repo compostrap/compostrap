@@ -30,6 +30,8 @@
 	// the field is as wide as its number (at least two digits), so the buttons stay close to it
 	> .form-control {
 		min-width: calc(2.5ch + .5rem);
+		// a very long number scrolls in the field instead of pushing the page apart
+		max-width: calc(10ch + .5rem);
 		height: var(--number-input-btn-size);
 		min-height: 0;
 		padding: 0 .25rem;
@@ -129,5 +131,13 @@
 	> .form-control,
 	.number-input-btn {
 		border-radius: var(--bs-border-radius-lg);
+	}
+}
+
+// Safari of iOS zooms the page in when a field with a text under 16px gets the focus: the number is 16px there
+// (the large size is over it already), the height of the field is the one of the buttons
+@supports (-webkit-touch-callout: none) {
+	.number-input:not(.number-input-lg) > .form-control {
+		font-size: 1rem;
 	}
 }

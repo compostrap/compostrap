@@ -36,10 +36,10 @@ import { Modal, Offcanvas } from 'bootstrap';
 Dialogs.init({ Modal, Offcanvas });
 ```
 
-**Toasts.** `toast-status` is a toast with the message of a state (a flash message: saved, deleted, failed) in the look of the modals: a thin colored line at the top, an icon in the color, a title and a quiet text. A `theme-*` class colors the line and the icon. The toasts stand in a `toast-container` of Bootstrap in a corner of the window and are shown by `bootstrap.Toast`, which also hides them after a while.
+**Toasts.** The container is a named region (`role="region"`, `aria-label`), so a screen reader finds the messages. `toast-status` is a toast with the message of a state (a flash message: saved, deleted, failed) in the look of the modals: a thin colored line at the top, an icon in the color, a title and a quiet text. A `theme-*` class colors the line and the icon. The toasts stand in a `toast-container` of Bootstrap in a corner of the window and are shown by `bootstrap.Toast`, which also hides them after a while.
 
 ```html
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
+<div class="toast-container position-fixed bottom-0 end-0 p-3" role="region" aria-label="Notifications">
 	<div class="toast toast-status theme-success" role="status" aria-live="polite" aria-atomic="true">
 		<i class="bi bi-check-circle toast-status-icon" aria-hidden="true"></i>
 		<div class="toast-status-body">

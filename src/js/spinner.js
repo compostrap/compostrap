@@ -21,7 +21,12 @@ export class Spinner {
 		this.element = document.createElement('div');
 		this.element.className = overlay ? 'spinner-overlay' : 'spinner';
 		this.element.setAttribute('role', 'status');
-		this.element.setAttribute('aria-label', label);
+		// the text for a screen reader: written a moment after the element is in the page, because a status is
+		// announced when its content changes, not when it appears with its text (or with an aria-label only)
+		this.label = label;
+		this._label = document.createElement('span');
+		this._label.className = 'spinner-label';
+		this.element.append(this._label);
 	}
 
 	/** Whether a request runs. */
@@ -35,6 +40,9 @@ export class Spinner {
 		}
 
 		this.parent.appendChild(this.element);
+		this._timer = setTimeout(() => {
+			this._label.textContent = this.label;
+		}, 100);
 		if (this.overlay) {
 			this._focused = document.activeElement;
 			this._focused?.blur?.();
@@ -47,6 +55,8 @@ export class Spinner {
 			return;
 		}
 
+		clearTimeout(this._timer);
+		this._label.textContent = '';
 		this.element.remove();
 		if (this.overlay) {
 			document.removeEventListener('keydown', this._stopKeys, true);

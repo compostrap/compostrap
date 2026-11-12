@@ -45,7 +45,7 @@ The layout with a navbar over the whole width (`wrapper-navbar-used wrapper-navb
 
 ## Sidebar
 
-The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On small screens it opens as an overlay over the page; the backdrop, a click on it and Escape close it, and the toggle reports its state in `aria-expanded`. From the `md` breakpoint up it stays in the layout.
+The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On small screens it opens as an overlay over the page and takes the focus; closed, it stands outside the window and is `inert`, so the keyboard and a screen reader skip its links. The backdrop, a click on it, Escape and the focus that leaves it (Tab after its last link) close it, and the toggle reports its state in `aria-expanded`. From the `md` breakpoint up it stays in the layout.
 
 | Description                                        | Class                       |
 |----------------------------------------------------|-----------------------------|
@@ -126,7 +126,7 @@ The navbar `navbar fixed-top` gets the page background, `navbar-nav-breadcrumb` 
 
 ## Datagrid tables
 
-A table of a datagrid stands in a `table-responsive`, so it scrolls inside its box on a narrow screen. The actions of a row are a menu: three vertical dots open a dropdown with the items, delete last after a divider. The button needs `data-bs-popper-config='{"strategy":"fixed"}'`, or the scrolling wrapper cuts the menu off.
+A table of a datagrid stands in a `table-responsive`, so it scrolls inside its box on a narrow screen. The wrapper is `<div class="table-responsive" tabindex="0" role="region" aria-label="Articles">` (the name of the table): with `tabindex` the keyboard can scroll it in every browser, the role and the name tell a screen reader what the focused box is. The actions of a row are a menu: three vertical dots open a dropdown with the items, delete last after a divider. The button needs `data-bs-popper-config='{"strategy":"fixed"}'`, or the scrolling wrapper cuts the menu off.
 
 ```html
 <td class="text-end">

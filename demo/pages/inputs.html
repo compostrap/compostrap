@@ -68,7 +68,7 @@
 					<h2 class="h5 mb-1">Cart</h2>
 					<p class="small text-body-secondary mb-0">A change of the quantity fires change, the cart recounts its prices.</p>
 				</header>
-				<div class="table-responsive">
+				<div class="table-responsive" tabindex="0" role="region" aria-label="Cart">
 					<table class="table align-middle mb-0" id="demo-cart">
 						<thead>
 							<tr>
@@ -173,7 +173,7 @@
 					<div class="col-md-6 col-xl-4">
 						<label class="form-label" for="otp-invalid">Invalid</label>
 						<div class="otp is-invalid" data-bs-otp>
-							<input type="text" class="otp-input" id="otp-invalid" maxlength="6" value="123" aria-describedby="otp-invalid-text">
+							<input type="text" class="otp-input" id="otp-invalid" maxlength="6" value="123" aria-invalid="true" aria-describedby="otp-invalid-text">
 						</div>
 						<div class="invalid-feedback" id="otp-invalid-text">The code has six digits.</div>
 					</div>

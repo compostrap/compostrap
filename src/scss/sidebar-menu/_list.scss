@@ -33,10 +33,13 @@
 		&:hover {
 			text-decoration: none;
 
-			.bell {
-				animation: bell-shake .5s cubic-bezier(.36, .07, .19, .97) both;
-				backface-visibility: hidden;
-				transform-origin: top right;
+			// the bell shakes only for a user who has not asked the system for less motion
+			@media (prefers-reduced-motion: no-preference) {
+				.bell {
+					animation: bell-shake .5s cubic-bezier(.36, .07, .19, .97) both;
+					backface-visibility: hidden;
+					transform-origin: top right;
+				}
 			}
 		}
 	}

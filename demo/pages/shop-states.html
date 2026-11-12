@@ -66,8 +66,8 @@
 					<label class="form-label fw-semibold" for="code-bad"><i class="bi bi-ticket-perforated text-body-secondary me-2" aria-hidden="true"></i>Have a discount code?</label>
 					<div class="d-flex align-items-start gap-2">
 						<div class="flex-grow-1">
-							<input type="text" class="form-control form-control-sm is-invalid" id="code-bad" value="SUMMER">
-							<div class="invalid-feedback">This discount code is not valid or has expired.</div>
+							<input type="text" class="form-control form-control-sm is-invalid" id="code-bad" aria-invalid="true" aria-describedby="code-bad-error" value="SUMMER">
+							<div class="invalid-feedback" id="code-bad-error">This discount code is not valid or has expired.</div>
 						</div>
 						<button type="button" class="btn btn-sm btn-primary px-3">Apply</button>
 					</div>
@@ -88,13 +88,13 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-label" for="e-email">Email</label>
-						<input type="email" class="form-control is-invalid" id="e-email" value="jan.novak@example">
-						<div class="invalid-feedback">Fill in a valid email address.</div>
+						<input type="email" class="form-control is-invalid" id="e-email" aria-invalid="true" aria-describedby="e-email-error" value="jan.novak@example">
+						<div class="invalid-feedback" id="e-email-error">Fill in a valid email address.</div>
 					</div>
 					<div class="mb-0">
 						<label class="form-label" for="e-zip">Postal code</label>
-						<input type="text" class="form-control is-invalid" id="e-zip" value="110">
-						<div class="invalid-feedback">The postal code has 5 digits.</div>
+						<input type="text" class="form-control is-invalid" id="e-zip" aria-invalid="true" aria-describedby="e-zip-error" value="110">
+						<div class="invalid-feedback" id="e-zip-error">The postal code has 5 digits.</div>
 					</div>
 				</div>
 			</div>

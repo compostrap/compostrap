@@ -31,6 +31,15 @@
 	}
 }
 
+// forced colors (the high contrast of Windows) give every border one color, so the turning would not be seen
+@media (forced-colors: active) {
+	:is(.content-box, .card, [data-loading-area])[aria-busy='true']::after {
+		forced-color-adjust: none;
+		border-color: Canvas;
+		border-top-color: CanvasText;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	:is(.content-box, .card, [data-loading-area])[aria-busy='true']::after {
 		animation-duration: 2s;

@@ -2,7 +2,7 @@
 
 [← Compostrap](../readme.md#documentation)
 
-The theme is light, dark or `auto`: the setting of the system, followed when the system switches. The choice is remembered in `localStorage`. The administration puts it in the user menu as a segmented control: choice buttons with `data-theme-value`, the chosen one gets `active` and `aria-pressed`. `data-bs-auto-close="outside"` on the toggle of the menu keeps it open after a click on a choice; `dropdown-theme` (module `dashboard`) lays the row out.
+The theme is light, dark or `auto`: the setting of the system, followed when the system switches. The choice is remembered in `localStorage`; until a user chooses, the page follows the system (`defaultTheme: 'auto'`; a project that wants one theme for new visitors sets `'light'` or `'dark'`, also in the script of the head). A choice made in another tab of the browser is taken over. The administration puts it in the user menu as a segmented control: choice buttons with `data-theme-value`, the chosen one gets `active` and `aria-pressed`. `data-bs-auto-close="outside"` on the toggle of the menu keeps it open after a click on a choice; `dropdown-theme` (module `dashboard`) lays the row out.
 
 ```html
 <li class="dropdown-theme">
@@ -15,7 +15,9 @@ The theme is light, dark or `auto`: the setting of the system, followed when the
 </li>
 ```
 
-A single toggle button (e.g. on a sign-in page) switches light ↔ dark; a label and an icon from any icon library are optional:
+The auto choice says which theme the system has now: the script sets its `title` (`autoLightTitle`, `autoDarkTitle`, or `data-theme-auto-light-title` and `data-theme-auto-dark-title` on the button) and `data-theme-system="light|dark"`, a hook for an own mark.
+
+A single toggle button (e.g. on a sign-in page) switches light ↔ dark. It shows the opposite of the theme on the screen; when that is the theme of the system, the page goes back to following the system (`auto` is stored) instead of being pinned to it. A label and an icon from any icon library are optional:
 
 ```html
 <button
@@ -39,11 +41,13 @@ A single toggle button (e.g. on a sign-in page) switches light ↔ dark; a label
 new ThemeSwitcher({
 	selector: '[data-theme-switcher]',
 	storageKey: 'bootstrap-theme',
-	defaultTheme: 'light',
+	defaultTheme: 'auto',
 	lightIcon: '',
 	darkIcon: '',
 	lightLabel: 'Light mode',
 	darkLabel: 'Dark mode',
+	autoLightTitle: 'System theme: light',
+	autoDarkTitle: 'System theme: dark',
 }).initialize();
 ```
 

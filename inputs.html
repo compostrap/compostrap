@@ -4,10 +4,10 @@
 
 <head>
 	<meta charset="UTF-8">
-	<!-- the stored theme before the page is drawn, so a dark page does not flash light -->
+	<!-- the stored theme (without one the theme of the system) before the page is drawn, so a dark page does not flash light -->
 	<script>
 		try {
-			let theme = localStorage.getItem('bootstrap-theme');
+			let theme = localStorage.getItem('bootstrap-theme') || 'auto';
 			if (theme === 'auto') {
 				theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 			}
@@ -29,6 +29,8 @@
 		if (window.demoLayout.layout === 'bar') window.demoLayout.sticky = true;
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- the text size set in the system (a phone) scales the page: the sizes are in rem and the root size is not set -->
+	<meta name="text-scale" content="scale">
 	<link rel="icon" href="favicon.svg" type="image/svg+xml">
 	<link rel="stylesheet" href="src/scss/theme.scss">
 	<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
@@ -592,7 +594,7 @@
 					<h2 class="h5 mb-1">Cart</h2>
 					<p class="small text-body-secondary mb-0">A change of the quantity fires change, the cart recounts its prices.</p>
 				</header>
-				<div class="table-responsive">
+				<div class="table-responsive" tabindex="0" role="region" aria-label="Cart">
 					<table class="table align-middle mb-0" id="demo-cart">
 						<thead>
 							<tr>
@@ -697,7 +699,7 @@
 					<div class="col-md-6 col-xl-4">
 						<label class="form-label" for="otp-invalid">Invalid</label>
 						<div class="otp is-invalid" data-bs-otp>
-							<input type="text" class="otp-input" id="otp-invalid" maxlength="6" value="123" aria-describedby="otp-invalid-text">
+							<input type="text" class="otp-input" id="otp-invalid" maxlength="6" value="123" aria-invalid="true" aria-describedby="otp-invalid-text">
 						</div>
 						<div class="invalid-feedback" id="otp-invalid-text">The code has six digits.</div>
 					</div>
@@ -985,7 +987,7 @@
 
 <!-- the messages of a state (flash messages) in the corner of the window; drago draws them here as a snippet and shows
      them by bootstrap.Toast. The bottom padding only keeps them over the Customize button of the demo -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3 pb-5">
+<div class="toast-container position-fixed bottom-0 end-0 p-3 pb-5" role="region" aria-label="Notifications">
 	<div class="toast toast-status theme-success" id="demo-flash-success" role="status" aria-live="polite" aria-atomic="true">
 		<i class="bi bi-check-circle toast-status-icon" aria-hidden="true"></i>
 		<div class="toast-status-body">
