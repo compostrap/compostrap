@@ -157,6 +157,38 @@ test.describe('row selection', () => {
 	});
 });
 
+test.describe('dialogs', () => {
+	test('a click outside keeps a modal and an offcanvas open, the cross closes them', async ({ page, errors }) => {
+		await open(page, 'overlays.html');
+
+		for (const [id, dismiss] of [['#demo-modal', 'modal'], ['#demo-offcanvas', 'offcanvas']]) {
+			const dialog = page.locator(id);
+			await page.locator(`[data-bs-target="${id}"]`).first().click();
+			await expect(dialog).toBeVisible();
+			await expect(dialog).not.toHaveClass(/showing/);
+
+			await page.mouse.click(5, 300);
+			await page.waitForTimeout(500);
+			await expect(dialog).toBeVisible();
+
+			await dialog.locator(`.btn-close[data-bs-dismiss="${dismiss}"]`).click();
+			await expect(dialog).toBeHidden();
+		}
+		expect(errors).toEqual([]);
+	});
+
+	test('the search still closes by a click outside', async ({ page, errors }) => {
+		await open(page, 'overlays.html');
+		const search = page.locator('#demo-search');
+
+		await page.locator('[data-bs-target="#demo-search"]').first().click();
+		await expect(search).toBeVisible();
+		await page.mouse.click(5, 300);
+		await expect(search).toBeHidden();
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('gallery', () => {
 	test('the lightbox opens, browses and closes', async ({ page, errors }) => {
 		await open(page, 'gallery.html');

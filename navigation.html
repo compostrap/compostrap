@@ -779,7 +779,7 @@
 </div>
 
 <!-- the search of the administration, opened by the magnifier in the navbar: the results are links in groups -->
-<div class="modal fade" id="demo-search" tabindex="-1" aria-label="Search" aria-hidden="true">
+<div class="modal fade" id="demo-search" tabindex="-1" aria-label="Search" aria-hidden="true" data-bs-backdrop="true">
 	<div class="modal-dialog modal-search">
 		<div class="modal-content">
 			<form class="modal-search-form" role="search" onsubmit="return false">
@@ -859,7 +859,7 @@
 <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
 <script src="node_modules/nanobar/nanobar.js"></script>
 <script type="module">
-	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, RowSelection, PasswordToggle, Strength } from "./src/js/index.js";
+	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, RowSelection, PasswordToggle, Strength, Dialogs } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";
 	import { Charts } from "./src/js/chart.js";
 	import PerfectScrollbar from "perfect-scrollbar";
@@ -872,6 +872,7 @@
 		RowSelection.init();
 		PasswordToggle.init();
 		Strength.init();
+		Dialogs.init();
 		Datepicker.init();
 		Charts.init();
 
@@ -954,14 +955,6 @@
 			});
 			search.querySelector('.modal-search-empty').hidden = found > 0;
 		});
-
-		// a click on a row of the products opens the product, except a click on its links and buttons (like row-click.js
-		// of drago-ex/datagrid)
-		document.querySelectorAll('#products tbody tr').forEach((row) => row.addEventListener('click', (event) => {
-			if (!event.target.closest('a, button')) {
-				bootstrap.Offcanvas.getOrCreateInstance('#demo-product').show();
-			}
-		}));
 	});
 </script>
 

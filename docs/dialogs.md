@@ -24,6 +24,18 @@ The module `dialogs` adds to the modals and offcanvas panels of Bootstrap: `moda
 </div>
 ```
 
+**A click outside.** `Dialogs.init()` makes every modal and offcanvas stay open when the user clicks outside of it, so a form in a dialog is not lost by a slip of the mouse; a dialog is closed by its cross, its Cancel button (`data-bs-dismiss`) and Esc. It sets the default `backdrop` option of Bootstrap to `static`, so it also holds for dialogs loaded later (AJAX) or opened from a script; call it before the first dialog is opened. A dialog that should close by a click outside (the search below, which has no button to close it) says so by `data-bs-backdrop="true"`. Without `Dialogs.init()` nothing changes and single dialogs can take `data-bs-backdrop="static"` of Bootstrap.
+
+```javascript
+import { Dialogs } from 'compostrap';
+
+Dialogs.init();
+
+// Bootstrap imported as a module instead of window.bootstrap
+import { Modal, Offcanvas } from 'bootstrap';
+Dialogs.init({ Modal, Offcanvas });
+```
+
 **Toasts.** `toast-status` is a toast with the message of a state (a flash message: saved, deleted, failed) in the look of the modals: a thin colored line at the top, an icon in the color, a title and a quiet text. A `theme-*` class colors the line and the icon. The toasts stand in a `toast-container` of Bootstrap in a corner of the window and are shown by `bootstrap.Toast`, which also hides them after a while.
 
 ```html
@@ -48,7 +60,7 @@ document.querySelectorAll('.toast-status').forEach((toast) => bootstrap.Toast.ge
 ```html
 <button type="button" class="navbar-icon" data-bs-toggle="modal" data-bs-target="#search" aria-label="Search"><i class="bi bi-search" aria-hidden="true"></i><span class="navbar-icon-text d-none d-lg-inline">Search</span></button>
 
-<div class="modal fade" id="search" tabindex="-1" aria-label="Search" aria-hidden="true">
+<div class="modal fade" id="search" tabindex="-1" aria-label="Search" aria-hidden="true" data-bs-backdrop="true">
 	<div class="modal-dialog modal-search">
 		<div class="modal-content">
 			<form class="modal-search-form" role="search">

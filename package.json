@@ -53,6 +53,7 @@
 		"./datepicker": "./dist/js/datepicker.js",
 		"./chart": "./dist/js/chart.js",
 		"./spinner": "./dist/js/spinner.js",
+		"./dialogs": "./dist/js/dialogs.js",
 		"./css/*": "./dist/css/*",
 		"./src/scss/*": "./src/scss/*",
 		"./illustrations/*": "./src/illustrations/*"

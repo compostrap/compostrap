@@ -123,3 +123,22 @@ The user sits in the navbar as `navbar-user`: an `avatar` (initials or a photo i
 ## Content boxes and the older navbar
 
 The navbar `navbar fixed-top` gets the page background, `navbar-nav-breadcrumb` separates its items by an arrow, and `content-box` is a box of the page content on the surface color.
+
+## Datagrid tables
+
+A table of a datagrid stands in a `table-responsive`, so it scrolls inside its box on a narrow screen. The actions of a row are a menu: three vertical dots open a dropdown with the items, delete last after a divider. The button needs `data-bs-popper-config='{"strategy":"fixed"}'`, or the scrolling wrapper cuts the menu off.
+
+```html
+<td class="text-end">
+	<div class="dropdown">
+		<button type="button" class="btn btn-xs btn-icon btn-text" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="Actions"><i class="bi bi-three-dots-vertical" aria-hidden="true"></i></button>
+		<ul class="dropdown-menu dropdown-menu-end">
+			<li><a class="dropdown-item" href="..."><i class="bi bi-pencil me-2" aria-hidden="true"></i>Edit</a></li>
+			<li><hr class="dropdown-divider"></li>
+			<li><a class="dropdown-item text-danger" href="..."><i class="bi bi-trash me-2" aria-hidden="true"></i>Delete</a></li>
+		</ul>
+	</div>
+</td>
+```
+
+A datagrid can also open an item by a click on its row (`datagrid-row-clickable` on the `tr` and `row-click.js` of drago-ex/datagrid; compostrap has no script for it). Use it only with icon buttons as the row actions (`btn btn-xs btn-icon` with a `data-tooltip`), never with the menu of three dots: a click that misses the small button of the menu lands on the row and opens the item instead of the menu.

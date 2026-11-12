@@ -51,7 +51,7 @@ The package has three layers:
 | [`theme-switcher`](docs/theme-switcher.md) | component | switches the light and dark theme of Bootstrap and remembers the choice | `ThemeSwitcher` |
 | [`tooltip`](docs/tooltip.md) | component | a tooltip of pure CSS for buttons and links with an icon only | – |
 | [`elements`](docs/elements.md) | component | small pieces of a page: state dots, stat tiles, list rows, the loading state of a box | – |
-| [`dialogs`](docs/dialogs.md) | component | a colored line and a confirmation of a modal, a bar of buttons at the bottom of an offcanvas, a toast with the message of a state, a search dialog | – |
+| [`dialogs`](docs/dialogs.md) | component | a colored line and a confirmation of a modal, a bar of buttons at the bottom of an offcanvas, a toast with the message of a state, a search dialog; dialogs that stay open on a click outside | `Dialogs` |
 | [`settings`](docs/settings.md) | component | a list of the sections of a page and rows of settings with their controls | – |
 | [`selection`](docs/selection.md) | component | rows of a table chosen by checkboxes and a bar with the actions for them | `RowSelection` |
 | [`number-input`](docs/number-input.md) | component | a number with minus and plus buttons, e.g. the quantity in a cart | `NumberInput` |
