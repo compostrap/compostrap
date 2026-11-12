@@ -44,6 +44,7 @@
 		"./sidebar": "./dist/js/sidebar.js",
 		"./sidebar-menu": "./dist/js/sidebar-menu.js",
 		"./theme-switcher": "./dist/js/theme-switcher.js",
+		"./tooltip": "./dist/js/tooltip.js",
 		"./dropzone": "./dist/js/dropzone.js",
 		"./lightbox": "./dist/js/lightbox.js",
 		"./strength": "./dist/js/strength.js",

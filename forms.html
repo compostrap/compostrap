@@ -918,7 +918,7 @@
 <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
 <script src="node_modules/nanobar/nanobar.js"></script>
 <script type="module">
-	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, OtpInput, RowSelection, PasswordToggle, Strength, Dialogs } from "./src/js/index.js";
+	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, OtpInput, RowSelection, PasswordToggle, Strength, Dialogs, CssTooltip } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";
 	import { Charts } from "./src/js/chart.js";
 	import PerfectScrollbar from "perfect-scrollbar";
@@ -979,6 +979,7 @@
 		updateNavbarScrollState();
 		Lightbox.init();
 		new ThemeSwitcher({ lightIcon: 'bi bi-sun', darkIcon: 'bi bi-moon' }).initialize();
+		CssTooltip.init();
 		new Nanobar().go(100);
 		new PerfectScrollbar('.scrollbar', { wheelSpeed: 0.3 });
 

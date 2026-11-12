@@ -1,7 +1,8 @@
 //
 // Tooltip of pure CSS, for buttons with an icon only: the text of aria-label shown on hover and keyboard focus,
 // dark on a light page and light on a dark one (also for outline buttons, which have no background of their own),
-// so it needs no JavaScript and survives Naja snippets.
+// so it needs no JavaScript and survives Naja snippets (the optional script CssTooltip only adds Esc, which hides
+// the shown tooltip).
 // <a class="btn btn-sm btn-danger" aria-label="Delete" data-tooltip><i class="bi bi-trash"></i></a>
 // data-tooltip="left" shows it on the left, e.g. at the right edge of a table, data-tooltip="end" above but aligned to
 // the right edge, data-tooltip="bottom" under the element, e.g. in a navbar; data-tooltip-color="success" (any theme color of Bootstrap) colors it, with dark text on the light
@@ -60,6 +61,11 @@
 
 	// a button whose dropdown is open shows the dropdown, not its tooltip over it
 	&[aria-expanded='true']::after {
+		content: none;
+	}
+
+	// hidden by Esc (the script CssTooltip) until the mouse and the focus leave the element
+	&[data-tooltip-hidden]::after {
 		content: none;
 	}
 }

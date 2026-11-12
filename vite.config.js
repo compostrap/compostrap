@@ -22,6 +22,7 @@ export default defineConfig({
 				sidebar: entry('sidebar'),
 				'sidebar-menu': entry('sidebar-menu'),
 				'theme-switcher': entry('theme-switcher'),
+				tooltip: entry('tooltip'),
 				dropzone: entry('dropzone'),
 				lightbox: entry('lightbox'),
 				strength: entry('strength'),

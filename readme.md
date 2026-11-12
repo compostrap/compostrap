@@ -49,7 +49,7 @@ The package has three layers:
 | [`sidebar-menu`](docs/layout.md#sidebar-menu) | layout | a multi-level menu in the sidebar, links as pills, the current page on any level in a pill; a compact sidebar with the icons only | `SidebarMenu`, `Sidebar` (compact) |
 | [`dashboard`](docs/layout.md) | layout | the page background, the navbar over the content with a breadcrumb, icons and the user, the content boxes, the nanobar | – |
 | [`theme-switcher`](docs/theme-switcher.md) | component | switches the light and dark theme of Bootstrap and remembers the choice | `ThemeSwitcher` |
-| [`tooltip`](docs/tooltip.md) | component | a tooltip of pure CSS for buttons and links with an icon only | – |
+| [`tooltip`](docs/tooltip.md) | component | a tooltip of pure CSS for buttons and links with an icon only | `CssTooltip` (optional: Esc hides it) |
 | [`elements`](docs/elements.md) | component | small pieces of a page: state dots, stat tiles, list rows, the loading state of a box | – |
 | [`dialogs`](docs/dialogs.md) | component | a colored line and a confirmation of a modal, a bar of buttons at the bottom of an offcanvas, a toast with the message of a state, a search dialog; dialogs that stay open on a click outside | `Dialogs` |
 | [`settings`](docs/settings.md) | component | a list of the sections of a page and rows of settings with their controls | – |

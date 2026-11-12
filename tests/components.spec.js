@@ -86,6 +86,35 @@ test.describe('theme switcher', () => {
 	});
 });
 
+test.describe('tooltip', () => {
+	test('Esc hides the shown tooltip and goes no further', async ({ page, errors }) => {
+		await open(page, 'elements.html');
+		const button = page.locator('.content-box [data-tooltip][aria-label]').first();
+		const content = () => button.evaluate((element) => getComputedStyle(element, '::after').content);
+		await page.evaluate(() => {
+			window.escapes = 0;
+			document.addEventListener('keydown', (event) => { if (event.key === 'Escape') window.escapes++; });
+		});
+
+		await button.hover();
+		expect(await content()).not.toBe('none');
+		await page.keyboard.press('Escape');
+		expect(await content()).toBe('none');
+		expect(await page.evaluate(() => window.escapes)).toBe(0);
+
+		// without a tooltip on the screen the key is left alone
+		await page.keyboard.press('Escape');
+		expect(await page.evaluate(() => window.escapes)).toBe(1);
+
+		// the tooltip comes back when the mouse returns
+		await page.mouse.move(0, 0);
+		await expect(button).not.toHaveAttribute('data-tooltip-hidden', '');
+		await button.hover();
+		expect(await content()).not.toBe('none');
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('number input', () => {
 	test('the buttons step the value and stop at min and max', async ({ page, errors }) => {
 		await open(page, 'inputs.html');

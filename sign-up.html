@@ -120,10 +120,11 @@
 
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 <script type="module">
-	import { ThemeSwitcher, Strength, PasswordToggle, OtpInput } from "./src/js/index.js";
+	import { ThemeSwitcher, Strength, PasswordToggle, OtpInput, CssTooltip } from "./src/js/index.js";
 
 	document.addEventListener('DOMContentLoaded', () => {
 		new ThemeSwitcher({ lightIcon: 'bi bi-sun', darkIcon: 'bi bi-moon' }).initialize();
+		CssTooltip.init();
 		Strength.init();
 		PasswordToggle.init();
 		OtpInput.init();
