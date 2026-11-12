@@ -1,0 +1,91 @@
+//
+// datagrid: the table of a list with sorting, filters and row actions (the markup of drago-ex/datagrid)
+//
+// <div class="table-responsive" tabindex="0" role="region" aria-label="…">
+//   <table class="table table-sm table-borderless table-hover datagrid-table">
+//     <thead>
+//       <tr><th>…</th><th class="text-end">&nbsp;</th></tr>
+//       <tr class="datagrid-filter-row"><th class="p-1"><input class="form-control form-control-sm datagrid-control"></th>…</tr>
+//     </thead>
+//     <tbody>
+//       <tr class="datagrid-row-clickable">…<td class="text-end datagrid-actions"><div class="dropdown">…</div></td></tr>
+//     </tbody>
+//   </table>
+// </div>
+//
+// The cross of an active filter (.datagrid-filter-clear) is a part of the module elements, the checkboxes and the bar
+// of the bulk actions are the module selection.
+//
+
+// the table stands on the surface of its box
+.datagrid-table {
+	--bs-table-bg: transparent;
+	--bs-table-accent-bg: transparent;
+}
+
+// the row of the filters under the column names: fields of one height, in the middle of the row
+.datagrid-filter-row {
+	th {
+		background-color: transparent;
+		vertical-align: middle;
+	}
+
+	// the field of a filter is not a table header: no uppercase, no spacing of its letters
+	.datagrid-control,
+	.datagrid-filter-button {
+		font-weight: 400;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+}
+
+// the field of a range of dates (two dates of the datepicker) needs room for both; the room is kept by its
+// wrapper, because a field in an input group (an active filter with its cross) may shrink
+.datagrid-filter-control:has(.datagrid-control-range),
+.datagrid-filter:has(.datagrid-control-range) {
+	min-width: 15rem;
+}
+
+// the filters over the table (the mode "top"): labelled fields in a row that wraps
+.datagrid-toolbar {
+	margin-bottom: 1rem;
+}
+
+.datagrid-filter {
+	min-width: 12rem;
+}
+
+// a row that opens its item by a click
+.datagrid-row-clickable {
+	cursor: pointer;
+}
+
+// the column of the row actions: as narrow as its button
+.datagrid-actions {
+	width: 1%;
+	white-space: nowrap;
+}
+
+// row actions shown only in the row under the mouse, in a row with the focus and while their menu is open;
+// at once, without a fade (no animation on hover); a touch screen has no hover, so they stay shown there
+@media (hover: hover) {
+	.datagrid-actions-autohide .datagrid-actions > * {
+		opacity: 0;
+	}
+
+	.datagrid-actions-autohide:hover .datagrid-actions > *,
+	.datagrid-actions-autohide:focus-within .datagrid-actions > *,
+	.datagrid-actions-autohide .datagrid-actions > :has(.show) {
+		opacity: 1;
+	}
+}
+
+// a switch in a cell (a state of the row changed at once, e.g. Published): no room of its own under it, the
+// state next to it stays on one line
+// <div class="form-check form-switch datagrid-switch"><input class="form-check-input" type="checkbox" role="switch"
+// id="…"><label class="form-check-label" for="…">Published</label></div>
+.datagrid-switch {
+	min-height: 0;
+	margin-bottom: 0;
+	white-space: nowrap;
+}

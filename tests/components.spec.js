@@ -289,6 +289,34 @@ test.describe('row selection', () => {
 		await expect(wrapper.locator('tr.table-active')).toHaveCount(0);
 		expect(errors).toEqual([]);
 	});
+
+	test('a click on a row chooses it and an action for one row is disabled with more rows', async ({ page, errors }) => {
+		await open(page, 'datagrid.html');
+		const wrapper = page.locator('[data-selection][data-selection-rows]').first();
+		const rows = wrapper.locator('tbody tr');
+		const items = wrapper.locator('[data-selection-item]');
+		const single = wrapper.locator('[data-selection-single]').first();
+		const count = wrapper.locator('[data-selection-count]');
+
+		// the second cell is the title of the row, a plain text
+		await rows.nth(0).locator('td').nth(1).click();
+		await expect(items.nth(0)).toBeChecked();
+		await expect(count).toHaveText('1');
+		await expect(single).toBeEnabled();
+
+		await rows.nth(1).locator('td').nth(1).click();
+		await expect(count).toHaveText('2');
+		await expect(single).toBeDisabled();
+
+		await rows.nth(1).locator('td').nth(1).click();
+		await expect(items.nth(1)).not.toBeChecked();
+		await expect(single).toBeEnabled();
+
+		// the button of the menu of a row opens its menu and does not choose the row
+		await rows.nth(2).locator('[data-bs-toggle="dropdown"]').click();
+		await expect(items.nth(2)).not.toBeChecked();
+		expect(errors).toEqual([]);
+	});
 });
 
 test.describe('dialogs', () => {

@@ -11,9 +11,11 @@ Rows of a table chosen by checkboxes and a bar with the actions for them (the bu
 - `data-selection-count` holds the number of the chosen rows.
 - `data-selection-clear` unchecks them.
 - `selection-cell` is the narrow column of the checkboxes.
+- `data-selection-single` on a button of the bar makes it an action for one row: it is disabled while more rows are chosen.
+- `data-selection-rows` on the wrapper lets a click anywhere on a row choose it like its checkbox. A click on a link, a button, a field or a label keeps its own meaning, a click in a cell that holds a button (the menu of the row) does nothing, and selecting a text of the row by the mouse does not choose it.
 
 ```html
-<form class="content-box" data-selection>
+<form class="content-box" data-selection data-selection-rows>
 	<table class="table">
 		<thead>
 			<tr>
@@ -32,6 +34,7 @@ Rows of a table chosen by checkboxes and a bar with the actions for them (the bu
 	<div class="selection-bar" data-selection-bar hidden>
 		<span class="selection-count"><strong data-selection-count>0</strong> selected</span>
 		<div class="selection-actions">
+			<button type="submit" name="edit" class="btn btn-sm btn-secondary" data-selection-single>Edit</button>
 			<button type="submit" name="publish" class="btn btn-sm btn-secondary">Publish</button>
 			<button type="submit" name="delete" class="btn btn-sm btn-subtle theme-danger">Delete</button>
 		</div>

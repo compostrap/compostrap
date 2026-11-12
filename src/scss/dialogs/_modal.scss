@@ -55,6 +55,21 @@
 			flex: 1;
 			margin: 0;
 		}
+
+		// the buttons inside a form (a confirmation sent by a form, e.g. of Nette: Cancel and the action) share the
+		// width like buttons that stand in the footer themselves; an empty element a validation script adds takes no room
+		> form {
+			display: flex;
+			gap: .75rem;
+
+			> .btn {
+				flex: 1;
+			}
+
+			> span:empty {
+				display: none;
+			}
+		}
 	}
 }
 

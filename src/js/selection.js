@@ -7,6 +7,11 @@
  * (an AJAX snippet) needs no new init(); call RowSelection.update(wrapper) after such a redraw to bring the bar
  * in line with the new rows.
  *
+ * Optional parts: a button of the bar with [data-selection-single] is for one row only and is disabled while
+ * more rows are chosen; with [data-selection-rows] on the wrapper a click anywhere on a row chooses it like its
+ * checkbox (not a click on a link, a button, a field or a label, not a click in a cell with a
+ * button, and not the end of selecting a text).
+ *
  * <div data-selection>
  *   <table>
  *     <thead><tr><th><input type="checkbox" data-selection-all></th>…</tr></thead>
@@ -45,11 +50,39 @@ export class RowSelection {
 			const wrapper = event.target.closest('[data-selection-clear]')?.closest('[data-selection]');
 			if (wrapper) {
 				this.clear(wrapper);
+				return;
 			}
+
+			this._clickRow(event);
 		});
 
 		// checkboxes kept checked by the browser after a reload
 		document.querySelectorAll('[data-selection]').forEach((wrapper) => this.update(wrapper));
+	}
+
+	/** A click on a row of a [data-selection-rows] wrapper chooses the row like its checkbox. */
+	static _clickRow(event) {
+		const row = event.target.closest('tbody tr');
+		const wrapper = row?.closest('[data-selection-rows]');
+		if (!wrapper || event.target.closest('a, button, input, select, textarea, label, [data-bs-toggle]')) {
+			return;
+		}
+
+		// a cell with a button or a menu of the row: a click next to it was meant for it
+		if (event.target.closest('td')?.querySelector('button, .btn')) {
+			return;
+		}
+
+		// dragging over a text to copy it ends with a click too
+		if (!window.getSelection()?.isCollapsed) {
+			return;
+		}
+
+		const item = row.querySelector('[data-selection-item]:not(:disabled)');
+		if (item) {
+			item.checked = !item.checked;
+			item.dispatchEvent(new Event('change', { bubbles: true }));
+		}
 	}
 
 	/** The checkboxes of the rows that can be chosen. */
@@ -75,6 +108,7 @@ export class RowSelection {
 			all.indeterminate = count > 0 && count < items.length;
 		});
 		wrapper.querySelectorAll('[data-selection-count]').forEach((element) => element.textContent = String(count));
+		wrapper.querySelectorAll('[data-selection-single]').forEach((button) => button.disabled = count !== 1);
 		wrapper.querySelectorAll('[data-selection-bar]').forEach((bar) => bar.hidden = count === 0);
 	}
 }

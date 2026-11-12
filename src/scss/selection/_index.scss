@@ -38,6 +38,11 @@
 	}
 }
 
+// a click anywhere on a row chooses it (data-selection-rows on the wrapper)
+[data-selection-rows] tbody tr {
+	cursor: pointer;
+}
+
 // the bar floats over the bottom of its table while the table is on the screen (it stays in the box, so it never
 // covers another part of the page); it is as wide as its content and wraps on a phone
 .selection-bar {

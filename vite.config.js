@@ -5,6 +5,10 @@ const entry = (name) => path.resolve(import.meta.dirname, `src/js/${name}.js`);
 
 export default defineConfig({
 	base: '',
+	// only the generated pages of the root: the sources in demo/pages have script paths that fit the root
+	optimizeDeps: {
+		entries: ['*.html'],
+	},
 	css: {
 		preprocessorOptions: {
 			scss: {

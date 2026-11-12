@@ -53,6 +53,7 @@ The package has three layers:
 | [`elements`](docs/elements.md) | component | small pieces of a page: state dots, stat tiles, list rows, the loading state of a box | – |
 | [`dialogs`](docs/dialogs.md) | component | a colored line and a confirmation of a modal, a bar of buttons at the bottom of an offcanvas, a toast with the message of a state, a search dialog; dialogs that stay open on a click outside | `Dialogs` |
 | [`settings`](docs/settings.md) | component | a list of the sections of a page and rows of settings with their controls | – |
+| [`datagrid`](docs/datagrid.md) | component | the table of a list: the row of filters, clickable rows and the column of row actions | – |
 | [`selection`](docs/selection.md) | component | rows of a table chosen by checkboxes and a bar with the actions for them | `RowSelection` |
 | [`number-input`](docs/number-input.md) | component | a number with minus and plus buttons, e.g. the quantity in a cart | `NumberInput` |
 | [`otp-input`](docs/otp-input.md) | component | a one-time code typed into separate slots over one real input (the OTP input of Bootstrap 6) | `OtpInput` |
@@ -117,7 +118,7 @@ The styles can also be imported as SCSS:
 @import 'compostrap/src/scss/sidebar-menu';
 ```
 
-When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `selection`, `number-input`, `otp-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `spinner`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
+When modules are loaded one by one, load them after the theme (or Bootstrap) in the order `theme-switcher`, `tooltip`, `elements`, `dialogs`, `settings`, `datagrid`, `selection`, `number-input`, `otp-input`, `datepicker`, `rating`, `chart`, `gallery`, `dropzone`, `lightbox`, `strength`, `password-toggle`, `empty`, `spinner`, `auth`, `shop`, `blog`, `sidebar`, `sidebar-menu`, `dashboard`: each later one finishes the layout of the earlier ones.
 
 ## Light and dark theme
 
@@ -156,7 +157,7 @@ Every module is described in `docs/`, with its markup, classes, variables and Ja
 
 - **Theme**: [theme](docs/theme.md) (colors, buttons, alerts and badges, breadcrumb, tabs as a segmented control, forms, offcanvas and modals)
 - **Layout**: [layout](docs/layout.md) ([page](docs/layout.md#page), [sidebar](docs/layout.md#sidebar), [sidebar menu](docs/layout.md#sidebar-menu) and its [compact form](docs/layout.md#compact-sidebar), [navbar](docs/layout.md#navbar), [content boxes](docs/layout.md#content-boxes-and-the-older-navbar))
-- **Components**: [theme switcher](docs/theme-switcher.md), [tooltip](docs/tooltip.md), [elements](docs/elements.md), [dialogs](docs/dialogs.md), [settings](docs/settings.md), [selection](docs/selection.md), [number input](docs/number-input.md), [OTP input](docs/otp-input.md), [datepicker](docs/datepicker.md), [rating](docs/rating.md), [charts](docs/chart.md), [gallery](docs/gallery.md), [dropzone](docs/dropzone.md), [lightbox](docs/lightbox.md), [password strength](docs/strength.md), [password toggle](docs/password-toggle.md), [empty states and error pages](docs/empty.md), [spinner](docs/spinner.md), [sign-in pages](docs/auth.md), [shop](docs/shop.md), [blog](docs/blog.md)
+- **Components**: [theme switcher](docs/theme-switcher.md), [tooltip](docs/tooltip.md), [elements](docs/elements.md), [dialogs](docs/dialogs.md), [settings](docs/settings.md), [datagrid](docs/datagrid.md), [selection](docs/selection.md), [number input](docs/number-input.md), [OTP input](docs/otp-input.md), [datepicker](docs/datepicker.md), [rating](docs/rating.md), [charts](docs/chart.md), [gallery](docs/gallery.md), [dropzone](docs/dropzone.md), [lightbox](docs/lightbox.md), [password strength](docs/strength.md), [password toggle](docs/password-toggle.md), [empty states and error pages](docs/empty.md), [spinner](docs/spinner.md), [sign-in pages](docs/auth.md), [shop](docs/shop.md), [blog](docs/blog.md)
 
 ## Demo
 

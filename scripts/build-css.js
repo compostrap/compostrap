@@ -10,6 +10,7 @@ const entries = [
 	'elements',
 	'dialogs',
 	'settings',
+	'datagrid',
 	'selection',
 	'number-input',
 	'otp-input',

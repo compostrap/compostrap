@@ -525,8 +525,9 @@
 			<main role="main">
 
 			<!-- a datagrid page like in the drago administration: a box with the page heading, the table and its footer;
-			     the rows can be chosen by checkboxes for the actions of the bar under the table (module selection) -->
-			<div class="content-box mb-3" data-selection>
+			     the rows can be chosen by checkboxes, or by a click anywhere on a row, for the actions of the bar under the
+			     table (module selection); Edit is an action for one row -->
+			<div class="content-box mb-3" data-selection data-selection-rows>
 				<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
 					<div>
 						<h1 class="h5 mb-1">Blog articles</h1>
@@ -658,6 +659,7 @@
 				<div class="selection-bar" data-selection-bar hidden>
 					<span class="selection-count"><strong data-selection-count>0</strong> selected</span>
 					<div class="selection-actions">
+						<button type="button" class="btn btn-sm btn-secondary" data-selection-single data-bs-toggle="offcanvas" data-bs-target="#demo-offcanvas" aria-controls="demo-offcanvas"><i class="bi bi-pencil me-1" aria-hidden="true"></i>Edit</button>
 						<button type="button" class="btn btn-sm btn-secondary" data-selection-clear data-demo-toast="#demo-flash-success"><i class="bi bi-check2-circle me-1" aria-hidden="true"></i>Publish</button>
 						<button type="button" class="btn btn-sm btn-secondary"><i class="bi bi-download me-1" aria-hidden="true"></i>Export</button>
 						<button type="button" class="btn btn-sm btn-subtle theme-danger" data-bs-toggle="modal" data-bs-target="#demo-confirm"><i class="bi bi-trash me-1" aria-hidden="true"></i>Delete</button>
