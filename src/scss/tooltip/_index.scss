@@ -144,6 +144,12 @@
 	--cs-tooltip-color: #fff;
 }
 
+// warning has the brown text of the solid warning button of the theme (the yellow mixed with 54 % black, see
+// $theme-contrast-weights in theme/_colors.scss), not the near black of Bootstrap
+[data-tooltip-color='warning'] {
+	--cs-tooltip-color: color-mix(in oklch, var(--bs-warning), #000 54%);
+}
+
 @media (prefers-reduced-motion: reduce) {
 	[data-tooltip]::after {
 		animation: none;
