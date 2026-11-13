@@ -89,3 +89,17 @@
 	margin-bottom: 0;
 	white-space: nowrap;
 }
+
+// a state in a cell changed by a menu: the badge of the state is the button of a dropdown with the states, a small
+// arrow at its end tells it opens
+// <div class="dropdown"><button type="button" class="badge badge-subtle theme-success datagrid-state"
+// data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false">Published<i class="bi
+// bi-chevron-down" aria-hidden="true"></i></button><ul class="dropdown-menu">…</ul></div>
+.datagrid-state {
+	white-space: nowrap;
+
+	.bi {
+		font-size: .75em;
+		-webkit-text-stroke: .4px;
+	}
+}

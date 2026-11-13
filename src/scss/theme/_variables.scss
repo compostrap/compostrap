@@ -149,7 +149,8 @@ $table-cell-padding-y: .625rem !default;
 $table-cell-padding-x: .75rem !default;
 $table-cell-padding-y-sm: .5rem !default;
 $table-cell-padding-x-sm: .625rem !default;
-$table-hover-bg-factor: .035 !default;
+// (.035 was too strong for the user)
+$table-hover-bg-factor: .02 !default;
 $table-active-bg-factor: .06 !default;
 
 // pagination: separate rounded buttons without borders, the current page in the primary color

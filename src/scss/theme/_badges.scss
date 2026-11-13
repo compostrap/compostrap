@@ -40,11 +40,14 @@
 	border-color: var(--theme-border);
 }
 
-// a badge that is a link (a state switch) darkens a little on hover
-a.badge {
+// a badge that is a link or a button (a state switch, the button of a menu of states) takes the hover of a subtle button
+// and while its menu is open
+a.badge,
+button.badge {
 	text-decoration: none;
 
-	&.badge-subtle:hover {
-		background-color: var(--theme-bg-muted, var(--bs-secondary-bg));
+	&.badge-subtle:hover,
+	&.badge-subtle.show {
+		background-color: color-mix(in oklch, var(--theme-bg-muted) 50%, var(--theme-bg-subtle));
 	}
 }

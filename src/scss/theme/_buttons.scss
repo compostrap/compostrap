@@ -131,11 +131,27 @@
 // a light gray outline button would fill with the light gray itself, as light as the page (the button got lost in a
 // group); it takes the hover and pressed fill of the solid button instead, so both look the same, and the border
 // takes the fill, as with the other outline buttons
-.btn-outline-secondary,
 .btn-outline-light,
-.btn-outline:is(.theme-secondary, .theme-light) {
+.btn-outline.theme-light {
 	--bs-btn-hover-bg: oklch(from var(--theme-bg) calc(l * .95) calc(c * 1.1) h);
 	--bs-btn-hover-border-color: oklch(from var(--theme-bg) calc(l * .95) calc(c * 1.1) h);
+}
+
+// the gray buttons (secondary, or a variant without a color) share one hover and one press with the subtle button
+// and the subtle badge: the darkening of the solid colors was too strong on the light gray.
+$-cs-gray: ':is(.theme-secondary, :not([class*="theme-"]))';
+$-cs-gray-fill: '.btn-secondary, .btn-outline-secondary, :is(.btn-solid, .btn-outline)#{$-cs-gray}';
+
+#{$-cs-gray-fill} {
+	--bs-btn-hover-bg: color-mix(in oklch, var(--theme-bg-muted) 50%, var(--theme-bg-subtle));
+	--bs-btn-hover-border-color: color-mix(in oklch, var(--theme-bg-muted) 50%, var(--theme-bg-subtle));
+	--bs-btn-active-bg: var(--theme-bg-muted);
+	--bs-btn-active-border-color: var(--theme-bg-muted);
+}
+
+// the gray text button has no fill of its own, under the mouse it takes the hover of the others
+.btn-text#{$-cs-gray} {
+	--bs-btn-hover-bg: color-mix(in oklch, var(--theme-bg-muted) 50%, var(--theme-bg-subtle));
 }
 
 .btn-subtle {

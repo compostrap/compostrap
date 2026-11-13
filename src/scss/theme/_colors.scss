@@ -24,22 +24,27 @@ $theme-color-sources: (
 	'danger': oklch(60% .22 20),
 ) !default;
 
-// secondary is a light gray in Bootstrap 6 (a light button with dark text), not a dark gray
+// secondary is a light gray in Bootstrap 6 (a light button with dark text), not a dark gray. One gray for the solid
+// and the subtle button and the subtle badge (a step under $gray-100, which was too light on the page), one hover
+// for all of them (half way to bg-muted) and bg-muted for a press; the same in the dark theme with a quiet dark gray
+// (the lightest on which the gray text of a subtle badge still reads 4.5:1)
+$theme-secondary-bg: #f0f0f0 !default;
+$theme-secondary-bg-dark: #363636 !default;
 $theme-secondary-light: (
-	bg: $gray-100,
+	bg: $theme-secondary-bg,
 	contrast: $gray-900,
 	fg: $gray-600,
 	fg-emphasis: $gray-800,
-	bg-subtle: $body-tertiary-bg,
-	bg-muted: $gray-100,
+	bg-subtle: $theme-secondary-bg,
+	bg-muted: $gray-200,
 	border: $gray-300,
 ) !default;
 $theme-secondary-dark: (
-	bg: $gray-600,
+	bg: $theme-secondary-bg-dark,
 	contrast: $white,
 	fg: $gray-400,
 	fg-emphasis: $gray-200,
-	bg-subtle: $gray-800,
+	bg-subtle: $theme-secondary-bg-dark,
 	bg-muted: $gray-700,
 	border: $gray-600,
 ) !default;
@@ -56,6 +61,12 @@ $theme-fg-weights: (
 // info buttons and badges read like the blue and green ones
 $theme-solid-shades: (
 	'info': 14%,
+) !default;
+
+// the text on a solid fill that takes dark text (yellow) is the color itself mixed with black, a dark brown like the
+// text of the subtle button, not the near black of Bootstrap, which was too loud; 54 % reads about 6:1 on the yellow (48 %, the fg-emphasis of the color, was a hair too light for the user; 46 % is the least for 4.5:1)
+$theme-contrast-weights: (
+	'warning': 54%,
 ) !default;
 
 @function -cs-step($color, $with, $weight) {
@@ -88,6 +99,12 @@ $theme-solid-shades: (
 		bg-muted: -cs-step($source, $body-bg-dark, 74%),
 		border: -cs-step($source, #000, 16%),
 	);
+
+	@if map.has-key($theme-contrast-weights, $name) {
+		$light: map.merge($light, (
+			contrast: -cs-step($source, #000, map.get($theme-contrast-weights, $name)),
+		));
+	}
 
 	@if map.has-key($theme-solid-shades, $name) {
 		$light: map.merge($light, (

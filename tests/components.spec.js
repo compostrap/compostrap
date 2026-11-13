@@ -313,8 +313,14 @@ test.describe('row selection', () => {
 		await expect(single).toBeEnabled();
 
 		// the button of the menu of a row opens its menu and does not choose the row
-		await rows.nth(2).locator('[data-bs-toggle="dropdown"]').click();
+		await rows.nth(2).locator('[data-bs-toggle="dropdown"][aria-label="Actions"]').click();
 		await expect(items.nth(2)).not.toBeChecked();
+
+		// the badge of a state opens the menu of the states and does not choose the row either
+		await page.keyboard.press('Escape');
+		await rows.nth(3).locator('.datagrid-state').click();
+		await expect(rows.nth(3).locator('.dropdown-menu.show')).toBeVisible();
+		await expect(items.nth(3)).not.toBeChecked();
 		expect(errors).toEqual([]);
 	});
 });
@@ -498,7 +504,7 @@ test.describe('forms of the theme', () => {
 test.describe('datepicker in a dialog', () => {
 	test('the calendar works over an offcanvas, which keeps the focus inside', async ({ page, errors }) => {
 		await open(page, 'datagrid.html');
-		await page.locator('[data-bs-target="#demo-offcanvas"]').click();
+		await page.locator('[data-bs-target="#demo-offcanvas"]').first().click();
 		const input = page.locator('#demo-article-date');
 		await expect(page.locator('#demo-offcanvas')).toHaveClass(/show/);
 

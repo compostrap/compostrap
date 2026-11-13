@@ -573,6 +573,7 @@
 										<option value="">All</option>
 										<option>Published</option>
 										<option>Draft</option>
+										<option>Waiting</option>
 									</select>
 								</th>
 								<th class="p-1"></th>
@@ -584,7 +585,16 @@
 								<td>First steps with the new administration</td>
 								<td>News</td>
 								<td>6. 11. 2026</td>
-								<td><span class="badge badge-subtle theme-success">Published</span></td>
+								<td>
+									<div class="dropdown">
+										<button type="button" class="badge badge-subtle theme-success datagrid-state" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Change the state">Published<i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+										<ul class="dropdown-menu">
+											<li><button type="button" class="dropdown-item active" data-demo-state="theme-success" aria-current="true">Published</button></li>
+											<li><button type="button" class="dropdown-item" data-demo-state="">Draft</button></li>
+											<li><button type="button" class="dropdown-item" data-demo-state="theme-warning">Waiting</button></li>
+										</ul>
+									</div>
+								</td>
 								<td class="text-end">
 									<div class="dropdown">
 										<button type="button" class="btn btn-xs btn-icon btn-text" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="Actions"><i class="bi bi-three-dots-vertical" aria-hidden="true"></i></button>
@@ -602,7 +612,16 @@
 								<td>How to write a good article</td>
 								<td>Tips</td>
 								<td>2. 11. 2026</td>
-								<td><span class="badge badge-subtle">Draft</span></td>
+								<td>
+									<div class="dropdown">
+										<button type="button" class="badge badge-subtle datagrid-state" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Change the state">Draft<i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+										<ul class="dropdown-menu">
+											<li><button type="button" class="dropdown-item" data-demo-state="theme-success">Published</button></li>
+											<li><button type="button" class="dropdown-item active" data-demo-state="" aria-current="true">Draft</button></li>
+											<li><button type="button" class="dropdown-item" data-demo-state="theme-warning">Waiting</button></li>
+										</ul>
+									</div>
+								</td>
 								<td class="text-end">
 									<div class="dropdown">
 										<button type="button" class="btn btn-xs btn-icon btn-text" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="Actions"><i class="bi bi-three-dots-vertical" aria-hidden="true"></i></button>
@@ -620,7 +639,16 @@
 								<td>Release notes of October</td>
 								<td>News</td>
 								<td>31. 10. 2026</td>
-								<td><span class="badge badge-subtle theme-success">Published</span></td>
+								<td>
+									<div class="dropdown">
+										<button type="button" class="badge badge-subtle theme-success datagrid-state" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Change the state">Published<i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+										<ul class="dropdown-menu">
+											<li><button type="button" class="dropdown-item active" data-demo-state="theme-success" aria-current="true">Published</button></li>
+											<li><button type="button" class="dropdown-item" data-demo-state="">Draft</button></li>
+											<li><button type="button" class="dropdown-item" data-demo-state="theme-warning">Waiting</button></li>
+										</ul>
+									</div>
+								</td>
 								<td class="text-end">
 									<div class="dropdown">
 										<button type="button" class="btn btn-xs btn-icon btn-text" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="Actions"><i class="bi bi-three-dots-vertical" aria-hidden="true"></i></button>
@@ -638,7 +666,16 @@
 								<td>Comments are open</td>
 								<td>News</td>
 								<td>24. 10. 2026</td>
-								<td><span class="badge badge-subtle theme-warning">Waiting</span></td>
+								<td>
+									<div class="dropdown">
+										<button type="button" class="badge badge-subtle theme-warning datagrid-state" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Change the state">Waiting<i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+										<ul class="dropdown-menu">
+											<li><button type="button" class="dropdown-item" data-demo-state="theme-success">Published</button></li>
+											<li><button type="button" class="dropdown-item" data-demo-state="">Draft</button></li>
+											<li><button type="button" class="dropdown-item active" data-demo-state="theme-warning" aria-current="true">Waiting</button></li>
+										</ul>
+									</div>
+								</td>
 								<td class="text-end">
 									<div class="dropdown">
 										<button type="button" class="btn btn-xs btn-icon btn-text" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" aria-label="Actions"><i class="bi bi-three-dots-vertical" aria-hidden="true"></i></button>
@@ -745,6 +782,24 @@
 		</form>
 	</div>
 </div>
+
+<!-- demo only: a state chosen in the menu of a badge is written to the badge (drago changes it by a signal) -->
+<script>
+	document.addEventListener('click', (event) => {
+		const item = event.target.closest('[data-demo-state]');
+		if (!item) return;
+		const menu = item.closest('.dropdown-menu');
+		const badge = menu.parentElement.querySelector('.datagrid-state');
+		badge.classList.remove('theme-success', 'theme-warning');
+		if (item.dataset.demoState) badge.classList.add(item.dataset.demoState);
+		badge.firstChild.nodeValue = item.textContent;
+		menu.querySelectorAll('.dropdown-item').forEach((other) => {
+			other.classList.toggle('active', other === item);
+			if (other === item) other.setAttribute('aria-current', 'true');
+			else other.removeAttribute('aria-current');
+		});
+	});
+</script>
 
 <!-- the layout of the demo: variants of the navbar and of the brand, tried live and remembered (demo only) -->
 <button type="button" class="btn btn-primary btn-sm demo-customize" data-bs-toggle="offcanvas" data-bs-target="#demo-layout" aria-controls="demo-layout">

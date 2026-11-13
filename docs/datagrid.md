@@ -8,6 +8,7 @@ The table of a list with sorting, filters and row actions. The classes are the o
 - `datagrid-filter-row` is the row of the filters under the column names, with `datagrid-control` fields. The cross that clears an active filter is `datagrid-filter-clear` of [elements](elements.md).
 - `datagrid-control-range` is the field of a filter with a range of dates (a [datepicker](datepicker.md) with `data-bs-selection-mode="multiple-ranged"`); its wrapper keeps room for both dates.
 - `datagrid-switch` on a `form-check form-switch` in a cell is a switch of a state of the row (Published, Active) with the state as its label.
+- `datagrid-state` on a `button.badge.badge-subtle` in a `dropdown` is a state of the row changed by a menu (Published, Draft, Waiting): the badge has a small arrow (`bi-chevron-down`) and opens a `dropdown-menu` with the states, the current one `active` with `aria-current="true"`. The button needs `data-bs-popper-config='{"strategy":"fixed"}'` like the menu of the row actions.
 - `datagrid-toolbar` holds the filters when they stand over the table, each in a `datagrid-filter` with its label.
 - `datagrid-row-clickable` is a row that opens its item by a click.
 - `datagrid-actions` is the narrow column of the row actions: a menu under a button of three dots, or icon buttons.
@@ -49,4 +50,15 @@ The table of a list with sorting, filters and row actions. The classes are the o
 
 The button of the menu has `data-bs-popper-config='{"strategy":"fixed"}'`, or the scrolling wrapper of the table would cut the menu off.
 
-Rows chosen by checkboxes and the bar with the actions for them are the module [selection](selection.md). A state of a row (Published, Draft) is a `badge badge-subtle` with a `theme-*` color of the [theme](theme.md).
+Rows chosen by checkboxes and the bar with the actions for them are the module [selection](selection.md). A state of a row (Published, Draft) is a `badge badge-subtle` with a `theme-*` color of the [theme](theme.md); with `datagrid-state` it is changed in place:
+
+```html
+<div class="dropdown">
+	<button type="button" class="badge badge-subtle theme-success datagrid-state" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Change the state">Published<i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+	<ul class="dropdown-menu">
+		<li><a class="dropdown-item active" href="…" aria-current="true">Published</a></li>
+		<li><a class="dropdown-item" href="…">Draft</a></li>
+		<li><a class="dropdown-item" href="…">Waiting</a></li>
+	</ul>
+</div>
+```
