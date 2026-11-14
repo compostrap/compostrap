@@ -21,6 +21,12 @@
 .datagrid-table {
 	--bs-table-bg: transparent;
 	--bs-table-accent-bg: transparent;
+
+	// every row is as high as a row with a badge (a state, a number of comments), so a list with only text has the
+	// rows of a list with badges; a cell with a button should hold a badge instead, or it makes its row higher
+	> tbody > tr > td {
+		height: 2.375rem;
+	}
 }
 
 // the row of the filters under the column names: fields of one height, in the middle of the row

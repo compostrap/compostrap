@@ -4,7 +4,7 @@
 
 The table of a list with sorting, filters and row actions. The classes are the ones drago-ex/datagrid prints, so its table needs no styles of its own; the module has no JavaScript.
 
-- `datagrid-table` is the table. It stands on the surface of its box (no background of its own) and is wrapped in a `table-responsive` with `tabindex="0"`, `role="region"` and an `aria-label`, so it scrolls inside the box on a narrow screen, by the keyboard too.
+- `datagrid-table` is the table. Every row is at least as high as a row with a badge (38px), so lists with only text and lists with badges look the same; a cell that opens something (a number of comments) holds an `a.badge` rather than a button, which would make its row higher. It stands on the surface of its box (no background of its own) and is wrapped in a `table-responsive` with `tabindex="0"`, `role="region"` and an `aria-label`, so it scrolls inside the box on a narrow screen, by the keyboard too.
 - `datagrid-filter-row` is the row of the filters under the column names, with `datagrid-control` fields. The cross that clears an active filter is `datagrid-filter-clear` of [elements](elements.md).
 - `datagrid-control-range` is the field of a filter with a range of dates (a [datepicker](datepicker.md) with `data-bs-selection-mode="multiple-ranged"`); its wrapper keeps room for both dates.
 - `datagrid-switch` on a `form-check form-switch` in a cell is a switch of a state of the row (Published, Active) with the state as its label.
