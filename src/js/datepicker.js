@@ -7,11 +7,12 @@
  *
  * Attributes: data-bs-date-min, data-bs-date-max (ISO dates or "today"), data-bs-selection-mode ("single", "multiple",
  * "multiple-ranged"), data-bs-display-months-count, data-bs-first-weekday (1 = Monday), data-bs-locale (the lang of the
- * page by default), data-bs-date-format ("iso" or "locale"), data-bs-inline.
+ * page by default), data-bs-date-format ("iso" or "locale"), data-bs-inline, data-bs-selection-time-mode (24 or 12: a time
+ * under the calendar, the value is then "2026-11-07 14:30"; the calendar stays open after a click on a day).
  *
  * <input type="text" class="form-control" data-bs-toggle="datepicker" data-bs-date-min="today" autocomplete="off">
  */
-import { Calendar, months } from 'vanilla-calendar-pro';
+import { Calendar, months, time as timeExtension } from 'vanilla-calendar-pro';
 
 const SELECTOR = '[data-bs-toggle="datepicker"]';
 
@@ -74,10 +75,26 @@ export class Datepicker {
 		const format = data.bsDateFormat || this.options.dateFormat;
 		const locale = data.bsLocale || this.options.locale || document.documentElement.lang || 'default';
 		const count = Number(data.bsDisplayMonthsCount) || 1;
-		const selected = this._parse(input?.dataset.bsValue || input?.value || '');
+		const timeMode = [12, 24].includes(Number(data.bsSelectionTimeMode)) ? Number(data.bsSelectionTimeMode) : false;
+		const value = input?.dataset.bsValue || input?.value || '';
+		const selected = this._parse(value);
+		const time = timeMode ? value.match(/\d{1,2}:\d{2}(?:\s?[AP]M)?/i)?.[0] : null;
+
+		// writes the chosen dates (and the time) into the input
+		const write = (self) => {
+			const dates = [...self.context.selectedDates];
+			if (input) {
+				input.dataset.bsValue = dates.join(',');
+				input.value = this._format(dates, mode, format, locale) + (timeMode && dates.length ? ' ' + self.context.selectedTime : '');
+				input.dispatchEvent(new Event('input', { bubbles: true }));
+				input.dispatchEvent(new Event('change', { bubbles: true }));
+			}
+
+			return dates;
+		};
 
 		const calendar = new Calendar(element, {
-			extensions: [months],
+			extensions: timeMode ? [months, timeExtension] : [months],
 			inputMode: !inline,
 			openOnFocus: true,
 			positionToInput: 'left',
@@ -88,6 +105,8 @@ export class Datepicker {
 			displayMonthsCount: count,
 			type: count > 1 ? 'multiple' : 'default',
 			themeAttrDetect: 'html[data-bs-theme]',
+			...(timeMode ? { selectionTimeMode: timeMode } : {}),
+			...(time ? { selectedTime: time } : {}),
 			...(selected[0] ? { selectedMonth: Number(selected[0].slice(5, 7)) - 1, selectedYear: Number(selected[0].slice(0, 4)) } : {}),
 			...(data.bsDateMin ? { dateMin: data.bsDateMin } : {}),
 			...(data.bsDateMax ? { dateMax: data.bsDateMax } : {}),
@@ -103,15 +122,15 @@ export class Datepicker {
 				});
 			},
 			onClickDate: (self) => {
-				const dates = [...self.context.selectedDates];
-				if (input) {
-					input.dataset.bsValue = dates.join(',');
-					input.value = this._format(dates, mode, format, locale);
-					input.dispatchEvent(new Event('input', { bubbles: true }));
-					input.dispatchEvent(new Event('change', { bubbles: true }));
-				}
-				if (!inline && ((mode === 'single' && dates.length) || (mode === 'multiple-ranged' && dates.length > 1))) {
+				const dates = write(self);
+				// with a time the calendar stays open, so the time can be set after the day
+				if (!inline && !timeMode && ((mode === 'single' && dates.length) || (mode === 'multiple-ranged' && dates.length > 1))) {
 					setTimeout(() => self.hide(), 100);
+				}
+			},
+			onChangeTime: (self) => {
+				if (self.context.selectedDates.length) {
+					write(self);
 				}
 			},
 		});

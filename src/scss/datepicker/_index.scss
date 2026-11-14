@@ -403,3 +403,155 @@ button[data-vc-week-day] {
 [data-vc-date-selected='first-and-last'] [data-vc-date-btn] {
 	border-radius: var(--datepicker-radius);
 }
+
+// the time under the calendar (data-bs-selection-time-mode): the hour and the minute as small fields next to two
+// sliders (hours, minutes), in the look of the days (no border, the hover of a day) and of form-range of Bootstrap
+[data-vc='time'] {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: .75rem;
+	padding-top: .75rem;
+	margin-top: .75rem;
+	border-top: var(--bs-border-width) solid var(--bs-border-color-translucent);
+}
+
+[data-vc-time='content'] {
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+}
+
+[data-vc-time-input='hour'],
+[data-vc-time-input='minute'] {
+	width: 2.25rem;
+
+	input {
+		box-sizing: border-box;
+		display: block;
+		width: 100%;
+		padding: .125rem;
+		margin: 0;
+		font-size: 1.125rem;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.5rem;
+		color: var(--bs-emphasis-color);
+		text-align: center;
+		user-select: text;
+		background-color: transparent;
+		border: 0;
+		border-radius: var(--datepicker-radius);
+
+		&:hover,
+		&[data-vc-input-focus] {
+			background-color: var(--datepicker-day-hover-bg);
+		}
+
+		// a field to type into keeps a thin ring on focus, like the text fields of the theme
+		&:focus-visible {
+			outline: 1px solid var(--bs-primary);
+		}
+
+		&:disabled {
+			cursor: default;
+			background-color: transparent;
+		}
+	}
+}
+
+[data-vc-time-input='hour'] {
+	position: relative;
+	margin-right: .375rem;
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		right: -.3125rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: var(--bs-emphasis-color);
+		content: ':';
+		transform: translateY(-50%);
+	}
+}
+
+// AM / PM of the 12-hour time
+[data-vc-time='keeping'] {
+	padding: .125rem .25rem;
+	margin-left: .25rem;
+	font-size: .875rem;
+	color: var(--bs-secondary-color);
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+	border-radius: var(--datepicker-radius);
+
+	&:hover {
+		background-color: var(--datepicker-day-hover-bg);
+	}
+}
+
+[data-vc-time='ranges'] {
+	display: grid;
+	grid-auto-flow: row;
+	align-content: center;
+}
+
+[data-vc-time-range] {
+	position: relative;
+	font-size: 0;
+
+	input {
+		width: 100%;
+		height: 1.25rem;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+		background-color: transparent;
+		appearance: none;
+
+		&:focus {
+			outline: 0;
+		}
+
+		&::-webkit-slider-runnable-track {
+			height: .25rem;
+			// the text color, faint: seen on the surface of the calendar in both themes
+			background-color: rgba(var(--bs-body-color-rgb), .15);
+			border-radius: 1rem;
+		}
+
+		&::-moz-range-track {
+			height: .25rem;
+			// the text color, faint: seen on the surface of the calendar in both themes
+			background-color: rgba(var(--bs-body-color-rgb), .15);
+			border-radius: 1rem;
+		}
+
+		&::-webkit-slider-thumb {
+			width: .875rem;
+			height: .875rem;
+			margin-top: -.3125rem;
+			appearance: none;
+			background-color: var(--bs-primary);
+			border: 0;
+			border-radius: 50%;
+		}
+
+		&::-moz-range-thumb {
+			width: .875rem;
+			height: .875rem;
+			background-color: var(--bs-primary);
+			border: 0;
+			border-radius: 50%;
+		}
+
+		&:focus-visible::-webkit-slider-thumb {
+			box-shadow: 0 0 0 .25rem var(--bs-focus-ring-color);
+		}
+
+		&:focus-visible::-moz-range-thumb {
+			box-shadow: 0 0 0 .25rem var(--bs-focus-ring-color);
+		}
+	}
+}

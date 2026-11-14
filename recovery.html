@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="src/scss/compostrap.scss">
 	<title>Password recovery – Compostrap</title>
+	<meta name="description" content="Password recovery – a demo page of Compostrap, the Bootstrap 5.3 theme with modules for administrations and websites.">
 </head>
 
 <body class="auth-page">
@@ -46,8 +47,8 @@
 
 			<!-- language: an icon with the code of the current language, the languages in the dropdown, the current one checked -->
 			<div class="dropdown">
-				<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">
-					<i class="bi bi-translate" aria-hidden="true"></i><span class="navbar-icon-text">EN</span>
+				<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false">
+					<i class="bi bi-translate" aria-hidden="true"></i><span class="visually-hidden">Language: </span><span class="navbar-icon-text">EN</span>
 				</button>
 				<ul class="dropdown-menu dropdown-menu-end">
 					<li><h6 class="dropdown-header">Language</h6></li>
@@ -159,7 +160,7 @@
 	});
 </script>
 
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
 <script type="module">
 	import { ThemeSwitcher, Strength, PasswordToggle, OtpInput, CssTooltip } from "./src/js/index.js";
 

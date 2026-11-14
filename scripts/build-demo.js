@@ -134,7 +134,7 @@ for (const page of pages) {
 	const [hero, content] = /<!-- content -->\r?\n/.test(body) ? body.split(/<!-- content -->\r?\n/) : ['', body];
 	const html = layoutOf(page.layout)
 		.replace('{{hero}}', hero.trimEnd())
-		.replace('{{title}}', page.title)
+		.replaceAll('{{title}}', page.title)
 		.replace('{{menu}}', indent(menuHtml(page.file), 5))
 		.replace('{{breadcrumb}}', indent(breadcrumbHtml(page), 6))
 		.replace('{{content}}', content.trimEnd())

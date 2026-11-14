@@ -71,6 +71,8 @@ const barValues = {
 export class Charts {
 	static _charts = new Map();
 	static _observer = null;
+	/** CSS colors already converted to rgba(), by their text. */
+	static _colors = new Map();
 
 	/** Draws every canvas[data-chart] below the root that is not drawn yet. */
 	static init(root = document) {
@@ -78,8 +80,15 @@ export class Charts {
 			if (!this._charts.has(canvas)) this.create(canvas);
 		});
 		if (!this._observer) {
-			this._observer = new MutationObserver(() => this.refresh());
-			this._observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+			// only a real change of the theme: a theme switch sets the attribute on its start too, mostly to the same
+			// value, which drew every chart twice
+			this._observer = new MutationObserver((mutations) => {
+				const theme = document.documentElement.getAttribute('data-bs-theme');
+				if (mutations.some((mutation) => mutation.oldValue !== theme)) {
+					this.refresh();
+				}
+			});
+			this._observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'], attributeOldValue: true });
 		}
 	}
 
@@ -211,20 +220,37 @@ export class Charts {
 		};
 	}
 
-	// a canvas takes plain colors only: any CSS color (a token with color-mix too) as rgb()
+	// a canvas takes plain colors only: any CSS color (a token with color-mix too) as rgb(); the value of a token read
+	// from the computed style has no var() left, so the result depends on the text only and is kept for the page (a
+	// probe and a pixel read for every color of every chart forced a style recalculation each time)
 	static _rgb(color, context) {
+		const cached = this._colors.get(color);
+		if (cached) {
+			return cached;
+		}
+
 		const probe = document.createElement('span');
 		probe.style.color = color;
 		probe.style.display = 'none';
 		context.parentElement.append(probe);
 		const computed = getComputedStyle(probe).color;
 		probe.remove();
-		const pixel = (this._pixel ??= document.createElement('canvas').getContext('2d', { willReadFrequently: true }));
-		pixel.clearRect(0, 0, 1, 1);
-		pixel.fillStyle = computed;
-		pixel.fillRect(0, 0, 1, 1);
-		const [r, g, b, a] = pixel.getImageData(0, 0, 1, 1).data;
-		return `rgba(${r}, ${g}, ${b}, ${(a / 255).toFixed(3)})`;
+		let rgba;
+		const plain = computed.match(/^rgba?\((\d+), (\d+), (\d+)(?:, ([\d.]+))?\)$/);
+		if (plain) {
+			rgba = `rgba(${plain[1]}, ${plain[2]}, ${plain[3]}, ${Number(plain[4] ?? 1).toFixed(3)})`;
+		} else {
+			// oklch, color(srgb …) and the like: the canvas converts them
+			const pixel = (this._pixel ??= document.createElement('canvas').getContext('2d', { willReadFrequently: true }));
+			pixel.clearRect(0, 0, 1, 1);
+			pixel.fillStyle = computed;
+			pixel.fillRect(0, 0, 1, 1);
+			const [r, g, b, a] = pixel.getImageData(0, 0, 1, 1).data;
+			rgba = `rgba(${r}, ${g}, ${b}, ${(a / 255).toFixed(3)})`;
+		}
+
+		this._colors.set(color, rgba);
+		return rgba;
 	}
 
 	static _alpha(color, alpha) {

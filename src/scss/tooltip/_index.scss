@@ -92,6 +92,26 @@
 	}
 }
 
+// above the element, aligned to its left edge, so a wide tooltip of an element near the left edge of its container
+// grows to the right
+[data-tooltip='start'] {
+	&::after {
+		left: 0;
+		transform: none;
+		animation-name: cs-tooltip-up-end;
+	}
+}
+
+// a long text (e.g. a list): it wraps within a width instead of running out of the window, keeps the line breaks
+// of its aria-label (one item per line) and is aligned to the left
+[data-tooltip-wrap]::after {
+	width: max-content;
+	max-width: min(22rem, calc(100vw - 2rem));
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+	text-align: start;
+}
+
 // under the element, e.g. in a navbar at the top of the window
 [data-tooltip='bottom'] {
 	&::after {

@@ -42,6 +42,7 @@
 		.layout-content > .container-fluid > footer { padding-bottom: 2.5rem; }
 	</style>
 	<title>Tables & cards – Compostrap</title>
+	<meta name="description" content="Tables & cards – a demo page of Compostrap, the Bootstrap 5.3 theme with modules for administrations and websites.">
 </head>
 
 <body>
@@ -480,8 +481,8 @@
 
 					<!-- language: an icon with the code of the current language, the languages in the dropdown, the current one checked -->
 					<div class="dropdown">
-						<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">
-							<i class="bi bi-translate" aria-hidden="true"></i><span class="navbar-icon-text">EN</span>
+						<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-translate" aria-hidden="true"></i><span class="visually-hidden">Language: </span><span class="navbar-icon-text">EN</span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
 							<li><h6 class="dropdown-header">Language</h6></li>
@@ -492,7 +493,7 @@
 
 					<!-- user: avatar, name and role, the account in the dropdown -->
 					<div class="dropdown ms-1">
-						<button type="button" class="navbar-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="User">
+						<button type="button" class="navbar-user" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 							<span class="avatar theme-primary">JN</span>
 							<span class="d-none d-lg-block"><span class="navbar-user-name">Jan Novák</span><span class="navbar-user-role">Administrator</span></span>
 						</button>
@@ -852,9 +853,8 @@
 </div>
 
 <!-- javascript library -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-<script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.js"></script>
-<script src="node_modules/nanobar/nanobar.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="node_modules/nanobar/nanobar.min.js" defer></script>
 <script type="module">
 	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, OtpInput, RowSelection, PasswordToggle, Strength, Dialogs, CssTooltip } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";

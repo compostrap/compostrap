@@ -110,7 +110,7 @@ Icon buttons on the right of the navbar (module `dashboard`): `navbar-icon` is a
 </div>
 
 <div class="dropdown">
-	<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-label="Language" data-tooltip="bottom"><i class="bi bi-translate"></i><span class="navbar-icon-text">EN</span></button>
+	<button type="button" class="navbar-icon" data-bs-toggle="dropdown"><i class="bi bi-translate" aria-hidden="true"></i><span class="visually-hidden">Language: </span><span class="navbar-icon-text">EN</span></button>
 	<ul class="dropdown-menu dropdown-menu-end">
 		<li><a class="dropdown-item" href="...">Čeština</a></li>
 		<li><a class="dropdown-item active" href="..." aria-current="true">English</a></li>
