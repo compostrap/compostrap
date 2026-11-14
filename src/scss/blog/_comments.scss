@@ -73,6 +73,13 @@
 	line-height: 1.6;
 }
 
+// a link in the text of a comment (a reference to another comment too) is underlined: the theme draws links without
+// a line, and in running text a color alone does not tell a link from the text (WCAG 1.4.1)
+.blog-comment-content a {
+	text-decoration: underline;
+	text-underline-offset: .15em;
+}
+
 // the paragraphs and lists of a comment without the bottom margin of the last one, so the box stays even
 .blog-comment-content > :last-child {
 	margin-bottom: 0;

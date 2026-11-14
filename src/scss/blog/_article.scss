@@ -67,6 +67,13 @@
 	font-size: 1rem;
 	line-height: 1.7;
 
+	// a link in the text is underlined: the theme draws links without a line, and in running text a color alone does
+	// not tell a link from the text (WCAG 1.4.1)
+	a {
+		text-decoration: underline;
+		text-underline-offset: .15em;
+	}
+
 	h2,
 	h3 {
 		margin-top: 2.5rem;
