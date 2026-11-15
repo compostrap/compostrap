@@ -61,7 +61,7 @@ $link-decoration: none !default;
 $link-hover-decoration: underline !default;
 
 // shadows: hardly visible, they only lift a surface from the page; the small one is the soft shadow of compostrap
-// (.shadow-soft), which boxes and cards use instead of a border
+// ($soft-shadow), which boxes and cards use instead of a border
 $box-shadow-sm: none !default; // as $soft-shadow of the modules: no shadow for now
 
 // a faint line around a card, as $surface-border of the modules: none for now

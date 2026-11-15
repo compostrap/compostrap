@@ -59,7 +59,7 @@ The module `blog` styles a website with a blog, outside the administration: a he
 - `.blog-article-title` and the perex `.blog-article-lead`,
 - `.blog-meta.blog-article-meta` with the author, the date and the category,
 - `.blog-article-image`, the cover (a 21 : 9 cut),
-- `.blog-content`, the text: 16px text with more room between lines, headings, lists, pictures as wide cuts, a quote with a line of the primary color and code blocks on the tint.
+- `.blog-content`, the text: 16px text with more room between lines, headings, lists, pictures as wide cuts, a quote with a line of the primary color and code blocks on the tint. Links in the text are underlined (the theme draws links without a line, and a color alone does not tell a link from the text); so are the links in `.blog-comment-content`.
 
 A highlighted code is written with the text classes of Bootstrap; in a code block they take the colors of the code on nette.org, which can be changed by a variable (each as `r, g, b`):
 
@@ -79,7 +79,7 @@ The box of a code is `--blog-code-bg`.
 **Comments.** `section.blog-comments` with `.blog-comments-title`; a comment is `article.blog-comment` with:
 
 - `.blog-comment-head`: the avatar, `.blog-comment-author`, the link of its number and the time,
-- `.blog-comment-content`: the text of a comment, which holds only the message,
+- `.blog-comment-content`: the text of a comment, which holds only the message;
 - `.blog-meta.blog-comment-foot`: Reply and, in a comment that answers another one, the link to it as "In reply to".
 
 A comment opened by its link (`#comment-2`) is stronger and stays under the sticky header. The form of a new comment stands in `.blog-comment-form` with its title `.blog-comment-form-title` over the box.

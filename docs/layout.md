@@ -8,7 +8,7 @@ The sidebar runs over the whole height with the brand on top, the navbar sits ov
 
 ```html
 <div class="d-flex wrapper">
-	<nav class="sidebar shadow-soft" id="navigation">
+	<nav class="sidebar" id="navigation">
 		<div class="sidebar-menu"><div class="sidebar-menu-fixed">
 			<a class="sidebar-brand" href="/"><svg>…</svg><span>Compostrap</span></a>
 			<div class="scrollbar scrollbar-use-navbar">…menu…</div>
@@ -54,7 +54,6 @@ The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On sm
 | Layout with a fixed navbar                         | `wrapper-navbar-fixed`      |
 | Rounded top right corner of the sidebar            | `sidebar-rounded-top-right` |
 | Fixed menu in the sidebar                          | `sidebar-menu-fixed`        |
-| Soft shadow of the sidebar and boxes               | `shadow-soft`               |
 | Toggle visible on small screens (used by `Sidebar`) | `sidebar-toggle`           |
 | Toggle visible on all screens                      | `sidebar-toggle-visible`    |
 

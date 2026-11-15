@@ -1,6 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 
-// a 1 × 1 px PNG instead of the photos of picsum.photos, so the tests need no network
+// a 1 × 1 px PNG instead of every outside request, so the tests need no network (the demo has only own images)
 const pixel = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==', 'base64');
 
 /**

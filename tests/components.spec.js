@@ -517,8 +517,9 @@ test.describe('datepicker in a dialog', () => {
 		await calendar.locator('[data-vc-arrow="next"]').click();
 		await expect(month).not.toHaveText(before);
 
+		// the date of publication has a time (data-bs-selection-time-mode), so the value is a date and a time
 		await calendar.locator('[data-vc-date-btn]').nth(10).click();
-		await expect(input).toHaveValue(/^\d{4}-\d{2}-\d{2}$/);
+		await expect(input).toHaveValue(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/);
 		await expect(page.locator('#demo-offcanvas')).toHaveClass(/show/);
 		expect(errors).toEqual([]);
 	});

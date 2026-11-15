@@ -194,3 +194,5 @@ Smoke tests in Playwright over the demo pages: every page loads without an error
 - [Bootstrap Icons](https://icons.getbootstrap.com)
 - [Perfect scrollbar](https://github.com/mdbootstrap/perfect-scrollbar)
 - [Nanobar](https://github.com/jacoborus/nanobar)
+- [Vanilla Calendar Pro](https://vanilla-calendar.pro)
+- [Chart.js](https://www.chartjs.org)
