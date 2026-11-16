@@ -378,8 +378,8 @@ test.describe('gallery', () => {
 		await dialog.locator('.lightbox-prev').click();
 		await expect(counter).toHaveText(`${total} / ${total}`);
 
-		// the page under the preview does not scroll and keeps its scrollbar (nothing shifts); in a low window,
-		// where the page has something to scroll
+		// the page under the preview does not scroll; its scrollbar is hidden, but its room is kept (nothing shifts);
+		// in a low window, where the page has something to scroll
 		await page.setViewportSize({ width: 1280, height: 400 });
 		expect(await page.evaluate(() => document.documentElement.scrollHeight - innerHeight)).toBeGreaterThan(0);
 		const scroll = () => page.evaluate(() => ({ y: scrollY, width: document.documentElement.clientWidth }));
@@ -388,7 +388,7 @@ test.describe('gallery', () => {
 		await page.mouse.wheel(0, 300);
 		await page.waitForTimeout(200);
 		expect(await scroll()).toEqual(before);
-		expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflowY)).not.toBe('hidden');
+		expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflowY)).toBe('hidden');
 
 		await page.keyboard.press('Escape');
 		await expect(dialog).toBeHidden();

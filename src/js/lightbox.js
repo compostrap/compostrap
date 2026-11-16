@@ -60,7 +60,11 @@ export class Lightbox {
 		dialog.classList.toggle('lightbox-single', this._links.length < 2);
 		this._show(index);
 		if (!dialog.open) {
-			document.documentElement.classList.add('lightbox-open');
+			const root = document.documentElement;
+			// the room of a classic scrollbar is kept while the page is locked, so nothing shifts; a page without one
+			// (short, or an overlay scrollbar) gets no empty strip
+			root.classList.toggle('lightbox-gutter', window.innerWidth > root.clientWidth);
+			root.classList.add('lightbox-open');
 			dialog.showModal();
 		}
 	}
@@ -154,7 +158,7 @@ export class Lightbox {
 		});
 
 		dialog.addEventListener('close', () => {
-			document.documentElement.classList.remove('lightbox-open');
+			document.documentElement.classList.remove('lightbox-open', 'lightbox-gutter');
 			dialog.querySelector('.lightbox-image').removeAttribute('src');
 		});
 

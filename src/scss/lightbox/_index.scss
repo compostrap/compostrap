@@ -3,18 +3,16 @@
 // on a dark backdrop, its caption, a counter and round buttons to close and to browse
 //
 
-// The page under it does not scroll: the dialog and its backdrop keep a scroll gesture to themselves (the backdrop has
-// to be a scroll container for that), so the scrollbar of the page stays and nothing shifts. Safari does not hold a
-// gesture in a box that cannot scroll yet; on iOS, where the scrollbar takes no room, the page is locked the old way.
-// The scrollbar left in view takes the dark look of the backdrop also in the light theme.
+// The page under it is locked and its scrollbar hidden (a scrollbar that showed only on a long page looked random):
+// the script sets .lightbox-gutter when the page had a classic scrollbar, its room is kept empty, so nothing shifts,
+// and the empty strip is painted by the root background in the color of the backdrop (the backdrop does not cover it).
 html.lightbox-open {
-	color-scheme: dark;
+	overflow: hidden;
 }
 
-@supports (-webkit-touch-callout: none) {
-	.lightbox-open {
-		overflow: hidden;
-	}
+html.lightbox-gutter {
+	scrollbar-gutter: stable;
+	background-color: color-mix(in srgb, #000 95%, var(--bs-body-bg));
 }
 
 .lightbox {
