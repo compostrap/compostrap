@@ -119,6 +119,9 @@ li + li > .dropdown-item {
 .dropdown-menu[data-bs-theme='dark'] {
 	--bs-dropdown-bg: var(--bs-secondary-bg);
 	--bs-dropdown-link-hover-bg: rgba(var(--bs-body-color-rgb), .08);
+	// the header of Bootstrap is $gray-600 in both themes, too dark on the dark surface; the quiet text color of the
+	// theme like the header of the compact sidebar menu
+	--bs-dropdown-header-color: var(--bs-secondary-color);
 }
 
 // a toast is a floating surface like a dropdown: lighter in the dark theme, where a shadow is not seen
