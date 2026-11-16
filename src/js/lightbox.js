@@ -60,12 +60,15 @@ export class Lightbox {
 		dialog.classList.toggle('lightbox-single', this._links.length < 2);
 		this._show(index);
 		if (!dialog.open) {
+			// the page is locked and its scrollbar hidden; the body is padded by the width of a classic scrollbar
+			// meanwhile, so the page does not shift (a page without one, short or with an overlay scrollbar, gets none)
 			const root = document.documentElement;
-			// the room of a classic scrollbar is kept while the page is locked, so nothing shifts; a page without one
-			// (short, or an overlay scrollbar) gets no empty strip
 			const gutter = window.innerWidth - root.clientWidth;
-			root.classList.toggle('lightbox-gutter', gutter > 0);
-			root.style.setProperty('--lightbox-gutter', `${Math.max(gutter, 0)}px`);
+			if (gutter > 0) {
+				this._bodyPadding = document.body.style.paddingRight;
+				const padding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+				document.body.style.paddingRight = `${padding + gutter}px`;
+			}
 			root.classList.add('lightbox-open');
 			dialog.showModal();
 		}
@@ -160,8 +163,11 @@ export class Lightbox {
 		});
 
 		dialog.addEventListener('close', () => {
-			document.documentElement.classList.remove('lightbox-open', 'lightbox-gutter');
-			document.documentElement.style.removeProperty('--lightbox-gutter');
+			document.documentElement.classList.remove('lightbox-open');
+			if (this._bodyPadding !== undefined) {
+				document.body.style.paddingRight = this._bodyPadding;
+				this._bodyPadding = undefined;
+			}
 			dialog.querySelector('.lightbox-image').removeAttribute('src');
 		});
 

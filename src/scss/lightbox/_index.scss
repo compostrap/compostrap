@@ -3,29 +3,16 @@
 // on a dark backdrop, its caption, a counter and round buttons to close and to browse
 //
 
-// The page under it is locked and its scrollbar hidden (a scrollbar that showed only on a long page looked random):
-// the script sets .lightbox-gutter when the page had a classic scrollbar, its room is kept empty, so nothing shifts,
-// and the empty strip is painted by the root background in the color of the backdrop (the backdrop does not cover it).
+// The page under it is locked and its scrollbar hidden (a scrollbar that showed only on a long page looked random), so
+// the dialog has the whole window and its buttons stand symmetrically. The script pads the body by the width of the
+// scrollbar meanwhile (like the modals of Bootstrap), so the page under it does not shift. Keeping the room of the
+// scrollbar empty (scrollbar-gutter) was tried: a dialog widened over it was cut off in some browsers.
 html.lightbox-open {
 	overflow: hidden;
 }
 
-html.lightbox-gutter {
-	scrollbar-gutter: stable;
-	background-color: color-mix(in srgb, #000 95%, var(--bs-body-bg));
-
-	// the dialog spans the empty room too (its width measured by the script; 100vw leaves it out as well), so the
-	// buttons stand at the same distance from both edges of the window
-	.lightbox {
-		width: calc(100% + var(--lightbox-gutter, 0px));
-		max-width: none;
-	}
-}
-
 .lightbox {
 	overscroll-behavior: contain;
-	// 100 %, not 100vw: the window without the scrollbar of the page, so the buttons at the right edge keep their
-	// distance from it and are not drawn under it
 	width: 100%;
 	max-width: 100%;
 	height: 100dvh;
