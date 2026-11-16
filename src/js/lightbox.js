@@ -63,7 +63,9 @@ export class Lightbox {
 			const root = document.documentElement;
 			// the room of a classic scrollbar is kept while the page is locked, so nothing shifts; a page without one
 			// (short, or an overlay scrollbar) gets no empty strip
-			root.classList.toggle('lightbox-gutter', window.innerWidth > root.clientWidth);
+			const gutter = window.innerWidth - root.clientWidth;
+			root.classList.toggle('lightbox-gutter', gutter > 0);
+			root.style.setProperty('--lightbox-gutter', `${Math.max(gutter, 0)}px`);
 			root.classList.add('lightbox-open');
 			dialog.showModal();
 		}
@@ -159,6 +161,7 @@ export class Lightbox {
 
 		dialog.addEventListener('close', () => {
 			document.documentElement.classList.remove('lightbox-open', 'lightbox-gutter');
+			document.documentElement.style.removeProperty('--lightbox-gutter');
 			dialog.querySelector('.lightbox-image').removeAttribute('src');
 		});
 

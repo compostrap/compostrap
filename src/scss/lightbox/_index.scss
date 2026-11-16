@@ -13,6 +13,13 @@ html.lightbox-open {
 html.lightbox-gutter {
 	scrollbar-gutter: stable;
 	background-color: color-mix(in srgb, #000 95%, var(--bs-body-bg));
+
+	// the dialog spans the empty room too (its width measured by the script; 100vw leaves it out as well), so the
+	// buttons stand at the same distance from both edges of the window
+	.lightbox {
+		width: calc(100% + var(--lightbox-gutter, 0px));
+		max-width: none;
+	}
 }
 
 .lightbox {
