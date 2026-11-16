@@ -103,7 +103,7 @@
 	min-width: 12rem;
 	// a group longer than the window scrolls inside the menu
 	max-height: calc(100vh - 1rem);
-	padding: bs.$dropdown-padding-y 0;
+	padding: bs.$dropdown-padding-y bs.$dropdown-padding-x;
 	overflow-y: auto;
 	margin: 0;
 	font-size: bs.$dropdown-font-size;
@@ -133,6 +133,7 @@
 	color: bs.$dropdown-link-color;
 	white-space: nowrap;
 	text-decoration: none;
+	border-radius: bs.$dropdown-item-border-radius;
 
 	&:hover,
 	&:focus {

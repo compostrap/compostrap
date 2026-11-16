@@ -6,6 +6,11 @@
 // The page under it does not scroll: the dialog and its backdrop keep a scroll gesture to themselves (the backdrop has
 // to be a scroll container for that), so the scrollbar of the page stays and nothing shifts. Safari does not hold a
 // gesture in a box that cannot scroll yet; on iOS, where the scrollbar takes no room, the page is locked the old way.
+// The scrollbar left in view takes the dark look of the backdrop also in the light theme.
+html.lightbox-open {
+	color-scheme: dark;
+}
+
 @supports (-webkit-touch-callout: none) {
 	.lightbox-open {
 		overflow: hidden;
@@ -14,8 +19,10 @@
 
 .lightbox {
 	overscroll-behavior: contain;
-	width: 100vw;
-	max-width: 100vw;
+	// 100 %, not 100vw: the window without the scrollbar of the page, so the buttons at the right edge keep their
+	// distance from it and are not drawn under it
+	width: 100%;
+	max-width: 100%;
 	height: 100dvh;
 	max-height: 100dvh;
 	padding: 0;

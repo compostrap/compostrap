@@ -98,7 +98,21 @@
 
 // dropdowns: no border, the soft shadow of the theme; in the dark theme, where a shadow is not seen, a lighter surface
 .dropdown-menu {
+	--bs-dropdown-item-border-radius: #{$dropdown-item-border-radius};
+
 	box-shadow: var(--bs-box-shadow-lg);
+}
+
+// items are inset pills with a gap of 2px, so a hovered one does not merge with the chosen one next to it; a divider
+// still goes over the whole width of the menu
+.dropdown-item + .dropdown-item,
+li + li > .dropdown-item {
+	margin-top: 2px;
+}
+
+.dropdown-divider {
+	margin-right: calc(-1 * var(--bs-dropdown-padding-x));
+	margin-left: calc(-1 * var(--bs-dropdown-padding-x));
 }
 
 [data-bs-theme='dark'] .dropdown-menu,

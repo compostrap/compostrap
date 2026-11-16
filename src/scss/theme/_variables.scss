@@ -118,6 +118,11 @@ $dropdown-border-width: 0 !default;
 $dropdown-divider-bg: rgba(var(--bs-body-color-rgb), .08) !default;
 $dropdown-link-active-color: var(--bs-body-color) !default;
 $dropdown-link-active-bg: rgba(var(--bs-primary-rgb), .1) !default;
+// items are pills inset from the edges of the menu like the links of the sidebar menu (hover and the chosen item do
+// not fill the whole width); the text stays 1rem from the edge
+$dropdown-padding-x: .5rem !default;
+$dropdown-item-padding-x: .5rem !default;
+$dropdown-item-border-radius: var(--bs-border-radius) !default;
 
 // toasts in the look of the modals: no border, an opaque surface, larger corners and the large shadow
 $toast-padding-x: 1rem !default;
