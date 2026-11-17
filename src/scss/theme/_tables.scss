@@ -22,8 +22,9 @@
 }
 
 // icon-only links in a table row (row actions of a datagrid without buttons) are muted until hovered; not the items
-// of a menu of row actions, their text is not an element
-.table td a:not(.btn, .dropdown-item):has(> i:only-child) {
+// of a menu of row actions (their text is not an element) and not badges (a badge with an icon and a number keeps
+// its own padding and color)
+.table td a:not(.btn, .dropdown-item, .badge):has(> i:only-child) {
 	display: inline-block;
 	padding: 0 .25rem;
 	color: var(--bs-secondary-color);
