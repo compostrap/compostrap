@@ -25,6 +25,7 @@ const menu = [
 	{ title: 'Modules', items: [
 		{ file: 'datagrid.html', title: 'Datagrid', icon: 'bi-grid-3x3-gap', badge: '3' },
 		{ file: 'gallery.html', title: 'Gallery', icon: 'bi-images' },
+		{ file: 'sortable.html', title: 'Sortable', icon: 'bi-arrow-down-up' },
 		// a submenu (link-arrow + list-hidden): it opens by itself when its page is the current one
 		{ title: 'Commerce', icon: 'bi-shop', items: [
 			{ file: 'commerce.html', title: 'Products' },

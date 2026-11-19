@@ -197,6 +197,14 @@
 									</a>
 								</li>
 								<li>
+									<a href="sortable.html" class="list-link">
+										<div class="clearfix">
+											<div class="float-start"><span class="list-icon"><i class="bi bi-arrow-down-up bell"></i></span>Sortable</div>
+											<div class="float-end"></div>
+										</div>
+									</a>
+								</li>
+								<li>
 									<a class="list-link link-arrow">
 										<div class="clearfix">
 											<div class="float-start"><span class="list-icon"><i class="bi bi-shop bell"></i></span>Commerce</div>
@@ -834,7 +842,7 @@
 <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
 <script src="node_modules/nanobar/nanobar.min.js" defer></script>
 <script type="module">
-	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, OtpInput, RowSelection, PasswordToggle, Strength, Dialogs, CssTooltip } from "./src/js/index.js";
+	import { Sidebar, SidebarMenuApp, ThemeSwitcher, DropzoneInput, Lightbox, NumberInput, OtpInput, RowSelection, SortableList, PasswordToggle, Strength, Dialogs, CssTooltip } from "./src/js/index.js";
 	import { Datepicker } from "./src/js/datepicker.js";
 	import { Charts } from "./src/js/chart.js";
 	import PerfectScrollbar from "perfect-scrollbar";
@@ -846,6 +854,7 @@
 		NumberInput.init();
 		OtpInput.init();
 		RowSelection.init();
+		SortableList.init();
 		PasswordToggle.init();
 		Strength.init();
 		Dialogs.init();

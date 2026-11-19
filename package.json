@@ -1,6 +1,6 @@
 {
 	"name": "compostrap",
-	"version": "1.0.4",
+	"version": "1.1.0",
 	"description": "Bootstrap 5 for administrations and websites: a theme with the look and classes of Bootstrap 6, a layout with a sidebar, a multi-level menu and a navbar, and components Bootstrap does not have (datepicker, charts, gallery, lightbox, dropzone, sign-in pages, shop, blog).",
 	"type": "module",
 	"license": "MIT",
@@ -52,6 +52,7 @@
 		"./number-input": "./dist/js/number-input.js",
 		"./otp-input": "./dist/js/otp-input.js",
 		"./selection": "./dist/js/selection.js",
+		"./sortable": "./dist/js/sortable.js",
 		"./datepicker": "./dist/js/datepicker.js",
 		"./chart": "./dist/js/chart.js",
 		"./spinner": "./dist/js/spinner.js",

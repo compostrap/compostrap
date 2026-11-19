@@ -1,0 +1,141 @@
+			<div class="row g-3 mb-3">
+				<!-- a plain list: the rows are moved by their handle of dots, the rest of a row stays a link or a text -->
+				<div class="col-xl-5">
+					<div class="content-box h-100">
+						<header class="mb-4 pb-2 border-bottom">
+							<h1 class="h5 mb-1">Sortable list</h1>
+							<p class="mb-0 text-body-secondary">Drag a row by its dots, or focus the dots and use Space and the arrows.</p>
+						</header>
+						<ul class="list-group sortable" id="demo-team">
+							<li class="list-group-item sortable-item" data-id="1">
+								<button type="button" class="sortable-handle" aria-label="Move Jan Novák"></button>
+								<span class="avatar theme-primary">JN</span>
+								<span class="list-row-text">Jan Novák<small>Editor in chief</small></span>
+							</li>
+							<li class="list-group-item sortable-item" data-id="2">
+								<button type="button" class="sortable-handle" aria-label="Move Petra Králová"></button>
+								<span class="avatar theme-success">PK</span>
+								<span class="list-row-text">Petra Králová<small>UI designer</small></span>
+							</li>
+							<li class="list-group-item sortable-item" data-id="3">
+								<button type="button" class="sortable-handle" aria-label="Move Tomáš Malý"></button>
+								<span class="avatar theme-warning">TM</span>
+								<span class="list-row-text">Tomáš Malý<small>Developer</small></span>
+							</li>
+							<li class="list-group-item sortable-item" data-id="4">
+								<button type="button" class="sortable-handle" aria-label="Move Eva Horáková"></button>
+								<span class="avatar theme-info">EH</span>
+								<span class="list-row-text">Eva Horáková<small>Copywriter</small></span>
+							</li>
+							<li class="list-group-item sortable-item" data-id="5">
+								<button type="button" class="sortable-handle" aria-label="Move Martin Dvořák"></button>
+								<span class="avatar">MD</span>
+								<span class="list-row-text">Martin Dvořák<small>Support</small></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- the menu of the administration put in order: the sections share one group, so a link moves between
+					them; a group of links (Blog) holds a nested list, a group is not dropped into another group -->
+				<div class="col-xl-7">
+					<div class="content-box h-100">
+						<header class="mb-4 pb-2 border-bottom d-flex flex-wrap justify-content-between align-items-end gap-3">
+							<div>
+								<h2 class="h5 mb-1">Menu of the administration</h2>
+								<p class="mb-0 text-body-secondary">The links the packages add, in the order of the sidebar.</p>
+							</div>
+							<button type="button" class="btn btn-primary btn-sm" id="demo-menu-save" disabled>Save order</button>
+						</header>
+
+						<h3 class="h6 text-uppercase text-body-secondary small mb-2">Overview</h3>
+						<ul class="list-group sortable mb-4" data-sortable-group="menu" data-sortable-empty="Drop a link here">
+							<li class="list-group-item sortable-item" data-id="admin.dashboard">
+								<button type="button" class="sortable-handle" aria-label="Move Dashboard"></button>
+								<i class="bi bi-house-door" aria-hidden="true"></i>
+								<span class="list-row-text">Dashboard</span>
+								<span class="badge badge-subtle">Backend</span>
+							</li>
+						</ul>
+
+						<h3 class="h6 text-uppercase text-body-secondary small mb-2">Content</h3>
+						<ul class="list-group sortable mb-4" data-sortable-group="menu" data-sortable-empty="Drop a link here">
+							<li class="list-group-item sortable-item" data-id="blog">
+								<button type="button" class="sortable-handle" aria-label="Move Blog"></button>
+								<i class="bi bi-journal-text" aria-hidden="true"></i>
+								<span class="list-row-text">Blog<small>A group of links</small></span>
+								<span class="badge badge-subtle theme-primary">Blog</span>
+								<ul class="list-group sortable sortable-nested" data-sortable-group="menu" data-sortable-empty="Drop a link here">
+									<li class="list-group-item sortable-item" data-id="blog.articles">
+										<button type="button" class="sortable-handle" aria-label="Move Articles"></button>
+										<span class="list-row-text">Articles</span>
+									</li>
+									<li class="list-group-item sortable-item" data-id="blog.categories">
+										<button type="button" class="sortable-handle" aria-label="Move Categories"></button>
+										<span class="list-row-text">Categories</span>
+									</li>
+									<li class="list-group-item sortable-item" data-id="blog.comments">
+										<button type="button" class="sortable-handle" aria-label="Move Comments"></button>
+										<span class="list-row-text">Comments</span>
+										<span class="badge badge-sm badge-subtle theme-primary rounded-pill">3</span>
+									</li>
+								</ul>
+							</li>
+							<li class="list-group-item sortable-item" data-id="pages">
+								<button type="button" class="sortable-handle" aria-label="Move Pages"></button>
+								<i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+								<span class="list-row-text">Pages</span>
+								<span class="badge badge-subtle theme-success">Static pages</span>
+							</li>
+							<li class="list-group-item sortable-item" data-id="gallery">
+								<button type="button" class="sortable-handle" aria-label="Move Gallery"></button>
+								<i class="bi bi-images" aria-hidden="true"></i>
+								<span class="list-row-text">Gallery</span>
+								<span class="badge badge-subtle theme-success">Static pages</span>
+							</li>
+						</ul>
+
+						<h3 class="h6 text-uppercase text-body-secondary small mb-2">Commerce</h3>
+						<ul class="list-group sortable mb-4" data-sortable-group="menu" data-sortable-empty="Drop a link here">
+							<li class="list-group-item sortable-item" data-id="commerce.products">
+								<button type="button" class="sortable-handle" aria-label="Move Products"></button>
+								<i class="bi bi-box-seam" aria-hidden="true"></i>
+								<span class="list-row-text">Products</span>
+								<span class="badge badge-subtle theme-warning">Commerce</span>
+							</li>
+							<li class="list-group-item sortable-item" data-id="commerce.orders">
+								<button type="button" class="sortable-handle" aria-label="Move Orders"></button>
+								<i class="bi bi-receipt" aria-hidden="true"></i>
+								<span class="list-row-text">Orders</span>
+								<span class="badge badge-subtle theme-warning">Commerce</span>
+							</li>
+						</ul>
+
+						<h3 class="h6 text-uppercase text-body-secondary small mb-2">System</h3>
+						<ul class="list-group sortable mb-4" data-sortable-group="menu" data-sortable-empty="Drop a link here"></ul>
+
+						<p class="small text-body-secondary mb-2">Sent to the server (<code>SortableList.serialize()</code>)</p>
+						<pre class="small bg-body-tertiary rounded p-3 mb-0" id="demo-menu-order"></pre>
+					</div>
+				</div>
+			</div>
+<!-- overlays -->
+<script type="module">
+	import { SortableList } from "./src/js/sortable.js";
+
+	// the order of the menu as the server would get it; Save is enabled by a change (drago sends it by AJAX)
+	const menuLists = () => [...document.querySelectorAll('.sortable[data-sortable-group="menu"]:not(.sortable-nested)')];
+	const showMenuOrder = () => {
+		const sections = ['overview', 'content', 'commerce', 'system'];
+		const order = Object.fromEntries(menuLists().map((list, index) => [sections[index], SortableList.serialize(list)]));
+		document.getElementById('demo-menu-order').textContent = JSON.stringify(order, null, 1)
+			.replace(/\{\s+"id": ("[^"]+")\s+\}/g, '$1');
+	};
+	const save = document.getElementById('demo-menu-save');
+	document.addEventListener('change.bs.sortable', () => {
+		save.disabled = false;
+		showMenuOrder();
+	});
+	save.addEventListener('click', () => save.disabled = true);
+	showMenuOrder();
+</script>

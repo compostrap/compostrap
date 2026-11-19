@@ -34,6 +34,7 @@ export default defineConfig({
 				'number-input': entry('number-input'),
 				'otp-input': entry('otp-input'),
 				selection: entry('selection'),
+				sortable: entry('sortable'),
 				datepicker: entry('datepicker'),
 				chart: entry('chart'),
 				spinner: entry('spinner'),

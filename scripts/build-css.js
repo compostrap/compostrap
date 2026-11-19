@@ -12,6 +12,7 @@ const entries = [
 	'settings',
 	'datagrid',
 	'selection',
+	'sortable',
 	'number-input',
 	'otp-input',
 	'datepicker',
