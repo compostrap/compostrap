@@ -66,7 +66,6 @@ The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On sm
 | Current item            | `link-current` |
 | Link with a submenu (without `href`, it becomes a button) | `link-arrow`   |
 | Hidden submenu          | `list-hidden`  |
-| Shaking icon on hover   | `bell`         |
 
 The colors of the menu come from the body color of Bootstrap (titles at 60 %, icons at 60 %, arrows at 85 %), so both themes work without settings; they can be changed by the `--sm-*` CSS variables, the sizes by the Sass variables in `src/scss/_variables.scss`. The pills of the links have `--sm-pill-border-radius`, `--sm-pill-icon-color`, `--sm-pill-link-bg` (the current page) and `--sm-pill-hover-bg` (a hovered link, a bit weaker).
 

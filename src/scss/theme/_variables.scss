@@ -143,11 +143,10 @@ $accordion-icon-width: 1rem !default;
 $accordion-button-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$gray-300}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>") !default;
 $accordion-button-active-icon-dark: $accordion-button-icon-dark !default;
 
-// modals: no border around the window and under the header, a light line above the footer
+// modals: no border around the window and above the footer; the line under the header is in _overlays.scss
 $modal-content-border-width: 0 !default;
 $modal-header-border-width: 0 !default;
-$modal-footer-border-width: 1px !default;
-$modal-footer-border-color: var(--bs-border-color-translucent) !default;
+$modal-footer-border-width: 0 !default;
 
 // tables: more air in the rows, also in the small table of a datagrid; a quiet hover
 $table-cell-padding-y: .625rem !default;

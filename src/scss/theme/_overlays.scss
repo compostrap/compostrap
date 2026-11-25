@@ -2,8 +2,8 @@
 // theme: offcanvas, modals, dropdowns and toasts
 //
 
-// offcanvas floats: a gap from the edges of the window, rounded corners and a shadow instead of a border
-// (also the line under the header is left out); .offcanvas-flush keeps the panel stuck to the edge. The responsive
+// offcanvas floats: a gap from the edges of the window, rounded corners and a shadow instead of a border;
+// .offcanvas-flush keeps the panel stuck to the edge. The responsive
 // ones (.offcanvas-lg, …) float below their breakpoint, where they are a panel
 @mixin cs-offcanvas-float {
 	--cs-offcanvas-margin: .5rem;
@@ -52,8 +52,24 @@
 	}
 }
 
+// the line under the header of an offcanvas or a modal goes from the title to the close button only, like the header
+// of a content box; the close button keeps its edge, so the line ends at its cross
+.offcanvas-header,
+.modal-header {
+	padding-inline: 0;
+	border-bottom: var(--bs-border-width) solid var(--bs-border-color);
+
+	> .btn-close {
+		margin-right: 0;
+	}
+}
+
 .offcanvas-header {
-	border-bottom: 0;
+	margin-inline: var(--bs-offcanvas-padding-x);
+}
+
+.modal-header {
+	margin-inline: var(--bs-modal-header-padding-x);
 }
 
 // a modal lifts by a shadow (Bootstrap adds it only with $enable-shadows)

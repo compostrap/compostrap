@@ -71,7 +71,7 @@ const itemHtml = (item, current) => {
 		item.new ? '<span class="badge badge-sm badge-subtle theme-success rounded-pill">New</span>' : '',
 		item.badge ? `<span class="badge badge-sm badge-subtle theme-primary rounded-pill">${item.badge}</span>` : '',
 	].filter(Boolean).join(' ');
-	const icon = item.icon ? `<span class="list-icon"><i class="bi ${item.icon} bell"></i></span>` : '';
+	const icon = item.icon ? `<span class="list-icon"><i class="bi ${item.icon}"></i></span>` : '';
 	const label = `<div class="clearfix">
 	<div class="float-start">${icon}${item.title}</div>
 	<div class="float-end">${badge}</div>
