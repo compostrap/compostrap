@@ -7,3 +7,11 @@
 	align-items: center;
 	gap: 0.35rem;
 }
+
+// a toggle button shows the icon and the label of the theme it switches to: .theme-switcher-light on a dark page,
+// .theme-switcher-dark on a light one; by CSS from data-bs-theme, which the script of the head sets before the page
+// is drawn, so the right one is there from the first paint and does not change when the switcher starts
+:root:not([data-bs-theme='dark']) .theme-switcher-light,
+:root[data-bs-theme='dark'] .theme-switcher-dark {
+	display: none;
+}

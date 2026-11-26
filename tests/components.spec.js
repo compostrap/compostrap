@@ -47,9 +47,14 @@ test.describe('theme switcher', () => {
 		const toggle = page.locator('[data-theme-switcher]');
 
 		await expect(html).toHaveAttribute('data-bs-theme', 'light');
+		// the icon of the theme it switches to, by CSS
+		await expect(toggle.locator('.theme-switcher-dark')).toBeVisible();
+		await expect(toggle.locator('.theme-switcher-light')).toBeHidden();
 		await toggle.click();
 		await expect(html).toHaveAttribute('data-bs-theme', 'dark');
 		await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+		await expect(toggle.locator('.theme-switcher-light')).toBeVisible();
+		await expect(toggle.locator('.theme-switcher-dark')).toBeHidden();
 		await toggle.click();
 		await expect(html).toHaveAttribute('data-bs-theme', 'light');
 		// back at the theme of the system the page follows it again instead of being pinned

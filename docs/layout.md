@@ -59,7 +59,7 @@ The sidebar is the element `#navigation`, its toggle button is `#sidebar`. On sm
 
 ## Sidebar menu
 
-`SidebarMenuApp.init()` can be called again after menu items are added. It sets `aria-expanded` and `aria-controls` on submenu links, `aria-current="page"` on the current link, and opens a submenu at once; only its arrow rotates. Set `SidebarMenu.slideDuration = 200` (ms) before `init()` to slide submenus open instead; the slide is skipped when reduced motion is requested.
+`SidebarMenuApp.init()` can be called again after menu items are added. It sets `aria-expanded` and `aria-controls` on submenu links, `aria-current="page"` on the current link, and opens a submenu at once; only its arrow rotates. The first state comes from the markup, before the script runs: the arrow of `link-arrow` (down with `link-current`) and the open submenu of the current group, so nothing moves when the script starts. Set `SidebarMenu.slideDuration = 200` (ms) before `init()` to slide submenus open instead; the slide is skipped when reduced motion is requested.
 
 | Description             | Class          |
 |-------------------------|----------------|
@@ -96,8 +96,9 @@ From the `md` breakpoint up the sidebar can be narrowed to the icons of the firs
 Icon buttons on the right of the navbar (module `dashboard`): `navbar-icon` is a quiet square for an icon, an icon with a short text (`navbar-icon-text`, e.g. the code of the language) widens it; tinted on hover and while its dropdown is open. A `status-dot` (module `elements`) marks that something waits; `status-dot-pulse` makes it pulse.
 
 ```html
-<button type="button" class="navbar-icon" aria-label="Toggle theme" data-tooltip="bottom" data-theme-switcher
-	data-theme-light-icon="bi bi-sun" data-theme-dark-icon="bi bi-moon"><i data-theme-switcher-icon class="bi bi-moon"></i></button>
+<button type="button" class="navbar-icon" aria-label="Toggle theme" data-tooltip="bottom" data-theme-switcher>
+	<i class="bi bi-sun theme-switcher-light"></i><i class="bi bi-moon theme-switcher-dark"></i>
+</button>
 
 <div class="dropdown">
 	<button type="button" class="navbar-icon" data-bs-toggle="dropdown" aria-label="Notifications">

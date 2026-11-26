@@ -17,7 +17,18 @@ The theme is light, dark or `auto`: the setting of the system, followed when the
 
 The auto choice says which theme the system has now: the script sets its `title` (`autoLightTitle`, `autoDarkTitle`, or `data-theme-auto-light-title` and `data-theme-auto-dark-title` on the button) and `data-theme-system="light|dark"`, a hook for an own mark.
 
-A single toggle button (e.g. on a sign-in page) switches light ↔ dark. It shows the opposite of the theme on the screen; when that is the theme of the system, the page goes back to following the system (`auto` is stored) instead of being pinned to it. A label and an icon from any icon library are optional:
+A single toggle button (e.g. on a sign-in page) switches light ↔ dark. It shows the opposite of the theme on the screen; when that is the theme of the system, the page goes back to following the system (`auto` is stored) instead of being pinned to it. A label and an icon from any icon library are optional. Write both and the CSS shows the right one: `theme-switcher-light` on a dark page (it switches to light), `theme-switcher-dark` on a light one. It reads `data-bs-theme`, which the script of the head sets before the page is drawn, so the icon is right from the first paint and does not change when the script starts:
+
+```html
+<button type="button" class="btn btn-link nav-link theme-switcher" aria-label="Toggle theme" data-theme-switcher>
+	<i class="bi bi-sun theme-switcher-light" aria-hidden="true"></i>
+	<i class="bi bi-moon theme-switcher-dark" aria-hidden="true"></i>
+	<span class="theme-switcher-light">Light mode</span>
+	<span class="theme-switcher-dark">Dark mode</span>
+</button>
+```
+
+The older way, one icon and one label that the script rewrites, works too, but on a dark page it shows the wrong icon until the script runs:
 
 ```html
 <button
