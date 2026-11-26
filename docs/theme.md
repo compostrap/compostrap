@@ -28,6 +28,25 @@ Buttons and alerts take the colors of Bootstrap 6 too. Buttons darken a little o
 
 Alerts are the text of the color on its light tint, without a border. A `theme-*` class (and `btn-primary`, `btn-outline-primary`, `alert-primary`…) sets the CSS variables `--theme-bg`, `--theme-contrast`, `--theme-fg`, `--theme-fg-emphasis`, `--theme-bg-subtle`, `--theme-bg-muted` and `--theme-border` of its color, also for the dark theme.
 
+## Disabled links
+
+Bootstrap styles a disabled link only in its components (`.btn`, `.nav-link`, `.dropdown-item`). The theme does the
+same for a plain link with `aria-disabled="true"`: it takes the secondary text color, loses the underline of the hover
+and cannot be clicked. Any class of the link (`.btn`, `.link-*`) stays above this rule.
+
+It is meant for a link that sent a request and must not send it twice: a script sets the attribute after the click
+and removes it when the request ends (in drago-ui `LinkDisableHandler` does it for a Naja link with
+`data-link-disable`). A submit button needs nothing of the theme: it takes the native `disabled`.
+
+```html
+<a href="..." aria-disabled="true">Load</a>
+<button type="submit" class="btn btn-primary" disabled>Save</button>
+```
+
+It is not the [loading state](elements.md) `aria-busy`: that one fades a whole box that is redrawn, this one marks only
+the element that sent the request, also outside that box (a toolbar, the button of a form that stays). The demo page
+States shows both.
+
 ## Breadcrumb
 
 The theme has the breadcrumb of Bootstrap 6 with its markup: links with a quiet pill on hover, a thin chevron as a separate divider, the current page in the body color.

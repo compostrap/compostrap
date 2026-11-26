@@ -7,3 +7,16 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
 }
+
+// a plain link disabled for a while (aria-disabled, e.g. while its AJAX request runs) looks and acts as the disabled
+// links of Bootstrap, which style only theirs (.btn, .nav-link, .dropdown-item); :where keeps any class above it;
+// :hover too, because a browser ends the hover of a link under a still mouse only when the layout changes
+a:where([aria-disabled='true']) {
+	pointer-events: none;
+
+	&,
+	&:hover {
+		color: var(--bs-secondary-color);
+		text-decoration: none;
+	}
+}

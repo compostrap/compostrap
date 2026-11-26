@@ -103,6 +103,26 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- disabled while sent: a link and a submit button cannot send their request twice -->
+			<div class="content-box mb-3">
+				<header class="mb-4 pb-2 border-bottom">
+					<h2 class="h5 mb-1">Disabled while sent</h2>
+					<p class="small text-body-secondary mb-0">A link or a submit button cannot be clicked once more until its request ends.</p>
+				</header>
+				<div class="row g-3">
+					<div class="col-md-6">
+						<p class="fw-medium mb-1">Link</p>
+						<p class="text-body-secondary">aria-disabled="true" grays a plain link out and stops its clicks.</p>
+						<a href="#" data-demo-disable>Load for 2 seconds</a>
+					</div>
+					<div class="col-md-6">
+						<p class="fw-medium mb-1">Submit button</p>
+						<p class="text-body-secondary">The attribute disabled of the button, the look of Bootstrap.</p>
+						<button type="button" class="btn btn-primary btn-sm" data-demo-disable>Save for 2 seconds</button>
+					</div>
+				</div>
+			</div>
 <!-- overlays -->
 <script type="module">
 	// the demo shows a spinner for three seconds, as an AJAX request of drago would (Naja: start → show(), complete → hide())
@@ -124,4 +144,14 @@
 		box.setAttribute('aria-busy', 'true');
 		setTimeout(() => box.removeAttribute('aria-busy'), 2000);
 	});
+
+	// the demo disables a link or a button for two seconds, as the Naja extensions of drago-ui do while a request runs
+	for (const element of document.querySelectorAll('[data-demo-disable]')) {
+		element.addEventListener('click', (event) => {
+			event.preventDefault();
+			const link = element.tagName === 'A';
+			link ? element.setAttribute('aria-disabled', 'true') : element.disabled = true;
+			setTimeout(() => link ? element.removeAttribute('aria-disabled') : element.disabled = false, 2000);
+		});
+	}
 </script>
