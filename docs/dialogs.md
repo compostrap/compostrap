@@ -11,7 +11,7 @@ The module `dialogs` adds to the modals and offcanvas panels of Bootstrap: `moda
 			<div class="modal-status"></div>
 			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			<div class="modal-body">
-				<i class="bi bi-exclamation-triangle modal-confirm-icon" aria-hidden="true"></i>
+				<i class="bi bi-dash-circle modal-confirm-icon" aria-hidden="true"></i>
 				<h2 class="modal-title" id="confirm-title">Are you sure?</h2>
 				<p>Do you really want to delete the item? This cannot be undone.</p>
 			</div>
