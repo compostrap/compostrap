@@ -115,6 +115,8 @@ $card-cap-bg: transparent !default;
 
 // dropdowns: no border (the shadow lifts them), a faint divider, the chosen item (e.g. the current language) is tinted, not filled with the primary color
 $dropdown-border-width: 0 !default;
+// the inner corners without a border (Bootstrap would write the invalid calc(… - 0))
+$dropdown-inner-border-radius: var(--bs-border-radius) !default;
 $dropdown-divider-bg: rgba(var(--bs-body-color-rgb), .08) !default;
 $dropdown-link-active-color: var(--bs-body-color) !default;
 $dropdown-link-active-bg: rgba(var(--bs-primary-rgb), .1) !default;
@@ -147,6 +149,9 @@ $accordion-button-active-icon-dark: $accordion-button-icon-dark !default;
 $modal-content-border-width: 0 !default;
 $modal-header-border-width: 0 !default;
 $modal-footer-border-width: 0 !default;
+// without a border the inner corners are those of the window; Bootstrap would write calc(… - 0), which is invalid,
+// so the tinted header lost its rounded corners
+$modal-content-inner-border-radius: var(--bs-border-radius-lg) !default;
 
 // tables: more air in the rows, also in the small table of a datagrid; a quiet hover
 $table-cell-padding-y: .625rem !default;

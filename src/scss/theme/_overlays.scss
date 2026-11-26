@@ -52,24 +52,17 @@
 	}
 }
 
-// the line under the header of an offcanvas or a modal goes from the title to the close button only, like the header
-// of a content box; the close button keeps its edge, so the line ends at its cross
+// the header of an offcanvas or a modal is tinted over the whole width instead of a line under it (a line looked like
+// a divider of the form below)
+// (the tertiary background is hardly seen on white, so the light theme takes a shade darker)
 .offcanvas-header,
 .modal-header {
-	padding-inline: 0;
-	border-bottom: var(--bs-border-width) solid var(--bs-border-color);
-
-	> .btn-close {
-		margin-right: 0;
-	}
+	background-color: $gray-100;
 }
 
-.offcanvas-header {
-	margin-inline: var(--bs-offcanvas-padding-x);
-}
-
-.modal-header {
-	margin-inline: var(--bs-modal-header-padding-x);
+[data-bs-theme='dark'] :is(.offcanvas-header, .modal-header),
+:is(.offcanvas-header, .modal-header)[data-bs-theme='dark'] {
+	background-color: var(--bs-tertiary-bg);
 }
 
 // a modal lifts by a shadow (Bootstrap adds it only with $enable-shadows)
