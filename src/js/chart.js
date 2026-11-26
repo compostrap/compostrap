@@ -325,12 +325,14 @@ export class Charts {
 		box.before(legend);
 	}
 
-	// the values as a table for screen readers (the canvas is only a picture)
+	// the values as a table for screen readers (the canvas is only a picture); the table is hidden in a div, because
+	// a table keeps the height of its rows also with .visually-hidden and stretched the page below the window
 	static _table(canvas, config, number) {
 		const box = canvas.closest('.chart');
-		box.querySelector(':scope > table')?.remove();
+		box.querySelector(':scope > .visually-hidden')?.remove();
+		const hidden = document.createElement('div');
+		hidden.className = 'visually-hidden';
 		const table = document.createElement('table');
-		table.className = 'visually-hidden';
 		const caption = document.createElement('caption');
 		caption.textContent = canvas.getAttribute('aria-label') || '';
 		const head = document.createElement('tr');
@@ -354,6 +356,7 @@ export class Charts {
 			table.append(tr);
 		});
 		canvas.setAttribute('role', 'img');
-		box.append(table);
+		hidden.append(table);
+		box.append(hidden);
 	}
 }

@@ -539,7 +539,10 @@ test.describe('charts', () => {
 
 		for (let i = 0; i < total; i++) {
 			const canvas = charts.nth(i);
-			await expect(canvas.locator('xpath=..').locator('table.visually-hidden')).toHaveCount(1);
+			// hidden in a div: a table with .visually-hidden itself keeps the height of its rows
+			const values = canvas.locator('xpath=..').locator(':scope > .visually-hidden > table');
+			await expect(values).toHaveCount(1);
+			expect(await values.evaluate((table) => table.parentElement.getBoundingClientRect().height)).toBeLessThanOrEqual(1);
 			// something is painted on the canvas
 			expect(await canvas.evaluate((element) => {
 				const { data } = element.getContext('2d').getImageData(0, 0, element.width, element.height);
