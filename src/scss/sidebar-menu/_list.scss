@@ -43,6 +43,12 @@
 		padding: 0;
 	}
 
+	// the group of the current page is open from the first paint, not only after the script (SidebarMenu); when it
+	// is closed, the inline display of the script wins
+	& &-link.link-current + &-hidden {
+		display: block;
+	}
+
 	&-hidden &-link {
 		padding-top: var.$sm-sublink-padding-y;
 		padding-bottom: var.$sm-sublink-padding-y;
@@ -67,8 +73,10 @@
 	}
 }
 
-// arrow icon up and down in menu
+// arrow icon up and down in menu; drawn from the first paint, before the script adds .up and .down, so the arrow does
+// not appear later and push the badge aside (the group of the current page points down at once)
 .link-arrow:before {
+	content: var.$icon-chevron-right;
 	font-family: var.$icon-font, sans-serif;
 	font-weight: var.$icon-font-weight;
 	font-size: var.$sm-arrow-size;
@@ -83,10 +91,7 @@
 	margin-right: .5rem;
 }
 
-.link-arrow.up:before {
-	content: var.$icon-chevron-right;
-}
-
+.link-arrow.link-current:before,
 .link-arrow.down:before {
 	content: var.$icon-chevron-down;
 }
