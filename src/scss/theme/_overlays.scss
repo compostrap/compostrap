@@ -53,8 +53,7 @@
 }
 
 // the header of an offcanvas or a modal is tinted over the whole width instead of a line under it (a line looked like
-// a divider of the form below)
-// (the tertiary background is hardly seen on white, so the light theme takes a shade darker)
+// a divider of the form below); the tertiary background is hardly seen on white, so the light theme takes a shade darker
 .offcanvas-header,
 .modal-header {
 	background-color: $gray-100;
