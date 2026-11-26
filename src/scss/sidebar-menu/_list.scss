@@ -77,6 +77,7 @@
 // not appear later and push the badge aside (the group of the current page points down at once)
 .link-arrow:before {
 	content: var.$icon-chevron-right;
+	width: 1em; // its room also before the icon font is loaded
 	font-family: var.$icon-font, sans-serif;
 	font-weight: var.$icon-font-weight;
 	font-size: var.$sm-arrow-size;

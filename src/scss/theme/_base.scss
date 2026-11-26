@@ -8,6 +8,14 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
+// an icon of Bootstrap Icons keeps its width (every icon is a square of 1em) before its font is loaded, so the text
+// next to it does not jump when the font comes; the font hides the icons until then (font-display: block)
+.bi::before,
+[class^='bi-']::before,
+[class*=' bi-']::before {
+	width: 1em;
+}
+
 // a plain link disabled for a while (aria-disabled, e.g. while its AJAX request runs) looks and acts as the disabled
 // links of Bootstrap, which style only theirs (.btn, .nav-link, .dropdown-item); :where keeps any class above it;
 // :hover too, because a browser ends the hover of a link under a still mouse only when the layout changes
