@@ -24,7 +24,7 @@ The module `dialogs` adds to the modals and offcanvas panels of Bootstrap: `moda
 </div>
 ```
 
-**A click outside.** `Dialogs.init()` makes every modal and offcanvas stay open when the user clicks outside of it, so a form in a dialog is not lost by a slip of the mouse; a dialog is closed by its cross, its Cancel button (`data-bs-dismiss`) and Esc. It sets the default `backdrop` option of Bootstrap to `static`, so it also holds for dialogs loaded later (AJAX) or opened from a script; call it before the first dialog is opened. A dialog that should close by a click outside (the search below, which has no button to close it) says so by `data-bs-backdrop="true"`. Without `Dialogs.init()` nothing changes and single dialogs can take `data-bs-backdrop="static"` of Bootstrap.
+**A click outside.** `Dialogs.init()` makes every modal and offcanvas stay open when the user clicks outside of it, so a form in a dialog is not lost by a slip of the mouse; a dialog is closed by its cross, its Cancel button (`data-bs-dismiss`) and Esc. It sets the default `backdrop` option of Bootstrap to `static`, so it also holds for dialogs loaded later (AJAX) or opened from a script; call it before the first dialog is opened. A dialog that should close by a click outside (the search below, which has no button to close it) says so by `data-bs-backdrop="true"`. After a click outside it returns the focus to an offcanvas, so Esc still closes it (Bootstrap 5 leaves the focus outside, [twbs/bootstrap#37155](https://github.com/twbs/bootstrap/issues/37155); a modal takes it back itself). Without `Dialogs.init()` nothing changes and single dialogs can take `data-bs-backdrop="static"` of Bootstrap.
 
 ```javascript
 import { Dialogs } from 'compostrap';

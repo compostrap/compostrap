@@ -21,5 +21,17 @@ export class Dialogs {
 				component.Default.backdrop = 'static';
 			}
 		}
+
+		// one function, so a second init() adds no second listener
+		document.addEventListener('hidePrevented.bs.offcanvas', focusOffcanvas);
 	}
+}
+
+/**
+ * A click on the static backdrop leaves the focus outside of an offcanvas, where Esc does not reach it; a modal
+ * takes the focus back itself (twbs/bootstrap#37155, fixed only by the dialog of Bootstrap 6). The backdrop calls
+ * on mousedown, before the browser moves the focus to the body, so the focus is returned after it.
+ */
+function focusOffcanvas(event) {
+	setTimeout(() => event.target.focus());
 }

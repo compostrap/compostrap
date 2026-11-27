@@ -350,6 +350,23 @@ test.describe('dialogs', () => {
 		expect(errors).toEqual([]);
 	});
 
+	test('Esc closes a modal and an offcanvas also after a click outside', async ({ page, errors }) => {
+		await open(page, 'overlays.html');
+
+		for (const id of ['#demo-modal', '#demo-offcanvas']) {
+			const dialog = page.locator(id);
+			await page.locator(`[data-bs-target="${id}"]`).first().click();
+			await expect(dialog).toBeVisible();
+			await expect(dialog).not.toHaveClass(/showing/);
+
+			await page.mouse.click(5, 300);
+			await page.waitForTimeout(500);
+			await page.keyboard.press('Escape');
+			await expect(dialog).toBeHidden();
+		}
+		expect(errors).toEqual([]);
+	});
+
 	test('the search still closes by a click outside', async ({ page, errors }) => {
 		await open(page, 'overlays.html');
 		const search = page.locator('#demo-search');
